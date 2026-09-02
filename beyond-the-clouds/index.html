@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sovereign AI infrastructure — ADA AI Leadership Day 2026, Amsterdam. Alessandro Vozza.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23233123'/%3E%3Crect x='8' y='8' width='4' height='16' fill='%23fff'/%3E%3Crect x='14' y='8' width='4' height='16' fill='%23fff'/%3E%3Crect x='20' y='8' width='4' height='16' fill='%23fff'/%3E%3C/svg%3E">
+<title>Beyond the Clouds</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Tamil:ital@0;1&display=swap">
+
+<style>
+/* ============================================================
+   BEYOND THE CLOUDS — ADA AI Leadership Day 2026
+   VOLT house style, applied from 20260830 VOLT PPT template.
+   Ground: VOLT deep green #233123 with the halftone dot texture.
+   Type:   Tiro Tamil (display, matches the VOLT wordmark register)
+           Arial (body, footers, labels) — as in the template.
+   ============================================================ */
+:root {
+  --ink:            #233123;   /* VOLT deep green */
+  --ink-2:          #2b3c2b;
+  --paper:          #fdfdfb;
+  --paper-2:        #f2f6f1;
+  --surface-muted:  #e4efe4;   /* VOLT pale green tint */
+  --cream:          #faeee0;   /* VOLT warm cream tint */
+  --navy:           #042433;   /* VOLT secondary */
+  --fg-on-light:    #233123;
+  --fg-on-dark:     #ffffff;
+  --fg-muted:       #5c6b5c;
+  --fg-muted-dark:  #b3c6b0;
+  --accent:         #2b4e2b;   /* forest green, for light grounds */
+  --accent-soft:    #9dc298;   /* the same green lifted, for dark grounds */
+  --on-accent:      #faeee0;
+  --rule:           #d9d9d9;
+  --rule-dark:      #3c503c;
+
+  --f-display: 'Tiro Tamil', 'Iowan Old Style', Georgia, serif;
+  --f-body:    Arial, Helvetica, 'Helvetica Neue', sans-serif;
+  --f-mono:    Arial, Helvetica, sans-serif;
+}
+
+/* On dark grounds the whole token set lifts, so every rule below
+   that reads var(--accent) resolves to the legible variant. */
+.on-dark, .slide--hook { --accent: var(--accent-soft); --fg-muted: var(--fg-muted-dark); --rule: var(--rule-dark); }
+.layer.phys { --accent: var(--accent-soft); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--ink); font-family: var(--f-body); color: var(--fg-on-dark); }
+
+#deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--ink); }
+
+.slide {
+  position: absolute; top: 50%; left: 50%;
+  width: 1920px; height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  transform-origin: center center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 140ms ease;
+  font-family: var(--f-body); overflow: hidden;
+}
+.slide.is-active { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+
+/* ---- VOLT footer rule: section left, deck centre, wordmark + page right ---- */
+.ref {
+  position: absolute; bottom: 44px; left: 78px; right: 78px;
+  display: flex; align-items: center; gap: 26px;
+  border-top: 1px solid var(--rule); padding-top: 16px;
+  font-family: var(--f-body); font-size: 19px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.ref .ref-n { color: var(--accent); font-weight: 700; }
+.ref .ref-mid { margin-left: auto; letter-spacing: 0.14em; opacity: 0.75; }
+.ref .ref-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+.ref .ref-logo { height: 26px; width: auto; display: block; }
+.ref .ref-pg { font-size: 22px; font-weight: 700; letter-spacing: 0; }
+.on-light .ref { color: var(--fg-muted); }
+.on-dark  .ref { color: var(--fg-muted-dark); }
+
+/* Cover treatment for title and closing slides: wordmark, no rule. */
+.cover-mark { position: absolute; height: 62px; width: auto; }
+.slide--title .cover-mark { top: 92px; right: 110px; }
+.slide--cta   .cover-mark { bottom: 96px; right: 130px; }
+
+/* ---- VOLT halftone dot ground (10px pitch, as in the template) ---- */
+.on-light {
+  background-color: var(--paper); color: var(--fg-on-light);
+  background-image:
+    radial-gradient(circle, rgba(43,78,43,0.11) 1px, transparent 1.5px),
+    radial-gradient(1000px 660px at 76% 42%, rgba(250,238,224,0.85), transparent 70%);
+  background-size: 10px 10px, 100% 100%;
+}
+.on-dark {
+  background-color: var(--ink); color: var(--fg-on-dark);
+  background-image:
+    radial-gradient(circle, rgba(157,194,152,0.14) 1px, transparent 1.5px),
+    radial-gradient(1150px 720px at 22% 34%, rgba(43,78,43,0.55), transparent 72%);
+  background-size: 10px 10px, 100% 100%;
+}
+
+/* ---------- title ---------- */
+.slide--title { padding: 120px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--title::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(1100px 640px at 78% 68%, rgba(78,124,74,0.30), transparent 68%);
+}
+.slide--title > *:not(.cover-mark) { position: relative; }
+.slide--title .eyebrow { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 40px; }
+.slide--title h1 { font-family: var(--f-display); font-size: 148px; line-height: 0.94; font-weight: 400; letter-spacing: -0.015em; max-width: 15ch; }
+.slide--title h1 em { font-style: italic; color: var(--accent-soft); }
+.slide--title .sub { font-size: 34px; line-height: 1.35; color: var(--fg-muted-dark); margin-top: 44px; max-width: 42ch; }
+.slide--title .meta { position: absolute; bottom: 84px; left: 110px; right: 110px; display: flex; gap: 28px; align-items: baseline;
+  font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.06em; color: var(--fg-muted-dark); border-top: 1px solid var(--rule-dark); padding-top: 26px; }
+.slide--title .meta .who { color: var(--fg-on-dark); font-weight: 500; }
+.slide--title .meta .spacer { flex: 1; }
+
+/* ---------- hook ---------- */
+.slide--hook {
+  background-color: #2b4e2b; color: var(--on-accent);
+  background-image:
+    radial-gradient(circle, rgba(250,238,224,0.13) 1px, transparent 1.5px),
+    radial-gradient(1100px 700px at 50% 40%, rgba(35,49,35,0.45), transparent 74%);
+  background-size: 10px 10px, 100% 100%;
+  display: grid; place-items: center; padding: 140px 120px 190px; text-align: center;
+}
+.slide--hook p { font-family: var(--f-display); font-size: 108px; line-height: 1.06; font-weight: 400; max-width: 20ch; letter-spacing: -0.01em; }
+.slide--hook .sub { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.78; margin-top: 54px; white-space: nowrap; }
+
+/* ---------- bold claim ---------- */
+.slide--claim { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; }
+.slide--claim p { font-family: var(--f-display); font-size: 92px; line-height: 1.1; font-weight: 400; max-width: 21ch;
+  border-left: 8px solid var(--accent); padding-left: 56px; letter-spacing: -0.01em; }
+.slide--claim p b { font-style: italic; font-weight: 400; color: var(--accent); }
+.slide--claim cite { margin-top: 48px; padding-left: 64px; font-style: normal; font-family: var(--f-mono);
+  font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
+
+/* ---------- section divider ---------- */
+.slide--section { padding: 130px 130px 165px; display: flex; flex-direction: column; justify-content: flex-end; }
+.slide--section .num { font-family: var(--f-display); font-size: 210px; font-weight: 400; line-height: 0.9; color: var(--accent); letter-spacing: -0.02em; }
+.slide--section h2 { font-family: var(--f-display); font-size: 96px; font-weight: 400; margin-top: 18px; max-width: 22ch; line-height: 1.05; }
+.slide--section .lede { font-size: 30px; color: var(--fg-muted-dark); margin-top: 30px; max-width: 52ch; line-height: 1.4; }
+
+/* ---------- content ---------- */
+.slide--content { padding: 160px 130px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--content h2 { font-family: var(--f-display); font-size: 82px; font-weight: 400; line-height: 1.06; letter-spacing: -0.01em; max-width: 24ch; }
+.slide--content .lede { font-size: 30px; color: var(--fg-muted); margin-top: 26px; max-width: 62ch; line-height: 1.4; }
+.on-dark.slide--content .lede { color: var(--fg-muted-dark); }
+.points { list-style: none; display: grid; gap: 30px; margin-top: 62px; max-width: 1400px; }
+.points.two-col { grid-template-columns: 1fr 1fr; gap: 32px 64px; }
+.points li { font-size: 30px; line-height: 1.4; padding-left: 32px; border-left: 4px solid var(--accent); }
+.points li b { font-weight: 600; display: block; font-size: 32px; margin-bottom: 6px; }
+.points li span { color: var(--fg-muted); }
+.on-dark .points li span { color: var(--fg-muted-dark); }
+
+/* ---------- before / after ---------- */
+.slide--ba { padding: 160px 130px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--ba h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; margin-bottom: 56px; }
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.ba-col { padding: 48px 46px; border-radius: 4px; }
+.ba-col.old { background: var(--surface-muted); }
+.ba-col.new { background: var(--ink); color: var(--fg-on-dark); }
+.ba-col .lbl { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.65; }
+.ba-col.new .lbl { color: var(--accent-soft); opacity: 1; }
+.ba-col ul { list-style: none; display: grid; gap: 22px; margin-top: 34px; font-size: 28px; line-height: 1.35; }
+.ba-col li::before { content: "—"; margin-right: 14px; opacity: 0.45; }
+
+/* ---------- comparison table ---------- */
+.slide--table { padding: 150px 110px 145px; display: flex; flex-direction: column; justify-content: center; }
+.slide--table h2 { font-family: var(--f-display); font-size: 74px; font-weight: 400; margin-bottom: 14px; }
+.slide--table .lede { font-size: 26px; color: var(--fg-muted); margin-bottom: 44px; max-width: 70ch; }
+table.cmp { width: 100%; border-collapse: collapse; font-size: 25px; font-variant-numeric: tabular-nums; color: var(--fg-on-light); }
+table.cmp th, table.cmp td { padding: 20px 22px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.3; }
+table.cmp thead th { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); border-bottom: 2px solid var(--fg-on-light); }
+table.cmp tbody th { font-weight: 600; width: 15%; }
+table.cmp td.tag { font-family: var(--f-mono); font-size: 22px; }
+table.cmp tr.hi td, table.cmp tr.hi th { background: rgba(43,78,43,0.10); }
+table.cmp .mark { color: var(--accent); font-weight: 600; }
+
+/* ---------- metric ---------- */
+.slide--metric { display: grid; place-items: center; padding: 120px 120px 165px; text-align: center; }
+.slide--metric .num { font-family: var(--f-display); font-size: 320px; font-weight: 400; line-height: 0.86; color: var(--accent); letter-spacing: -0.03em; }
+.slide--metric .num .u { font-size: 0.42em; letter-spacing: 0; margin-left: 0.08em; }
+.slide--metric .cap { font-family: var(--f-display); font-size: 54px; line-height: 1.2; max-width: 26ch; margin-top: 46px; }
+.slide--metric .src { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.08em; color: var(--fg-muted-dark); margin-top: 34px; }
+
+/* ---------- quote ---------- */
+.slide--quote { padding: 170px 150px 155px; display: flex; flex-direction: column; justify-content: center; }
+.slide--quote blockquote { font-family: var(--f-display); font-size: 82px; line-height: 1.16; font-weight: 400; max-width: 27ch; }
+.slide--quote blockquote::before { content: "\201C"; color: var(--accent); }
+.slide--quote cite { margin-top: 54px; font-style: normal; font-family: var(--f-mono); font-size: 23px; line-height: 1.6;
+  letter-spacing: 0.06em; color: var(--fg-muted); display: block; max-width: 70ch; }
+.slide--quote cite b { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- timeline ---------- */
+.slide--timeline { padding: 160px 110px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--timeline h2 { font-family: var(--f-display); font-size: 74px; font-weight: 400; margin-bottom: 70px; }
+.tl { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 34px; position: relative; }
+.tl::before { content: ""; position: absolute; top: 13px; left: 0; right: 0; height: 2px; background: var(--rule); }
+.tl li { position: relative; padding-top: 56px; }
+.tl li::before { content: ""; position: absolute; top: 0; left: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); }
+.tl .date { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.08em; color: var(--accent); display: block; margin-bottom: 14px; }
+.tl b { display: block; font-size: 30px; line-height: 1.25; font-weight: 600; }
+.tl p { font-size: 24px; line-height: 1.35; color: var(--fg-muted); margin-top: 12px; }
+
+/* ---------- architecture (CSS box diagram) ---------- */
+.slide--arch { padding: 120px 90px 132px; display: grid; grid-template-rows: auto 1fr auto; gap: 20px; }
+.slide--arch h2 { font-family: var(--f-display); font-size: 62px; font-weight: 400; }
+.arch { display: grid; grid-template-columns: 210px 1fr 210px; gap: 20px; align-items: stretch; }
+.rail { border: 2px solid var(--rule); border-radius: 4px; padding: 24px 18px; display: flex; flex-direction: column; justify-content: center; gap: 16px; text-align: center; }
+.rail .rl { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.rail p { font-size: 21px; line-height: 1.35; color: var(--fg-muted); }
+.layers { display: grid; gap: 11px; }
+.layer { display: grid; grid-template-columns: 300px 1fr; align-items: center; gap: 22px; background: var(--paper-2); border-left: 6px solid var(--accent); border-radius: 3px; padding: 15px 22px; }
+.layer.phys { background: var(--ink); color: var(--fg-on-dark); }
+.layer .ln { font-weight: 600; font-size: 25px; line-height: 1.2; }
+.layer .ln em { display: block; font-style: normal; font-family: var(--f-mono); font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); margin-top: 4px; }
+.layer.phys .ln em { color: var(--fg-muted-dark); }
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+.chip { font-family: var(--f-mono); font-size: 19px; padding: 7px 13px; border: 1px solid var(--rule); border-radius: 3px; background: var(--paper); }
+.layer.phys .chip { background: var(--ink-2); border-color: var(--rule-dark); }
+.slide--arch .cap { font-family: var(--f-mono); font-size: 20px; color: var(--fg-muted); letter-spacing: 0.04em; }
+
+/* ---------- debate ---------- */
+.slide--debate { padding: 150px 110px 145px; display: flex; flex-direction: column; justify-content: center; }
+.slide--debate h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; margin-bottom: 16px; }
+.slide--debate .lede { font-size: 27px; color: var(--fg-muted-dark); margin-bottom: 54px; }
+.provs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 26px 48px; counter-reset: p; }
+.provs li { counter-increment: p; display: grid; grid-template-columns: 62px 1fr; gap: 20px; align-items: start;
+  font-size: 29px; line-height: 1.34; padding-bottom: 22px; border-bottom: 1px solid var(--rule-dark); }
+.provs li::before { content: counter(p, decimal-leading-zero); font-family: var(--f-mono); font-size: 30px; font-weight: 600; color: var(--accent); }
+
+/* ---------- cta ---------- */
+.slide--cta { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; gap: 46px; }
+.slide--cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(980px 600px at 18% 78%, rgba(78,124,74,0.30), transparent 66%); }
+.slide--cta > *:not(.cover-mark) { position: relative; }
+.slide--cta h2 { font-family: var(--f-display); font-size: 112px; font-weight: 400; line-height: 1.02; max-width: 20ch; }
+.slide--cta h2 em { font-style: italic; color: var(--accent-soft); }
+.slide--cta .ask { font-size: 32px; max-width: 46ch; line-height: 1.4; color: var(--fg-muted-dark); }
+.slide--cta ul { list-style: none; display: grid; gap: 16px; font-family: var(--f-mono); font-size: 25px; }
+.slide--cta ul span { display: inline-block; width: 190px; color: var(--accent-soft); letter-spacing: 0.1em; text-transform: uppercase; font-size: 20px; }
+
+/* ---------- appendix / sources ---------- */
+.slide--srcs { padding: 140px 100px 132px; display: flex; flex-direction: column; justify-content: center; }
+.slide--srcs h2 { font-family: var(--f-display); font-size: 66px; font-weight: 400; margin-bottom: 40px; }
+.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 56px; font-size: 22px; line-height: 1.4; }
+.srcs li { padding-left: 22px; border-left: 3px solid var(--accent); color: var(--fg-muted); }
+.srcs li b { display: block; color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- chrome ---------- */
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: #4e7c4a; z-index: 200; transition: width 180ms ease; }
+#counter { display: none; }
+#notes {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 300;
+  background: #161e16; border-top: 3px solid var(--accent-soft);
+  padding: 20px 28px 22px; max-height: 42vh; overflow-y: auto; display: none;
+  font-size: 15px; line-height: 1.55; color: #d7d3cc;
+}
+#notes.on { display: block; }
+#notes h4 { font-family: var(--f-body); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 10px; display: flex; gap: 18px; align-items: baseline; }
+#notes h4 .clock { margin-left: auto; color: #9aa89a; }
+#notes p { margin-bottom: 8px; max-width: 110ch; }
+#notes b { color: #fff; }
+#notes .say { border-left: 3px solid var(--accent); padding-left: 12px; font-style: italic; color: #efe9e2; }
+.s-notes { display: none; }
+#help { position: fixed; bottom: 14px; left: 20px; font-family: var(--f-body); font-size: 13px; color: #7d8c7d; z-index: 200;
+  transition: opacity 400ms ease; pointer-events: none; }
+#help.gone { opacity: 0; }
+
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { overflow: visible; }
+  #deck { width: auto; height: auto; }
+  #progress, #counter, #notes, #help { display: none !important; }
+  .slide { position: relative; top: auto; left: auto; transform: none; opacity: 1 !important; page-break-after: always; }
+}
+</style>
+
+</head>
+<body>
+
+<div id="progress"></div>
+
+<main id="deck">
+
+<!-- 01 ................................................................. -->
+<section class="slide on-dark slide--title">
+  <p class="eyebrow">ADA AI Leadership Day 2026</p>
+  <h1>Beyond the Clouds</h1>
+  <p class="sub">Sovereign AI infrastructure, and what it actually takes to regain control.</p>
+  <footer class="meta">
+    <span class="who">Alessandro Vozza</span>
+    <span>Lovelace Engineering · Golden Kubestronaut</span>
+    <span class="spacer"></span>
+    <span>Matrix One, Amsterdam · 3 September 2026</span>
+  </footer>
+  <div class="s-notes">
+    <p><b>Timing target: 22 min of content, 23 min of debate.</b> This room is 80 founders/directors, not a KubeCon audience. Do not open with architecture.</p>
+    <p class="say">"I build AI infrastructure for a living. Today I want to argue that the most important AI decision you'll make this year isn't which model — it's whose jurisdiction you run it in."</p>
+    <p>Set the contract early: "I'll talk for twenty minutes, then I want to argue with you for twenty-five. There's a slide at the end with five things I think are true and you might not."</p>
+  </div>
+</section>
+
+<!-- 02 ................................................................. -->
+<section class="slide slide--hook">
+  <p>Could you move your AI workloads to another provider in ninety days?</p>
+  <p class="sub">Show of hands — then keep them up if you've tested it</p>
+  <div class="s-notes">
+    <p><b>Do the show of hands. Wait for it.</b> Roughly a third go up on the first question; almost none stay up on the second. That gap is the talk.</p>
+    <p class="say">"Right. So most of us believe we could. Almost none of us have proved it. In every other part of the business we'd call that an untested disaster recovery plan."</p>
+  </div>
+</section>
+
+<!-- 03 ................................................................. -->
+<section class="slide on-light slide--claim">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
+  <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
+  <cite>The thesis of this talk</cite>
+  <div class="s-notes">
+    <p>Land this slowly. The word that does the work is <b>jurisdiction</b> — not "data", not "privacy". Leaders in this room already own jurisdiction risk in every other supplier contract.</p>
+    <p class="say">"Nobody signed off on a foreign-policy exposure. Somebody signed off on a credit card and a rate limit. Those turned out to be the same decision."</p>
+  </div>
+</section>
+
+<!-- 04 ................................................................. -->
+<section class="slide on-dark slide--section">
+  <span class="num">01</span>
+  <h2>The ground moved</h2>
+  <p class="lede">Four things changed between your last AI budget cycle and this one. None of them were announced by your vendor.</p>
+  <div class="s-notes"><p>Section is ~5 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet.</p></div>
+</section>
+
+<!-- 05 ................................................................. -->
+<section class="slide on-light slide--quote">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
+  <cite><b>Anton Carniaux</b>, Director of Public &amp; Legal Affairs, Microsoft France — under oath, French Senate inquiry into digital sovereignty, 21 July 2025. Microsoft's technical director added that a <i>contractual</i> guarantee keeps EU customer data in the EU. A contract is not a jurisdiction.</cite>
+  <div class="s-notes">
+    <p><b>The single most useful slide in the deck for this audience.</b> It is not an activist claim — it's sworn testimony from the vendor most of this room already buys from.</p>
+    <p>Be scrupulously fair: he also said it had never actually happened, and Microsoft has since strengthened its EU Data Boundary. The point is not that Microsoft is untrustworthy. The point is <b>structural</b>: no US-parented company can contract its way out of the CLOUD Act.</p>
+    <p class="say">"This is the vendor's own lawyer, under oath. Nobody is accusing anyone of anything. He's describing the structure of the problem more honestly than most of us do in our own risk registers."</p>
+  </div>
+</section>
+
+<!-- 06 ................................................................. -->
+<section class="slide on-light slide--timeline">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>Four dates that changed the calculus</h2>
+  <ol class="tl">
+    <li><span class="date">21 JUL 2025</span><b>Microsoft France testifies</b><p>Cannot guarantee EU data is beyond US reach. Contractual, not jurisdictional.</p></li>
+    <li><span class="date">15 JAN 2026</span><b>AWS European Sovereign Cloud goes live</b><p>€7.8bn, Brandenburg, EU-incorporated parent, EU-resident operators. The hyperscalers concede the premise.</p></li>
+    <li><span class="date">29 JUN 2026</span><b>Trump v. Slaughter</b><p>US Supreme Court removes for-cause protection for FTC commissioners — the independence the adequacy decision relied on.</p></li>
+    <li><span class="date">31 JUL 2026</span><b>EDPB writes to the Commission</b><p>Asks it to assess whether the FTC can still uphold Data Privacy Framework commitments. A review, not a revocation — yet.</p></li>
+  </ol>
+  <div class="s-notes">
+    <p>Walk it left to right in about 90 seconds. The arc: <b>the vendor admitted it → the vendors responded to it → the legal ground under the response moved anyway.</b></p>
+    <p>On AWS: this is genuinely a serious offer, and note what it concedes. €7.8bn is not a marketing budget. If sovereignty were a fringe European anxiety, they would not have built a separate legal entity for it.</p>
+    <p>On Slaughter/EDPB: the General Court <i>upheld</i> the Data Privacy Framework in September 2025 (the Latombe case). Transfers are lawful today. But the adequacy decision explicitly leaned on FTC independence, and that premise is now contested. <b>Schrems III is a question of when, not whether.</b></p>
+    <p class="say">"Three times in ten years, the legal basis for transatlantic data transfer has been struck down. If your AI architecture assumes it survives a fourth challenge, that's a bet, not a plan."</p>
+  </div>
+</section>
+
+<!-- 07 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>And the AI Act deadline you were braced for — moved</h2>
+  <p class="lede">The Digital AI Omnibus, agreed May 2026, deferred the high-risk regime. Read what it did <i>not</i> defer.</p>
+  <ul class="points two-col">
+    <li><b>Deferred → Dec 2027</b><span>Annex III high-risk obligations, originally 2 Aug 2026. Annex I embedded systems slip to Aug 2028.</span></li>
+    <li><b>In force now</b><span>Article 5 prohibitions. GPAI model obligations (Art. 51–56) — untouched by the omnibus.</span></li>
+    <li><b>In force now</b><span>Article 50 transparency for AI-generated content; grace for existing systems ends 2 Dec 2026.</span></li>
+    <li><b>Unchanged</b><span>Penalties up to €35m or 7% of global turnover. The AI Office gained inspection powers.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p><b>Anticipate the room's reaction:</b> half of them read "delay" in the press and quietly deprioritised the programme. Correct that gently.</p>
+    <p class="say">"Deferred is not cancelled. And the deferral bought you eighteen months on the paperwork — it bought you nothing on the architecture, because the architecture takes longer than the paperwork."</p>
+    <p>Key leadership framing: the omnibus moved a <b>compliance</b> deadline. It did not move a <b>capability</b> deadline. You cannot procure explainability, audit trails, and model lineage in the last quarter before an inspection.</p>
+  </div>
+</section>
+
+<!-- 08 ................................................................. -->
+<section class="slide on-dark slide--metric">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <div class="num">77<span class="u">%</span></div>
+  <p class="cap">of organisations now factor an AI vendor's country of origin into selection decisions</p>
+  <p class="src">Deloitte, State of AI in the Enterprise 2026 · n=3,235 · 24 countries</p>
+  <div class="s-notes">
+    <p>This slide exists to tell the room they are <b>not</b> outliers. Nearly 60% in the same study say they build primarily with local vendors.</p>
+    <p>Two supporting numbers, say them, don't slide them: Broadcom's 2026 private cloud study has public cloud as the primary <i>inference</i> environment falling from 56% to 41% in a single year. Cloudian has 93% of enterprises repatriating, in-process, or evaluating.</p>
+    <p class="say">"Whatever you think about sovereignty as a principle, it has already become a procurement criterion. Your customers are about to start asking you this question, if they haven't."</p>
+  </div>
+</section>
+
+<!-- 09 ................................................................. -->
+<section class="slide on-dark slide--section">
+  <span class="num">02</span>
+  <h2>Sovereignty is a dial, not a switch</h2>
+  <p class="lede">The unproductive version of this debate is "cloud or on-prem". The productive version is "which level, for which workload, at what price".</p>
+  <div class="s-notes"><p>Section ~5 min. This is the reframe that makes the rest of the talk actionable, and it's the part most likely to change what someone does on Monday.</p></div>
+</section>
+
+<!-- 10 ................................................................. -->
+<section class="slide on-light slide--table">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>Europe already wrote the scale — use it</h2>
+  <p class="lede">The Commission's Cloud Sovereignty Framework scores suppliers on Sovereignty Effectiveness Assurance Levels. In April 2026 it awarded €180m over six years against exactly this scale.</p>
+  <table class="cmp">
+    <thead><tr><th>Level</th><th>What it actually guarantees</th><th>What it does not survive</th></tr></thead>
+    <tbody>
+      <tr><th class="tag">SEAL-0</th><td>Nothing. Standard commercial cloud terms.</td><td>Everything.</td></tr>
+      <tr><th class="tag">SEAL-2</th><td><span class="mark">Data sovereignty</span> — EU law compliance without extra customer measures.</td><td>A foreign legal order against the parent company.</td></tr>
+      <tr class="hi"><th class="tag">SEAL-3</th><td><span class="mark">Digital resilience</span> — immunity from non-EU supply chain disruption.</td><td>A chip or firmware embargo upstream.</td></tr>
+      <tr><th class="tag">SEAL-4</th><td><span class="mark">Full EU supply chain</span> — chips to software.</td><td>Realistically: nothing yet operates here at scale.</td></tr>
+    </tbody>
+  </table>
+  <div class="s-notes">
+    <p>The framework scores eight dimensions — legal, operational, supply chain, technological openness, security, environmental.</p>
+    <p>The April 2026 awards went to Post Telecom (LU/FR), STACKIT (DE), Scaleway (FR) and Proximus (BE/FR/LU). Most landed at SEAL-3; Proximus at SEAL-2. Worth noting: <b>no hyperscaler bid into that framework at SEAL-3.</b></p>
+    <p class="say">"Stop arguing about whether you're sovereign. Pick a number per workload, write it in the requirement, and make suppliers answer it. That's a procurement problem, and you already know how to run those."</p>
+    <p>If someone challenges SEAL-4 as unachievable: agree immediately. That's the honest answer, and it's why the EU is funding gigafactories.</p>
+  </div>
+</section>
+
+<!-- 11 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>Four questions, asked per workload — not per company</h2>
+  <ul class="points two-col">
+    <li><b>Jurisdiction</b><span>Which court can compel this data, and who is legally capable of refusing? Not "where is the region".</span></li>
+    <li><b>Portability</b><span>If the price triples or the model is deprecated on Friday, what is the actual cost of leaving? Measure it in weeks.</span></li>
+    <li><b>Economics</b><span>At your real utilisation, not your peak slide — where does the crossover sit?</span></li>
+    <li><b>Capability</b><span>If this becomes core to the business, do you want to be able to build it, or only to buy it?</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>The load-bearing word is <b>per workload</b>. Your marketing copy generator and your claims-adjudication model do not deserve the same answer, and a company-wide "AI policy" that gives them the same answer is how you end up over-paying and under-protected simultaneously.</p>
+    <p class="say">"Most organisations have one AI policy and forty AI workloads. That's the mistake. Sovereignty is a per-workload property, like data classification — and you already classify data."</p>
+  </div>
+</section>
+
+<!-- 12 ................................................................. -->
+<section class="slide on-light slide--ba">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>What actually changes when you own the control plane</h2>
+  <div class="ba-grid">
+    <div class="ba-col old">
+      <span class="lbl">API-first</span>
+      <ul>
+        <li>Capability arrives in days</li>
+        <li>Cost scales with success, forever</li>
+        <li>Model deprecated on the vendor's schedule</li>
+        <li>Audit trail is whatever the vendor exports</li>
+        <li>Terms of service change without your consent</li>
+        <li>Zero infrastructure headcount</li>
+      </ul>
+    </div>
+    <div class="ba-col new">
+      <span class="lbl">Control-plane-first</span>
+      <ul>
+        <li>Capability arrives in weeks, once</li>
+        <li>Cost is a fixed floor plus marginal compute</li>
+        <li>You choose when a model retires</li>
+        <li>Every prompt, retrieval and response is yours to log</li>
+        <li>Terms change when you change them</li>
+        <li>Real platform engineering, hired and retained</li>
+      </ul>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>Do not let the right column look free.</b> Read the last line of each column aloud, deliberately. That is the honest trade and the room will trust everything after it more.</p>
+    <p class="say">"The right-hand column is not better. It's different, and it's yours. Anyone who tells you the right column has no cost is selling you the right column."</p>
+  </div>
+</section>
+
+<!-- 13 ................................................................. -->
+<section class="slide on-dark slide--section">
+  <span class="num">03</span>
+  <h2>The stack is ready — that's the news</h2>
+  <p class="lede">Three years ago this argument failed on engineering grounds. It doesn't any more, and that's the part the room probably hasn't been told.</p>
+  <div class="s-notes"><p>Section ~5 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here.</p></div>
+</section>
+
+<!-- 14 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>AI infrastructure became boring. Boring is the achievement.</h2>
+  <ul class="points two-col">
+    <li><b>66%</b><span>of organisations serving generative AI models already run inference on Kubernetes. This is the mainstream, not the fringe.</span></li>
+    <li><b>31 certified platforms</b><span>under the CNCF Kubernetes AI Conformance programme as of March 2026 — up from 18 in November 2025.</span></li>
+    <li><b>Portability is now testable</b><span>Conformance covers disaggregated inference, inference ingress, GPU-aware scheduling. Portable means <i>certified</i> portable.</span></li>
+    <li><b>The hard parts got donated</b><span>llm-d — Red Hat, Google, IBM, NVIDIA, CoreWeave — entered the CNCF in March 2026. Prefill/decode disaggregation and KV-cache-aware routing, open.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Translate every term. "Disaggregated inference" = the expensive trick that makes GPUs 2–3× more efficient, which used to be proprietary and now isn't.</p>
+    <p class="say">"The reason I can stand here and make this argument in 2026, when I couldn't in 2023, is that the difficult engineering has been commoditised — by the people selling the alternative. That is unusual, and it's the window."</p>
+    <p>If challenged on maturity: llm-d benchmarks around 120k tokens/sec on 16 H100s with Qwen3-32B. Real numbers, open code, reproducible.</p>
+  </div>
+</section>
+
+<!-- 15 ................................................................. -->
+<section class="slide on-light slide--arch">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>The reference architecture</h2>
+  <div class="arch">
+    <div class="rail">
+      <span class="rl">Portability</span>
+      <p>OCI images<br>OpenAI-compatible API<br>S3 API<br>Open weights</p>
+      <p style="font-size:19px">Every boundary is a standard, so every layer is an exit.</p>
+    </div>
+    <div class="layers">
+      <div class="layer"><span class="ln">Applications &amp; agents<em>your product</em></span><div class="chips"><span class="chip">RAG services</span><span class="chip">agent runtimes</span><span class="chip">copilots</span></div></div>
+      <div class="layer"><span class="ln">AI gateway &amp; policy<em>where control is enforced</em></span><div class="chips"><span class="chip">Envoy AI Gateway</span><span class="chip">Gateway API Inference Ext.</span><span class="chip">Kyverno / OPA</span><span class="chip">Keycloak</span><span class="chip">SPIFFE</span></div></div>
+      <div class="layer"><span class="ln">Model serving<em>tokens out</em></span><div class="chips"><span class="chip">KServe</span><span class="chip">vLLM</span><span class="chip">llm-d</span><span class="chip">SGLang</span><span class="chip">Ray</span></div></div>
+      <div class="layer"><span class="ln">Data &amp; retrieval<em>your actual moat</em></span><div class="chips"><span class="chip">Milvus</span><span class="chip">Qdrant</span><span class="chip">pgvector</span><span class="chip">MinIO / Ceph</span></div></div>
+      <div class="layer"><span class="ln">Scheduling<em>who gets the GPU</em></span><div class="chips"><span class="chip">Kubernetes DRA</span><span class="chip">Kueue</span><span class="chip">Volcano</span><span class="chip">HAMi</span><span class="chip">Karpenter</span></div></div>
+      <div class="layer"><span class="ln">Platform substrate<em>boring on purpose</em></span><div class="chips"><span class="chip">Talos / RKE2</span><span class="chip">Cluster API</span><span class="chip">Argo CD</span><span class="chip">Cilium</span><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span></div></div>
+      <div class="layer phys"><span class="ln">Power, cooling, silicon<em>the part you cannot download</em></span><div class="chips"><span class="chip">GPUs</span><span class="chip">EU datacentre</span><span class="chip">grid connection</span><span class="chip">heat reuse</span></div></div>
+    </div>
+    <div class="rail">
+      <span class="rl">Governance</span>
+      <p>Model registry<br>Eval harness<br>Prompt &amp; response lineage<br>Immutable audit log</p>
+      <p style="font-size:19px">The AI Act evidence layer. Build it first, not last.</p>
+    </div>
+  </div>
+  <p class="cap">Every layer open, every layer replaceable. No layer requires a US-parented supplier.</p>
+  <div class="s-notes">
+    <p><b>90 seconds maximum.</b> This slide is proof of depth, not the argument. Do not read the chips — point at three things and move.</p>
+    <p>The three things: (1) the <b>gateway</b> layer is where you enforce policy, redaction and routing — it's the single highest-leverage thing to own; (2) the <b>data</b> layer is the moat, and it's the layer nobody should ever have rented; (3) the <b>bottom</b> layer is the one you cannot download, which is why the next slides are about Europe's build-out.</p>
+    <p class="say">"There is nothing exotic on this slide. That's the point. Every one of these is boring, documented, and someone else's problem to maintain."</p>
+    <p>If a technical person asks what I'd actually run: Talos, Cluster API, Argo CD, Kueue with DRA, KServe fronting vLLM, Milvus, OTel to a ClickHouse-backed store. Happy to go deeper in the bar.</p>
+  </div>
+</section>
+
+<!-- 16 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>And Europe is building the bottom layer right now</h2>
+  <ul class="points two-col">
+    <li><b>19 AI Factories, 13 antennas</b><span>Operational across the EU today, EuroHPC-funded, accessible to industry and SMEs.</span></li>
+    <li><b>Up to 7 AI Gigafactories</b><span>&gt;€20bn expected private investment. Bids close 12 November 2026, selection early 2027, operating within 18 months.</span></li>
+    <li><b>€180m already committed</b><span>Commission cloud procurement awarded to four European providers against the sovereignty framework, April 2026.</span></li>
+    <li><b>The point for you</b><span>Sovereign capacity is becoming procurable. In 2023 the honest answer was "there's nowhere to go". That excuse is expiring.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Keep this factual and brief — this room does not need EU policy advocacy, they need to know the option exists.</p>
+    <p class="say">"You don't have to have an opinion about industrial policy to notice that the supply side is arriving. The question stops being 'is there an alternative' and starts being 'have you evaluated one'."</p>
+  </div>
+</section>
+
+<!-- 17 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>What it looks like when someone actually builds it here</h2>
+  <p class="lede">VOLT — "from power to tokens" — is doing the full-stack version in the Netherlands. Worth knowing because it's twenty kilometres from this room, not because it's the only one.</p>
+  <ul class="points two-col">
+    <li><b>Dutch AI Cloud, operational October 2026</b><span>Amsterdam, with NorthC Datacenters and Dell. 14 MW initially at Switch AMS4, 42 MW planned at AMS5.</span></li>
+    <li><b>Rotterdam AI Gigafactory</b><span>Up to 800 MW and roughly 250,000 GPUs, construction from 2027.</span></li>
+    <li><b>Target sectors</b><span>Finance, healthcare, biotech, defence, government — precisely the workloads that cannot answer the jurisdiction question with a contract.</span></li>
+    <li><b>The framing to steal</b><span>Han de Groot: build AI factories so countries become "AI makers, not AI takers".</span></li>
+  </ul>
+  <div class="s-notes">
+    <p><b>Disclose the relationship.</b> Say plainly that Lovelace Engineering consults for Volt. Credibility in this room is worth more than the plug, and disclosing costs nothing.</p>
+    <p class="say">"Full disclosure — I work with these people. Which is also why I know the numbers are real and how hard the grid connection was."</p>
+    <p>Nebius is the useful contrast if asked: 310 MW in Lappeenranta, 240 MW near Lille, targeting 2.5 GW. Different model — hyperscale neocloud rather than full-stack sovereign.</p>
+  </div>
+</section>
+
+<!-- 18 ................................................................. -->
+<section class="slide on-dark slide--metric">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <div class="num">800<span class="u">MW</span></div>
+  <p class="cap">Rotterdam, from 2027. Sovereignty is, in the end, a question about electricity.</p>
+  <p class="src">VOLT AI Gigafactory · ~250,000 GPUs · construction begins 2027</p>
+  <div class="s-notes">
+    <p>Short beat. Use it to make the point that the constraint everyone ignores is <b>grid capacity</b>, and in the Netherlands specifically, grid congestion is the binding constraint on AI ambition — not talent, not capital.</p>
+    <p class="say">"Every AI strategy in this country eventually becomes an energy strategy. The organisations that figure that out eighteen months early get the connection."</p>
+  </div>
+</section>
+
+<!-- 19 ................................................................. -->
+<section class="slide on-dark slide--section">
+  <span class="num">04</span>
+  <h2>What the vendor keynote leaves out</h2>
+  <p class="lede">If I only told you the good half, you'd make a bad decision and I'd deserve the blame.</p>
+  <div class="s-notes"><p>Section ~4 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land.</p></div>
+</section>
+
+<!-- 20 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <h2>Four failure modes nobody demos on stage</h2>
+  <ul class="points two-col">
+    <li><b>GPU scheduling contention</b><span>One team's training job starves everyone's inference. Fixable — quotas, gang scheduling, fair-share — but it is a political problem before it is a technical one.</span></li>
+    <li><b>Cold starts</b><span>Provisioning a scarce GPU: seconds to hours. Pulling a large image: 3–5 minutes. Then weights load. "Scale to zero" is a slide, not a capability.</span></li>
+    <li><b>Capacity planning without an escape hatch</b><span>No elastic overflow. You size for peak, or you queue. Both cost money and one costs credibility.</span></li>
+    <li><b>Model lifecycle is now your job</b><span>Evals, regressions, retirement. The vendor was doing unglamorous work you never saw an invoice for.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Say the quiet part: <b>the first failure is organisational.</b> GPU contention is a governance problem wearing a Kubernetes costume, and it lands on someone in this room, not on the platform team.</p>
+    <p class="say">"I've watched a data science team and a product team fight over eight GPUs for six weeks. No technology fixed it. A quota policy and one uncomfortable meeting fixed it."</p>
+    <p>Mitigation to name if pressed: keep a federated burst path to a European neocloud so you own the steady state and rent the spikes. That's the hybrid answer and it's the right one for most of this room.</p>
+  </div>
+</section>
+
+<!-- 21 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <h2>The economics: this is a utilisation question, not an ideology question</h2>
+  <p class="lede">A single H100 delivers anywhere from $0.21 to $15.25 per million output tokens. Same hardware. The variable is you.</p>
+  <ul class="points two-col">
+    <li><b>Steady and high volume wins</b><span>Fixed floor plus cheap marginal tokens beats per-call pricing — above the crossover, and only above it.</span></li>
+    <li><b>Bursty and low volume loses</b><span>You will pay for idle silicon and call it sovereignty. Don't.</span></li>
+    <li><b>Do the cheap things first</b><span>Caching, batching, routing, right-sizing the model. Most "we need our own GPUs" cases evaporate here.</span></li>
+    <li><b>Then measure, don't model</b><span>Run one real workload for one month. Utilisation is measured, never assumed.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Explicitly give the room permission <b>not</b> to self-host. That's what makes the rest credible — and it's true.</p>
+    <p class="say">"If your AI spend is €4,000 a month and spiky, self-hosting is a hobby. Come back when it's €40,000 and flat. And notice that most of you will get there faster than you think — that's the part worth planning for."</p>
+    <p>Deloitte's TMT analysis puts on-prem at 50%+ savings over three years above the volume threshold. Note the caveat clearly: <b>above the threshold</b>.</p>
+  </div>
+</section>
+
+<!-- 22 ................................................................. -->
+<section class="slide on-light slide--table">
+  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <h2>Self-host, federate, or rent — by workload class</h2>
+  <p class="lede">This is the blueprint, compressed. You do not need one answer; you need this table filled in for your own portfolio.</p>
+  <table class="cmp">
+    <thead><tr><th>Workload</th><th>Verdict</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr class="hi"><th>Data &amp; retrieval layer</th><td class="tag"><span class="mark">Self-host, always</span></td><td>It is your proprietary corpus. Renting it is the one decision with no upside.</td></tr>
+      <tr class="hi"><th>Inference gateway &amp; policy</th><td class="tag"><span class="mark">Self-host, always</span></td><td>Control, redaction, routing and the audit trail all live here. This is the cheapest sovereignty you can buy.</td></tr>
+      <tr><th>Steady production inference</th><td class="tag">Self-host</td><td>Predictable volume, open weights, regulated data. Best economics and best jurisdiction answer.</td></tr>
+      <tr><th>Training &amp; fine-tuning</th><td class="tag">Federate</td><td>Bursty and capital-intensive. Rent EU capacity — AI Factories, European neoclouds — keep the weights.</td></tr>
+      <tr><th>Frontier-model capability</th><td class="tag">Rent, knowingly</td><td>You will not match it. Route to it deliberately through your own gateway, with a documented exit.</td></tr>
+    </tbody>
+  </table>
+  <div class="s-notes">
+    <p><b>If you cut one slide for time, do not cut this one.</b> This is the "blueprint" the abstract promised, and it's what people photograph.</p>
+    <p>The load-bearing insight is row two: you can rent the model and still own the control plane. Most of the sovereignty benefit at a fraction of the cost — and it is achievable in a quarter.</p>
+    <p class="say">"You do not have to leave the hyperscalers to stop being captured by them. You have to own the layer where the decisions are made."</p>
+  </div>
+</section>
+
+<!-- 23 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <h2>The capability is the point — and it is a people decision</h2>
+  <ul class="points two-col">
+    <li><b>You are buying optionality, not servers</b><span>The asset is a team that can move a workload. The infrastructure is the by-product.</span></li>
+    <li><b>Two to four people, not a department</b><span>A capable platform team running a sovereign AI stack is smaller than the compliance function it de-risks.</span></li>
+    <li><b>The skills are transferable</b><span>Kubernetes, GitOps, observability. You are not hiring exotica; you are hiring platform engineering.</span></li>
+    <li><b>The risk is real and mundane</b><span>Key-person dependency. Mitigate with boring standard tooling — the same reason to avoid a bespoke stack.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>This is the slide that connects to the day's third theme — <b>People on board</b>. Name it explicitly; the organisers will appreciate it and the room will feel the coherence.</p>
+    <p class="say">"Every question in this talk that sounds like an infrastructure question is a hiring question in disguise. The organisations that will be sovereign in 2029 are the ones that hired two platform engineers in 2026."</p>
+  </div>
+</section>
+
+<!-- 24 ................................................................. -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
+  <h2>Ninety days. Four moves. No new budget line.</h2>
+  <ul class="points two-col">
+    <li><b>Weeks 1–2 · Inventory</b><span>List every AI workload, its jurisdiction, and its exit cost in weeks. Most organisations have never written this down.</span></li>
+    <li><b>Weeks 3–6 · Put a gateway in front</b><span>One control point for every model call. Logging, redaction, routing, cost attribution. Highest return per euro in this entire talk.</span></li>
+    <li><b>Weeks 7–10 · Prove portability once</b><span>Move a single real workload to a European provider. Not a pilot — a production workload. Measure what it actually cost.</span></li>
+    <li><b>Weeks 11–13 · Set the SEAL requirement</b><span>Write a sovereignty level into your next AI procurement. Make suppliers answer it in writing.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Deliver this as an executive instruction, not a suggestion. Slow down. This is the takeaway they write in the notebook.</p>
+    <p class="say">"None of these four need a business case. Three of them are someone's existing job. The first one is a spreadsheet — and I'd bet nobody in this room can produce it today."</p>
+  </div>
+</section>
+
+<!-- 25 ................................................................. -->
+<section class="slide on-light slide--claim">
+  <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
+  <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
+  <cite>Alessandro Vozza · Lovelace Engineering</cite>
+  <div class="s-notes"><p>Pause. Then straight into the debate slide — do not fill the silence.</p></div>
+</section>
+
+<!-- 26 ................................................................. -->
+<section class="slide on-dark slide--debate">
+  <div class="ref"><span class="ref-n">§ 06</span><span>Argue with me</span></div>
+  <h2>Five things I believe. Pick one and take it apart.</h2>
+  <p class="lede">Twenty-five minutes. Call a number.</p>
+  <ol class="provs">
+    <li>Sovereign AI is protectionism with better branding, and Europe will lose the capability race by insisting on it.</li>
+    <li>The EU AI Act deferral proves compliance pressure will keep slipping — so building for it now is wasted capital.</li>
+    <li>Renting frontier models is fine; only the data layer ever needed to be sovereign, and everything else here is over-engineering.</li>
+    <li>Nobody in this room can hire the platform team this requires, at any price, in this market.</li>
+    <li>Grid capacity — not chips, capital, or regulation — is what actually decides who gets to do AI in the Netherlands.</li>
+  </ol>
+  <div class="s-notes">
+    <p><b>This slide is the reason the session is 45 minutes.</b> Leave it up for the whole Q&amp;A so people always have something to grab.</p>
+    <p>Honest positions if nobody bites: I half-believe #1 — protectionism is a real risk and SEAL-4 is not achievable today. I strongly believe #5. #4 is the one that most often turns into a genuinely useful room conversation, because several people there are hiring against each other.</p>
+    <p>If the room is quiet: pick #4 yourself and ask who has tried to hire a platform engineer this year. That always opens it.</p>
+  </div>
+</section>
+
+<!-- 27 ................................................................. -->
+<section class="slide on-dark slide--cta">
+  <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
+  <p class="ask">If you write down every AI workload, its jurisdiction, and its exit cost, you will have done more sovereignty work this quarter than most organisations do in a year.</p>
+  <ul>
+    <li><span>Slides</span> shared with the organisers today</li>
+    <li><span>Contact</span> alessandro@stackmasters.com</li>
+    <li><span>LinkedIn</span> /in/alessandrovozza</li>
+    <li><span>Happy to</span> argue about any of this at the drinks</li>
+  </ul>
+  <div class="s-notes"><p>Keep it to fifteen seconds. The debate slide is the real close; this is contact details.</p></div>
+</section>
+
+<!-- 28 ................................................................. -->
+<section class="slide on-light slide--srcs">
+  <div class="ref"><span class="ref-n">APP</span><span>Sources</span></div>
+  <h2>Sources</h2>
+  <ul class="srcs">
+    <li><b>Microsoft France testimony</b>French Senate inquiry into digital sovereignty, 21 July 2025 (The Register, SDxCentral)</li>
+    <li><b>AWS European Sovereign Cloud</b>Amazon press release, 15 January 2026; InfoQ analysis</li>
+    <li><b>Trump v. Slaughter · EDPB letter</b>US Supreme Court, 29 June 2026; EDPB to Commissioner McGrath, 31 July 2026</li>
+    <li><b>Latombe judgment</b>EU General Court, 3 September 2025 (IAPP)</li>
+    <li><b>Digital AI Omnibus</b>Provisional agreement, May 2026 (Gibson Dunn; DLA Piper)</li>
+    <li><b>Cloud Sovereignty Framework · SEAL</b>European Commission, 17 April 2026</li>
+    <li><b>AI Gigafactories call</b>EuroHPC JU, 30 July 2026 — bids close 12 November 2026</li>
+    <li><b>Kubernetes AI Conformance · llm-d</b>CNCF, March 2026</li>
+    <li><b>Vendor country of origin (77%)</b>Deloitte, State of AI in the Enterprise 2026</li>
+    <li><b>Inference repatriation</b>Broadcom Private Cloud Outlook 2026; Cloudian survey, March 2026</li>
+    <li><b>VOLT</b>w.media, DatacenterDynamics, The Tech Capital, 2025–2026</li>
+    <li><b>H100 cost range</b>Wavect break-even analysis, EU, 2026</li>
+  </ul>
+  <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
+</section>
+
+</main>
+
+<div id="counter"><span id="cur">1</span> / <span id="tot">1</span></div>
+<div id="help">N notes · T timer · F fullscreen · P print</div>
+
+<div id="notes">
+  <h4><span>Speaker notes</span><span id="nslide"></span><span class="clock" id="clock">timer stopped — press T</span></h4>
+  <div id="nbody"></div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length, idx = 0;
+  var cur = document.getElementById('cur'), tot = document.getElementById('tot');
+  var prog = document.getElementById('progress');
+  var notes = document.getElementById('notes'), nbody = document.getElementById('nbody'), nslide = document.getElementById('nslide');
+  var clock = document.getElementById('clock');
+  tot.textContent = total;
+
+  // ---- VOLT wordmark: footer rule on body slides, cover mark on title/close ----
+  var LOGO_W = 'data:image/png;base64,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';
+  var LOGO_D = 'data:image/png;base64,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';
+
+  slides.forEach(function (s, i) {
+    var onDark = s.classList.contains('on-dark') || s.classList.contains('slide--hook');
+    var src = onDark ? LOGO_W : LOGO_D;
+
+    if (s.classList.contains('slide--title') || s.classList.contains('slide--cta')) {
+      var mark = document.createElement('img');
+      mark.className = 'cover-mark'; mark.src = src; mark.alt = 'VOLT';
+      s.appendChild(mark);
+      return;
+    }
+    var f = s.querySelector('.ref');
+    if (!f) {
+      f = document.createElement('div');
+      f.className = 'ref';
+      var num = s.querySelector('.num'), head = s.querySelector('h2');
+      var left = (s.classList.contains('slide--section') && num && head)
+        ? '<span class="ref-n">§ ' + num.textContent.trim() + '</span><span>' + head.textContent.trim() + '</span>'
+        : '<span>Beyond the Clouds</span>';
+      f.innerHTML = left;
+      s.appendChild(f);
+    }
+    var right = document.createElement('span');
+    right.className = 'ref-right';
+    right.innerHTML = '<img class="ref-logo" src="' + src + '" alt="VOLT"><span class="ref-pg">' + (i + 1) + '</span>';
+    f.appendChild(right);
+  });
+
+  var helpEl = document.getElementById('help');
+  var booted = false;
+  setTimeout(function () { helpEl.classList.add('gone'); }, 8000);
+
+  function show(n) {
+    idx = Math.max(0, Math.min(total - 1, n));
+    if (booted) helpEl.classList.add('gone');
+    for (var i = 0; i < total; i++) slides[i].classList.toggle('is-active', i === idx);
+    cur.textContent = idx + 1;
+    prog.style.width = ((idx + 1) / total * 100) + '%';
+    var s = slides[idx].querySelector('.s-notes');
+    nbody.innerHTML = s ? s.innerHTML : '<p style="color:#8e959b">No notes for this slide.</p>';
+    nslide.textContent = 'slide ' + (idx + 1) + ' of ' + total;
+    try { sessionStorage.setItem('btc-slide', idx); } catch (e) {}
+  }
+
+  var start = 0, running = false;
+  function tick() {
+    if (!running) return;
+    var s = Math.floor((Date.now() - start) / 1000);
+    var m = Math.floor(s / 60);
+    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 22 ? '  ·  into Q&A' : '  ·  target 22:00');
+  }
+  setInterval(tick, 1000);
+
+  function rescale() {
+    var pad = notes.classList.contains('on') ? 0.62 : 1;
+    var s = Math.min(window.innerWidth / 1920, (window.innerHeight * pad) / 1080);
+    document.documentElement.style.setProperty('--scale', s);
+    document.getElementById('deck').style.alignItems = 'center';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    switch (e.key) {
+      case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); show(idx + 1); break;
+      case 'ArrowLeft': case 'PageUp': e.preventDefault(); show(idx - 1); break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(total - 1); break;
+      case 'n': case 'N': e.preventDefault(); notes.classList.toggle('on'); rescale(); break;
+      case 't': case 'T':
+        e.preventDefault();
+        if (!running) { start = Date.now(); running = true; tick(); }
+        else { running = false; clock.textContent = 'timer stopped — press T'; }
+        break;
+      case 'f': case 'F':
+        e.preventDefault();
+        if (!document.fullscreenElement) { if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); }
+        else document.exitFullscreen();
+        break;
+      case 'p': case 'P': e.preventDefault(); window.print(); break;
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a, button, input, textarea, #notes')) return;
+    show(idx + 1);
+  });
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    tx = null;
+  });
+
+  window.addEventListener('resize', rescale);
+  rescale();
+  var saved = 0;
+  try { saved = parseInt(sessionStorage.getItem('btc-slide') || '0', 10) || 0; } catch (e) {}
+  show(saved >= 0 && saved < total ? saved : 0);
+  booted = true;
+})();
+</script>
+
+</body>
+</html>
