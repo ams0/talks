@@ -4,7 +4,7 @@ ADA AI Leadership Day · Matrix One, Amsterdam · 3 September 2026
 45 min: **22 min content, 23 min debate** — see the timing note below. ~80 founders and directors, non-technical.
 Quoted lines are verbatim — say those. Everything else is a cue, not a paragraph to recite.
 
-**Timing — read this before you present.** The deck is 45 slides + sources. Slide 3 states the contract
+**Timing — read this before you present.** The deck is 47 slides + sources. Slide 3 states the contract
 out loud (20–25 min, interrupt freely, save the big ones), so the session is explicitly **20–25 min of
 talk and 20–25 min together**.
 
@@ -17,6 +17,8 @@ Delivered in full the deck runs **~29 min**, which overruns even the generous ha
   16 costs you very little.
 
 **Cut order if you are behind on stage: 14 → 18 → 31 → 39 → 27.** Never cut 38, and never cut 42.
+The exercise (43) comes out of the discussion half, not the talking half — cut it only if you have
+blown through both.
 
 ---
 
@@ -198,18 +200,36 @@ who you hire." **"Landlord model" is the line that lands**: most of this room wa
 residency as sovereignty, and they know instinctively what it means to improve a property they do not
 own. The closing line is a deliberate callback to slide 35. Then stop, advance, and let them start.
 
-## 06 Argue with me — 17–23 min (slides 43–46)
+## 06 Your turn — 17–23 min (slides 43–48)
 
-Leave slide 43 up for the whole Q&A. "Five things I believe. Pick a number and take it apart."
+**Run the exercise first, then argue.** A room that has just written something down has opinions
+grounded in its own workloads; a cold room debates in the abstract and three loud people carry it.
+
+**43 · One workload, four boxes. ★new** Five minutes, and **be quiet while they work.** "Pick one AI
+workload you actually run — not the portfolio, one. Four questions on the screen. Five minutes, then
+compare with whoever is next to you. I'll be quiet." The first thirty seconds always look unproductive
+from the stage; do not rescue it, do not narrate over it, do not start early.
+**Box 2 is the whole exercise** — almost nobody can say what leaving would cost in weeks. Bring them
+back with a hard "thirty seconds", then ask for a show of hands on who filled in box 2. It is the same
+show of hands as slide 5, except now they have proved it to themselves instead of taking your word.
+Take three answers, no more, then move on.
+
+**44 · Or start closer to home. ★new** *Backup, not scheduled.* Use it if the exercise finishes early,
+if the provocations do not catch, or if you would rather run table discussion than one big-room
+argument. The segmentation matters: a founder will not engage with a dependency-maintenance question
+and a CTO will not engage with a pricing-escalation one, but each will engage hard with their own.
+
+**45 · Five things I believe.** Leave it up for the rest of the session. "Five things I believe. Pick a number and take it apart."
 Honest positions: you half-believe **#1** (slide 23 is your answer to it), strongly believe **#5**.
 **If the room is quiet, open #4 yourself** — ask who has tried to hire a platform engineer this year.
-Second-best opener, from slide 35: *"How many of your production dependencies are maintained by a
-single unpaid contributor?"* Nobody knows, and the not-knowing is the point.
+If that does not catch either, go back to 44 and put one of the four segmented questions to the room
+by name. The unpaid-contributor one never fails: nobody knows the answer, and the not-knowing is the
+point.
 
-**44 · ChemAI card.** 15 seconds, then **stop talking** and let them photograph the QR code.
+**46 · ChemAI card.** 15 seconds, then **stop talking** and let them photograph the QR code.
 "AI for molecules and materials, Amsterdam, 12–13 November. Photograph it now — the next slide is just
 my contact details."
 
-**45 · Close.** Inventory, who I am, the VOLT disclosure one last time, and how to reach me. 15 seconds.
+**47 · Close.** Inventory, who I am, the VOLT disclosure one last time, and how to reach me. 15 seconds.
 
-**46 · Sources** is a backup. Only open it if a number is challenged — then find the line and read it.
+**48 · Sources** is a backup. Only open it if a number is challenged — then find the line and read it.
