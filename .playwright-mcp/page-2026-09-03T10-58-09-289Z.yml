@@ -1,0 +1,1247 @@
+- generic [active] [ref=f1e1]:
+  - main [ref=f1e3]:
+    - 'img "Title card from Monty Python''s And Now for Something Completely Different: a man in a dinner jacket sits at a wooden desk on a pebble beach with a vintage microphone and telephone, waves breaking behind him." [ref=f1e5]'
+    - generic:
+      - paragraph: ADA AI Leadership Day 2026
+      - heading "Beyond the Clouds" [level=1]
+      - paragraph: Sovereign AI infrastructure, and what it actually takes to regain control.
+      - generic:
+        - generic: Alessandro Vozza
+        - generic: Lovelace Engineering · Golden Kubestronaut
+        - generic: Matrix One, Amsterdam · 3 September 2026
+      - img "VOLT"
+    - generic:
+      - generic:
+        - generic: § 00
+        - generic: Opening
+        - generic:
+          - img "VOLT"
+          - generic: "3"
+      - generic:
+        - paragraph: Before we start
+        - heading "How this session works" [level=2]
+        - list:
+          - listitem:
+            - generic: "01"
+            - generic:
+              - generic: Twenty to twenty-five minutes of me
+              - generic: That is all the talking I plan to do. The rest of the time belongs to the room.
+          - listitem:
+            - generic: "02"
+            - generic:
+              - generic: Interrupt me
+              - generic: If a number looks wrong or a word doesn't land, say so in the moment. Quick questions are welcome mid-flow — you are not being rude.
+          - listitem:
+            - generic: "03"
+            - generic:
+              - generic: Save the big ones
+              - generic: The real arguments are worth more with everyone in them. There is a slide at the end built for exactly that.
+      - generic:
+        - generic:
+          - generic: 20–25
+          - generic: minutes · me talking
+        - generic:
+          - generic: 20–25
+          - generic: minutes · all of us
+        - paragraph: The last slide has five things I believe and you might not. That is where we spend the second half.
+    - generic:
+      - generic:
+        - generic: § 00
+        - generic: Opening
+        - generic:
+          - img "VOLT"
+          - generic: "4"
+      - blockquote:
+        - text: The best time to plant a tree was twenty years ago.
+        - emphasis: The second best time is now.
+      - generic: Chinese proverb
+    - generic:
+      - paragraph: Could you move your AI workloads to another provider in ninety days?
+      - paragraph: Show of hands — then keep them up if you've tested it
+      - generic:
+        - generic: Beyond the Clouds
+        - generic:
+          - img "VOLT"
+          - generic: "5"
+    - generic:
+      - generic:
+        - generic: § 00
+        - generic: Opening
+        - generic:
+          - img "VOLT"
+          - generic: "6"
+      - paragraph: "\"Just use the API\" was never an architecture decision. It was a procurement decision that quietly outsourced your jurisdiction."
+      - generic: The thesis of this talk
+    - generic:
+      - generic: "01"
+      - heading "The ground moved" [level=2]
+      - paragraph: Four things changed between your last AI budget cycle and this one. None of them were announced by your vendor.
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "7"
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "8"
+      - heading "Start with where you actually are" [level=2]
+      - paragraph: European cloud providers' share of their own home market, against everyone else's. The market grew sixfold. Their share of it halved.
+      - generic:
+        - generic: Non-European providers
+        - generic: European providers
+      - generic:
+        - generic:
+          - generic:
+            - generic: 71%
+            - generic: 29%
+          - generic: "2017"
+        - generic:
+          - generic:
+            - generic: 85%
+            - generic: 15%
+          - generic: "2022"
+        - generic:
+          - generic:
+            - generic: 85%
+            - generic: 15%
+          - generic: "2025"
+      - paragraph: The plateau is the uncomfortable part. Three years of sovereignty debate, a €74bn market growing 24% a year, and the European share has not moved off 15%. Rhetoric did not shift a single point of it.
+      - paragraph: Synergy Research Group, July 2025 · European cloud infrastructure services, share of the European market
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "9"
+      - generic:
+        - heading "Three companies, seventy percent" [level=2]
+        - paragraph: Amazon, Microsoft and Google together hold roughly 70% of the European cloud market. The largest European provider holds two.
+        - generic:
+          - generic:
+            - generic: 70%
+            - generic:
+              - text: Amazon, Microsoft and Google
+              - emphasis: Three companies, one jurisdiction
+          - generic:
+            - generic: 15%
+            - generic:
+              - text: Other non-European providers
+              - emphasis: Oracle, IBM, Salesforce and the rest
+          - generic:
+            - generic: 15%
+            - generic:
+              - text: All European providers combined
+              - emphasis: SAP 2% · Deutsche Telekom 2% · then OVHcloud, TIM, Orange
+        - paragraph: Synergy Research Group, 2025 · European cloud infrastructure services
+      - generic:
+        - 'img "Donut chart: Amazon, Microsoft and Google 70 percent of the European cloud market; other non-European providers 15 percent; all European providers 15 percent."'
+        - generic:
+          - generic: 70%
+          - generic: US big three
+      - paragraph: There is no European hyperscaler waiting to take the workload. That is the real problem with "just move to a European provider" — and it is exactly why the rest of this talk is about owning a control plane rather than running a migration.
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "10"
+      - blockquote: “We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."
+      - generic: Anton Carniaux, Director of Public & Legal Affairs, Microsoft France — under oath, French Senate inquiry into digital sovereignty, 21 July 2025. Microsoft's technical director added that a contractual guarantee keeps EU customer data in the EU. A contract is not a jurisdiction.
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "11"
+      - heading "Four dates that changed the calculus" [level=2]
+      - list:
+        - listitem:
+          - generic: 21 JUL 2025
+          - generic: Microsoft France testifies
+          - paragraph: Cannot guarantee EU data is beyond US reach. Contractual, not jurisdictional.
+        - listitem:
+          - generic: 15 JAN 2026
+          - generic: AWS European Sovereign Cloud goes live
+          - paragraph: €7.8bn, Brandenburg, EU-incorporated parent, EU-resident operators. The hyperscalers concede the premise.
+        - listitem:
+          - generic: 29 JUN 2026
+          - generic: Trump v. Slaughter
+          - paragraph: US Supreme Court removes for-cause protection for FTC commissioners — the independence the adequacy decision relied on.
+        - listitem:
+          - generic: 31 JUL 2026
+          - generic: EDPB writes to the Commission
+          - paragraph: Asks it to assess whether the FTC can still uphold Data Privacy Framework commitments. A review, not a revocation — yet.
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "12"
+      - heading "And the AI Act deadline you were braced for — moved" [level=2]
+      - paragraph: The Digital AI Omnibus, agreed May 2026, deferred the high-risk regime. Read what it did not defer.
+      - list:
+        - listitem:
+          - generic: Deferred → Dec 2027
+          - text: Annex III high-risk obligations, originally 2 Aug 2026. Annex I embedded systems slip to Aug 2028.
+        - listitem:
+          - generic: In force now
+          - text: Article 5 prohibitions. GPAI model obligations (Art. 51–56) — untouched by the omnibus.
+        - listitem:
+          - generic: In force now
+          - text: Article 50 transparency for AI-generated content; grace for existing systems ends 2 Dec 2026.
+        - listitem:
+          - generic: Unchanged
+          - text: Penalties up to €35m or 7% of global turnover. The AI Office gained inspection powers.
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "13"
+      - heading "The rulebook is already written — and it doesn't move at headline speed" [level=2]
+      - paragraph: Six European laws now touch how you run AI. One of them is quietly about to make leaving your cloud provider free.
+      - generic:
+        - generic:
+          - generic:
+            - generic: GDPR
+            - emphasis: Reg. 2016/679 · personal data
+          - generic:
+            - generic: NIS2
+            - emphasis: Dir. 2022/2555 · supply-chain security
+          - generic:
+            - generic: DORA
+            - emphasis: Reg. 2022/2554 · financial sector
+          - generic:
+            - generic: Data Act
+            - emphasis: Reg. 2023/2854 · cloud switching
+          - generic:
+            - generic: AI Act
+            - emphasis: Reg. 2024/1689 · AI systems
+          - generic:
+            - generic: Cyber Resilience Act
+            - emphasis: Reg. 2024/2847 · products you ship
+          - generic:
+            - generic: Cloud Sovereignty Framework
+            - emphasis: SEAL levels · EU procurement
+        - generic:
+          - generic:
+            - generic: "2024"
+            - generic: "2025"
+            - generic: "2026"
+            - generic: "2027"
+            - generic: "2028"
+          - generic: binding since 2018 — Chapter V is the sovereignty clause
+          - generic: national law since Oct 2024
+          - generic: applies 17 Jan 2025
+          - generic:
+            - generic: applies 12 Sep 2025
+            - generic: 12 Jan 2027 — switching & egress charges banned
+          - generic:
+            - generic: in force
+            - generic: GPAI
+            - generic: transparency
+            - generic: high-risk (deferred)
+          - generic:
+            - generic: reporting Sep 2026
+            - generic: full application Dec 2027
+          - generic: scoring live — €180m awarded Apr 2026
+          - generic: TODAY
+      - paragraph: Nothing on this chart is a proposal. Every bar is law that has already been adopted.
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "14"
+      - heading "Six laws, one question underneath all of them" [level=2]
+      - paragraph: "Strip out the acronyms and every one of these asks the same thing: can you demonstrate control, and can you leave?"
+      - table:
+        - rowgroup:
+          - row "Law What it actually asks of you Where you already are":
+            - columnheader "Law"
+            - columnheader "What it actually asks of you"
+            - columnheader "Where you already are"
+        - rowgroup:
+          - row "GDPR Reg. 2016/679 Know where personal data physically goes and under whose courts it sits. Binding since 2018. Chapter V transfers is the part that has now been litigated three times.":
+            - rowheader "GDPR Reg. 2016/679":
+              - text: GDPR
+              - emphasis: Reg. 2016/679
+            - cell "Know where personal data physically goes and under whose courts it sits."
+            - cell "Binding since 2018. Chapter V transfers is the part that has now been litigated three times."
+          - row "NIS2 Dir. 2022/2555 Own the security of your suppliers, with named personal accountability at management level. National law since October 2024.":
+            - rowheader "NIS2 Dir. 2022/2555":
+              - text: NIS2
+              - emphasis: Dir. 2022/2555
+            - cell "Own the security of your suppliers, with named personal accountability at management level."
+            - cell "National law since October 2024."
+          - 'row "DORA Reg. 2022/2554 If you are a financial entity: register your critical ICT providers and prove you could exit each one. Applies since 17 January 2025. Regulators are already asking."':
+            - rowheader "DORA Reg. 2022/2554":
+              - text: DORA
+              - emphasis: Reg. 2022/2554
+            - 'cell "If you are a financial entity: register your critical ICT providers and prove you could exit each one."'
+            - cell "Applies since 17 January 2025. Regulators are already asking."
+          - row "Data Act Reg. 2023/2854 Your provider must let you leave — and from 12 Jan 2027 may not charge you a cent to do it. Applicable since 12 September 2025. The clock on free exit runs out of excuses in 16 months.":
+            - rowheader "Data Act Reg. 2023/2854":
+              - text: Data Act
+              - emphasis: Reg. 2023/2854
+            - cell "Your provider must let you leave — and from 12 Jan 2027 may not charge you a cent to do it."
+            - cell "Applicable since 12 September 2025. The clock on free exit runs out of excuses in 16 months."
+          - 'row "AI Act Reg. 2024/1689 Classify every AI system you run, and produce evidence on demand: lineage, evaluations, human oversight. Prohibitions and GPAI duties in force. High-risk deferred to December 2027 — the paperwork, not the architecture."':
+            - rowheader "AI Act Reg. 2024/1689":
+              - text: AI Act
+              - emphasis: Reg. 2024/1689
+            - 'cell "Classify every AI system you run, and produce evidence on demand: lineage, evaluations, human oversight."'
+            - cell "Prohibitions and GPAI duties in force. High-risk deferred to December 2027 — the paperwork, not the architecture."
+          - row "Cyber Resilience Act Reg. 2024/2847 Anything you ship with digital elements needs a security lifecycle and a bill of materials. Incident reporting from September 2026; full application December 2027.":
+            - rowheader "Cyber Resilience Act Reg. 2024/2847":
+              - text: Cyber Resilience Act
+              - emphasis: Reg. 2024/2847
+            - cell "Anything you ship with digital elements needs a security lifecycle and a bill of materials."
+            - cell "Incident reporting from September 2026; full application December 2027."
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "15"
+      - generic: 77%
+      - paragraph: of organisations now factor an AI vendor's country of origin into selection decisions
+      - paragraph: Deloitte, State of AI in the Enterprise 2026 · n=3,235 · 24 countries
+    - generic:
+      - generic:
+        - generic: § 01
+        - generic: The ground moved
+        - generic:
+          - img "VOLT"
+          - generic: "16"
+      - heading "This is no longer a minority position" [level=2]
+      - paragraph: Five numbers from five separate 2026 surveys. None of them were commissioned by anyone selling sovereignty.
+      - generic:
+        - generic:
+          - generic: 93%
+          - generic:
+            - generic:
+              - text: of enterprises are repatriating workloads, mid-repatriation, or actively evaluating it
+              - emphasis: — Cloudian, March 2026
+        - generic:
+          - generic: 77%
+          - generic:
+            - generic:
+              - text: now factor an AI vendor's country of origin into the selection decision
+              - emphasis: — Deloitte, n=3,235, 24 countries
+        - generic:
+          - generic: 66%
+          - generic:
+            - generic:
+              - text: serving generative AI already run it on Kubernetes — the portable substrate
+              - emphasis: — CNCF, 2026
+        - generic:
+          - generic: 59%
+          - generic:
+            - generic:
+              - text: say they now build primarily with local or regional vendors
+              - emphasis: — Deloitte, State of AI in the Enterprise 2026
+        - generic:
+          - generic: 41%
+          - generic:
+            - generic:
+              - text: still name public cloud as their primary inference environment — down from 56% in one year
+              - emphasis: — Broadcom Private Cloud Outlook 2026
+            - generic: 56% in 2025
+      - paragraph: The last bar is the only one moving downwards. It is also the only one about where the money goes.
+    - generic:
+      - generic: "02"
+      - heading "Sovereignty is a dial, not a switch" [level=2]
+      - paragraph: The unproductive version of this debate is "cloud or on-prem". The productive version is "which level, for which workload, at what price".
+      - generic:
+        - generic: § 02
+        - generic: Sovereignty is a dial, not a switch
+        - generic:
+          - img "VOLT"
+          - generic: "17"
+    - generic:
+      - generic:
+        - generic: § 02
+        - generic: Sovereignty is a dial
+        - generic:
+          - img "VOLT"
+          - generic: "18"
+      - generic:
+        - heading "The dial already has numbers on it" [level=2]
+        - paragraph: You do not have to invent a sovereignty scale. The Commission published one, and it is procuring against it.
+        - list:
+          - listitem: It is a real document, not a consultation or a position paper.
+          - listitem: It computes a score — eight dimensions, weighted, comparable between suppliers.
+          - listitem: "It has already moved money: €180m awarded in April 2026."
+          - listitem: You can put it in a tender on Monday, with no new policy work.
+      - generic:
+        - paragraph: European CommissionDirectorate-General for Digital ServicesLuxembourg
+        - paragraph: Cloud Sovereignty Framework
+        - paragraph: Version 1.2.1 — October 2025
+        - list:
+          - listitem: Introduction
+          - listitem: Sovereignty Objectives
+          - listitem: Sovereignty Effective Assurance Levels
+          - listitem: Assessment of Sovereignty Effectiveness
+          - listitem: Computation of Sovereignty Score
+    - generic:
+      - generic:
+        - generic: § 02
+        - generic: Sovereignty is a dial
+        - generic:
+          - img "VOLT"
+          - generic: "19"
+      - heading "Europe already wrote the scale — use it" [level=2]
+      - paragraph: The Commission's Cloud Sovereignty Framework scores suppliers on Sovereignty Effectiveness Assurance Levels. In April 2026 it awarded €180m over six years against exactly this scale.
+      - table:
+        - rowgroup:
+          - row "Level What it actually guarantees What it does not survive":
+            - columnheader "Level"
+            - columnheader "What it actually guarantees"
+            - columnheader "What it does not survive"
+        - rowgroup:
+          - row "SEAL-0 Nothing. Standard commercial cloud terms. Everything.":
+            - rowheader "SEAL-0"
+            - cell "Nothing. Standard commercial cloud terms."
+            - cell "Everything."
+          - row "SEAL-2 Data sovereignty — EU law compliance without extra customer measures. A foreign legal order against the parent company.":
+            - rowheader "SEAL-2"
+            - cell "Data sovereignty — EU law compliance without extra customer measures."
+            - cell "A foreign legal order against the parent company."
+          - row "SEAL-3 Digital resilience — immunity from non-EU supply chain disruption. A chip or firmware embargo upstream.":
+            - rowheader "SEAL-3"
+            - cell "Digital resilience — immunity from non-EU supply chain disruption."
+            - cell "A chip or firmware embargo upstream."
+          - 'row "SEAL-4 Full EU supply chain — chips to software. Realistically: nothing yet operates here at scale."':
+            - rowheader "SEAL-4"
+            - cell "Full EU supply chain — chips to software."
+            - 'cell "Realistically: nothing yet operates here at scale."'
+    - generic:
+      - generic:
+        - generic: § 02
+        - generic: Sovereignty is a dial
+        - generic:
+          - img "VOLT"
+          - generic: "20"
+      - heading "Four questions, asked per workload — not per company" [level=2]
+      - list:
+        - listitem:
+          - generic: Jurisdiction
+          - text: Which court can compel this data, and who is legally capable of refusing? Not "where is the region".
+        - listitem:
+          - generic: Portability
+          - text: If the price triples or the model is deprecated on Friday, what is the actual cost of leaving? Measure it in weeks.
+        - listitem:
+          - generic: Economics
+          - text: At your real utilisation, not your peak slide — where does the crossover sit?
+        - listitem:
+          - generic: Capability
+          - text: If this becomes core to the business, do you want to be able to build it, or only to buy it?
+    - generic:
+      - generic:
+        - generic: § 02
+        - generic: Sovereignty is a dial
+        - generic:
+          - img "VOLT"
+          - generic: "21"
+      - heading "What actually changes when you own the control plane" [level=2]
+      - generic:
+        - generic:
+          - text: API-first
+          - list:
+            - listitem: —Capability arrives in days
+            - listitem: —Cost scales with success, forever
+            - listitem: —Model deprecated on the vendor's schedule
+            - listitem: —Audit trail is whatever the vendor exports
+            - listitem: —Terms of service change without your consent
+            - listitem: —Zero infrastructure headcount
+        - generic:
+          - text: Control-plane-first
+          - list:
+            - listitem: —Capability arrives in weeks, once
+            - listitem: —Cost is a fixed floor plus marginal compute
+            - listitem: —You choose when a model retires
+            - listitem: —Every prompt, retrieval and response is yours to log
+            - listitem: —Terms change when you change them
+            - listitem: —Real platform engineering, hired and retained
+    - generic:
+      - generic:
+        - generic: § 02
+        - generic: Sovereignty is a dial
+        - generic:
+          - img "VOLT"
+          - generic: "22"
+      - heading "You are not the first person in Europe to say this out loud" [level=2]
+      - generic:
+        - generic:
+          - paragraph: This must be Europe's independence moment.
+          - generic: Ursula von der Leyen · State of the Union address, European Parliament, 10 September 2025
+        - generic:
+          - paragraph: We cannot afford to depend on others for the technologies that keep our hospitals running, our energy grids stable, and our services secure.
+          - generic: Ursula von der Leyen · same address
+        - generic:
+          - paragraph: Unite and act — or face a slow agony.
+          - generic: Mario Draghi · The Future of European Competitiveness, 9 September 2024. He called it an existential challenge.
+        - generic:
+          - paragraph: Build the factories, so we become AI makers, not AI takers.
+          - generic: Han de Groot · on why the Netherlands is building its own AI capacity
+    - generic:
+      - generic:
+        - generic: § 02
+        - generic: Sovereignty is a dial
+        - generic:
+          - img "VOLT"
+          - generic: "23"
+      - heading "Three answers to \"who decides the roadmap?\"" [level=2]
+      - paragraph: Sovereignty is not only about where the servers sit. It is about who governs the thing you depend on — and the world has three working answers to that, not one.
+      - generic:
+        - generic:
+          - paragraph: US model
+          - heading "Platform control" [level=3]
+          - paragraph: GitHub · PyPI · npm
+          - list:
+            - listitem: —The forge, the registry and the package index are US-hosted chokepoints
+            - listitem: —Sanctions become instant service denial, with no recourse and no notice
+            - listitem: —Open code, closed platform. Ownership of the commons by ownership of the plumbing
+        - generic:
+          - paragraph: China model
+          - heading "Domestic forks" [level=3]
+          - paragraph: Gitee · OpenAtom · OpenHarmony
+          - list:
+            - listitem: —A national mirror of the whole stack, built as a response to sanctions
+            - listitem: —It works — and it costs you interoperability and shared visibility
+            - listitem: —Two ecosystems that no longer read each other's code
+        - generic:
+          - paragraph: European path
+          - heading "Interdependent autonomy" [level=3]
+          - paragraph: Sovereign Cloud Stack · GAIA-X · Digital Commons EDIC
+          - list:
+            - listitem: —Not isolation — strategic participation, and influence over the roadmap
+            - listitem: —Sit on the boards, fund the maintainers, hold the standards
+            - listitem: —Open governance beats ownership, and it is far cheaper
+      - paragraph: The third column is the awkward one — and it is the right one. Forking Europe out of the global commons would cost as much as staying captured by it. The lever is governance, not ownership.
+    - generic:
+      - generic: "03"
+      - heading "The stack is ready — that's the news" [level=2]
+      - paragraph: Three years ago this argument failed on engineering grounds. It doesn't any more, and that's the part the room probably hasn't been told.
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready — that's the news
+        - generic:
+          - img "VOLT"
+          - generic: "24"
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "25"
+      - heading "AI infrastructure became boring. Boring is the achievement." [level=2]
+      - list:
+        - listitem:
+          - generic: 66%
+          - text: of organisations serving generative AI models already run inference on Kubernetes. This is the mainstream, not the fringe.
+        - listitem:
+          - generic: 31 certified platforms
+          - text: under the CNCF Kubernetes AI Conformance programme as of March 2026 — up from 18 in November 2025.
+        - listitem:
+          - generic: Portability is now testable
+          - generic: Conformance covers disaggregated inference, inference ingress, GPU-aware scheduling. Portable means certified portable.
+        - listitem:
+          - generic: The hard parts got donated
+          - text: llm-d — Red Hat, Google, IBM, NVIDIA, CoreWeave — entered the CNCF in March 2026. Prefill/decode disaggregation and KV-cache-aware routing, open.
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "26"
+      - heading "\"Open weights\" is not the same thing as an open model" [level=2]
+      - paragraph: The substrate is solved. The model layer is not — and the word "open" is doing a great deal of work in vendor marketing right now. There are three tiers, and only one of them survives the sovereignty test.
+      - generic:
+        - generic:
+          - paragraph: Tier 1
+          - heading "Closed APIs" [level=3]
+          - paragraph: GPT-5 · Claude · Gemini
+          - list:
+            - listitem: —No inspection, no control, no say in when it is retired
+            - listitem: —The vendor holds the pricing power and the terms of service
+            - listitem: —Genuinely the best capability available — that is why it is tempting
+        - generic:
+          - paragraph: Tier 2
+          - heading "Open weights" [level=3]
+          - paragraph: Llama 4 · DeepSeek R1
+          - list:
+            - listitem: —You can read and run the weights — a real improvement
+            - listitem: "—But: licence restrictions, no training-data audit, geopolitical entanglements"
+            - listitem: —Portable, not accountable. Enough for lock-in, not enough for an AI Act file
+        - generic:
+          - paragraph: Tier 3
+          - heading "Actually open" [level=3]
+          - paragraph: OpenEuroLLM · Mistral + EU infrastructure
+          - list:
+            - listitem: —Inspectable, forkable, and deployable on infrastructure you control
+            - listitem: —The only tier where you can answer an auditor without phoning a vendor
+            - listitem: —Behind the frontier today — and closing, which is the whole bet
+      - paragraph: "The question to ask any supplier: is a model \"open\" if you can read the weights but cannot audit the training data, verify the alignment, or run it without GPU capacity you do not control?"
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "27"
+      - heading "Don't take my word for it — take theirs" [level=2]
+      - paragraph: "In March, KubeCon Europe brought the cloud-native industry to the RAI, twenty minutes from this room. This is a sample of what it spent the week on. Note who is presenting: not activists, not startups."
+      - list:
+        - listitem:
+          - generic:
+            - link "Building a Sovereign, Multi-Cloud Strategy with Cloud Native Technologies":
+              - /url: https://kccnceu2026.sched.com/event/2HgHb/keynote-building-a-sovereign-multi-cloud-strategy-with-cloud-native-technologies-goetz-reinhaeckel-program-director-cloud-bwi
+          - generic:
+            - text: Goetz Reinhaeckel, Program Director Cloud —
+            - generic: BWI
+            - text: ", the IT company of the German armed forces."
+          - generic: Main-stage keynote
+        - listitem:
+          - generic:
+            - 'link "Inference and Sovereign AI: Scaling Cloud Native AI with Control and Compliance"':
+              - /url: https://kccnceu2026.sched.com/event/2HgH3/sponsored-keynote-inference-and-sovereign-ai-scaling-cloud-native-ai-with-control-and-compliance-karena-angell-technical-strategist-global-engineering-red-hat-vincent-caldeira-chief-technology-officer-apac-red-hat
+          - generic:
+            - text: Karena Angell, Technical Strategist; Vincent Caldeira, CTO APAC —
+            - generic: Red Hat
+            - text: .
+          - generic: Sponsored keynote
+        - listitem:
+          - generic:
+            - link "Towards Building an Open Source AI Reference Stack for EU Sovereign Cloud":
+              - /url: https://kccnceu2026.sched.com/event/2CVzj/towards-building-an-open-source-ai-reference-stack-for-eu-sovereign-cloud-madhav-bhargava-sap-labs-sanjay-chatterjee-nvidia
+          - generic:
+            - text: Madhav Bhargava,
+            - generic: SAP Labs
+            - text: ; Sanjay Chatterjee,
+            - generic: NVIDIA
+            - text: .
+          - generic: Europe's largest software company and the company selling the chips — building the open alternative together
+        - listitem:
+          - generic:
+            - link "Virtualizing Large-Scale GPU Cluster for Sovereign AI":
+              - /url: https://kccnceu2026.sched.com/event/2CW7f/virtualizing-large-scale-gpu-cluster-for-sovereign-ai-petasus-ai-cloud-journey-with-kubernetes-jian-li-sk-telecom
+          - generic:
+            - text: Jian Li —
+            - generic: SK Telecom
+            - text: ", on the Petasus AI Cloud."
+          - generic: A national telco doing exactly this, at scale, outside Europe
+        - listitem:
+          - generic:
+            - link "Sovereign Identities for Your Cloud Native Architecture":
+              - /url: https://kccnceu2026.sched.com/event/2EF6o/sovereign-identities-for-your-cloud-native-architecture-with-keycloak-alexander-schwartz-ibm-sebastian-laskawiec-defense-unicorns
+          - generic:
+            - text: Alexander Schwartz,
+            - generic: IBM
+            - text: ; Sebastian Laskawiec,
+            - generic: Defense Unicorns
+            - text: .
+          - generic: Who your systems believe you are is also a sovereignty question
+        - listitem:
+          - generic:
+            - link "EU Cloud Sovereignty Framework Explained":
+              - /url: https://colocatedeventseu2026.sched.com/event/2H5UN/eu-cloud-sovereignty-framework-explained-emiel-brok-suse-dosba
+          - generic:
+            - text: Emiel Brok,
+            - generic: SUSE
+            - text: — the SEAL levels, in practice.
+          - generic: Co-located event · the framework from slide 10, unpacked
+        - listitem:
+          - generic:
+            - 'link "Running a Sovereign Cloud Stack Cluster for the ITU: Lessons Learned"':
+              - /url: https://colocatedeventseu2026.sched.com/event/2HEOl/running-sovereign-cloud-stack-cluster-for-international-telecommunication-union-lessons-learned-martin-pilka-dnation-karsten-samaschke-vanillacore-gmbh
+          - generic:
+            - text: Martin Pilka,
+            - generic: dNation
+            - text: ; Karsten Samaschke,
+            - generic: VanillaCore
+            - text: .
+          - generic: The UN's telecoms agency, in production, with the lessons written down
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "28"
+      - heading "The reference architecture" [level=2]
+      - generic:
+        - generic:
+          - generic: Portability
+          - paragraph: OCI imagesOpenAI-compatible APIS3 APIOpen weights
+          - paragraph: Every boundary is a standard, so every layer is an exit.
+        - generic:
+          - generic:
+            - generic:
+              - text: Applications & agents
+              - emphasis: your product
+            - generic:
+              - generic: RAG services
+              - generic: agent runtimes
+              - generic: copilots
+          - generic:
+            - generic:
+              - text: AI gateway & policy
+              - emphasis: where control is enforced
+            - generic:
+              - generic: Envoy AI Gateway
+              - generic: Kyverno / OPA
+              - generic: Keycloak
+          - generic:
+            - generic:
+              - text: Model serving
+              - emphasis: tokens out
+            - generic:
+              - generic: KServe
+              - generic: vLLM
+              - generic: llm-d
+              - generic: Ray
+          - generic:
+            - generic:
+              - text: Data & retrieval
+              - emphasis: your actual moat
+            - generic:
+              - generic: Milvus
+              - generic: Qdrant
+              - generic: pgvector
+              - generic: MinIO / Ceph
+          - generic:
+            - generic:
+              - text: Scheduling
+              - emphasis: who gets the GPU
+            - generic:
+              - generic: Kubernetes DRA
+              - generic: Kueue
+              - generic: Volcano
+          - generic:
+            - generic:
+              - text: Platform substrate
+              - emphasis: boring on purpose
+            - generic:
+              - generic: Talos / RKE2
+              - generic: Cluster API
+              - generic: Argo CD
+              - generic: OpenTelemetry
+              - generic: Prometheus
+          - generic:
+            - generic:
+              - text: Power, cooling, silicon
+              - emphasis: the part you cannot download
+            - generic:
+              - generic: GPUs
+              - generic: EU datacentre
+              - generic: grid connection
+              - generic: heat reuse
+        - generic:
+          - generic: Governance
+          - paragraph: Model registryEval harnessPrompt & response lineageImmutable audit log
+          - paragraph: The AI Act evidence layer. Build it first, not last.
+      - paragraph: Every layer open, every layer replaceable. No layer requires a US-parented supplier.
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "29"
+      - heading "And Europe is building the bottom layer right now" [level=2]
+      - list:
+        - listitem:
+          - generic: 19 AI Factories, 13 antennas
+          - text: Operational across the EU today, EuroHPC-funded, accessible to industry and SMEs.
+        - listitem:
+          - generic: Up to 7 AI Gigafactories
+          - text: ">€20bn expected private investment. Bids close 12 November 2026, selection early 2027, operating within 18 months."
+        - listitem:
+          - generic: €180m already committed
+          - text: Commission cloud procurement awarded to four European providers against the sovereignty framework, April 2026.
+        - listitem:
+          - generic: The point for you
+          - text: Sovereign capacity is becoming procurable. In 2023 the honest answer was "there's nowhere to go". That excuse is expiring.
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "30"
+      - heading "The bottom layer, in megawatts" [level=2]
+      - paragraph: Announced and under construction in Europe. The unit that matters is not GPUs — it is grid connection, because that is the thing you cannot order faster.
+      - generic:
+        - generic:
+          - generic: 800MW
+          - generic:
+            - generic:
+              - text: Rotterdam AI Gigafactory, ~250,000 GPUs
+              - emphasis: — VOLT, construction from 2027
+        - generic:
+          - generic: 310MW
+          - generic:
+            - generic:
+              - text: Lappeenranta, Finland
+              - emphasis: — Nebius, hyperscale neocloud model
+        - generic:
+          - generic: 240MW
+          - generic:
+            - generic:
+              - text: Near Lille, France
+              - emphasis: — Nebius, part of a 2.5 GW target
+        - generic:
+          - generic: 42MW
+          - generic:
+            - generic:
+              - text: Amsterdam AMS5, planned
+              - emphasis: — VOLT with NorthC and Dell
+        - generic:
+          - generic: 14MW
+          - generic:
+            - generic:
+              - text: Amsterdam Switch AMS4 — operational this month
+              - emphasis: — VOLT Dutch AI Cloud
+      - paragraph: €180m committed by the Commission · €7.8bn AWS European Sovereign Cloud · >€20bn expected across up to 7 EU AI Gigafactories
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "31"
+      - heading "What it looks like when someone actually builds it here" [level=2]
+      - paragraph: VOLT — "from power to tokens" — is doing the full-stack version in the Netherlands. Worth knowing because it's twenty kilometres from this room, not because it's the only one.
+      - list:
+        - listitem:
+          - generic: Dutch AI Cloud, operational October 2026
+          - text: Amsterdam, with NorthC Datacenters and Dell. 14 MW initially at Switch AMS4, 42 MW planned at AMS5.
+        - listitem:
+          - generic: Rotterdam AI Gigafactory
+          - text: Up to 800 MW and roughly 250,000 GPUs, construction from 2027.
+        - listitem:
+          - generic: Target sectors
+          - text: Finance, healthcare, biotech, defence, government — precisely the workloads that cannot answer the jurisdiction question with a contract.
+        - listitem:
+          - generic: The framing to steal
+          - text: "Han de Groot: build AI factories so countries become \"AI makers, not AI takers\"."
+    - generic:
+      - generic:
+        - generic: § 03
+        - generic: The stack is ready
+        - generic:
+          - img "VOLT"
+          - generic: "32"
+      - generic: 800MW
+      - paragraph: Rotterdam, from 2027. Sovereignty is, in the end, a question about electricity.
+      - paragraph: VOLT AI Gigafactory · ~250,000 GPUs · construction begins 2027
+    - generic:
+      - generic: "04"
+      - heading "What the vendor keynote leaves out" [level=2]
+      - paragraph: If I only told you the good half, you'd make a bad decision and I'd deserve the blame.
+      - generic:
+        - generic: § 04
+        - generic: What the vendor keynote leaves out
+        - generic:
+          - img "VOLT"
+          - generic: "33"
+    - generic:
+      - generic:
+        - generic: § 04
+        - generic: What the keynote leaves out
+        - generic:
+          - img "VOLT"
+          - generic: "34"
+      - heading "Four failure modes nobody demos on stage" [level=2]
+      - list:
+        - listitem:
+          - generic: GPU scheduling contention
+          - text: One team's training job starves everyone's inference. Fixable — quotas, gang scheduling, fair-share — but it is a political problem before it is a technical one.
+        - listitem:
+          - generic: Cold starts
+          - text: "Provisioning a scarce GPU: seconds to hours. Pulling a large image: 3–5 minutes. Then weights load. \"Scale to zero\" is a slide, not a capability."
+        - listitem:
+          - generic: Capacity planning without an escape hatch
+          - text: No elastic overflow. You size for peak, or you queue. Both cost money and one costs credibility.
+        - listitem:
+          - generic: Model lifecycle is now your job
+          - text: Evals, regressions, retirement. The vendor was doing unglamorous work you never saw an invoice for.
+    - generic:
+      - generic:
+        - generic: § 04
+        - generic: What the keynote leaves out
+        - generic:
+          - img "VOLT"
+          - generic: "35"
+      - heading "Open source is the floor, not the ceiling" [level=2]
+      - generic:
+        - generic:
+          - paragraph: The maintenance crisis
+          - list:
+            - listitem: —Log4j proved that unmaintained open source is a systemic risk, not a strategic asset
+            - listitem: —Your production stack rests on components maintained by people nobody pays
+            - listitem: —"We moved to open source" is a procurement event. Staying safe is an operating cost
+            - listitem: —Open source without funded maintenance is a liability wearing the word sovereignty
+        - generic:
+          - paragraph: Closing the gap
+          - list:
+            - listitem: —Germany's Sovereign Tech Agency is proof that public funding for maintenance works
+            - listitem: —Public procurement is the biggest untapped lever — the money already flows, into proprietary silos
+            - listitem: —Fund, or staff, the three dependencies you genuinely cannot replace
+            - listitem: —Cheaper than the licence you were paying, and it buys you a seat at the roadmap
+      - paragraph:
+        - text: "\"The innovation fetish is unhealthy. Maintain what is there.\""
+        - generic: The cheapest sovereignty on this slide costs less than the licence it replaces.
+    - generic:
+      - generic:
+        - generic: § 04
+        - generic: What the keynote leaves out
+        - generic:
+          - img "VOLT"
+          - generic: "36"
+      - 'heading "The economics: this is a utilisation question, not an ideology question" [level=2]'
+      - paragraph: A single H100 delivers anywhere from $0.21 to $15.25 per million output tokens. Same hardware. The variable is you.
+      - list:
+        - listitem:
+          - generic: Steady and high volume wins
+          - text: Fixed floor plus cheap marginal tokens beats per-call pricing — above the crossover, and only above it.
+        - listitem:
+          - generic: Bursty and low volume loses
+          - text: You will pay for idle silicon and call it sovereignty. Don't.
+        - listitem:
+          - generic: Do the cheap things first
+          - text: Caching, batching, routing, right-sizing the model. Most "we need our own GPUs" cases evaporate here.
+        - listitem:
+          - generic: Then measure, don't model
+          - text: Run one real workload for one month. Utilisation is measured, never assumed.
+    - generic:
+      - generic:
+        - generic: § 04
+        - generic: What the keynote leaves out
+        - generic:
+          - img "VOLT"
+          - generic: "37"
+      - heading "One chart decides this, and it isn't a chart about sovereignty" [level=2]
+      - paragraph: The same H100 costs between $0.21 and $15.25 per million output tokens. Nothing about the hardware changes. The only variable is how busy you keep it.
+      - generic:
+        - img "Cost per million output tokens falls sharply as GPU utilisation rises, crossing typical API pricing at low utilisation.":
+          - generic:
+            - generic: $15
+            - generic: $10
+            - generic: $5
+            - generic: $1
+            - generic: $0.50
+            - generic: $0.21
+          - generic:
+            - generic: 0%
+            - generic: 20%
+            - generic: 40%
+            - generic: 60%
+            - generic: 80%
+            - generic: 100%
+            - generic: GPU UTILISATION — HOW BUSY YOU ACTUALLY KEEP IT
+          - generic: COST PER MILLION OUTPUT TOKENS
+          - generic: WHAT YOU PAY PER API CALL TODAY — draw this line where yours actually sits
+          - generic: CROSSOVER
+          - generic: $15.25 — a GPU you bought and left idle
+          - generic: $0.21 — the same GPU, kept busy
+          - generic: RENT
+          - generic: OWN
+      - paragraph: Log scale. Curve is fixed cost divided by utilisation, anchored on the two published endpoints. Your crossover is wherever your own API line cuts it.
+    - generic:
+      - generic:
+        - generic: § 04
+        - generic: What the keynote leaves out
+        - generic:
+          - img "VOLT"
+          - generic: "38"
+      - heading "Self-host, federate, or rent — by workload class" [level=2]
+      - paragraph: This is the blueprint, compressed. You do not need one answer; you need this table filled in for your own portfolio.
+      - table:
+        - rowgroup:
+          - row "Workload Verdict Why":
+            - columnheader "Workload"
+            - columnheader "Verdict"
+            - columnheader "Why"
+        - rowgroup:
+          - row "Data & retrieval layer Self-host, always It is your proprietary corpus. Renting it is the one decision with no upside.":
+            - rowheader "Data & retrieval layer"
+            - cell "Self-host, always"
+            - cell "It is your proprietary corpus. Renting it is the one decision with no upside."
+          - row "Inference gateway & policy Self-host, always Control, redaction, routing and the audit trail all live here. This is the cheapest sovereignty you can buy.":
+            - rowheader "Inference gateway & policy"
+            - cell "Self-host, always"
+            - cell "Control, redaction, routing and the audit trail all live here. This is the cheapest sovereignty you can buy."
+          - row "Steady production inference Self-host Predictable volume, open weights, regulated data. Best economics and best jurisdiction answer.":
+            - rowheader "Steady production inference"
+            - cell "Self-host"
+            - cell "Predictable volume, open weights, regulated data. Best economics and best jurisdiction answer."
+          - row "Training & fine-tuning Federate Bursty and capital-intensive. Rent EU capacity — AI Factories, European neoclouds — keep the weights.":
+            - rowheader "Training & fine-tuning"
+            - cell "Federate"
+            - cell "Bursty and capital-intensive. Rent EU capacity — AI Factories, European neoclouds — keep the weights."
+          - row "Frontier-model capability Rent, knowingly You will not match it. Route to it deliberately through your own gateway, with a documented exit.":
+            - rowheader "Frontier-model capability"
+            - cell "Rent, knowingly"
+            - cell "You will not match it. Route to it deliberately through your own gateway, with a documented exit."
+    - generic:
+      - generic:
+        - generic: § 04
+        - generic: What the keynote leaves out
+        - generic:
+          - img "VOLT"
+          - generic: "39"
+      - heading "The capability is the point — and it is a people decision" [level=2]
+      - list:
+        - listitem:
+          - generic: You are buying optionality, not servers
+          - text: The asset is a team that can move a workload. The infrastructure is the by-product.
+        - listitem:
+          - generic: Two to four people, not a department
+          - text: A capable platform team running a sovereign AI stack is smaller than the compliance function it de-risks.
+        - listitem:
+          - generic: The skills are transferable
+          - text: Kubernetes, GitOps, observability. You are not hiring exotica; you are hiring platform engineering.
+        - listitem:
+          - generic: The risk is real and mundane
+          - text: Key-person dependency. Mitigate with boring standard tooling — the same reason to avoid a bespoke stack.
+    - generic:
+      - generic:
+        - generic: § 05
+        - generic: Close
+        - generic:
+          - img "VOLT"
+          - generic: "40"
+      - heading "Ninety days. Four moves. No new budget line." [level=2]
+      - list:
+        - listitem:
+          - generic: Weeks 1–2 · Inventory
+          - text: List every AI workload, its jurisdiction, and its exit cost in weeks. Most organisations have never written this down.
+        - listitem:
+          - generic: Weeks 3–6 · Put a gateway in front
+          - text: One control point for every model call. Logging, redaction, routing, cost attribution. Highest return per euro in this entire talk.
+        - listitem:
+          - generic: Weeks 7–10 · Prove portability once
+          - text: Move a single real workload to a European provider. Not a pilot — a production workload. Measure what it actually cost.
+        - listitem:
+          - generic: Weeks 11–13 · Set the SEAL requirement
+          - text: Write a sovereignty level into your next AI procurement. Make suppliers answer it in writing.
+    - generic:
+      - generic:
+        - generic: § 05
+        - generic: Close
+        - generic:
+          - img "VOLT"
+          - generic: "41"
+      - paragraph: The clouds aren't going anywhere. Your autonomy shouldn't live there.
+      - generic: Alessandro Vozza · Lovelace Engineering
+    - generic:
+      - generic:
+        - generic: § 05
+        - generic: Close
+        - generic:
+          - img "VOLT"
+          - generic: "42"
+      - heading "Sovereignty is not a product. It's a practice." [level=2]:
+        - text: Sovereignty is not a product.
+        - emphasis: It's a practice.
+      - paragraph: Sovereignty washing is the new greenwashing.
+      - list:
+        - listitem: Geographic residency without code transparency is a landlord model. You are renting your own sovereignty.
+        - listitem: Compliance without autonomy is theatre — a file that satisfies an auditor and changes nothing.
+        - listitem: Innovation without maintenance is a liability wearing a roadmap.
+      - paragraph: Open source is the floor, not the ceiling.
+    - generic:
+      - generic:
+        - generic: § 06
+        - generic: Your turn
+        - generic:
+          - img "VOLT"
+          - generic: "43"
+      - paragraph: Five minutes · your turn
+      - heading "One workload. Four boxes." [level=2]
+      - paragraph: Not your portfolio — one real AI workload you actually run today. Back of your badge, phone, or just in your head.
+      - generic:
+        - generic:
+          - generic: "01"
+          - generic: Which court can compel this data?
+          - generic: Not which region it sits in. Who could be ordered to hand it over, and who is legally able to refuse.
+        - generic:
+          - generic: "02"
+          - generic: What would leaving cost, in weeks?
+          - generic: Not euros. Weeks of engineering time to run this somewhere else.
+        - generic:
+          - generic: "03"
+          - generic: What SEAL level would you require?
+          - generic: If you procured this again on Monday, what would you write in the tender — 0, 2, 3?
+        - generic:
+          - generic: "04"
+          - generic: Who owns that answer?
+          - generic: A named person in your organisation. "The platform team" is not a name.
+      - paragraph:
+        - generic: "Then:"
+        - generic: turn to the person next to you and compare. Two minutes. If you cannot fill in box 2, that is the finding — and it is the same finding almost everyone in this room will have.
+    - generic:
+      - generic:
+        - generic: § 06
+        - generic: Your turn
+        - generic:
+          - img "VOLT"
+          - generic: "44"
+      - heading "Or start somewhere closer to home" [level=2]
+      - paragraph: Four questions, depending on which chair you are sitting in. Pick the one that makes you least comfortable.
+      - list:
+        - listitem:
+          - text: Founders & CEOs
+          - generic: If your model vendor tripled its price on Monday, who in your company would find out first — and how long before it reached you?
+        - listitem:
+          - text: CTOs & heads of engineering
+          - generic: How many of your production dependencies are maintained by a single unpaid contributor?
+        - listitem:
+          - text: Finance, health, public sector
+          - generic: Your regulator asks you to demonstrate exit from your AI provider. What do you actually hand them?
+        - listitem:
+          - text: Everyone
+          - generic: Is European digital sovereignty achievable — or an expensive political narrative we will all have paid for by 2030?
+    - generic:
+      - generic:
+        - generic: § 06
+        - generic: Argue with me
+        - generic:
+          - img "VOLT"
+          - generic: "45"
+      - heading "Five things I believe. Pick one and take it apart." [level=2]
+      - paragraph: Twenty-five minutes. Call a number.
+      - list:
+        - listitem: Sovereign AI is protectionism with better branding, and Europe will lose the capability race by insisting on it.
+        - listitem: The EU AI Act deferral proves compliance pressure will keep slipping — so building for it now is wasted capital.
+        - listitem: Renting frontier models is fine; only the data layer ever needed to be sovereign, and everything else here is over-engineering.
+        - listitem: Nobody in this room can hire the platform team this requires, at any price, in this market.
+        - listitem: Grid capacity — not chips, capital, or regulation — is what actually decides who gets to do AI in the Netherlands.
+    - generic:
+      - img "ChemAI AMS 2026 — AI Technology for Molecules and Materials. 12–13 November 2026, Amsterdam (NL)."
+    - generic:
+      - generic:
+        - heading "Start with the inventory. Everything else follows from it." [level=2]:
+          - text: Start with the
+          - emphasis: inventory
+          - text: . Everything else follows from it.
+        - paragraph: If you write down every AI workload, its jurisdiction, and its exit cost, you will have done more sovereignty work this quarter than most organisations do in a year.
+        - list:
+          - listitem:
+            - generic: Slides
+            - link "ams0.github.io/talks/beyond-the-clouds":
+              - /url: https://ams0.github.io/talks/beyond-the-clouds/
+          - listitem:
+            - generic: Contact
+            - text: alessandro@stackmasters.com
+          - listitem:
+            - generic: LinkedIn
+            - text: /in/alessandrovozza
+          - listitem:
+            - generic: Happy to
+            - text: argue about any of this at the drinks
+      - generic:
+        - img "Portrait of Alessandro Vozza."
+        - paragraph: Alessandro Vozza
+        - paragraph: Lovelace EngineeringGolden Kubestronaut
+        - paragraph: "Disclosure: Lovelace Engineering consults for VOLT. Nebius is on the megawatt chart so that slide is not a single-vendor slide."
+      - img "VOLT"
+    - generic:
+      - generic:
+        - generic: APP
+        - generic: Sources
+        - generic:
+          - img "VOLT"
+          - generic: "48"
+      - heading "Sources" [level=2]
+      - list:
+        - listitem:
+          - generic: Microsoft France testimony
+          - text: French Senate inquiry into digital sovereignty, 21 July 2025 (The Register, SDxCentral)
+        - listitem:
+          - generic: AWS European Sovereign Cloud
+          - text: Amazon press release, 15 January 2026; InfoQ analysis
+        - listitem:
+          - generic: Trump v. Slaughter · EDPB letter
+          - text: US Supreme Court, 29 June 2026; EDPB to Commissioner McGrath, 31 July 2026
+        - listitem:
+          - generic: Latombe judgment
+          - text: EU General Court, 3 September 2025 (IAPP)
+        - listitem:
+          - generic: Digital AI Omnibus
+          - text: Provisional agreement, May 2026 (Gibson Dunn; DLA Piper)
+        - listitem:
+          - generic: AI Act
+          - text: Reg. (EU) 2024/1689 · in force 1 Aug 2024 · Art. 5, 50, 51–56 · penalties Art. 99
+        - listitem:
+          - generic: Data Act
+          - text: Reg. (EU) 2023/2854 · applicable 12 Sep 2025 · Art. 29 switching charges withdrawn 12 Jan 2027
+        - listitem:
+          - generic: DORA · NIS2 · CRA
+          - text: Reg. (EU) 2022/2554 (17 Jan 2025) · Dir. (EU) 2022/2555 · Reg. (EU) 2024/2847
+        - listitem:
+          - generic: Cloud Sovereignty Framework · SEAL
+          - text: European Commission, 17 April 2026 — €180m awarded to Post, STACKIT, Scaleway, Proximus
+        - listitem:
+          - generic: Cloud Sovereignty Framework document
+          - text: European Commission, DG DIGIT, Luxembourg — version 1.2.1, October 2025
+        - listitem:
+          - generic: European cloud market share
+          - text: Synergy Research Group — European providers 29% (2017) to 15% (2022), holding at 15%; press release 24 July 2025
+        - listitem:
+          - generic: Market concentration
+          - text: Synergy Research Group — Amazon, Microsoft and Google ~70% of the European market; SAP and Deutsche Telekom 2% each
+        - listitem:
+          - generic: AI Gigafactories call
+          - text: EuroHPC JU, 30 July 2026 — bids close 12 November 2026
+        - listitem:
+          - generic: Kubernetes AI Conformance · llm-d
+          - text: CNCF, March 2026 · KubeCon + CloudNativeCon Europe, RAI Amsterdam, 23–26 March 2026
+        - listitem:
+          - generic: Vendor country of origin (77%) · local vendors (59%)
+          - text: Deloitte, State of AI in the Enterprise 2026, n=3,235, 24 countries
+        - listitem:
+          - generic: Inference repatriation
+          - text: Broadcom Private Cloud Outlook 2026 (56%→41%); Cloudian survey, March 2026 (93%)
+        - listitem:
+          - generic: VOLT · Nebius
+          - text: w.media, DatacenterDynamics, The Tech Capital, 2025–2026
+        - listitem:
+          - generic: H100 cost range ($0.21–$15.25)
+          - text: Wavect break-even analysis, EU, 2026. Curve shape is fixed-cost ÷ utilisation, anchored on those endpoints.
+        - listitem:
+          - generic: Von der Leyen
+          - text: State of the Union address, European Parliament, 10 September 2025
+        - listitem:
+          - generic: Draghi
+          - text: The Future of European Competitiveness, European Commission, 9 September 2024
+        - listitem:
+          - generic: Open-source maintenance
+          - text: Log4Shell (CVE-2021-44228); Germany's Sovereign Tech Agency and EU-STF proposals on funding OSS maintenance
+        - listitem:
+          - generic: Platform chokepoints
+          - text: GitHub access restrictions in sanctioned regions; Gitee and the OpenAtom Foundation as domestic-fork responses
+        - listitem:
+          - generic: European governance
+          - text: Sovereign Cloud Stack · GAIA-X · Digital Commons EDIC
+        - listitem:
+          - generic: Model openness tiers
+          - text: OpenEuroLLM; Mistral; Llama 4 and DeepSeek R1 licence and training-data terms
+  - generic: N notes · T timer · F fullscreen · P print
