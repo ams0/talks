@@ -126,6 +126,23 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
 .slide--hook p { font-family: var(--f-display); font-size: 108px; line-height: 1.06; font-weight: 400; max-width: 20ch; letter-spacing: -0.01em; }
 .slide--hook .sub { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.78; margin-top: 54px; white-space: nowrap; }
 
+/* ---------- session rules / housekeeping ---------- */
+.slide--rules { padding: 140px 130px 136px; display: grid; grid-template-columns: 1fr 460px; gap: 92px; align-items: center; }
+.slide--rules .kicker { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+.slide--rules h2 { font-family: var(--f-display); font-size: 86px; font-weight: 400; line-height: 1.04; margin-top: 18px; max-width: 18ch; }
+.rules { list-style: none; display: grid; gap: 30px; margin-top: 52px; }
+.rules li { display: grid; grid-template-columns: 92px 1fr; gap: 26px; align-items: baseline; }
+.rules .n { font-family: var(--f-display); font-size: 54px; line-height: 1; color: var(--accent); letter-spacing: -0.02em; }
+.rules b { display: block; font-size: 33px; font-weight: 600; line-height: 1.24; }
+.rules span { display: block; font-size: 25px; line-height: 1.38; color: var(--fg-muted); margin-top: 7px; }
+.clock { background: var(--ink); color: var(--fg-on-dark); border-radius: 4px; padding: 54px 48px; display: grid; gap: 30px; }
+.clock .row { display: grid; gap: 6px; }
+.clock .t { font-family: var(--f-display); font-size: 74px; line-height: 1; letter-spacing: -0.02em; }
+.clock .row.talk .t { color: var(--accent-soft); }
+.clock .l { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted-dark); }
+.clock .rule { height: 1px; background: var(--rule-dark); }
+.clock .note { font-size: 22px; line-height: 1.4; color: var(--fg-muted-dark); }
+
 /* ---------- bold claim ---------- */
 .slide--claim { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; }
 .slide--claim p { font-family: var(--f-display); font-size: 92px; line-height: 1.1; font-weight: 400; max-width: 21ch;
@@ -171,6 +188,34 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
 .ba-col.new .lbl { color: var(--accent-soft); opacity: 1; }
 .ba-col ul { list-style: none; display: grid; gap: 22px; margin-top: 34px; font-size: 28px; line-height: 1.35; }
 .ba-col li::before { content: "—"; margin-right: 14px; opacity: 0.45; }
+.slide--ba.tight { padding: 124px 128px 120px; }
+.slide--ba.tight h2 { font-size: 72px; margin-bottom: 42px; }
+.slide--ba.tight .ba-col { padding: 40px 38px; }
+.slide--ba.tight .ba-col ul { gap: 18px; font-size: 26px; margin-top: 28px; }
+.slide--ba .pull { font-family: var(--f-display); font-size: 40px; line-height: 1.24; margin-top: 46px;
+  padding-left: 26px; border-left: 4px solid var(--accent); max-width: 68ch; }
+.slide--ba .pull cite { display: block; font-family: var(--f-mono); font-style: normal; font-size: 20px;
+  letter-spacing: 0.06em; color: var(--fg-muted); margin-top: 14px; }
+
+/* ---------- three-way comparison cards ---------- */
+.slide--trio { padding: 116px 116px 112px; display: flex; flex-direction: column; justify-content: center; }
+.slide--trio h2 { font-family: var(--f-display); font-size: 76px; font-weight: 400; line-height: 1.06; max-width: 26ch; }
+.slide--trio .lede { font-size: 27px; color: var(--fg-muted); margin-top: 20px; max-width: 74ch; line-height: 1.4; }
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 40px; }
+.trio .card { padding: 34px 32px; border-radius: 4px; background: var(--surface-muted); display: flex; flex-direction: column; gap: 13px; }
+.trio .card.best { background: var(--ink); color: var(--fg-on-dark); }
+.trio .lbl { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.6; }
+.trio .card.best .lbl { color: var(--accent-soft); opacity: 1; }
+.trio h3 { font-family: var(--f-display); font-size: 40px; font-weight: 400; line-height: 1.08; }
+.trio .eg { font-family: var(--f-mono); font-size: 20px; line-height: 1.35; color: var(--accent); }
+.trio .card.best .eg { color: var(--accent-soft); }
+.trio ul { list-style: none; display: grid; gap: 11px; font-size: 23px; line-height: 1.34; margin-top: 3px; }
+.trio .card li { color: var(--fg-muted); }
+.trio .card.best li { color: #d6e4d3; }
+.trio li::before { content: "—"; margin-right: 10px; opacity: 0.45; }
+.slide--trio .kq { font-size: 24px; line-height: 1.4; margin-top: 32px; padding-left: 22px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 108ch; }
+.slide--trio .kq b { color: var(--fg-on-light); font-weight: 600; }
 
 /* ---------- comparison table ---------- */
 .slide--table { padding: 150px 110px 145px; display: flex; flex-direction: column; justify-content: center; }
@@ -252,10 +297,23 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 .slide--full { padding: 0; background: var(--ink); }
 .slide--full img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
+/* ---------- closing CTA with speaker portrait ---------- */
+.slide--cta.with-me { display: grid; grid-template-columns: 1fr 400px; gap: 96px; align-items: center; padding: 140px 130px; }
+.slide--cta.with-me .cover-mark { bottom: 78px; right: 118px; left: auto; height: 52px; }
+.slide--cta.with-me h2 { font-size: 96px; max-width: 17ch; }
+.slide--cta.with-me .ask { font-size: 29px; margin-top: 34px; }
+.slide--cta.with-me ul { margin-top: 40px; }
+.me-col { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.me-col .portrait { width: 300px; height: 300px; border-radius: 50%; object-fit: cover;
+  border: 8px solid rgba(157,194,152,0.22); box-shadow: 0 0 0 2px var(--accent-soft); }
+.me-col .who { font-family: var(--f-display); font-size: 46px; line-height: 1.05; }
+.me-col .role { font-family: var(--f-mono); font-size: 21px; line-height: 1.45; color: var(--fg-muted-dark); letter-spacing: 0.04em; margin-top: -10px; }
+.me-col .disc { font-size: 20px; line-height: 1.4; padding-left: 18px; border-left: 3px solid var(--accent-soft); color: var(--fg-muted-dark); }
+
 /* ---------- appendix / sources ---------- */
-.slide--srcs { padding: 108px 92px 112px; display: flex; flex-direction: column; justify-content: center; }
+.slide--srcs { padding: 74px 88px 78px; display: flex; flex-direction: column; justify-content: center; }
 .slide--srcs h2 { font-family: var(--f-display); font-size: 58px; font-weight: 400; margin-bottom: 30px; }
-.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 13px 50px; font-size: 20px; line-height: 1.32; }
+.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 42px; font-size: 18px; line-height: 1.28; }
 .srcs li { padding-left: 22px; border-left: 3px solid var(--accent); color: var(--fg-muted); }
 .srcs li b { display: block; color: var(--fg-on-light); font-weight: 600; }
 
@@ -276,6 +334,62 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 .bar .ghost::after { content: attr(data-l); position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
   font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.06em; color: var(--fg-muted); white-space: nowrap; }
 .slide--bars .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 42px; }
+
+/* ---------- stacked share-over-time columns ---------- */
+.slide--stack { padding: 128px 120px 126px; display: flex; flex-direction: column; justify-content: center; }
+.slide--stack h2 { font-family: var(--f-display); font-size: 72px; font-weight: 400; line-height: 1.05; max-width: 27ch; }
+.slide--stack .lede { font-size: 26px; color: var(--fg-muted); margin-top: 18px; max-width: 78ch; line-height: 1.4; }
+.skey { display: flex; gap: 34px; margin-top: 30px; font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.06em; color: var(--fg-muted); }
+.skey i { display: inline-block; width: 16px; height: 16px; border-radius: 2px; margin-right: 10px; vertical-align: -2px; }
+.cols { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 30px; align-items: end; margin-top: 26px; height: 380px; }
+.col { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+.col .stk { display: flex; flex-direction: column; height: 100%; border-radius: 3px; overflow: hidden; }
+.col .us { background: var(--accent); display: flex; align-items: center; justify-content: center; }
+.col .eu { background: #cfe0cd; display: flex; align-items: center; justify-content: center; }
+.col .pc { font-family: var(--f-display); font-size: 34px; color: var(--paper); letter-spacing: -0.01em; }
+.col .eu .pc { color: var(--accent); font-size: 30px; }
+.col .yr { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.08em; color: var(--fg-muted); text-align: center; margin-top: 16px; }
+.col.now .yr { color: var(--accent); font-weight: 700; }
+.slide--stack .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+.slide--stack .kq { font-size: 25px; line-height: 1.4; margin-top: 28px; padding-left: 22px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 104ch; }
+.slide--stack .kq b { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- concentration donut ---------- */
+.slide--donut { padding: 118px 118px 116px; display: grid; grid-template-columns: 1fr 440px; gap: 76px; align-items: center; }
+.slide--donut h2 { font-family: var(--f-display); font-size: 68px; font-weight: 400; line-height: 1.06; }
+.slide--donut .lede { font-size: 26px; color: var(--fg-muted); margin-top: 18px; line-height: 1.4; }
+.dlegend { display: grid; gap: 17px; margin-top: 30px; }
+.dlegend div { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: baseline; }
+.dlegend .p { font-family: var(--f-display); font-size: 44px; line-height: 1; color: var(--accent); text-align: right; }
+.dlegend .p.mut { color: #9bb098; }
+.dlegend .t { font-size: 24px; line-height: 1.32; }
+.dlegend .t em { font-style: normal; color: var(--fg-muted); display: block; font-size: 21px; margin-top: 3px; }
+.dwrap { position: relative; width: 440px; height: 440px; }
+.dwrap svg { display: block; width: 100%; height: 100%; }
+.dcenter { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.dcenter .dn { font-family: var(--f-display); font-size: 76px; line-height: 1; color: var(--fg-on-light); letter-spacing: -0.02em; }
+.dcenter .dl { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
+.slide--donut .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+.slide--donut .kq { grid-column: 1 / -1; font-size: 25px; line-height: 1.4; margin-top: 6px; padding-left: 22px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 112ch; }
+.slide--donut .kq b { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- document reference card ---------- */
+.slide--doc { padding: 130px 120px 128px; display: grid; grid-template-columns: 1fr 640px; gap: 84px; align-items: center; }
+.slide--doc h2 { font-family: var(--f-display); font-size: 70px; font-weight: 400; line-height: 1.05; max-width: 21ch; }
+.slide--doc .lede { font-size: 27px; color: var(--fg-muted); margin-top: 20px; line-height: 1.4; max-width: 52ch; }
+.slide--doc .pts { list-style: none; display: grid; gap: 18px; margin-top: 34px; }
+.slide--doc .pts li { font-size: 25px; line-height: 1.35; padding-left: 24px; border-left: 4px solid var(--accent); color: var(--fg-muted); }
+.slide--doc .pts b { color: var(--fg-on-light); font-weight: 600; }
+.doccard { background: var(--paper-2); border: 1px solid var(--rule); border-radius: 4px; padding: 52px 56px; }
+.doccard .issuer { font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); line-height: 1.6; }
+.doccard .dt { font-family: var(--f-display); font-size: 46px; line-height: 1.1; margin-top: 22px; }
+.doccard .ver { font-family: var(--f-mono); font-size: 22px; color: var(--accent); margin-top: 12px; letter-spacing: 0.06em; }
+.doccard ol { list-style: none; counter-reset: c; margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--rule); display: grid; gap: 13px; }
+.doccard li { counter-increment: c; font-size: 22px; color: var(--fg-muted); display: flex; gap: 14px; }
+.doccard li::before { content: counter(c) "."; color: var(--accent); font-weight: 700; font-family: var(--f-mono); }
+.doccard li.hi { color: var(--fg-on-light); font-weight: 600; }
 
 /* ---------- regulation gantt ---------- */
 .slide--gantt { padding: 132px 100px 132px; display: flex; flex-direction: column; justify-content: center; }
@@ -382,7 +496,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 
 <main id="deck">
 
-<!-- 01 ..................................................................... -->
+<!-- 1 ..................................................................... -->
 <section class="slide on-dark slide--title">
   <p class="eyebrow">ADA AI Leadership Day 2026</p>
   <h1>Beyond the Clouds</h1>
@@ -400,7 +514,34 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 02 ..................................................................... -->
+<!-- 2 ..................................................................... -->
+<section class="slide on-light slide--rules">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
+  <div>
+    <p class="kicker">Before we start</p>
+    <h2>How this session works</h2>
+    <ul class="rules">
+      <li><span class="n">01</span><div><b>Twenty to twenty-five minutes of me</b><span>That is all the talking I plan to do. The rest of the time belongs to the room.</span></div></li>
+      <li><span class="n">02</span><div><b>Interrupt me</b><span>If a number looks wrong or a word doesn't land, say so in the moment. Quick questions are welcome mid-flow — you are not being rude.</span></div></li>
+      <li><span class="n">03</span><div><b>Save the big ones</b><span>The real arguments are worth more with everyone in them. There is a slide at the end built for exactly that.</span></div></li>
+    </ul>
+  </div>
+  <div class="clock">
+    <div class="row talk"><span class="t">20–25</span><span class="l">minutes · me talking</span></div>
+    <div class="rule"></div>
+    <div class="row"><span class="t">20–25</span><span class="l">minutes · all of us</span></div>
+    <p class="note">The last slide has five things I believe and you might not. That is where we spend the second half.</p>
+  </div>
+  <div class="s-notes">
+    <p><b>Thirty seconds, and mean it.</b> This slide is the contract for the session. Setting it explicitly is what gives you permission to be provocative later — and what gives them permission to push back rather than sit politely.</p>
+    <p class="say">"Two things before I start. First, interrupt me — if a number looks wrong or something doesn't land, say so there and then, you're not being rude. Second, if it's a big one, hold it. There's a slide at the end with five things I believe and you might not, and that's where I want to spend the second half."</p>
+    <p>Rule 2 is the one that changes the room. A leadership audience will stay silent for twenty-five minutes out of politeness unless you explicitly licence them not to. Say it and then <b>honour it</b> — take the first interruption warmly, however small, because the rest of the room is watching what happens to the person who goes first.</p>
+    <p>If the organisers have given a hard stop, say the actual end time out loud here. It is the only housekeeping the room genuinely wants.</p>
+  </div>
+</section>
+
+
+<!-- 3 ..................................................................... -->
 <section class="slide slide--hook">
   <p>Could you move your AI workloads to another provider in ninety days?</p>
   <p class="sub">Show of hands — then keep them up if you've tested it</p>
@@ -410,7 +551,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 03 ..................................................................... -->
+<!-- 4 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
@@ -421,7 +562,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 04 ..................................................................... -->
+<!-- 5 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">01</span>
   <h2>The ground moved</h2>
@@ -429,7 +570,72 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section is ~5 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet.</p></div>
 </section>
 
-<!-- 05 ..................................................................... -->
+<!-- 6 ..................................................................... -->
+<section class="slide on-light slide--stack">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>Start with where you actually are</h2>
+  <p class="lede">European cloud providers' share of their own home market, against everyone else's. The market grew sixfold. Their share of it halved.</p>
+  <div class="skey">
+    <span><i style="background:var(--accent)"></i>Non-European providers</span>
+    <span><i style="background:#cfe0cd"></i>European providers</span>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <div class="stk"><div class="us" style="height:71%"><span class="pc">71%</span></div><div class="eu" style="height:29%"><span class="pc">29%</span></div></div>
+      <span class="yr">2017</span>
+    </div>
+    <div class="col">
+      <div class="stk"><div class="us" style="height:85%"><span class="pc">85%</span></div><div class="eu" style="height:15%"><span class="pc">15%</span></div></div>
+      <span class="yr">2022</span>
+    </div>
+    <div class="col now">
+      <div class="stk"><div class="us" style="height:85%"><span class="pc">85%</span></div><div class="eu" style="height:15%"><span class="pc">15%</span></div></div>
+      <span class="yr">2025</span>
+    </div>
+  </div>
+  <p class="kq"><b>The plateau is the uncomfortable part.</b> Three years of sovereignty debate, a €74bn market growing 24% a year, and the European share has not moved off 15%. Rhetoric did not shift a single point of it.</p>
+  <p class="foot">Synergy Research Group, July 2025 · European cloud infrastructure services, share of the European market</p>
+  <div class="s-notes">
+    <p>Forty-five seconds. This is the baseline the whole talk sits on, and it is the slide that makes the room uncomfortable in the right way. Do not editorialise — the two numbers do it.</p>
+    <p class="say">"Before anything else, here is where we are. In 2017 European providers had twenty-nine percent of their own market. Today it's fifteen, and it has been fifteen for three years. The market grew sixfold in that time — the share halved."</p>
+    <p>The plateau matters more than the decline. Anyone can dismiss a decline as the past. A plateau through the loudest three years of sovereignty rhetoric in European history says the talking is not working, which sets up the "procurement, not manifestos" line later.</p>
+    <p>If challenged on the definition: this is Synergy's cloud infrastructure services measure, European providers' share of the European market. The complement is not all US — but it is overwhelmingly US, and the next slide shows it.</p>
+  </div>
+</section>
+
+<!-- 7 ..................................................................... -->
+<section class="slide on-light slide--donut">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <div>
+    <h2>Three companies, seventy percent</h2>
+    <p class="lede">Amazon, Microsoft and Google together hold roughly 70% of the European cloud market. The largest European provider holds two.</p>
+    <div class="dlegend">
+      <div><span class="p">70%</span><span class="t">Amazon, Microsoft and Google<em>Three companies, one jurisdiction</em></span></div>
+      <div><span class="p mut">15%</span><span class="t">Other non-European providers<em>Oracle, IBM, Salesforce and the rest</em></span></div>
+      <div><span class="p mut">15%</span><span class="t">All European providers combined<em>SAP 2% · Deutsche Telekom 2% · then OVHcloud, TIM, Orange</em></span></div>
+    </div>
+    <p class="foot">Synergy Research Group, 2025 · European cloud infrastructure services</p>
+  </div>
+  <div class="dwrap">
+    <svg viewBox="0 0 220 220" role="img" aria-label="Donut chart: Amazon, Microsoft and Google 70 percent of the European cloud market; other non-European providers 15 percent; all European providers 15 percent.">
+      <g transform="rotate(-90 110 110)" fill="none" stroke-width="44">
+        <circle cx="110" cy="110" r="82" stroke="#2b4e2b" stroke-dasharray="360.6 154.6"></circle>
+        <circle cx="110" cy="110" r="82" stroke="#8fae8b" stroke-dasharray="77.3 437.9" stroke-dashoffset="-360.6"></circle>
+        <circle cx="110" cy="110" r="82" stroke="#cfe0cd" stroke-dasharray="77.3 437.9" stroke-dashoffset="-437.9"></circle>
+      </g>
+    </svg>
+    <div class="dcenter"><span class="dn">70%</span><span class="dl">US big three</span></div>
+  </div>
+  <p class="kq"><b>There is no European hyperscaler waiting to take the workload.</b> That is the real problem with "just move to a European provider" — and it is exactly why the rest of this talk is about owning a control plane rather than running a migration.</p>
+  <div class="s-notes">
+    <p>Twenty seconds, and only one line. The previous slide gave them the trend; this one gives them the concentration. Point at the 2%.</p>
+    <p class="say">"Seventy percent of the European cloud market is three American companies. The largest European provider is two percent. When people say 'just move to a European alternative', that is the alternative they are talking about."</p>
+    <p>This is the slide that makes the jurisdiction argument concrete rather than theoretical. It also pre-empts the naive version of the answer — there is no European hyperscaler waiting to take the workload, which is exactly why the talk is about control planes and per-workload decisions rather than a single migration.</p>
+    <p>Cut this one before the previous one if you need to lose a slide. The trend carries more weight than the split.</p>
+  </div>
+</section>
+
+<!-- 8 ..................................................................... -->
 <section class="slide on-light slide--quote">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
@@ -441,7 +647,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 06 ..................................................................... -->
+<!-- 9 ..................................................................... -->
 <section class="slide on-light slide--timeline">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>Four dates that changed the calculus</h2>
@@ -459,7 +665,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 07 ..................................................................... -->
+<!-- 10 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>And the AI Act deadline you were braced for — moved</h2>
@@ -477,7 +683,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 08 ..................................................................... -->
+<!-- 11 ..................................................................... -->
 <section class="slide on-light slide--gantt">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>The rulebook is already written — and it doesn't move at headline speed</h2>
@@ -514,7 +720,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 09 ..................................................................... -->
+<!-- 12 ..................................................................... -->
 <section class="slide on-light slide--table dense">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>Six laws, one question underneath all of them</h2>
@@ -537,7 +743,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <p>The DORA row is the one that lands with anyone from financial services, and there are usually six or seven of them in a room this size. Exit testing is already an examined requirement for them; the rest of the room is roughly three years behind.</p>
   </div>
 </section>
-<!-- 10 ..................................................................... -->
+<!-- 13 ..................................................................... -->
 <section class="slide on-dark slide--metric">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <div class="num">77<span class="u">%</span></div>
@@ -550,7 +756,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 11 ..................................................................... -->
+<!-- 14 ..................................................................... -->
 <section class="slide on-light slide--bars">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>This is no longer a minority position</h2>
@@ -600,7 +806,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <p>If challenged on survey quality — fair challenge, take it seriously: these are vendor-adjacent surveys with self-selected samples. Answer honestly: "Every one of these has a house bias. That's exactly why I'm showing you five from five different houses that all point the same direction."</p>
   </div>
 </section>
-<!-- 12 ..................................................................... -->
+<!-- 15 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">02</span>
   <h2>Sovereignty is a dial, not a switch</h2>
@@ -608,7 +814,40 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section ~5 min. This is the reframe that makes the rest of the talk actionable, and it's the part most likely to change what someone does on Monday.</p></div>
 </section>
 
-<!-- 13 ..................................................................... -->
+<!-- 16 ..................................................................... -->
+<section class="slide on-light slide--doc">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <div>
+    <h2>The dial already has numbers on it</h2>
+    <p class="lede">You do not have to invent a sovereignty scale. The Commission published one, and it is procuring against it.</p>
+    <ul class="pts">
+      <li><b>It is a real document</b>, not a consultation or a position paper.</li>
+      <li><b>It computes a score</b> — eight dimensions, weighted, comparable between suppliers.</li>
+      <li><b>It has already moved money</b>: €180m awarded in April 2026.</li>
+      <li><b>You can put it in a tender</b> on Monday, with no new policy work.</li>
+    </ul>
+  </div>
+  <div class="doccard">
+    <p class="issuer">European Commission<br>Directorate-General for Digital Services<br>Luxembourg</p>
+    <p class="dt">Cloud Sovereignty Framework</p>
+    <p class="ver">Version 1.2.1 — October 2025</p>
+    <ol>
+      <li>Introduction</li>
+      <li>Sovereignty Objectives</li>
+      <li class="hi">Sovereignty Effective Assurance Levels</li>
+      <li>Assessment of Sovereignty Effectiveness</li>
+      <li class="hi">Computation of Sovereignty Score</li>
+    </ol>
+  </div>
+  <div class="s-notes">
+    <p>Twenty seconds. Hold up the document, then go straight to the next slide for what the levels mean. Do not read the contents list aloud — it is there so the room can see this is an operational document with a scoring method, not a manifesto.</p>
+    <p class="say">"This exists. Version 1.2.1, October last year, from the Commission's own digital directorate. Section three defines the levels, section five tells you how to compute a score. Somebody has already done the hard part of this argument for you."</p>
+    <p>The two highlighted lines are the ones that matter: <b>assurance levels</b> and <b>computation of a score</b>. A level plus a formula is what turns sovereignty from a values conversation into a procurement requirement — which is the whole point of this section.</p>
+    <p>Safe to cut if you are behind: the SEAL table on the next slide carries the argument alone. This slide's only job is to prove the framework is real to anyone who assumes it is aspirational.</p>
+  </div>
+</section>
+
+<!-- 17 ..................................................................... -->
 <section class="slide on-light slide--table">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Europe already wrote the scale — use it</h2>
@@ -630,7 +869,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 14 ..................................................................... -->
+<!-- 18 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Four questions, asked per workload — not per company</h2>
@@ -646,7 +885,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 15 ..................................................................... -->
+<!-- 19 ..................................................................... -->
 <section class="slide on-light slide--ba">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>What actually changes when you own the control plane</h2>
@@ -680,7 +919,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 16 ..................................................................... -->
+<!-- 20 ..................................................................... -->
 <section class="slide on-dark slide--quotes">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>You are not the first person in Europe to say this out loud</h2>
@@ -709,7 +948,53 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <p>If someone rolls their eyes at Brussels rhetoric — good, that is provocation #1 on the debate slide. Say so, and bank it for the Q&amp;A rather than fighting it here.</p>
   </div>
 </section>
-<!-- 17 ..................................................................... -->
+<!-- 21 ..................................................................... -->
+<section class="slide on-light slide--trio">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>Three answers to "who decides the roadmap?"</h2>
+  <p class="lede">Sovereignty is not only about where the servers sit. It is about who governs the thing you depend on — and the world has three working answers to that, not one.</p>
+  <div class="trio">
+    <div class="card">
+      <p class="lbl">US model</p>
+      <h3>Platform control</h3>
+      <p class="eg">GitHub · PyPI · npm</p>
+      <ul>
+        <li>The forge, the registry and the package index are US-hosted chokepoints</li>
+        <li>Sanctions become instant service denial, with no recourse and no notice</li>
+        <li>Open code, closed platform. Ownership of the commons by ownership of the plumbing</li>
+      </ul>
+    </div>
+    <div class="card">
+      <p class="lbl">China model</p>
+      <h3>Domestic forks</h3>
+      <p class="eg">Gitee · OpenAtom · OpenHarmony</p>
+      <ul>
+        <li>A national mirror of the whole stack, built as a response to sanctions</li>
+        <li>It works — and it costs you interoperability and shared visibility</li>
+        <li>Two ecosystems that no longer read each other's code</li>
+      </ul>
+    </div>
+    <div class="card best">
+      <p class="lbl">European path</p>
+      <h3>Interdependent autonomy</h3>
+      <p class="eg">Sovereign Cloud Stack · GAIA-X · Digital Commons EDIC</p>
+      <ul>
+        <li>Not isolation — strategic participation, and influence over the roadmap</li>
+        <li>Sit on the boards, fund the maintainers, hold the standards</li>
+        <li>Open governance beats ownership, and it is far cheaper</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>The third column is the awkward one — and it is the right one.</b> Forking Europe out of the global commons would cost as much as staying captured by it. The lever is governance, not ownership.</p>
+  <div class="s-notes">
+    <p>Sixty seconds. This slide answers the objection you will otherwise get in the debate — "isn't sovereignty just protectionism?" Show them there is a third column, and that it is the one Europe is actually funding.</p>
+    <p class="say">"There are three ways to answer 'who decides the roadmap'. America owns the platform. China built its own copy. Europe's bet is that you can stay in the commons and still have a vote — which is the only one of the three that doesn't require you to be a superpower."</p>
+    <p>The middle card is not a cheap shot at China. It is genuinely effective and genuinely costly, and saying so plainly is what earns you the right to argue for the third column.</p>
+    <p>Links to provocation #1 on the debate slide. If someone wants the protectionism fight, this is the slide to come back to.</p>
+  </div>
+</section>
+
+<!-- 22 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">03</span>
   <h2>The stack is ready — that's the news</h2>
@@ -717,7 +1002,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section ~5 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here.</p></div>
 </section>
 
-<!-- 18 ..................................................................... -->
+<!-- 23 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>AI infrastructure became boring. Boring is the achievement.</h2>
@@ -734,7 +1019,53 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 19 ..................................................................... -->
+<!-- 24 ..................................................................... -->
+<section class="slide on-light slide--trio">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>"Open weights" is not the same thing as an open model</h2>
+  <p class="lede">The substrate is solved. The model layer is not — and the word "open" is doing a great deal of work in vendor marketing right now. There are three tiers, and only one of them survives the sovereignty test.</p>
+  <div class="trio">
+    <div class="card">
+      <p class="lbl">Tier 1</p>
+      <h3>Closed APIs</h3>
+      <p class="eg">GPT-5 · Claude · Gemini</p>
+      <ul>
+        <li>No inspection, no control, no say in when it is retired</li>
+        <li>The vendor holds the pricing power and the terms of service</li>
+        <li>Genuinely the best capability available — that is why it is tempting</li>
+      </ul>
+    </div>
+    <div class="card">
+      <p class="lbl">Tier 2</p>
+      <h3>Open weights</h3>
+      <p class="eg">Llama 4 · DeepSeek R1</p>
+      <ul>
+        <li>You can read and run the weights — a real improvement</li>
+        <li>But: licence restrictions, no training-data audit, geopolitical entanglements</li>
+        <li>Portable, not accountable. Enough for lock-in, not enough for an AI Act file</li>
+      </ul>
+    </div>
+    <div class="card best">
+      <p class="lbl">Tier 3</p>
+      <h3>Actually open</h3>
+      <p class="eg">OpenEuroLLM · Mistral + EU infrastructure</p>
+      <ul>
+        <li>Inspectable, forkable, and deployable on infrastructure you control</li>
+        <li>The only tier where you can answer an auditor without phoning a vendor</li>
+        <li>Behind the frontier today — and closing, which is the whole bet</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>The question to ask any supplier:</b> is a model "open" if you can read the weights but cannot audit the training data, verify the alignment, or run it without GPU capacity you do not control?</p>
+  <div class="s-notes">
+    <p>This is the honesty beat inside the good-news section. The previous slide said the stack is ready; this one says the model layer is the part that genuinely is not, and you would rather they heard that from you than from a vendor.</p>
+    <p class="say">"Everybody in this room has been told they can have an open model. Read the middle card. You can download the weights, you cannot audit what went into them, and the licence still tells you what you may build. That's portable — it isn't accountable."</p>
+    <p>Ties directly to the workload table later: <b>rent the frontier knowingly</b>, through your own gateway. This slide is why "knowingly" is in that sentence.</p>
+    <p>If challenged that tier 3 is behind: agree, immediately and without hedging. Then note that tier 3 is the only one you can put in front of a regulator without a vendor on the call.</p>
+  </div>
+</section>
+
+<!-- 25 ..................................................................... -->
 <section class="slide on-light slide--talks">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>Don't take my word for it — take theirs</h2>
@@ -783,7 +1114,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <p>Every title is a live link in the shared deck. Offer that — several people will want to send one to a colleague.</p>
   </div>
 </section>
-<!-- 20 ..................................................................... -->
+<!-- 26 ..................................................................... -->
 <section class="slide on-light slide--arch">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>The reference architecture</h2>
@@ -817,7 +1148,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 21 ..................................................................... -->
+<!-- 27 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>And Europe is building the bottom layer right now</h2>
@@ -833,7 +1164,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 22 ..................................................................... -->
+<!-- 28 ..................................................................... -->
 <section class="slide on-light slide--bars">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>The bottom layer, in megawatts</h2>
@@ -884,7 +1215,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <p><b>Cut this slide if you are short</b> — the 800 MW metric slide that follows makes the same point in five seconds.</p>
   </div>
 </section>
-<!-- 23 ..................................................................... -->
+<!-- 29 ..................................................................... -->
 <section class="slide on-light slide--content tight">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>What it looks like when someone actually builds it here</h2>
@@ -902,7 +1233,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 24 ..................................................................... -->
+<!-- 30 ..................................................................... -->
 <section class="slide on-dark slide--metric">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <div class="num">800<span class="u">MW</span></div>
@@ -914,7 +1245,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 25 ..................................................................... -->
+<!-- 31 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">04</span>
   <h2>What the vendor keynote leaves out</h2>
@@ -922,7 +1253,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section ~4 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land.</p></div>
 </section>
 
-<!-- 26 ..................................................................... -->
+<!-- 32 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>Four failure modes nobody demos on stage</h2>
@@ -939,7 +1270,41 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 27 ..................................................................... -->
+<!-- 33 ..................................................................... -->
+<section class="slide on-light slide--ba tight">
+  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <h2>Open source is the floor, not the ceiling</h2>
+  <div class="ba-grid">
+    <div class="ba-col old">
+      <p class="lbl">The maintenance crisis</p>
+      <ul>
+        <li>Log4j proved that unmaintained open source is a systemic risk, not a strategic asset</li>
+        <li>Your production stack rests on components maintained by people nobody pays</li>
+        <li>"We moved to open source" is a procurement event. Staying safe is an operating cost</li>
+        <li>Open source without funded maintenance is a liability wearing the word sovereignty</li>
+      </ul>
+    </div>
+    <div class="ba-col new">
+      <p class="lbl">Closing the gap</p>
+      <ul>
+        <li>Germany's Sovereign Tech Agency is proof that public funding for maintenance works</li>
+        <li>Public procurement is the biggest untapped lever — the money already flows, into proprietary silos</li>
+        <li>Fund, or staff, the three dependencies you genuinely cannot replace</li>
+        <li>Cheaper than the licence you were paying, and it buys you a seat at the roadmap</li>
+      </ul>
+    </div>
+  </div>
+  <p class="pull">"The innovation fetish is unhealthy. Maintain what is there."
+    <cite>The cheapest sovereignty on this slide costs less than the licence it replaces.</cite></p>
+  <div class="s-notes">
+    <p>The counterweight to section 03. You have just spent five minutes telling them the open stack is ready; this is the bill that comes with it, and saying it yourself is what makes the recommendation trustworthy.</p>
+    <p class="say">"The innovation fetish is unhealthy. Maintain what is there. If you adopt an open stack and fund none of it, you haven't become sovereign — you've moved your dependency somewhere with no support contract."</p>
+    <p>The practical ask for this room, and it is small: identify the handful of dependencies you could not replace in a quarter, and put a name and a budget line against each. Most organisations cannot list them.</p>
+    <p>Pairs with the debate slide: ask how many of their production dependencies are maintained by a single unpaid contributor. Nobody knows, and the not-knowing is the point.</p>
+  </div>
+</section>
+
+<!-- 34 ..................................................................... -->
 <section class="slide on-light slide--content tight">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>The economics: this is a utilisation question, not an ideology question</h2>
@@ -957,7 +1322,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 28 ..................................................................... -->
+<!-- 35 ..................................................................... -->
 <section class="slide on-light slide--curve">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>One chart decides this, and it isn't a chart about sovereignty</h2>
@@ -1029,7 +1394,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <p>The takeaway to state explicitly: <b>you cannot get this from a slide, you get it from a month of measurement.</b> That is move three in the ninety-day plan.</p>
   </div>
 </section>
-<!-- 29 ..................................................................... -->
+<!-- 36 ..................................................................... -->
 <section class="slide on-light slide--table tight">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>Self-host, federate, or rent — by workload class</h2>
@@ -1051,7 +1416,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 30 ..................................................................... -->
+<!-- 37 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>The capability is the point — and it is a people decision</h2>
@@ -1067,7 +1432,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 31 ..................................................................... -->
+<!-- 38 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
   <h2>Ninety days. Four moves. No new budget line.</h2>
@@ -1083,7 +1448,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 32 ..................................................................... -->
+<!-- 39 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
   <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
@@ -1091,7 +1456,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Pause. Then straight into the debate slide — do not fill the silence.</p></div>
 </section>
 
-<!-- 33 ..................................................................... -->
+<!-- 40 ..................................................................... -->
 <section class="slide on-dark slide--debate">
   <div class="ref"><span class="ref-n">§ 06</span><span>Argue with me</span></div>
   <h2>Five things I believe. Pick one and take it apart.</h2>
@@ -1110,7 +1475,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 34 ..................................................................... -->
+<!-- 41 ..................................................................... -->
 <section class="slide slide--full">
   <img src="chemai-ams-2026.jpg"
        alt="ChemAI AMS 2026 — AI Technology for Molecules and Materials. 12–13 November 2026, Amsterdam (NL).">
@@ -1121,20 +1486,31 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 35 ..................................................................... -->
-<section class="slide on-dark slide--cta">
-  <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
-  <p class="ask">If you write down every AI workload, its jurisdiction, and its exit cost, you will have done more sovereignty work this quarter than most organisations do in a year.</p>
-  <ul>
-    <li><span>Slides</span> <a href="https://ams0.github.io/talks/beyond-the-clouds/">ams0.github.io/talks/beyond-the-clouds</a></li>
-    <li><span>Contact</span> alessandro@stackmasters.com</li>
-    <li><span>LinkedIn</span> /in/alessandrovozza</li>
-    <li><span>Happy to</span> argue about any of this at the drinks</li>
-  </ul>
-  <div class="s-notes"><p>Keep it to fifteen seconds. The debate slide is the real close; this is contact details.</p></div>
+<!-- 42 ..................................................................... -->
+<section class="slide on-dark slide--cta with-me">
+  <div>
+    <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
+    <p class="ask">If you write down every AI workload, its jurisdiction, and its exit cost, you will have done more sovereignty work this quarter than most organisations do in a year.</p>
+    <ul>
+      <li><span>Slides</span> <a href="https://ams0.github.io/talks/beyond-the-clouds/">ams0.github.io/talks/beyond-the-clouds</a></li>
+      <li><span>Contact</span> alessandro@stackmasters.com</li>
+      <li><span>LinkedIn</span> /in/alessandrovozza</li>
+      <li><span>Happy to</span> argue about any of this at the drinks</li>
+    </ul>
+  </div>
+  <div class="me-col">
+    <img class="portrait" src="alessandro-vozza.jpg" alt="Portrait of Alessandro Vozza.">
+    <p class="who">Alessandro Vozza</p>
+    <p class="role">Lovelace Engineering<br>Golden Kubestronaut</p>
+    <p class="disc">Disclosure: Lovelace Engineering consults for VOLT. Nebius is on the megawatt chart so that slide is not a single-vendor slide.</p>
+  </div>
+  <div class="s-notes">
+    <p>Keep it to fifteen seconds. The debate slide is the real close; this is who I am and how to reach me.</p>
+    <p class="say">"That's me, that's the disclosure, and that's how to find me. Start with the inventory — everything else follows from it."</p>
+  </div>
 </section>
 
-<!-- 36 ..................................................................... -->
+<!-- 43 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources</span></div>
   <h2>Sources</h2>
@@ -1148,6 +1524,9 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <li><b>Data Act</b>Reg. (EU) 2023/2854 · applicable 12 Sep 2025 · Art. 29 switching charges withdrawn 12 Jan 2027</li>
     <li><b>DORA · NIS2 · CRA</b>Reg. (EU) 2022/2554 (17 Jan 2025) · Dir. (EU) 2022/2555 · Reg. (EU) 2024/2847</li>
     <li><b>Cloud Sovereignty Framework · SEAL</b>European Commission, 17 April 2026 — €180m awarded to Post, STACKIT, Scaleway, Proximus</li>
+    <li><b>Cloud Sovereignty Framework document</b>European Commission, DG DIGIT, Luxembourg — version 1.2.1, October 2025</li>
+    <li><b>European cloud market share</b>Synergy Research Group — European providers 29% (2017) to 15% (2022), holding at 15%; press release 24 July 2025</li>
+    <li><b>Market concentration</b>Synergy Research Group — Amazon, Microsoft and Google ~70% of the European market; SAP and Deutsche Telekom 2% each</li>
     <li><b>AI Gigafactories call</b>EuroHPC JU, 30 July 2026 — bids close 12 November 2026</li>
     <li><b>Kubernetes AI Conformance · llm-d</b>CNCF, March 2026 · KubeCon + CloudNativeCon Europe, RAI Amsterdam, 23–26 March 2026</li>
     <li><b>Vendor country of origin (77%) · local vendors (59%)</b>Deloitte, State of AI in the Enterprise 2026, n=3,235, 24 countries</li>
@@ -1156,6 +1535,10 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <li><b>H100 cost range ($0.21–$15.25)</b>Wavect break-even analysis, EU, 2026. Curve shape is fixed-cost ÷ utilisation, anchored on those endpoints.</li>
     <li><b>Von der Leyen</b>State of the Union address, European Parliament, 10 September 2025</li>
     <li><b>Draghi</b><i>The Future of European Competitiveness</i>, European Commission, 9 September 2024</li>
+    <li><b>Open-source maintenance</b>Log4Shell (CVE-2021-44228); Germany's Sovereign Tech Agency and EU-STF proposals on funding OSS maintenance</li>
+    <li><b>Platform chokepoints</b>GitHub access restrictions in sanctioned regions; Gitee and the OpenAtom Foundation as domestic-fork responses</li>
+    <li><b>European governance</b>Sovereign Cloud Stack · GAIA-X · Digital Commons EDIC</li>
+    <li><b>Model openness tiers</b>OpenEuroLLM; Mistral; Llama 4 and DeepSeek R1 licence and training-data terms</li>
   </ul>
   <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
 </section>
