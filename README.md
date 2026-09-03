@@ -25,7 +25,7 @@ Live at **https://ams0.github.io/talks/**
 
 Slides are laid out at a fixed 1920×1080 and scaled to fit the viewport, so they render identically on any projector. The current slide is remembered across reloads (`sessionStorage`), which is useful if the browser dies mid-talk.
 
-Everything is inlined — the VOLT wordmark and the ChemAI card are data URIs, the halftone ground and every chart are CSS and inline SVG. That inlined card is why the file is ~700 KB rather than ~120 KB; it loads instantly from disk and costs nothing at present time. The only network request is Google Fonts for *Tiro Tamil*, and there's a serif fallback stack if the venue Wi-Fi is down. Clone the repo and present from `file://` if you'd rather not depend on the network at all.
+Everything is inlined — the VOLT wordmark and the ChemAI card are data URIs, the halftone ground and every chart are CSS and inline SVG. That inlined card is why the file is ~700 KB rather than ~120 KB; it loads instantly from disk and costs nothing at presentation time. The only network request is Google Fonts for *Tiro Tamil*, and there's a serif fallback stack if the venue Wi-Fi is down. Clone the repo and present from `file://` if you'd rather not depend on the network at all.
 
 ## Editing
 
