@@ -4,6 +4,12 @@ ADA AI Leadership Day · Matrix One, Amsterdam · 3 September 2026
 45 min: **22 min content, 23 min debate** — see the timing note below. ~80 founders and directors, non-technical.
 Quoted lines are verbatim — say those. Everything else is a cue, not a paragraph to recite.
 
+**Slides that build.** 19, 34, 38, 39, 40, 43, 44 and 45 reveal one item per click. Right arrow (or
+space, or click) brings out the next item, then moves on once they are all out; left arrow steps back
+through them. **Down/Up jump whole slides** if you want to skip a build — useful when you are behind.
+Printing (P) shows everything regardless. Rehearse these eight: the rhythm is different from a static
+slide, and the temptation is to talk ahead of the reveal.
+
 **Timing — read this before you present.** The deck is 47 slides + sources. Slide 3 states the contract
 out loud (20–25 min, interrupt freely, save the big ones), so the session is explicitly **20–25 min of
 talk and 20–25 min together**.
@@ -107,10 +113,16 @@ exists. Version 1.2.1, October last year, from the Commission's own digital dire
 defines the levels, section five tells you how to compute a score." Its only job is to prove the
 framework is operational rather than aspirational — then go straight to the next slide.
 
-**19 · SEAL levels.** Europe already wrote the scale; €180m awarded against it in April 2026, and no
-hyperscaler bid at SEAL-3. "Stop arguing about whether you're sovereign. Pick a number per workload,
-write it into the requirement, make suppliers answer it." If someone calls SEAL-4 unachievable:
-**agree immediately.**
+**19 · The SEAL scale, 0 to 4. ★rebuilt** Builds one rung per click, ninety seconds. **Do not read all
+five** — read 0, 2 and 3 and let the bars do the rest. "Stop arguing about whether you're sovereign.
+There's a five-point scale, the Commission scores suppliers against it across eight dimensions, and it
+just spent a hundred and eighty million euros using it. Pick a number per workload, write it into the
+requirement, and make suppliers answer it."
+**The gap between 2 and 3 is the whole talk**: SEAL-2 is what a contract buys you and it fails the
+moment a foreign court instructs the parent; SEAL-3 is what an architecture buys you. Same distinction
+as the Microsoft testimony on slide 10, expressed as a procurement level.
+If challenged that SEAL-4 is unachievable, **agree immediately** — nothing operates there at scale, and
+that is why the EU is funding gigafactories. Worth saying out loud: no hyperscaler bid at SEAL-3.
 
 **20 · Four questions.** Jurisdiction, portability, economics, capability — **per workload**, not per
 company. "Most organisations have one AI policy and forty AI workloads. That's the mistake."
