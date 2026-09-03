@@ -6,9 +6,11 @@ Live at **https://ams0.github.io/talks/**
 
 ## Decks
 
-| Date | Talk | Event |
-|---|---|---|
-| 3 Sep 2026 | [Beyond the Clouds](https://ams0.github.io/talks/beyond-the-clouds/) — Sovereign AI infrastructure to regain control and autonomy | ADA AI Leadership Day, Amsterdam |
+| Date | Talk | Event | Audience |
+|---|---|---|---|
+| 3 Sep 2026 | [Beyond the Clouds](https://ams0.github.io/talks/beyond-the-clouds/) — Sovereign AI infrastructure to regain control and autonomy | ADA AI Leadership Day, Amsterdam | Non-technical (founders, directors) |
+
+`beyond-the-clouds/` is the **non-technical cut**: 35 slides, plain-language architecture, five charts, the European regulatory timeline. A technical cut for an engineering audience is planned as a separate directory rather than a variant of this file.
 
 ## Presenting
 

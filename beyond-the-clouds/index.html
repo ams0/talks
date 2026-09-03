@@ -152,6 +152,14 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
 .points li span { color: var(--fg-muted); }
 .on-dark .points li span { color: var(--fg-muted-dark); }
 
+.slide--content.tight { padding: 118px 130px 118px; }
+.slide--content.tight h2 { font-size: 74px; }
+.slide--content.tight .lede { font-size: 28px; margin-top: 22px; }
+.slide--content.tight .points { margin-top: 46px; gap: 26px 60px; }
+.slide--table.tight { padding: 120px 110px 120px; }
+.slide--table.tight h2 { font-size: 70px; }
+.slide--table.tight .lede { margin-bottom: 34px; }
+
 /* ---------- before / after ---------- */
 .slide--ba { padding: 160px 130px 150px; display: flex; flex-direction: column; justify-content: center; }
 .slide--ba h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; margin-bottom: 56px; }
@@ -203,7 +211,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 .tl p { font-size: 24px; line-height: 1.35; color: var(--fg-muted); margin-top: 12px; }
 
 /* ---------- architecture (CSS box diagram) ---------- */
-.slide--arch { padding: 120px 90px 132px; display: grid; grid-template-rows: auto 1fr auto; gap: 20px; }
+.slide--arch { padding: 108px 90px 120px; display: grid; grid-template-rows: auto 1fr auto; gap: 20px; }
 .slide--arch h2 { font-family: var(--f-display); font-size: 62px; font-weight: 400; }
 .arch { display: grid; grid-template-columns: 210px 1fr 210px; gap: 20px; align-items: stretch; }
 .rail { border: 2px solid var(--rule); border-radius: 4px; padding: 24px 18px; display: flex; flex-direction: column; justify-content: center; gap: 16px; text-align: center; }
@@ -240,11 +248,98 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 .slide--cta ul span { display: inline-block; width: 190px; color: var(--accent-soft); letter-spacing: 0.1em; text-transform: uppercase; font-size: 20px; }
 
 /* ---------- appendix / sources ---------- */
-.slide--srcs { padding: 140px 100px 132px; display: flex; flex-direction: column; justify-content: center; }
-.slide--srcs h2 { font-family: var(--f-display); font-size: 66px; font-weight: 400; margin-bottom: 40px; }
-.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 56px; font-size: 22px; line-height: 1.4; }
+.slide--srcs { padding: 108px 92px 112px; display: flex; flex-direction: column; justify-content: center; }
+.slide--srcs h2 { font-family: var(--f-display); font-size: 58px; font-weight: 400; margin-bottom: 30px; }
+.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 13px 50px; font-size: 20px; line-height: 1.32; }
 .srcs li { padding-left: 22px; border-left: 3px solid var(--accent); color: var(--fg-muted); }
 .srcs li b { display: block; color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- horizontal bar chart ---------- */
+.slide--bars { padding: 150px 130px 148px; display: flex; flex-direction: column; justify-content: center; }
+.slide--bars h2 { font-family: var(--f-display); font-size: 74px; font-weight: 400; line-height: 1.05; }
+.slide--bars .lede { font-size: 27px; color: var(--fg-muted); margin-top: 20px; max-width: 74ch; line-height: 1.4; }
+.bars { display: grid; gap: 26px; margin-top: 54px; }
+.bar { display: grid; grid-template-columns: 150px 1fr; gap: 32px; align-items: center; }
+.bar .v { font-family: var(--f-display); font-size: 60px; line-height: 1; color: var(--accent); text-align: right; letter-spacing: -0.02em; }
+.bar .v .u { font-size: 0.46em; margin-left: 0.06em; }
+.bar .lab { font-size: 25px; line-height: 1.3; margin-bottom: 9px; display: block; }
+.bar .lab em { font-style: normal; color: var(--fg-muted); }
+.bar .track { position: relative; height: 26px; background: var(--surface-muted); border-radius: 3px; }
+.bar .fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--accent); border-radius: 3px; }
+.bar .fill.soft { background: #a8c4a4; }
+.bar .ghost { position: absolute; top: 0; bottom: 0; border-right: 2px dashed var(--fg-muted); }
+.bar .ghost::after { content: attr(data-l); position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.06em; color: var(--fg-muted); white-space: nowrap; }
+.slide--bars .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 42px; }
+
+/* ---------- regulation gantt ---------- */
+.slide--gantt { padding: 132px 100px 132px; display: flex; flex-direction: column; justify-content: center; }
+.slide--gantt h2 { font-family: var(--f-display); font-size: 68px; font-weight: 400; line-height: 1.05; }
+.slide--gantt .lede { font-size: 25px; color: var(--fg-muted); margin-top: 16px; max-width: 80ch; line-height: 1.4; }
+.gantt { display: grid; grid-template-columns: 360px 1fr; margin-top: 38px; }
+.gcol, .glanes { display: flex; flex-direction: column; }
+.glanes { position: relative; }
+.ghead, .years { height: 42px; }
+.years { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--rule);
+  font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.1em; color: var(--fg-muted); }
+.years span { border-left: 1px solid var(--rule); padding: 4px 0 0 10px; }
+.nm, .lane { height: 60px; display: flex; flex-direction: column; justify-content: center; }
+.nm { padding-right: 28px; border-bottom: 1px solid rgba(35,49,35,0.07); }
+.nm b { font-size: 24px; font-weight: 600; line-height: 1.15; }
+.nm em { font-style: normal; font-size: 18px; color: var(--fg-muted); margin-top: 2px; }
+.lane { position: relative; border-bottom: 1px solid rgba(35,49,35,0.07); }
+.lane .b { position: absolute; top: 50%; transform: translateY(-50%); height: 26px; background: var(--accent); border-radius: 13px; }
+.lane .b.soft { background: #b7cdb3; }
+.lane .b .t { position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.05em; color: #fff; white-space: nowrap; }
+.lane .b.soft .t { color: var(--ink); }
+.lane .pin { position: absolute; top: 8px; bottom: 8px; width: 3px; background: var(--ink); border-radius: 2px; }
+.lane .pin::after { content: attr(data-l); position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 15px; letter-spacing: 0.04em; color: var(--ink); white-space: nowrap; }
+.today { position: absolute; top: 42px; bottom: 0; width: 2px; background: #b3402f; z-index: 4; }
+.today span { position: absolute; top: -34px; left: 50%; transform: translateX(-50%); background: #b3402f; color: #fff;
+  font-family: var(--f-mono); font-size: 15px; letter-spacing: 0.14em; padding: 4px 10px; border-radius: 2px; white-space: nowrap; }
+.slide--gantt .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+
+/* ---------- dense table variant ---------- */
+.slide--table.dense { padding: 120px 100px 126px; }
+.slide--table.dense h2 { font-size: 64px; }
+.slide--table.dense .lede { margin-bottom: 32px; }
+.slide--table.dense table.cmp { font-size: 23px; }
+.slide--table.dense table.cmp th, .slide--table.dense table.cmp td { padding: 14px 20px; }
+.slide--table.dense table.cmp tbody th { width: 22%; }
+.slide--table.dense table.cmp tbody th em { display: block; font-style: normal; font-family: var(--f-mono);
+  font-size: 17px; font-weight: 400; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 4px; }
+
+/* ---------- line chart ---------- */
+.slide--curve { padding: 86px 108px 92px; display: flex; flex-direction: column; justify-content: center; }
+.slide--curve h2 { font-family: var(--f-display); font-size: 68px; font-weight: 400; line-height: 1.05; }
+.slide--curve .lede { font-size: 26px; color: var(--fg-muted); margin-top: 16px; max-width: 76ch; line-height: 1.4; }
+.chart { margin-top: 18px; }
+.chart svg { display: block; width: 100%; max-width: 1650px; height: auto; margin: 0 auto; }
+.slide--curve .foot { font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 14px; }
+
+/* ---------- quote wall ---------- */
+.slide--quotes { padding: 150px 120px 148px; display: flex; flex-direction: column; justify-content: center; }
+.slide--quotes h2 { font-family: var(--f-display); font-size: 62px; font-weight: 400; margin-bottom: 50px; }
+.qwall { display: grid; grid-template-columns: 1fr 1fr; gap: 46px 64px; }
+.qw { border-left: 5px solid var(--accent); padding-left: 34px; }
+.qw p { font-family: var(--f-display); font-size: 40px; line-height: 1.18; }
+.qw cite { display: block; font-style: normal; font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em;
+  color: var(--fg-muted); margin-top: 18px; line-height: 1.5; }
+.on-dark .qw cite { color: var(--fg-muted-dark); }
+
+/* ---------- conference sessions / further reading ---------- */
+.slide--talks { padding: 104px 92px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--talks h2 { font-family: var(--f-display); font-size: 56px; font-weight: 400; line-height: 1.05; }
+.slide--talks .lede { font-size: 23px; color: var(--fg-muted); margin-top: 12px; max-width: 88ch; line-height: 1.35; }
+.talks { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 15px 48px; margin-top: 30px; }
+.talks li { padding-left: 22px; border-left: 3px solid var(--accent); }
+.talks li b { display: block; font-weight: 600; font-size: 21px; line-height: 1.22; }
+.talks li span { display: block; font-size: 19px; color: var(--fg-muted); margin-top: 4px; line-height: 1.28; }
+.talks li i { display: block; font-style: normal; font-family: var(--f-mono); font-size: 15px;
+  letter-spacing: 0.02em; color: var(--accent); margin-top: 4px; }
+.talks a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(43,78,43,0.35); }
 
 /* ---------- chrome ---------- */
 #progress { position: fixed; top: 0; left: 0; height: 3px; background: #4e7c4a; z-index: 200; transition: width 180ms ease; }
@@ -282,7 +377,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 
 <main id="deck">
 
-<!-- 01 ................................................................. -->
+<!-- 01 ..................................................................... -->
 <section class="slide on-dark slide--title">
   <p class="eyebrow">ADA AI Leadership Day 2026</p>
   <h1>Beyond the Clouds</h1>
@@ -300,7 +395,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 02 ................................................................. -->
+<!-- 02 ..................................................................... -->
 <section class="slide slide--hook">
   <p>Could you move your AI workloads to another provider in ninety days?</p>
   <p class="sub">Show of hands — then keep them up if you've tested it</p>
@@ -310,7 +405,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 03 ................................................................. -->
+<!-- 03 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
@@ -321,7 +416,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 04 ................................................................. -->
+<!-- 04 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">01</span>
   <h2>The ground moved</h2>
@@ -329,7 +424,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section is ~5 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet.</p></div>
 </section>
 
-<!-- 05 ................................................................. -->
+<!-- 05 ..................................................................... -->
 <section class="slide on-light slide--quote">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
@@ -341,7 +436,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 06 ................................................................. -->
+<!-- 06 ..................................................................... -->
 <section class="slide on-light slide--timeline">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>Four dates that changed the calculus</h2>
@@ -359,7 +454,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 07 ................................................................. -->
+<!-- 07 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>And the AI Act deadline you were braced for — moved</h2>
@@ -377,7 +472,67 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 08 ................................................................. -->
+<!-- 08 ..................................................................... -->
+<section class="slide on-light slide--gantt">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>The rulebook is already written — and it doesn't move at headline speed</h2>
+  <p class="lede">Six European laws now touch how you run AI. One of them is quietly about to make leaving your cloud provider free.</p>
+  <div class="gantt">
+    <div class="gcol">
+      <div class="ghead"></div>
+      <div class="nm"><b>GDPR</b><em>Reg. 2016/679 · personal data</em></div>
+      <div class="nm"><b>NIS2</b><em>Dir. 2022/2555 · supply-chain security</em></div>
+      <div class="nm"><b>DORA</b><em>Reg. 2022/2554 · financial sector</em></div>
+      <div class="nm"><b>Data Act</b><em>Reg. 2023/2854 · cloud switching</em></div>
+      <div class="nm"><b>AI Act</b><em>Reg. 2024/1689 · AI systems</em></div>
+      <div class="nm"><b>Cyber Resilience Act</b><em>Reg. 2024/2847 · products you ship</em></div>
+      <div class="nm"><b>Cloud Sovereignty Framework</b><em>SEAL levels · EU procurement</em></div>
+    </div>
+    <div class="glanes">
+      <div class="years"><span>2024</span><span>2025</span><span>2026</span><span>2027</span><span>2028</span></div>
+      <div class="lane"><span class="b" style="left:0;right:0"><span class="t">binding since 2018 — Chapter V is the sovereignty clause</span></span></div>
+      <div class="lane"><span class="b" style="left:15%;right:0"><span class="t">national law since Oct 2024</span></span></div>
+      <div class="lane"><span class="b" style="left:20%;right:0"><span class="t">applies 17 Jan 2025</span></span></div>
+      <div class="lane"><span class="b" style="left:33.3%;right:0"><span class="t">applies 12 Sep 2025</span></span><span class="pin" style="left:60%" data-l="12 Jan 2027 — switching &amp; egress charges banned"></span></div>
+      <div class="lane"><span class="b" style="left:11.7%;right:0"><span class="t">in force</span></span><span class="pin" style="left:31.7%" data-l="GPAI"></span><span class="pin" style="left:58.3%" data-l="transparency"></span><span class="pin" style="left:78.3%" data-l="high-risk (deferred)"></span></div>
+      <div class="lane"><span class="b soft" style="left:53.3%;right:0"><span class="t">reporting Sep 2026</span></span><span class="pin" style="left:78.3%" data-l="full application Dec 2027"></span></div>
+      <div class="lane"><span class="b soft" style="left:45%;right:0"><span class="t">scoring live — €180m awarded Apr 2026</span></span></div>
+      <div class="today" style="left:53.3%"><span>TODAY</span></div>
+    </div>
+  </div>
+  <p class="foot">Nothing on this chart is a proposal. Every bar is law that has already been adopted.</p>
+  <div class="s-notes">
+    <p><b>Ninety seconds. Do not read the chart.</b> Point at three things: the red line is today, everything left of it already binds you, and the single black pin on the Data Act row is the one that changes your negotiating position.</p>
+    <p class="say">"Every conversation I have about sovereignty starts with someone saying 'let's wait and see what Brussels does'. Brussels already did it. This is the past, not the future."</p>
+    <p><b>The Data Act pin is the slide's payload.</b> From 12 January 2027 a cloud provider may not charge you to leave — no switching fee, no egress fee. The thing that has locked most organisations in for a decade is being legislated to zero, in sixteen months. If your exit was uneconomic, it is about to stop being uneconomic. That is a procurement lever, and it expires as a novelty the moment everyone notices.</p>
+    <p>If asked about the AI Act pins: prohibitions since Feb 2025, GPAI obligations since Aug 2025, transparency grace ends 2 Dec 2026, high-risk deferred to Dec 2027 by the omnibus. Say it once, don't dwell.</p>
+  </div>
+</section>
+
+<!-- 09 ..................................................................... -->
+<section class="slide on-light slide--table dense">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>Six laws, one question underneath all of them</h2>
+  <p class="lede">Strip out the acronyms and every one of these asks the same thing: <b>can you demonstrate control, and can you leave?</b></p>
+  <table class="cmp">
+    <thead><tr><th>Law</th><th>What it actually asks of you</th><th>Where you already are</th></tr></thead>
+    <tbody>
+      <tr><th>GDPR<em>Reg. 2016/679</em></th><td>Know where personal data physically goes and under whose courts it sits.</td><td>Binding since 2018. Chapter V transfers is the part that has now been litigated three times.</td></tr>
+      <tr><th>NIS2<em>Dir. 2022/2555</em></th><td>Own the security of your suppliers, with named personal accountability at management level.</td><td>National law since October 2024.</td></tr>
+      <tr><th>DORA<em>Reg. 2022/2554</em></th><td>If you are a financial entity: register your critical ICT providers and prove you could exit each one.</td><td>Applies since 17 January 2025. Regulators are already asking.</td></tr>
+      <tr class="hi"><th>Data Act<em>Reg. 2023/2854</em></th><td><span class="mark">Your provider must let you leave</span> — and from 12 Jan 2027 may not charge you a cent to do it.</td><td>Applicable since 12 September 2025. The clock on free exit runs out of excuses in 16 months.</td></tr>
+      <tr><th>AI Act<em>Reg. 2024/1689</em></th><td>Classify every AI system you run, and produce evidence on demand: lineage, evaluations, human oversight.</td><td>Prohibitions and GPAI duties in force. High-risk deferred to December 2027 — the paperwork, not the architecture.</td></tr>
+      <tr><th>Cyber Resilience Act<em>Reg. 2024/2847</em></th><td>Anything you ship with digital elements needs a security lifecycle and a bill of materials.</td><td>Incident reporting from September 2026; full application December 2027.</td></tr>
+    </tbody>
+  </table>
+  <div class="s-notes">
+    <p><b>This is the slide the room photographs.</b> Deliver the second column only — the third column is for the people who read the photo afterwards.</p>
+    <p class="say">"Six laws, six acronyms, one question. Can you show who controls this, and can you walk away. If you can answer those two for every AI workload, you are compliant with all six by construction."</p>
+    <p><b>Cut this slide first if you are short on time</b> — the gantt carries the argument on its own.</p>
+    <p>The DORA row is the one that lands with anyone from financial services, and there are usually six or seven of them in a room this size. Exit testing is already an examined requirement for them; the rest of the room is roughly three years behind.</p>
+  </div>
+</section>
+<!-- 10 ..................................................................... -->
 <section class="slide on-dark slide--metric">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <div class="num">77<span class="u">%</span></div>
@@ -390,7 +545,57 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 09 ................................................................. -->
+<!-- 11 ..................................................................... -->
+<section class="slide on-light slide--bars">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>This is no longer a minority position</h2>
+  <p class="lede">Five numbers from five separate 2026 surveys. None of them were commissioned by anyone selling sovereignty.</p>
+  <div class="bars">
+    <div class="bar">
+      <span class="v">93<span class="u">%</span></span>
+      <div>
+        <span class="lab">of enterprises are repatriating workloads, mid-repatriation, or actively evaluating it <em>— Cloudian, March 2026</em></span>
+        <div class="track"><span class="fill" style="width:93%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">77<span class="u">%</span></span>
+      <div>
+        <span class="lab">now factor an AI vendor's country of origin into the selection decision <em>— Deloitte, n=3,235, 24 countries</em></span>
+        <div class="track"><span class="fill" style="width:77%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">66<span class="u">%</span></span>
+      <div>
+        <span class="lab">serving generative AI already run it on Kubernetes — the portable substrate <em>— CNCF, 2026</em></span>
+        <div class="track"><span class="fill" style="width:66%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">59<span class="u">%</span></span>
+      <div>
+        <span class="lab">say they now build primarily with local or regional vendors <em>— Deloitte, State of AI in the Enterprise 2026</em></span>
+        <div class="track"><span class="fill" style="width:59%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">41<span class="u">%</span></span>
+      <div>
+        <span class="lab">still name public cloud as their primary <b>inference</b> environment — down from 56% in one year <em>— Broadcom Private Cloud Outlook 2026</em></span>
+        <div class="track"><span class="fill soft" style="width:41%"></span><span class="ghost" style="width:56%" data-l="56% in 2025"></span></div>
+      </div>
+    </div>
+  </div>
+  <p class="foot">The last bar is the only one moving downwards. It is also the only one about where the money goes.</p>
+  <div class="s-notes">
+    <p>Do not read all five. Read the top one and the bottom one, and let the shape do the rest.</p>
+    <p class="say">"Ninety-three percent. Whatever you think of sovereignty as a principle, the market has already voted, and it voted with procurement forms rather than manifestos."</p>
+    <p><b>The bottom bar is the important one</b> because it is a delta, not a level. Fifteen points of primary inference workload left public cloud in a single year. That is not ideology, that is a bill someone read.</p>
+    <p>If challenged on survey quality — fair challenge, take it seriously: these are vendor-adjacent surveys with self-selected samples. Answer honestly: "Every one of these has a house bias. That's exactly why I'm showing you five from five different houses that all point the same direction."</p>
+  </div>
+</section>
+<!-- 12 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">02</span>
   <h2>Sovereignty is a dial, not a switch</h2>
@@ -398,7 +603,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section ~5 min. This is the reframe that makes the rest of the talk actionable, and it's the part most likely to change what someone does on Monday.</p></div>
 </section>
 
-<!-- 10 ................................................................. -->
+<!-- 13 ..................................................................... -->
 <section class="slide on-light slide--table">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Europe already wrote the scale — use it</h2>
@@ -420,7 +625,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 11 ................................................................. -->
+<!-- 14 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Four questions, asked per workload — not per company</h2>
@@ -436,7 +641,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 12 ................................................................. -->
+<!-- 15 ..................................................................... -->
 <section class="slide on-light slide--ba">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>What actually changes when you own the control plane</h2>
@@ -470,7 +675,36 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 13 ................................................................. -->
+<!-- 16 ..................................................................... -->
+<section class="slide on-dark slide--quotes">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>You are not the first person in Europe to say this out loud</h2>
+  <div class="qwall">
+    <div class="qw">
+      <p>This must be Europe's independence moment.</p>
+      <cite><b>Ursula von der Leyen</b> · State of the Union address, European Parliament, 10 September 2025</cite>
+    </div>
+    <div class="qw">
+      <p>We cannot afford to depend on others for the technologies that keep our hospitals running, our energy grids stable, and our services secure.</p>
+      <cite><b>Ursula von der Leyen</b> · same address</cite>
+    </div>
+    <div class="qw">
+      <p>Unite and act — or face a slow agony.</p>
+      <cite><b>Mario Draghi</b> · <i>The Future of European Competitiveness</i>, 9 September 2024. He called it an existential challenge.</cite>
+    </div>
+    <div class="qw">
+      <p>Build the factories, so we become AI makers, not AI takers.</p>
+      <cite><b>Han de Groot</b> · on why the Netherlands is building its own AI capacity</cite>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>Thirty seconds, and read only two of them aloud.</b> Pick von der Leyen's second quote and Draghi's. The wall is there so the room can read the rest while you talk.</p>
+    <p class="say">"I'm an infrastructure engineer, so it's slightly uncomfortable to find myself agreeing with a Commission President. But the reason this is on the slide is that it's now the official position of the single market you sell into. Sovereignty stopped being an opinion and became a policy environment."</p>
+    <p>The point to make, and it is the load-bearing one for a leadership audience: <b>political will has already turned into procurement rules and money.</b> €180m awarded, €20bn+ expected in gigafactories, InvestAI mobilising €200bn. Whether or not the rhetoric moves you, the budget lines are real and your competitors are bidding into them.</p>
+    <p>If someone rolls their eyes at Brussels rhetoric — good, that is provocation #1 on the debate slide. Say so, and bank it for the Q&amp;A rather than fighting it here.</p>
+  </div>
+</section>
+<!-- 17 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">03</span>
   <h2>The stack is ready — that's the news</h2>
@@ -478,7 +712,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section ~5 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here.</p></div>
 </section>
 
-<!-- 14 ................................................................. -->
+<!-- 18 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>AI infrastructure became boring. Boring is the achievement.</h2>
@@ -495,7 +729,56 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 15 ................................................................. -->
+<!-- 19 ..................................................................... -->
+<section class="slide on-light slide--talks">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>Don't take my word for it — take theirs</h2>
+  <p class="lede">In March, KubeCon Europe brought the cloud-native industry to the RAI, twenty minutes from this room. This is a sample of what it spent the week on. Note who is presenting: not activists, not startups.</p>
+  <ul class="talks">
+    <li>
+      <b><a href="https://kccnceu2026.sched.com/event/2HgHb/keynote-building-a-sovereign-multi-cloud-strategy-with-cloud-native-technologies-goetz-reinhaeckel-program-director-cloud-bwi">Building a Sovereign, Multi-Cloud Strategy with Cloud Native Technologies</a></b>
+      <span>Goetz Reinhaeckel, Program Director Cloud — <b>BWI</b>, the IT company of the German armed forces.</span>
+      <i>Main-stage keynote</i>
+    </li>
+    <li>
+      <b><a href="https://kccnceu2026.sched.com/event/2HgH3/sponsored-keynote-inference-and-sovereign-ai-scaling-cloud-native-ai-with-control-and-compliance-karena-angell-technical-strategist-global-engineering-red-hat-vincent-caldeira-chief-technology-officer-apac-red-hat">Inference and Sovereign AI: Scaling Cloud Native AI with Control and Compliance</a></b>
+      <span>Karena Angell, Technical Strategist; Vincent Caldeira, CTO APAC — <b>Red Hat</b>.</span>
+      <i>Sponsored keynote</i>
+    </li>
+    <li>
+      <b><a href="https://kccnceu2026.sched.com/event/2CVzj/towards-building-an-open-source-ai-reference-stack-for-eu-sovereign-cloud-madhav-bhargava-sap-labs-sanjay-chatterjee-nvidia">Towards Building an Open Source AI Reference Stack for EU Sovereign Cloud</a></b>
+      <span>Madhav Bhargava, <b>SAP Labs</b>; Sanjay Chatterjee, <b>NVIDIA</b>.</span>
+      <i>Europe's largest software company and the company selling the chips — building the open alternative together</i>
+    </li>
+    <li>
+      <b><a href="https://kccnceu2026.sched.com/event/2CW7f/virtualizing-large-scale-gpu-cluster-for-sovereign-ai-petasus-ai-cloud-journey-with-kubernetes-jian-li-sk-telecom">Virtualizing Large-Scale GPU Cluster for Sovereign AI</a></b>
+      <span>Jian Li — <b>SK Telecom</b>, on the Petasus AI Cloud.</span>
+      <i>A national telco doing exactly this, at scale, outside Europe</i>
+    </li>
+    <li>
+      <b><a href="https://kccnceu2026.sched.com/event/2EF6o/sovereign-identities-for-your-cloud-native-architecture-with-keycloak-alexander-schwartz-ibm-sebastian-laskawiec-defense-unicorns">Sovereign Identities for Your Cloud Native Architecture</a></b>
+      <span>Alexander Schwartz, <b>IBM</b>; Sebastian Laskawiec, <b>Defense Unicorns</b>.</span>
+      <i>Who your systems believe you are is also a sovereignty question</i>
+    </li>
+    <li>
+      <b><a href="https://colocatedeventseu2026.sched.com/event/2H5UN/eu-cloud-sovereignty-framework-explained-emiel-brok-suse-dosba">EU Cloud Sovereignty Framework Explained</a></b>
+      <span>Emiel Brok, <b>SUSE</b> — the SEAL levels, in practice.</span>
+      <i>Co-located event · the framework from slide 10, unpacked</i>
+    </li>
+    <li>
+      <b><a href="https://colocatedeventseu2026.sched.com/event/2HEOl/running-sovereign-cloud-stack-cluster-for-international-telecommunication-union-lessons-learned-martin-pilka-dnation-karsten-samaschke-vanillacore-gmbh">Running a Sovereign Cloud Stack Cluster for the ITU: Lessons Learned</a></b>
+      <span>Martin Pilka, <b>dNation</b>; Karsten Samaschke, <b>VanillaCore</b>.</span>
+      <i>The UN's telecoms agency, in production, with the lessons written down</i>
+    </li>
+  </ul>
+  <div class="s-notes">
+    <p><b>Fifteen seconds of delivery, then move.</b> This slide is not read aloud — it is shown. Its entire job is to convert "this is one consultant's opinion" into "this is where the industry already is".</p>
+    <p class="say">"KubeCon Europe was at the RAI in March — twenty thousand engineers, twenty minutes from here. These are seven sessions from that week. SAP. NVIDIA. IBM. Red Hat. The German armed forces. The United Nations' telecoms agency. Nobody on this slide is a European sovereignty activist. They are all just shipping."</p>
+    <p>The two to name if you name any: <b>BWI</b>, because a defence IT provider building on cloud-native rather than a closed national stack is the strongest possible signal that this is achievable; and <b>SAP with NVIDIA</b>, because the vendor everyone assumes has the most to lose from an open sovereign stack is co-authoring one.</p>
+    <p>Every title is a live link in the shared deck. Offer that — several people will want to send one to a colleague.</p>
+  </div>
+</section>
+<!-- 20 ..................................................................... -->
 <section class="slide on-light slide--arch">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>The reference architecture</h2>
@@ -507,11 +790,11 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     </div>
     <div class="layers">
       <div class="layer"><span class="ln">Applications &amp; agents<em>your product</em></span><div class="chips"><span class="chip">RAG services</span><span class="chip">agent runtimes</span><span class="chip">copilots</span></div></div>
-      <div class="layer"><span class="ln">AI gateway &amp; policy<em>where control is enforced</em></span><div class="chips"><span class="chip">Envoy AI Gateway</span><span class="chip">Gateway API Inference Ext.</span><span class="chip">Kyverno / OPA</span><span class="chip">Keycloak</span><span class="chip">SPIFFE</span></div></div>
-      <div class="layer"><span class="ln">Model serving<em>tokens out</em></span><div class="chips"><span class="chip">KServe</span><span class="chip">vLLM</span><span class="chip">llm-d</span><span class="chip">SGLang</span><span class="chip">Ray</span></div></div>
+      <div class="layer"><span class="ln">AI gateway &amp; policy<em>where control is enforced</em></span><div class="chips"><span class="chip">Envoy AI Gateway</span><span class="chip">Kyverno / OPA</span><span class="chip">Keycloak</span></div></div>
+      <div class="layer"><span class="ln">Model serving<em>tokens out</em></span><div class="chips"><span class="chip">KServe</span><span class="chip">vLLM</span><span class="chip">llm-d</span><span class="chip">Ray</span></div></div>
       <div class="layer"><span class="ln">Data &amp; retrieval<em>your actual moat</em></span><div class="chips"><span class="chip">Milvus</span><span class="chip">Qdrant</span><span class="chip">pgvector</span><span class="chip">MinIO / Ceph</span></div></div>
-      <div class="layer"><span class="ln">Scheduling<em>who gets the GPU</em></span><div class="chips"><span class="chip">Kubernetes DRA</span><span class="chip">Kueue</span><span class="chip">Volcano</span><span class="chip">HAMi</span><span class="chip">Karpenter</span></div></div>
-      <div class="layer"><span class="ln">Platform substrate<em>boring on purpose</em></span><div class="chips"><span class="chip">Talos / RKE2</span><span class="chip">Cluster API</span><span class="chip">Argo CD</span><span class="chip">Cilium</span><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span></div></div>
+      <div class="layer"><span class="ln">Scheduling<em>who gets the GPU</em></span><div class="chips"><span class="chip">Kubernetes DRA</span><span class="chip">Kueue</span><span class="chip">Volcano</span></div></div>
+      <div class="layer"><span class="ln">Platform substrate<em>boring on purpose</em></span><div class="chips"><span class="chip">Talos / RKE2</span><span class="chip">Cluster API</span><span class="chip">Argo CD</span><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span></div></div>
       <div class="layer phys"><span class="ln">Power, cooling, silicon<em>the part you cannot download</em></span><div class="chips"><span class="chip">GPUs</span><span class="chip">EU datacentre</span><span class="chip">grid connection</span><span class="chip">heat reuse</span></div></div>
     </div>
     <div class="rail">
@@ -529,7 +812,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 16 ................................................................. -->
+<!-- 21 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>And Europe is building the bottom layer right now</h2>
@@ -545,8 +828,59 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 17 ................................................................. -->
-<section class="slide on-light slide--content">
+<!-- 22 ..................................................................... -->
+<section class="slide on-light slide--bars">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>The bottom layer, in megawatts</h2>
+  <p class="lede">Announced and under construction in Europe. The unit that matters is not GPUs — it is grid connection, because that is the thing you cannot order faster.</p>
+  <div class="bars">
+    <div class="bar">
+      <span class="v">800<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Rotterdam AI Gigafactory, ~250,000 GPUs <em>— VOLT, construction from 2027</em></span>
+        <div class="track"><span class="fill" style="width:100%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">310<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Lappeenranta, Finland <em>— Nebius, hyperscale neocloud model</em></span>
+        <div class="track"><span class="fill soft" style="width:38.75%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">240<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Near Lille, France <em>— Nebius, part of a 2.5 GW target</em></span>
+        <div class="track"><span class="fill soft" style="width:30%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">42<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Amsterdam AMS5, planned <em>— VOLT with NorthC and Dell</em></span>
+        <div class="track"><span class="fill" style="width:5.25%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">14<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Amsterdam Switch AMS4 — <b>operational this month</b> <em>— VOLT Dutch AI Cloud</em></span>
+        <div class="track"><span class="fill" style="width:1.75%"></span></div>
+      </div>
+    </div>
+  </div>
+  <p class="foot">€180m committed by the Commission · €7.8bn AWS European Sovereign Cloud · &gt;€20bn expected across up to 7 EU AI Gigafactories</p>
+  <div class="s-notes">
+    <p><b>The visual argument is the gap between the bottom two bars and the top one.</b> Do not explain it — let them see it, then say the line below.</p>
+    <p class="say">"The bar at the bottom is live this month, twenty kilometres from this room. The bar at the top is the same company in 2027. That is a fifty-seven-fold step change in about eighteen months, and the constraint on it is not chips or capital. It is a grid connection."</p>
+    <p><b>Disclose again if you have not already:</b> Lovelace Engineering consults for VOLT. Nebius is on the chart precisely so this is not a single-vendor slide.</p>
+    <p>The number to have ready if anyone asks what 800 MW means: roughly the draw of a small city, and roughly a fifth of the total contracted datacentre load in the Netherlands today. Grid congestion is why this is hard, and why the queue matters more than the cheque.</p>
+    <p><b>Cut this slide if you are short</b> — the 800 MW metric slide that follows makes the same point in five seconds.</p>
+  </div>
+</section>
+<!-- 23 ..................................................................... -->
+<section class="slide on-light slide--content tight">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>What it looks like when someone actually builds it here</h2>
   <p class="lede">VOLT — "from power to tokens" — is doing the full-stack version in the Netherlands. Worth knowing because it's twenty kilometres from this room, not because it's the only one.</p>
@@ -563,7 +897,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 18 ................................................................. -->
+<!-- 24 ..................................................................... -->
 <section class="slide on-dark slide--metric">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <div class="num">800<span class="u">MW</span></div>
@@ -575,7 +909,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 19 ................................................................. -->
+<!-- 25 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">04</span>
   <h2>What the vendor keynote leaves out</h2>
@@ -583,7 +917,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Section ~4 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land.</p></div>
 </section>
 
-<!-- 20 ................................................................. -->
+<!-- 26 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>Four failure modes nobody demos on stage</h2>
@@ -600,8 +934,8 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 21 ................................................................. -->
-<section class="slide on-light slide--content">
+<!-- 27 ..................................................................... -->
+<section class="slide on-light slide--content tight">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>The economics: this is a utilisation question, not an ideology question</h2>
   <p class="lede">A single H100 delivers anywhere from $0.21 to $15.25 per million output tokens. Same hardware. The variable is you.</p>
@@ -618,8 +952,80 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 22 ................................................................. -->
-<section class="slide on-light slide--table">
+<!-- 28 ..................................................................... -->
+<section class="slide on-light slide--curve">
+  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <h2>One chart decides this, and it isn't a chart about sovereignty</h2>
+  <p class="lede">The same H100 costs between <b>$0.21 and $15.25</b> per million output tokens. Nothing about the hardware changes. The only variable is how busy you keep it.</p>
+  <div class="chart">
+  <svg viewBox="0 0 1600 600" role="img" aria-label="Cost per million output tokens falls sharply as GPU utilisation rises, crossing typical API pricing at low utilisation.">
+    <rect x="130" y="50" width="210" height="460" fill="#b3402f" opacity="0.07"/>
+    <rect x="340" y="50" width="1190" height="460" fill="#2b4e2b" opacity="0.07"/>
+
+    <g stroke="#d9d9d9" stroke-width="1">
+      <line x1="130" y1="57"  x2="1530" y2="57"/>
+      <line x1="130" y1="99"  x2="1530" y2="99"/>
+      <line x1="130" y1="172" x2="1530" y2="172"/>
+      <line x1="130" y1="341" x2="1530" y2="341"/>
+      <line x1="130" y1="414" x2="1530" y2="414"/>
+      <line x1="130" y1="505" x2="1530" y2="505"/>
+      <line x1="410"  y1="50" x2="410"  y2="510"/>
+      <line x1="690"  y1="50" x2="690"  y2="510"/>
+      <line x1="970"  y1="50" x2="970"  y2="510"/>
+      <line x1="1250" y1="50" x2="1250" y2="510"/>
+    </g>
+    <line x1="130" y1="510" x2="1530" y2="510" stroke="#233123" stroke-width="2"/>
+    <line x1="130" y1="50"  x2="130"  y2="510" stroke="#233123" stroke-width="2"/>
+
+    <g font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5c6b5c" text-anchor="end">
+      <text x="116" y="64">$15</text>
+      <text x="116" y="106">$10</text>
+      <text x="116" y="179">$5</text>
+      <text x="116" y="348">$1</text>
+      <text x="116" y="421">$0.50</text>
+      <text x="116" y="512">$0.21</text>
+    </g>
+    <g font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#5c6b5c" text-anchor="middle">
+      <text x="130"  y="543">0%</text>
+      <text x="410"  y="543">20%</text>
+      <text x="690"  y="543">40%</text>
+      <text x="970"  y="543">60%</text>
+      <text x="1250" y="543">80%</text>
+      <text x="1530" y="543">100%</text>
+      <text x="830"  y="585" font-size="23" fill="#233123" letter-spacing="1.5">GPU UTILISATION — HOW BUSY YOU ACTUALLY KEEP IT</text>
+    </g>
+    <text x="34" y="280" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#233123"
+          text-anchor="middle" transform="rotate(-90 34 280)" letter-spacing="1.2">COST PER MILLION OUTPUT TOKENS</text>
+
+    <line x1="130" y1="306" x2="1530" y2="306" stroke="#b3402f" stroke-width="3" stroke-dasharray="12 9"/>
+    <text x="1520" y="296" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#b3402f" text-anchor="end">WHAT YOU PAY PER API CALL TODAY — draw this line where yours actually sits</text>
+
+    <line x1="340" y1="50" x2="340" y2="510" stroke="#233123" stroke-width="2" stroke-dasharray="7 6"/>
+    <text x="352" y="82" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#233123">CROSSOVER</text>
+
+    <polyline fill="none" stroke="#2b4e2b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"
+      points="150,57 158,94 172,137 200,190 242,240 270,263 340,306 410,336 550,378 690,409 830,432 970,451 1110,468 1250,481 1390,494 1530,505"/>
+
+    <circle cx="150" cy="57" r="10" fill="#b3402f"/>
+    <text x="176" y="50" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="bold" fill="#b3402f">$15.25 — a GPU you bought and left idle</text>
+    <circle cx="1530" cy="505" r="10" fill="#2b4e2b"/>
+    <text x="1512" y="484" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="bold" fill="#2b4e2b" text-anchor="end">$0.21 — the same GPU, kept busy</text>
+
+    <text x="235" y="470" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#b3402f" text-anchor="middle" letter-spacing="1.4">RENT</text>
+    <text x="935" y="130" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#2b4e2b" text-anchor="middle" letter-spacing="1.4">OWN</text>
+  </svg>
+  </div>
+  <p class="foot">Log scale. Curve is fixed cost divided by utilisation, anchored on the two published endpoints. Your crossover is wherever your own API line cuts it.</p>
+  <div class="s-notes">
+    <p><b>This is the most useful slide in the deck for a CFO, and the one to slow down on.</b> Two minutes. It also gives the room permission not to self-host, which is what makes the rest of the talk credible.</p>
+    <p class="say">"Same silicon. Seventy-fold difference in unit cost. Everything people argue about under the word sovereignty is, financially, an argument about where their own vertical line sits — and almost nobody in this room has measured it."</p>
+    <p><b>How to walk it:</b> (1) the red dot is a GPU you bought and did not keep busy — that is the failure mode, and it is the expensive one; (2) the red dashed line is your current API bill, and everyone's sits somewhere different; (3) where it cuts the curve is your break-even utilisation; (4) left of that, renting is simply correct.</p>
+    <p><b>Be scrupulous about the caveat:</b> the curve shape is arithmetic — fixed cost over utilisation — anchored on the two published endpoints. It is a shape, not a quote for your workload. Say that out loud if a numbers person is in the room; it costs you nothing and buys you everything.</p>
+    <p>The takeaway to state explicitly: <b>you cannot get this from a slide, you get it from a month of measurement.</b> That is move three in the ninety-day plan.</p>
+  </div>
+</section>
+<!-- 29 ..................................................................... -->
+<section class="slide on-light slide--table tight">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>Self-host, federate, or rent — by workload class</h2>
   <p class="lede">This is the blueprint, compressed. You do not need one answer; you need this table filled in for your own portfolio.</p>
@@ -640,7 +1046,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 23 ................................................................. -->
+<!-- 30 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
   <h2>The capability is the point — and it is a people decision</h2>
@@ -656,7 +1062,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 24 ................................................................. -->
+<!-- 31 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
   <h2>Ninety days. Four moves. No new budget line.</h2>
@@ -672,7 +1078,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 25 ................................................................. -->
+<!-- 32 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
   <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
@@ -680,7 +1086,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Pause. Then straight into the debate slide — do not fill the silence.</p></div>
 </section>
 
-<!-- 26 ................................................................. -->
+<!-- 33 ..................................................................... -->
 <section class="slide on-dark slide--debate">
   <div class="ref"><span class="ref-n">§ 06</span><span>Argue with me</span></div>
   <h2>Five things I believe. Pick one and take it apart.</h2>
@@ -699,7 +1105,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   </div>
 </section>
 
-<!-- 27 ................................................................. -->
+<!-- 34 ..................................................................... -->
 <section class="slide on-dark slide--cta">
   <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
   <p class="ask">If you write down every AI workload, its jurisdiction, and its exit cost, you will have done more sovereignty work this quarter than most organisations do in a year.</p>
@@ -712,7 +1118,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
   <div class="s-notes"><p>Keep it to fifteen seconds. The debate slide is the real close; this is contact details.</p></div>
 </section>
 
-<!-- 28 ................................................................. -->
+<!-- 35 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources</span></div>
   <h2>Sources</h2>
@@ -722,13 +1128,18 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
     <li><b>Trump v. Slaughter · EDPB letter</b>US Supreme Court, 29 June 2026; EDPB to Commissioner McGrath, 31 July 2026</li>
     <li><b>Latombe judgment</b>EU General Court, 3 September 2025 (IAPP)</li>
     <li><b>Digital AI Omnibus</b>Provisional agreement, May 2026 (Gibson Dunn; DLA Piper)</li>
-    <li><b>Cloud Sovereignty Framework · SEAL</b>European Commission, 17 April 2026</li>
+    <li><b>AI Act</b>Reg. (EU) 2024/1689 · in force 1 Aug 2024 · Art. 5, 50, 51–56 · penalties Art. 99</li>
+    <li><b>Data Act</b>Reg. (EU) 2023/2854 · applicable 12 Sep 2025 · Art. 29 switching charges withdrawn 12 Jan 2027</li>
+    <li><b>DORA · NIS2 · CRA</b>Reg. (EU) 2022/2554 (17 Jan 2025) · Dir. (EU) 2022/2555 · Reg. (EU) 2024/2847</li>
+    <li><b>Cloud Sovereignty Framework · SEAL</b>European Commission, 17 April 2026 — €180m awarded to Post, STACKIT, Scaleway, Proximus</li>
     <li><b>AI Gigafactories call</b>EuroHPC JU, 30 July 2026 — bids close 12 November 2026</li>
-    <li><b>Kubernetes AI Conformance · llm-d</b>CNCF, March 2026</li>
-    <li><b>Vendor country of origin (77%)</b>Deloitte, State of AI in the Enterprise 2026</li>
-    <li><b>Inference repatriation</b>Broadcom Private Cloud Outlook 2026; Cloudian survey, March 2026</li>
-    <li><b>VOLT</b>w.media, DatacenterDynamics, The Tech Capital, 2025–2026</li>
-    <li><b>H100 cost range</b>Wavect break-even analysis, EU, 2026</li>
+    <li><b>Kubernetes AI Conformance · llm-d</b>CNCF, March 2026 · KubeCon + CloudNativeCon Europe, RAI Amsterdam, 23–26 March 2026</li>
+    <li><b>Vendor country of origin (77%) · local vendors (59%)</b>Deloitte, State of AI in the Enterprise 2026, n=3,235, 24 countries</li>
+    <li><b>Inference repatriation</b>Broadcom Private Cloud Outlook 2026 (56%→41%); Cloudian survey, March 2026 (93%)</li>
+    <li><b>VOLT · Nebius</b>w.media, DatacenterDynamics, The Tech Capital, 2025–2026</li>
+    <li><b>H100 cost range ($0.21–$15.25)</b>Wavect break-even analysis, EU, 2026. Curve shape is fixed-cost ÷ utilisation, anchored on those endpoints.</li>
+    <li><b>Von der Leyen</b>State of the Union address, European Parliament, 10 September 2025</li>
+    <li><b>Draghi</b><i>The Future of European Competitiveness</i>, European Commission, 9 September 2024</li>
   </ul>
   <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
 </section>
