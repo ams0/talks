@@ -1,0 +1,1282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Watts Matter — power- and carbon-aware scheduling for the AI-era data center. KCD &amp; OpenInfra Days Vietnam 2026, Hà Nội. Alessandro Vozza.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23131a1d'/%3E%3Cpath d='M18 4 L9 18 h5 l-2 10 9-14 h-5 z' fill='%23f0b040'/%3E%3C/svg%3E">
+<title>Watts Matter</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
+
+<style>
+/* ============================================================
+   WATTS MATTER — KCD & OpenInfra Days Vietnam 2026
+   Ground: graphite #131a1d with a halftone dot texture.
+   Accent: amber — watts, heat, the thing being spent.
+   Signals: teal = clean grid / good state, rust = idle / throttle.
+   Type:   Newsreader (display) + Be Vietnam Pro (body/labels),
+           both with full Vietnamese coverage — the closing slide
+           and the venue need the diacritics.
+   ============================================================ */
+:root {
+  --ink:            #131a1d;   /* graphite */
+  --ink-2:          #1b2427;
+  --paper:          #fcfbf8;
+  --paper-2:        #f3f2ec;
+  --surface-muted:  #eae7dd;
+  --cream:          #f7edd9;
+  --fg-on-light:    #131a1d;
+  --fg-on-dark:     #ffffff;
+  --fg-muted:       #5f6b6e;
+  --fg-muted-dark:  #a9b6b8;
+  --accent:         #94570a;   /* amber, darkened for light grounds */
+  --accent-soft:    #f0b040;   /* the same amber lifted, for dark grounds */
+  --on-accent:      #fdf6e8;
+  --clean:          #2f8f6f;   /* clean grid, good state */
+  --hot:            #b3402f;   /* idle, throttle, failure */
+  --rule:           #dcdad2;
+  --rule-dark:      #2f3d40;
+
+  --f-display: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --f-body:    'Be Vietnam Pro', Arial, Helvetica, sans-serif;
+  --f-mono:    'Be Vietnam Pro', Arial, Helvetica, sans-serif;
+  --f-code:    ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+/* On dark grounds the whole token set lifts, so every rule below
+   that reads var(--accent) resolves to the legible variant. */
+.on-dark, .slide--hook { --accent: var(--accent-soft); --fg-muted: var(--fg-muted-dark); --rule: var(--rule-dark); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--ink); font-family: var(--f-body); color: var(--fg-on-dark); }
+
+#deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--ink); }
+
+.slide {
+  position: absolute; top: 50%; left: 50%;
+  width: 1920px; height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  transform-origin: center center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 140ms ease;
+  font-family: var(--f-body); overflow: hidden;
+}
+.slide.is-active { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+
+/* ---- footer rule: section left, page right ---- */
+.ref {
+  position: absolute; bottom: 44px; left: 78px; right: 78px;
+  display: flex; align-items: center; gap: 26px;
+  border-top: 1px solid var(--rule); padding-top: 16px;
+  font-family: var(--f-body); font-size: 19px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.ref .ref-n { color: var(--accent); font-weight: 700; }
+.ref .ref-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+.ref .ref-pg { font-size: 22px; font-weight: 700; letter-spacing: 0; }
+.on-light .ref { color: var(--fg-muted); }
+.on-dark  .ref { color: var(--fg-muted-dark); }
+
+/* ---- halftone dot ground ---- */
+.on-light {
+  background-color: var(--paper); color: var(--fg-on-light);
+  background-image:
+    radial-gradient(circle, rgba(19,26,29,0.10) 1px, transparent 1.5px),
+    radial-gradient(1000px 660px at 76% 42%, rgba(247,237,217,0.85), transparent 70%);
+  background-size: 10px 10px, 100% 100%;
+}
+.on-dark {
+  background-color: var(--ink); color: var(--fg-on-dark);
+  background-image:
+    radial-gradient(circle, rgba(240,176,64,0.13) 1px, transparent 1.5px),
+    radial-gradient(1150px 720px at 22% 34%, rgba(148,87,10,0.42), transparent 72%);
+  background-size: 10px 10px, 100% 100%;
+}
+
+/* ---------- title ---------- */
+.slide--title { padding: 120px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--title::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(1100px 640px at 78% 68%, rgba(240,176,64,0.20), transparent 68%);
+}
+.slide--title > * { position: relative; }
+.slide--title .eyebrow { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 40px; }
+.slide--title h1 { font-family: var(--f-display); font-size: 168px; line-height: 0.94; font-weight: 400; letter-spacing: -0.02em; max-width: 15ch; }
+.slide--title .prompt { font-family: var(--f-code); font-size: 30px; color: var(--fg-muted-dark); margin-top: 40px; letter-spacing: -0.01em; }
+.slide--title .prompt b { color: var(--accent-soft); font-weight: 400; }
+.slide--title .sub { font-size: 34px; line-height: 1.35; color: var(--fg-muted-dark); margin-top: 26px; max-width: 46ch; }
+.slide--title .meta { position: absolute; bottom: 84px; left: 110px; right: 110px; display: flex; gap: 28px; align-items: baseline;
+  font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.06em; color: var(--fg-muted-dark); border-top: 1px solid var(--rule-dark); padding-top: 26px; }
+.slide--title .meta .who { color: var(--fg-on-dark); font-weight: 500; }
+.slide--title .meta .spacer { flex: 1; }
+
+/* ---------- bold claim ---------- */
+.slide--claim { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; }
+.slide--claim .kicker { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 44px; padding-left: 64px; }
+.slide--claim p { font-family: var(--f-display); font-size: 96px; line-height: 1.12; font-weight: 400; max-width: 21ch;
+  border-left: 8px solid var(--accent); padding-left: 56px; letter-spacing: -0.015em; }
+.slide--claim p b { font-style: italic; font-weight: 400; color: var(--accent); }
+.slide--claim cite { margin-top: 48px; padding-left: 64px; font-style: normal; font-family: var(--f-mono);
+  font-size: 22px; letter-spacing: 0.08em; color: var(--fg-muted); display: block; max-width: 76ch; line-height: 1.5; }
+
+/* ---------- section divider ---------- */
+.slide--section { padding: 130px 130px 165px; display: flex; flex-direction: column; justify-content: flex-end; }
+.slide--section .num { font-family: var(--f-display); font-size: 210px; font-weight: 400; line-height: 0.9; color: var(--accent); letter-spacing: -0.03em; }
+.slide--section h2 { font-family: var(--f-display); font-size: 130px; font-weight: 400; margin-top: 10px; max-width: 22ch; line-height: 1.02; letter-spacing: -0.02em; }
+.slide--section .lede { font-size: 32px; color: var(--fg-muted-dark); margin-top: 30px; max-width: 54ch; line-height: 1.4; }
+
+/* ---------- content ---------- */
+.slide--content { padding: 150px 130px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--content h2 { font-family: var(--f-display); font-size: 82px; font-weight: 400; line-height: 1.06; letter-spacing: -0.015em; max-width: 24ch; }
+.slide--content .lede { font-size: 30px; color: var(--fg-muted); margin-top: 26px; max-width: 66ch; line-height: 1.4; }
+.on-dark.slide--content .lede { color: var(--fg-muted-dark); }
+.points { list-style: none; display: grid; gap: 30px; margin-top: 56px; max-width: 1480px; }
+.points.two-col { grid-template-columns: 1fr 1fr; gap: 32px 64px; }
+.points li { font-size: 30px; line-height: 1.4; padding-left: 32px; border-left: 4px solid var(--accent); }
+.points li b { font-weight: 600; display: block; font-size: 32px; margin-bottom: 6px; }
+.points li span { color: var(--fg-muted); }
+
+/* shared closing line under any content block */
+.kq { font-size: 27px; line-height: 1.4; margin-top: 40px; padding-left: 24px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 108ch; }
+.kq b { color: var(--fg-on-light); font-weight: 600; }
+.on-dark .kq b { color: var(--fg-on-dark); }
+.foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+
+/* ---------- horizontal bar ladder ---------- */
+.slide--bars { padding: 130px 130px 138px; display: flex; flex-direction: column; justify-content: center; }
+.slide--bars h2 { font-family: var(--f-display); font-size: 76px; font-weight: 400; line-height: 1.05; }
+.slide--bars .lede { font-size: 27px; color: var(--fg-muted); margin-top: 18px; max-width: 82ch; line-height: 1.4; }
+.bars { display: grid; gap: 20px; margin-top: 44px; }
+.bar { display: grid; grid-template-columns: 190px 1fr; gap: 34px; align-items: center; }
+.bar .v { font-family: var(--f-display); font-size: 58px; line-height: 1; color: var(--accent); text-align: right; letter-spacing: -0.02em; }
+.bar .v .u { font-size: 0.44em; margin-left: 0.06em; }
+.bar .lab { font-size: 25px; line-height: 1.3; margin-bottom: 9px; display: block; }
+.bar .lab em { font-style: normal; color: var(--fg-muted); }
+.bar .track { position: relative; height: 24px; background: var(--surface-muted); border-radius: 3px; }
+.bar .fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--accent); border-radius: 3px; }
+.bar .fill.soft { background: #d9b57e; }
+.bar .fill.hot  { background: var(--hot); }
+
+/* ---------- two-card duo (params/tokens, kueue/keda, contribute) ---------- */
+.slide--duo { padding: 140px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--duo h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; line-height: 1.05; }
+.slide--duo .lede { font-size: 27px; color: var(--fg-muted); margin-top: 18px; max-width: 84ch; line-height: 1.4; }
+.on-dark.slide--duo .lede { color: var(--fg-muted-dark); }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 46px; }
+.duo .card { padding: 46px 44px; border-radius: 4px; background: var(--surface-muted); display: flex; flex-direction: column; gap: 16px; }
+.duo .card.dark { background: var(--ink); color: var(--fg-on-dark); }
+.duo .lbl { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.62; }
+.duo .card.dark .lbl { color: var(--accent-soft); opacity: 1; }
+.duo h3 { font-family: var(--f-display); font-size: 52px; font-weight: 400; line-height: 1.06; letter-spacing: -0.01em; }
+.duo .eg { font-family: var(--f-code); font-size: 21px; line-height: 1.35; color: var(--accent); }
+.duo .card.dark .eg { color: var(--accent-soft); }
+.duo ul { list-style: none; display: grid; gap: 15px; font-size: 26px; line-height: 1.34; margin-top: 4px; }
+.duo .card li { color: var(--fg-muted); }
+.duo .card.dark li { color: #cdd6d7; }
+.duo li::before { content: "—"; margin-right: 12px; opacity: 0.45; }
+
+/* ---------- before / after ---------- */
+.slide--ba { padding: 140px 130px 138px; display: flex; flex-direction: column; justify-content: center; }
+.slide--ba h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; line-height: 1.05; }
+.slide--ba .lede { font-size: 27px; color: var(--fg-muted); margin-top: 18px; max-width: 84ch; line-height: 1.4; }
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 46px; }
+.ba-col { padding: 44px 42px; border-radius: 4px; }
+.ba-col.old { background: var(--surface-muted); }
+.ba-col.new { background: var(--ink); color: var(--fg-on-dark); }
+.ba-col .lbl { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.62; }
+.ba-col.new .lbl { color: var(--accent-soft); opacity: 1; }
+.ba-col ul { list-style: none; display: grid; gap: 20px; margin-top: 30px; font-size: 27px; line-height: 1.35; }
+.ba-col li::before { content: "—"; margin-right: 14px; opacity: 0.45; }
+.ba-col.old li { color: var(--fg-muted); }
+.ba-col.new li { color: #cdd6d7; }
+
+/* ---------- stat pair with a chart beside it ---------- */
+.slide--split { padding: 120px 110px 126px; display: grid; grid-template-columns: 640px 1fr; gap: 74px; align-items: center; }
+.slide--split h2 { font-family: var(--f-display); font-size: 72px; font-weight: 400; line-height: 1.05; letter-spacing: -0.015em; }
+.slide--split .lede { font-size: 26px; color: var(--fg-muted); margin-top: 18px; line-height: 1.4; }
+.stats { display: grid; gap: 30px; margin-top: 40px; }
+.stat { display: grid; grid-template-columns: 210px 1fr; gap: 28px; align-items: baseline;
+  padding-top: 24px; border-top: 1px solid var(--rule); }
+.stat .n { font-family: var(--f-display); font-size: 84px; line-height: 0.92; color: var(--accent); letter-spacing: -0.03em; }
+.stat .n.sm { font-size: 62px; }
+.stat p { font-size: 24px; line-height: 1.36; color: var(--fg-muted); }
+.stat p b { color: var(--fg-on-light); font-weight: 600; display: block; font-size: 26px; margin-bottom: 5px; }
+.metricstrip { margin-top: 38px; padding: 26px 30px; background: var(--ink); color: var(--fg-on-dark); border-radius: 4px; }
+.metricstrip .l { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-soft); }
+.metricstrip .m { font-family: var(--f-code); font-size: 44px; margin-top: 8px; letter-spacing: -0.01em; }
+
+/* ---------- chart canvas ---------- */
+.chart svg { display: block; width: 100%; height: auto; }
+.slide--curve { padding: 100px 108px 104px; display: flex; flex-direction: column; justify-content: center; }
+.slide--curve h2 { font-family: var(--f-display); font-size: 70px; font-weight: 400; line-height: 1.05; letter-spacing: -0.015em; }
+.slide--curve .lede { font-size: 26px; color: var(--fg-muted); margin-top: 16px; max-width: 90ch; line-height: 1.4; }
+.slide--curve .lede b { color: var(--fg-on-light); font-weight: 600; }
+.slide--curve .chart { margin-top: 14px; }
+.slide--curve .foot { margin-top: 10px; }
+.legend { display: flex; flex-wrap: wrap; gap: 30px; margin-top: 12px; font-family: var(--f-mono); font-size: 20px; color: var(--fg-muted); letter-spacing: 0.04em; }
+.legend i { display: inline-block; width: 16px; height: 16px; border-radius: 2px; margin-right: 10px; vertical-align: -2px; }
+.promql { font-family: var(--f-code); font-size: 24px; color: var(--accent); background: var(--paper-2);
+  border: 1px solid var(--rule); border-radius: 3px; padding: 14px 20px; margin-top: 18px; display: inline-block; }
+
+/* ---------- two-layer stack (PUE vs tokens/watt) ---------- */
+.slide--layers { padding: 130px 120px 132px; display: flex; flex-direction: column; justify-content: center; }
+.slide--layers h2 { font-family: var(--f-display); font-size: 76px; font-weight: 400; line-height: 1.05; }
+.lstack { display: grid; gap: 22px; margin-top: 48px; }
+.lrow { display: grid; grid-template-columns: 330px 300px 1fr; gap: 36px; align-items: center;
+  padding: 34px 38px; border-radius: 4px; background: var(--paper-2); border-left: 8px solid var(--rule); }
+.lrow.compute { background: var(--ink); color: var(--fg-on-dark); border-left-color: var(--accent-soft); }
+.lrow .ll { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
+.lrow.compute .ll { color: var(--accent-soft); }
+.lrow .lm { font-family: var(--f-display); font-size: 74px; line-height: 1; letter-spacing: -0.02em; }
+.lrow .lm em { font-style: normal; font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.14em; text-transform: uppercase; display: block; color: var(--fg-muted); margin-top: 6px; }
+.lrow.compute .lm { color: var(--accent-soft); font-size: 56px; }
+.lrow.compute .lm em { color: var(--fg-muted-dark); }
+.lrow p { font-size: 25px; line-height: 1.36; color: var(--fg-muted); }
+.checks { list-style: none; display: grid; gap: 11px; }
+.checks li { font-family: var(--f-code); font-size: 23px; color: #cdd6d7; }
+.checks li::before { content: "[ ] "; color: var(--accent-soft); }
+
+/* ---------- numbered flow (Kepler pipeline) ---------- */
+.slide--flow { padding: 130px 110px 132px; display: flex; flex-direction: column; justify-content: center; }
+.slide--flow h2 { font-family: var(--f-display); font-size: 76px; font-weight: 400; line-height: 1.05; }
+.slide--flow .lede { font-size: 26px; color: var(--fg-muted); margin-top: 18px; max-width: 92ch; line-height: 1.4; }
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-top: 48px; }
+.flow .step { position: relative; padding: 34px 30px 36px; border: 2px solid var(--rule); border-radius: 4px; background: rgba(255,255,255,0.6); }
+.flow .step:not(:last-child)::after { content: "→"; position: absolute; right: -25px; top: 50%; transform: translateY(-50%);
+  font-size: 34px; color: var(--accent); line-height: 1; }
+.flow .sn { font-family: var(--f-mono); font-size: 20px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); }
+.flow h3 { font-family: var(--f-display); font-size: 42px; font-weight: 400; line-height: 1.08; margin-top: 12px; }
+.flow .sc { font-family: var(--f-code); font-size: 22px; color: var(--fg-muted); margin-top: 14px; line-height: 1.4; }
+.calcbar { display: grid; grid-template-columns: auto 1fr; gap: 30px; align-items: center; margin-top: 40px;
+  background: var(--ink); color: var(--fg-on-dark); border-radius: 4px; padding: 28px 34px; }
+.calcbar code { font-family: var(--f-code); font-size: 27px; color: var(--accent-soft); }
+.calcbar span { font-size: 25px; color: var(--fg-muted-dark); line-height: 1.35; }
+
+/* ---------- code ---------- */
+.slide--code { padding: 104px 104px 110px; display: grid; grid-template-columns: 1fr 800px; gap: 56px; align-items: center; }
+.slide--code h2 { font-family: var(--f-display); font-size: 66px; font-weight: 400; line-height: 1.05; grid-column: 1 / -1; align-self: end; }
+.slide--code .codewrap { background: var(--ink); border-radius: 4px; padding: 34px 38px; overflow: hidden; }
+.slide--code pre { font-family: var(--f-code); font-size: 23px; line-height: 1.46; color: #dfe6e7; white-space: pre; }
+.slide--code .k  { color: var(--accent-soft); }
+.slide--code .s  { color: #8fd0b4; }
+.slide--code .c  { color: #7d8a8c; }
+.slide--code .hl { background: rgba(240,176,64,0.16); display: block; margin: 0 -38px; padding: 0 38px; }
+.slide--code .notes-col ul { list-style: none; display: grid; gap: 24px; }
+.slide--code .notes-col li { font-size: 27px; line-height: 1.36; padding-left: 26px; border-left: 4px solid var(--accent); }
+.slide--code .notes-col li b { font-family: var(--f-code); font-size: 25px; color: var(--accent); font-weight: 400; }
+.slide--code .tagline { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-top: 34px; padding-top: 24px; border-top: 1px solid var(--rule); }
+
+/* ---------- arithmetic chain ---------- */
+.slide--chain { padding: 130px 110px 132px; display: flex; flex-direction: column; justify-content: center; }
+.slide--chain h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; line-height: 1.05; }
+.chain { display: grid; grid-template-columns: 1fr 180px 1fr 180px 1fr; align-items: stretch; margin-top: 56px; }
+.chain .arw { font-size: 46px; color: var(--accent); text-align: center; line-height: 1; align-self: center; }
+.chain .arw em { display: block; font-style: normal; font-family: var(--f-mono); font-size: 19px;
+  letter-spacing: 0.08em; color: var(--fg-muted); margin-top: 12px; text-transform: uppercase; max-width: 150px; margin-left: auto; margin-right: auto; line-height: 1.3; }
+.chain .cell { padding: 40px 36px; border-radius: 4px; background: var(--paper-2); border: 1px solid var(--rule); text-align: center;
+  display: flex; flex-direction: column; justify-content: center; }
+.chain .cell.win { background: var(--ink); color: var(--fg-on-dark); border-color: var(--ink); }
+.chain .cl { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
+.chain .cell.win .cl { color: var(--accent-soft); }
+.chain .cv { font-family: var(--f-display); font-size: 104px; line-height: 1; letter-spacing: -0.03em; margin-top: 18px; }
+.chain .cell.win .cv { color: var(--accent-soft); }
+.chain .cs { font-size: 24px; color: var(--fg-muted); margin-top: 16px; line-height: 1.35; }
+.chain .cell.win .cs { color: var(--fg-muted-dark); }
+
+/* ---------- metric + levers ---------- */
+.slide--levers { padding: 118px 118px 122px; display: flex; flex-direction: column; justify-content: center; }
+.slide--levers .top { display: grid; grid-template-columns: 480px 1fr; gap: 64px; align-items: center; }
+.slide--levers .bignum { font-family: var(--f-display); font-size: 152px; line-height: 0.9; color: var(--accent); letter-spacing: -0.035em; }
+.slide--levers .bigcap { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); margin-top: 18px; line-height: 1.5; }
+.slide--levers h2 { font-family: var(--f-display); font-size: 76px; font-weight: 400; line-height: 1.05; }
+.slide--levers .lede { font-size: 26px; color: var(--fg-muted); margin-top: 16px; line-height: 1.4; max-width: 58ch; }
+.levers { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 40px; margin-top: 44px; }
+.lever { padding-left: 28px; border-left: 5px solid var(--accent); }
+.lever b { display: block; font-size: 32px; font-weight: 600; line-height: 1.2; }
+.lever span { display: block; font-size: 24px; line-height: 1.36; color: var(--fg-muted); margin-top: 8px; }
+
+/* ---------- three-way cards ---------- */
+.slide--trio { padding: 130px 116px 132px; display: flex; flex-direction: column; justify-content: center; }
+.slide--trio h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; line-height: 1.05; }
+.slide--trio .lede { font-size: 27px; color: var(--fg-muted); margin-top: 18px; max-width: 80ch; line-height: 1.4; }
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 48px; }
+.trio .card { padding: 38px 34px; border-radius: 4px; background: var(--surface-muted); display: flex; flex-direction: column; gap: 16px; }
+.trio h3 { font-family: var(--f-display); font-size: 46px; font-weight: 400; line-height: 1.06; }
+.trio p { font-size: 25px; line-height: 1.36; color: var(--fg-muted); }
+.trio .fix { font-family: var(--f-code); font-size: 21px; line-height: 1.4; color: var(--accent); margin-top: auto;
+  padding-top: 20px; border-top: 1px solid var(--rule); }
+
+/* ---------- timeline ---------- */
+.slide--timeline { padding: 150px 110px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--timeline h2 { font-family: var(--f-display); font-size: 78px; font-weight: 400; }
+.slide--timeline .lede { font-size: 27px; color: var(--fg-muted); margin-top: 18px; max-width: 80ch; line-height: 1.4; }
+.tl { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 38px; position: relative; margin-top: 70px; }
+.tl::before { content: ""; position: absolute; top: 13px; left: 0; right: 0; height: 2px; background: var(--rule); }
+.tl li { position: relative; padding-top: 58px; }
+.tl li::before { content: ""; position: absolute; top: 0; left: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); }
+.tl .date { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.12em; color: var(--accent); display: block; margin-bottom: 14px; text-transform: uppercase; }
+.tl b { display: block; font-size: 31px; line-height: 1.25; font-weight: 600; }
+.tl p { font-size: 24px; line-height: 1.38; color: var(--fg-muted); margin-top: 12px; }
+
+/* ---------- cta with portrait ---------- */
+.slide--cta { padding: 140px 130px; display: grid; grid-template-columns: 1fr 400px; gap: 96px; align-items: center; }
+.slide--cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(980px 600px at 18% 78%, rgba(240,176,64,0.20), transparent 66%); }
+.slide--cta > * { position: relative; }
+.slide--cta h2 { font-family: var(--f-display); font-size: 92px; font-weight: 400; line-height: 1.04; max-width: 18ch; letter-spacing: -0.02em; }
+.slide--cta h2 em { font-style: italic; color: var(--accent-soft); }
+.slide--cta .ask { font-size: 30px; max-width: 48ch; line-height: 1.4; color: var(--fg-muted-dark); margin-top: 32px; }
+.slide--cta ul { list-style: none; display: grid; gap: 16px; font-family: var(--f-code); font-size: 25px; margin-top: 38px; }
+.slide--cta ul span { display: inline-block; width: 190px; color: var(--accent-soft); letter-spacing: 0.1em; text-transform: uppercase; font-size: 20px; font-family: var(--f-mono); }
+.slide--cta ul a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(240,176,64,0.55); }
+.slide--cta .thanks { font-family: var(--f-display); font-size: 46px; color: var(--accent-soft); margin-top: 42px; font-style: italic; }
+.me-col { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.me-col .portrait { width: 300px; height: 300px; border-radius: 50%; object-fit: cover;
+  border: 8px solid rgba(240,176,64,0.20); box-shadow: 0 0 0 2px var(--accent-soft); }
+.me-col .who { font-family: var(--f-display); font-size: 46px; line-height: 1.05; }
+.me-col .role { font-family: var(--f-mono); font-size: 21px; line-height: 1.45; color: var(--fg-muted-dark); letter-spacing: 0.04em; margin-top: -10px; }
+
+/* ---------- appendix / sources ---------- */
+.slide--srcs { padding: 74px 88px 78px; display: flex; flex-direction: column; justify-content: center; }
+.slide--srcs h2 { font-family: var(--f-display); font-size: 58px; font-weight: 400; margin-bottom: 30px; }
+.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 42px; font-size: 18px; line-height: 1.3; }
+.srcs li { padding-left: 22px; border-left: 3px solid var(--accent); color: var(--fg-muted); }
+.srcs li b { display: block; color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- chrome ---------- */
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-soft); z-index: 200; transition: width 180ms ease; }
+#counter { display: none; }
+#notes {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 300;
+  background: #10171a; border-top: 3px solid var(--accent-soft);
+  padding: 20px 28px 22px; max-height: 42vh; overflow-y: auto; display: none;
+  font-size: 15px; line-height: 1.55; color: #d3d7d8;
+}
+#notes.on { display: block; }
+#notes h4 { font-family: var(--f-body); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 10px; display: flex; gap: 18px; align-items: baseline; }
+#notes h4 .clock { margin-left: auto; color: #94a2a4; }
+#notes p { margin-bottom: 8px; max-width: 112ch; }
+#notes b { color: #fff; }
+#notes code { font-family: var(--f-code); color: var(--accent-soft); }
+#notes .say { border-left: 3px solid var(--accent-soft); padding-left: 12px; font-style: italic; color: #f0ece5; }
+.s-notes { display: none; }
+#help { position: fixed; bottom: 14px; left: 20px; font-family: var(--f-body); font-size: 13px; color: #77878a; z-index: 200;
+  transition: opacity 400ms ease; pointer-events: none; }
+#help.gone { opacity: 0; }
+
+/* ---------- click-through reveal ---------- */
+/* Items keep their layout space, so nothing reflows as they appear. */
+.frag { opacity: 0; transition: opacity 300ms ease, transform 300ms ease; transform: translateY(10px); }
+.frag.on { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .frag { transition: none; transform: none; } }
+
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { overflow: visible; }
+  #deck { width: auto; height: auto; }
+  #progress, #counter, #notes, #help { display: none !important; }
+  .frag { opacity: 1 !important; transform: none !important; }
+  .slide { position: relative; top: auto; left: auto; transform: none; opacity: 1 !important; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<main id="deck">
+
+<!-- 1 ..................................................................... -->
+<section class="slide on-dark slide--title">
+  <p class="eyebrow">KCD &amp; OpenInfra Days Vietnam 2026</p>
+  <h1>Watts Matter</h1>
+  <p class="prompt">$ kubectl get watts <b>--all-namespaces</b></p>
+  <p class="sub">Power- and carbon-aware scheduling for the AI-era data center.</p>
+  <footer class="meta">
+    <span class="who">Alessandro Vozza</span>
+    <span>Lovelace Engineering · Golden Kubestronaut</span>
+    <span class="spacer"></span>
+    <span>Hà Nội · 25 July 2026 · github.com/ams0/watts-matter</span>
+  </footer>
+  <div class="s-notes">
+    <p><b>Open with energy. Do not read the title out loud.</b> The prompt line does the joke for you — let the room read it.</p>
+    <p>Straight into the ladder. The first substantive thing out of your mouth should be a unit, not a thank-you.</p>
+  </div>
+</section>
+
+<!-- 2 ..................................................................... -->
+<section class="slide on-light slide--bars">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Definitions</span></div>
+  <h2>What is a watt?</h2>
+  <p class="lede"><b>1 W = 1 joule / second.</b> A rate, not an amount. Energy is what you pay for. Power is what the breaker, the feed and the thermals cap <em>right now</em>.</p>
+  <div class="bars">
+    <div class="bar frag"><span class="v">1<span class="u">W</span></span><div><span class="lab">LED bulb</span><div class="track"><div class="fill" style="width:2%"></div></div></div></div>
+    <div class="bar frag"><span class="v">20<span class="u">W</span></span><div><span class="lab">Human brain <em>— remember this number</em></span><div class="track"><div class="fill" style="width:14%"></div></div></div></div>
+    <div class="bar frag"><span class="v">700<span class="u">W</span></span><div><span class="lab">NVIDIA H100</span><div class="track"><div class="fill" style="width:32%"></div></div></div></div>
+    <div class="bar frag"><span class="v">10<span class="u">kW</span></span><div><span class="lab">8-GPU server</span><div class="track"><div class="fill" style="width:44%"></div></div></div></div>
+    <div class="bar frag"><span class="v">40<span class="u">kW</span></span><div><span class="lab">One rack</span><div class="track"><div class="fill" style="width:51%"></div></div></div></div>
+    <div class="bar frag"><span class="v">1<span class="u">GW</span></span><div><span class="lab">AI campus</span><div class="track"><div class="fill hot" style="width:100%"></div></div></div></div>
+  </div>
+  <p class="kq"><b>Nine orders of magnitude</b> from a light bulb to an AI campus — and the feed into your building is fixed.</p>
+  <p class="foot">Log scale. Bar length is log₁₀ of the rate, normalised to 1 GW.</p>
+  <div class="s-notes">
+    <p><b>~50 seconds.</b> Ground the room in the unit before anything else. A watt is a <b>rate</b> — joules per second. Energy (joules, kWh) is the bill; power (watts) is the constraint: breaker, feed and thermal limit cap the rate right now.</p>
+    <p>Walk the ladder fast, one click per rung: bulb 1 W, your brain 20 W — flag that number, you come back to it on the next slide — H100 700 W, server 10 kW, rack 40 kW, gigawatt campuses.</p>
+    <p class="say">"Nine orders of magnitude. And the one number you cannot change this quarter is the feed into your building."</p>
+  </div>
+</section>
+
+<!-- 3 ..................................................................... -->
+<section class="slide on-light slide--duo">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Definitions</span></div>
+  <h2>What is intelligence? <em style="font-style:italic;color:var(--accent)">Ask a physicist.</em></h2>
+  <p class="lede">Turning energy into ordered information. Which makes it a thermodynamic process, with a price floor — and a very long way above it.</p>
+  <div class="duo">
+    <div class="card">
+      <span class="lbl">Computation is physical</span>
+      <h3>kT · ln 2 ≈ 3 × 10⁻²¹ J</h3>
+      <p class="eg">Landauer, 1961</p>
+      <ul>
+        <li>The minimum cost of erasing one bit</li>
+        <li>Every token your cluster emits has a thermodynamic price floor</li>
+        <li>Today's inference runs many orders of magnitude above it</li>
+      </ul>
+    </div>
+    <div class="card dark">
+      <span class="lbl">The reference implementation</span>
+      <h3>20 W vs 700 W</h3>
+      <p class="eg">human brain vs NVIDIA H100</p>
+      <ul>
+        <li>The best-known intelligence runs on twenty watts</li>
+        <li>We are nowhere near any physical limit</li>
+        <li>The headroom is the whole opportunity</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>Efficiency isn't blocked by physics. It's blocked by engineering</b> — and engineering is our job.</p>
+  <div class="s-notes">
+    <p><b>~60 seconds.</b> Intelligence = turning energy into ordered information. Computation has a price floor: Landauer 1961, <code>kT ln 2</code> per bit erased, roughly 3 × 10⁻²¹ J at room temperature.</p>
+    <p><b>Do not overclaim a number here.</b> Inference runs many orders of magnitude above that floor — the point is headroom, not a precise multiple. If a physicist in the room pushes, concede the imprecision immediately and keep the direction.</p>
+    <p class="say">"The best-known intelligence we have runs on twenty watts. An H100 is seven hundred. Physics is not the blocker. Engineering is — and engineering is our job."</p>
+  </div>
+</section>
+
+<!-- 4 ..................................................................... -->
+<section class="slide on-light slide--ba">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Definitions</span></div>
+  <h2>What is a token?</h2>
+  <p class="lede">The unit of machine thought-flow: about three-quarters of a word — and every one of them is a full forward pass through the model.</p>
+  <div class="ba-grid">
+    <div class="ba-col old">
+      <span class="lbl">Parameters — stored structure</span>
+      <ul>
+        <li>The refinery equipment</li>
+        <li>Bought once, at training time (capex)</li>
+        <li>Sit in HBM: potential energy</li>
+      </ul>
+    </div>
+    <div class="ba-col new">
+      <span class="lbl">Tokens — flow</span>
+      <ul>
+        <li>The product coming off the line</li>
+        <li>Paid per unit, at inference time (opex)</li>
+        <li>Each one spends joules: kinetic energy</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>Nobody buys tokens — they buy outcomes.</b> Reasoning models burn 10–100× more tokens per answer, so tokens/watt is the proxy we can meter and <b>joules per answer</b> is the objective.</p>
+  <div class="s-notes">
+    <p><b>~55 seconds.</b> A token is roughly three-quarters of an English word, and generating each one is a full forward pass.</p>
+    <p>Parameters are stored structure — bought once at training, sitting in HBM, potential energy. Tokens are flow — paid per unit at inference, joules each. <b>This is also why MoE and quantization work:</b> fewer active parameters moved per token.</p>
+    <p>Then the caveat, and do not skip it: nobody buys tokens, they buy outcomes. Reasoning models burn 10–100× more tokens per answer. Tokens per watt is the proxy we can meter; joules per answer is the thing we actually want.</p>
+  </div>
+</section>
+
+<!-- 5 ..................................................................... -->
+<section class="slide on-dark slide--claim">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Fix the sentence</span></div>
+  <p class="kicker">Fix the sentence — "Tokens are the new oil."</p>
+  <p>Tokens are the gasoline.<br>Watts are the <b>crude</b>.<br>Your scheduler is the refinery.</p>
+  <cite>Huang, GTC 2026 — AI factories: raw material in is data and electricity, product out is tokens. Oil is an input, scarce and extracted. Tokens are an output, manufactured.</cite>
+  <div class="s-notes">
+    <p>Tokens <b>are</b> the commodity — 140 trillion a day in China alone. But the analogy is backwards: oil is an <b>input</b>, scarce and extracted. Tokens are an <b>output</b>, manufactured. Huang's own framing agrees — raw material in is data and electricity.</p>
+    <p class="say">"Tokens are the gasoline. Watts are the crude. And your scheduler is the refinery — which is the part nobody is tuning."</p>
+    <p><b>Interaction beat, do it here:</b> show of hands — who runs GPUs? Keep the hands up: who knows what their busiest pod draws in watts? The second question kills almost every hand in the room. That silence is the talk.</p>
+  </div>
+</section>
+
+<!-- 6 ..................................................................... -->
+<section class="slide on-light slide--split">
+  <div class="ref"><span class="ref-n">§ 00</span><span>The economics</span></div>
+  <div>
+    <h2>The margin squeeze</h2>
+    <p class="lede">This is a commercial argument, not a sustainability one. Two curves you don't control, moving in opposite directions.</p>
+    <div class="stats">
+      <div class="stat">
+        <span class="n">÷2</span>
+        <p><b>Token prices</b>Roughly every three months. GPU capex is already sunk — the one marginal cost you still control is energy.</p>
+      </div>
+      <div class="stat">
+        <span class="n sm">12–18<span style="font-size:0.42em"> mo</span></span>
+        <p><b>To upgrade a power feed</b>If the utility says yes at all. Singapore said no for years.</p>
+      </div>
+    </div>
+    <div class="metricstrip">
+      <span class="l">The metric</span>
+      <div class="m">tokens / $ / watt</div>
+    </div>
+  </div>
+  <div class="chart">
+    <svg viewBox="0 0 900 620" role="img" aria-label="Two diverging curves: revenue per token falling steeply over time while data center power demand rises, with the gap between them labelled as the margin.">
+      <g stroke="#dcdad2" stroke-width="1">
+        <line x1="90" y1="80"  x2="860" y2="80"/>
+        <line x1="90" y1="190" x2="860" y2="190"/>
+        <line x1="90" y1="300" x2="860" y2="300"/>
+        <line x1="90" y1="410" x2="860" y2="410"/>
+      </g>
+      <line x1="90" y1="500" x2="860" y2="500" stroke="#131a1d" stroke-width="2"/>
+      <line x1="90" y1="60"  x2="90"  y2="500" stroke="#131a1d" stroke-width="2"/>
+
+      <polyline fill="none" stroke="#b3402f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"
+        points="90,90 190,180 290,262 390,330 490,384 590,424 690,452 790,472 860,482"/>
+      <polyline fill="none" stroke="#2f8f6f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"
+        points="90,452 190,436 290,412 390,380 490,338 590,288 690,228 790,158 860,98"/>
+
+      <g font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="23" font-weight="600">
+        <text x="182" y="128" fill="#b3402f">REVENUE PER TOKEN</text>
+        <text x="856" y="82" fill="#2f8f6f" text-anchor="end">DATA CENTER POWER DEMAND</text>
+      </g>
+      <g font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="21" fill="#5f6b6e">
+        <text x="90"  y="536">2024</text>
+        <text x="475" y="536" text-anchor="middle">2027</text>
+        <text x="860" y="536" text-anchor="end">2030</text>
+        <text x="475" y="580" text-anchor="middle" font-size="22" fill="#131a1d" letter-spacing="1.4">THE GAP IS YOUR MARGIN — AND IT IS CLOSING</text>
+      </g>
+      <line x1="590" y1="288" x2="590" y2="424" stroke="#94570a" stroke-width="3" stroke-dasharray="8 7"/>
+      <text x="606" y="364" font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="21" font-weight="600" fill="#94570a">the squeeze</text>
+    </svg>
+    <p class="foot">Shapes, not forecasts. IEA: data centers reach ~945 TWh by 2030 — twice 2024, more than Japan consumes today.</p>
+  </div>
+  <div class="s-notes">
+    <p><b>Commercial framing, not sustainability.</b> This is the slide that makes a CFO care, and it is the reason the rest of the talk gets funded.</p>
+    <p>Token revenue halves roughly every quarter — a curve you do not control. GPU capex is sunk. The one marginal cost you still control is energy. And on the other side there is a hard ceiling: the power feed, twelve to eighteen months to upgrade, assuming the utility says yes. Singapore said no for years.</p>
+    <p class="say">"Between a price that halves and a feed that doesn't grow sits exactly one lever: how efficiently you turn watts into tokens."</p>
+    <p>Be scrupulous: the curves are <b>shapes</b>, not forecasts. The only hard number on the slide is the IEA one.</p>
+  </div>
+</section>
+
+<!-- 7 ..................................................................... -->
+<section class="slide on-light slide--ba">
+  <div class="ref"><span class="ref-n">§ 00</span><span>The gap</span></div>
+  <h2>The scheduler is blind to all of it</h2>
+  <p class="lede">Two views of the same machine, and only one of them is wired into admission decisions.</p>
+  <div class="ba-grid">
+    <div class="ba-col old">
+      <span class="lbl">kube-scheduler sees</span>
+      <ul>
+        <li><b>cpu · memory</b></li>
+        <li>Fungible abstractions, designed in 2015</li>
+        <li>Additive, per-node, time-invariant</li>
+      </ul>
+    </div>
+    <div class="ba-col new">
+      <span class="lbl">The data center knows</span>
+      <ul>
+        <li><b>watts · heat · price · carbon</b></li>
+        <li>Shared caps, time-varying, physical</li>
+        <li>Overcommit a breaker and it <em>opens</em></li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>100 W</b> is what an idle H100 draws. <b>60%</b> of peak power is what a GPU pulls at 30% busy. Low utilization is the most expensive way to run hardware.</p>
+  <div class="s-notes">
+    <p><b>The blindness is structural, in three ways. Name all three.</b></p>
+    <p><b>(1) Shared physical cap.</b> CPU and memory are per-node and additive. Watts are shared across a rack behind one breaker — overcommit it and it <b>opens</b>, and every node behind it goes down at once. The scheduler has no concept for this.</p>
+    <p><b>(2) Time.</b> Spot prices swing three to ten times daily. Vietnam's hydro seasonality moves the grid mix across the year. A scheduler decision is time-invariant; the cost of it is not.</p>
+    <p><b>(3) Non-linear idle floor.</b> An idle H100 still burns ~100 W, and at 30% utilization you are paying ~60% of peak power. So two GPUs at 40% draw more total power than one at 80% doing the same work. Packing is not a rounding error.</p>
+  </div>
+</section>
+
+<!-- 8 ..................................................................... -->
+<section class="slide on-light slide--layers">
+  <div class="ref"><span class="ref-n">§ 00</span><span>The gap</span></div>
+  <h2>The metric your facility can't give you</h2>
+  <div class="lstack">
+    <div class="lrow">
+      <span class="ll">Facility layer</span>
+      <span class="lm">1.57<em>PUE</em></span>
+      <p>How efficiently power reaches the servers. Says nothing whatsoever about what the compute does with it. PUE stops at the server intake.</p>
+    </div>
+    <div class="lrow compute">
+      <span class="ll">Compute layer</span>
+      <span class="lm">tokens / watt<em>the missing metric</em></span>
+      <ul class="checks">
+        <li>GPU telemetry</li>
+        <li>workload-scheduler visibility</li>
+        <li>per-workload power attribution</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq">That's not a facilities problem. <b>That's a Kubernetes problem</b> — and it is solvable with three open-source projects.</p>
+  <div class="s-notes">
+    <p>PUE is a good metric that answers a different question. It stops at the server intake: how much of the power drawn from the grid reaches the machines. A perfect 1.0 tells you nothing about whether the GPUs behind it are idle.</p>
+    <p>Tokens per watt measures the compute layer, and it needs exactly three things: GPU telemetry, scheduler visibility, and per-workload power attribution. Read that list back and land the line — <b>that list is a Kubernetes problem</b>, which is why this is a KCD talk and not a facilities talk.</p>
+    <p>Say explicitly that PUE and tokens/watt are <b>complements</b>. Someone in this room owns a PUE number and you are not attacking it.</p>
+  </div>
+</section>
+
+<!-- 9 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">01</span>
+  <h2>Measure</h2>
+  <p class="lede">You cannot schedule what you cannot see. Watts per pod, exported like any other metric.</p>
+  <div class="s-notes">
+    <p>Three moves in this talk: <b>measure, shift, pack</b>. Say all three now so the room has the map, then take them in order.</p>
+    <p>First, measure. And be blunt that this move alone — changing nothing else — is where most teams find their first double-digit win.</p>
+  </div>
+</section>
+
+<!-- 10 .................................................................... -->
+<section class="slide on-light slide--flow">
+  <div class="ref"><span class="ref-n">§ 01</span><span>Measure</span></div>
+  <h2>Measure: Kepler</h2>
+  <p class="lede">Kubernetes Efficient Power Level Exporter · CNCF sandbox since 2023 · deploys as a DaemonSet with a Helm chart.</p>
+  <div class="flow">
+    <div class="step"><span class="sn">01</span><h3>Hardware meters</h3><p class="sc">RAPL · DCGM · IPMI</p></div>
+    <div class="step"><span class="sn">02</span><h3>Attribution</h3><p class="sc">power → processes</p></div>
+    <div class="step"><span class="sn">03</span><h3>Aggregation</h3><p class="sc">processes → pods</p></div>
+    <div class="step"><span class="sn">04</span><h3>Prometheus</h3><p class="sc">metrics + Grafana</p></div>
+  </div>
+  <div class="calcbar">
+    <code>rate(kepler_container_joules_total) × tariff</code>
+    <span>= showback in your own currency, per team, with no new billing system.</span>
+  </div>
+  <p class="kq"><b>Caveat, say it now:</b> cloud VMs usually lack RAPL, so you get an estimation fallback. Full fidelity is on bare metal — which is what this room runs.</p>
+  <div class="s-notes">
+    <p>Kepler reads hardware power meters — RAPL for CPU and DRAM, DCGM for GPUs, IPMI for the platform — attributes power to processes, rolls those up to pods, and exports Prometheus metrics. Deployment is a DaemonSet and a Helm chart. That is the whole install story.</p>
+    <p><b>Say the caveat here, not in the Q&amp;A.</b> Cloud VMs generally do not expose RAPL, so you fall back to estimation. Bare metal gives full fidelity — and an OpenInfra room is disproportionately bare metal, so this is good news for them specifically.</p>
+    <p>The multiplication line is the one people write down: joules rate times tariff equals showback per team, in dong or dollars.</p>
+  </div>
+</section>
+
+<!-- 11 .................................................................... -->
+<section class="slide on-light slide--curve">
+  <div class="ref"><span class="ref-n">§ 01</span><span>Measure</span></div>
+  <h2>What visibility looks like</h2>
+  <p class="promql">sum(rate(kepler_container_joules_total[5m])) by (namespace)</p>
+  <div class="chart">
+    <svg viewBox="0 0 1600 560" role="img" aria-label="Stacked area chart of cluster power draw by namespace over 24 hours, roughly flat at seven kilowatts, with notebooks holding a constant band day and night.">
+      <g stroke="#dcdad2" stroke-width="1">
+        <line x1="120" y1="470" x2="1540" y2="470"/>
+        <line x1="120" y1="367" x2="1540" y2="367"/>
+        <line x1="120" y1="265" x2="1540" y2="265"/>
+        <line x1="120" y1="162" x2="1540" y2="162"/>
+        <line x1="120" y1="60"  x2="1540" y2="60"/>
+      </g>
+
+      <polygon fill="#6b7a7d" points="120,439 297,439 475,439 652,439 830,439 1007,439 1185,439 1362,439 1540,439 1540,470 120,470"/>
+      <polygon fill="#b3402f" points="120,393 297,393 475,393 652,393 830,393 1007,393 1185,393 1362,393 1540,393 1540,439 120,439"/>
+      <polygon fill="#cbbd94" points="120,383 297,383 475,378 652,332 830,316 1007,321 1185,347 1362,373 1540,383 1540,393 120,393"/>
+      <polygon fill="#94570a" points="120,332 297,337 475,316 652,168 830,101 1007,116 1185,173 1362,260 1540,321 1540,383 1362,373 1185,347 1007,321 830,316 652,332 475,378 297,383 120,383"/>
+      <polygon fill="#2f8f6f" points="120,116 297,111 475,122 652,116 830,80 1007,91 1185,132 1362,127 1540,116 1540,321 1362,260 1185,173 1007,116 830,101 652,168 475,316 297,337 120,332"/>
+
+      <line x1="120" y1="470" x2="1540" y2="470" stroke="#131a1d" stroke-width="2"/>
+      <line x1="120" y1="40"  x2="120"  y2="470" stroke="#131a1d" stroke-width="2"/>
+
+      <g font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="21" fill="#5f6b6e" text-anchor="end">
+        <text x="104" y="477">0</text>
+        <text x="104" y="374">2 kW</text>
+        <text x="104" y="272">4 kW</text>
+        <text x="104" y="169">6 kW</text>
+        <text x="104" y="67">8 kW</text>
+      </g>
+      <g font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="21" fill="#5f6b6e" text-anchor="middle">
+        <text x="120"  y="504">00:00</text>
+        <text x="475"  y="504">06:00</text>
+        <text x="830"  y="504">12:00</text>
+        <text x="1185" y="504">18:00</text>
+        <text x="1540" y="504">24:00</text>
+      </g>
+      <line x1="120" y1="393" x2="1540" y2="393" stroke="#fcfbf8" stroke-width="2" stroke-dasharray="6 6"/>
+      <text x="1524" y="425" font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="23" font-weight="600" fill="#fcfbf8" text-anchor="end">notebooks — 900 W, all night, every night</text>
+    </svg>
+  </div>
+  <div class="legend">
+    <span><i style="background:#2f8f6f"></i>ml-train</span>
+    <span><i style="background:#94570a"></i>inference</span>
+    <span><i style="background:#cbbd94"></i>ci</span>
+    <span><i style="background:#b3402f"></i>notebooks</span>
+    <span><i style="background:#6b7a7d"></i>platform</span>
+  </div>
+  <p class="foot">Illustrative shape — replace with a live capture from your own cluster before you present this.</p>
+  <div class="s-notes">
+    <p><b>Point at the panel, do not narrate the query.</b> Watts per namespace, live. Multiply by tariff and it is showback per team.</p>
+    <p>Then point at the red band specifically: notebooks, flat, nine hundred watts, right through the night. Nobody is looking at them. <b>The team whose forgotten notebooks cost thousands a month finds the scale-to-zero button within a week of seeing this panel.</b></p>
+    <p class="say">"This dashboard changes organizations faster than any policy document. You don't have to mandate anything — you just have to show people their own number."</p>
+    <p><b>Replace this with a real screenshot from your cluster before the talk.</b> A live capture is worth ten times the illustrative version, and the room can tell the difference.</p>
+  </div>
+</section>
+
+<!-- 12 .................................................................... -->
+<section class="slide on-light slide--curve">
+  <div class="ref"><span class="ref-n">§ 01</span><span>Measure</span></div>
+  <h2>My favourite screenshot</h2>
+  <p class="lede">GPU 3 · <b>DCGM_FI_DEV_POWER_USAGE</b> vs <b>DCGM_FI_DEV_GPU_UTIL</b> · 24 hours. This GPU is allocated to a pod.</p>
+  <div class="chart">
+    <svg viewBox="0 0 1600 480" role="img" aria-label="Twenty-four hour chart showing GPU power flat at ninety-five watts while GPU utilization stays flat at zero percent.">
+      <g stroke="#dcdad2" stroke-width="1">
+        <line x1="140" y1="100" x2="1520" y2="100"/>
+        <line x1="140" y1="200" x2="1520" y2="200"/>
+        <line x1="140" y1="300" x2="1520" y2="300"/>
+      </g>
+      <line x1="140" y1="400" x2="1520" y2="400" stroke="#131a1d" stroke-width="2"/>
+      <line x1="140" y1="50"  x2="140"  y2="400" stroke="#131a1d" stroke-width="2"/>
+
+      <line x1="140" y1="346" x2="1520" y2="346" stroke="#94570a" stroke-width="7" stroke-linecap="round"/>
+      <line x1="140" y1="396" x2="1520" y2="396" stroke="#b3402f" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round"/>
+
+      <circle cx="140" cy="346" r="9" fill="#94570a"/>
+      <text x="168" y="322" font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="30" font-weight="700" fill="#94570a">95 W — power drawn, flat, all day</text>
+      <text x="168" y="438" font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="30" font-weight="700" fill="#b3402f">0 % — utilization, flat, all day</text>
+
+      <g font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="21" fill="#5f6b6e" text-anchor="end">
+        <text x="124" y="107">300 W</text>
+        <text x="124" y="207">200 W</text>
+        <text x="124" y="307">100 W</text>
+        <text x="124" y="407">0</text>
+      </g>
+      <g font-family="'Be Vietnam Pro', Arial, sans-serif" font-size="21" fill="#5f6b6e" text-anchor="middle">
+        <text x="140"  y="470">00:00</text>
+        <text x="830"  y="470">12:00</text>
+        <text x="1520" y="470">24:00</text>
+      </g>
+      <text x="1508" y="90" font-family="Newsreader, Georgia, serif" font-size="52" fill="#131a1d" text-anchor="end">Allocated. Idle.</text>
+    </svg>
+  </div>
+  <p class="kq"><b>Burning crude. Refining nothing.</b></p>
+  <p class="foot">Illustrative shape — replace with a live capture. Yours will look worse.</p>
+  <div class="s-notes">
+    <p><b>Slow down. This is the image the room takes home.</b></p>
+    <p>State the three facts flatly, in this order: this GPU is <b>allocated</b> to a pod. Utilization: <b>zero</b>. Power: <b>ninety-five watts, flat, all day</b>.</p>
+    <p class="say">"Burning crude. Refining nothing."</p>
+    <p><b>Then one full second of silence.</b> Do not fill it. Do not advance. The silence is what makes them remember it, and you call back to this image on the PACK slide.</p>
+  </div>
+</section>
+
+<!-- 13 .................................................................... -->
+<section class="slide on-light slide--ba">
+  <div class="ref"><span class="ref-n">§ 01</span><span>Measure</span></div>
+  <h2>Kepler, rewritten <span style="font-family:var(--f-mono);font-size:26px;letter-spacing:0.12em;color:var(--accent);vertical-align:middle">· 30.06.2026</span></h2>
+  <p class="lede">News from three weeks ago, and the reason you should look again if you tried Kepler and bounced off it.</p>
+  <div class="ba-grid">
+    <div class="ba-col old">
+      <span class="lbl">Before</span>
+      <ul>
+        <li>eBPF probes + ML estimation</li>
+        <li>Required <b>CAP_BPF</b> + <b>CAP_SYS_ADMIN</b></li>
+        <li>A hard no in multi-tenant clusters</li>
+        <li>Estimates spiked away from reality</li>
+      </ul>
+    </div>
+    <div class="ba-col new">
+      <span class="lbl">After</span>
+      <ul>
+        <li>Plain <b>/proc</b> and <b>/sys</b>, read-only</li>
+        <li>No elevated privileges at all</li>
+        <li>Measured node power, attributed by CPU time</li>
+        <li><b>node_cpu_watts</b> tracks IPMI ground truth</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>They ripped out the fashionable technology because the boring one was more correct.</b> Validated old-vs-new against IPMI at CERN; attribution gap ≈ 0 W at Red Hat.</p>
+  <div class="s-notes">
+    <p>Old Kepler was clever: eBPF probes plus an ML power model. Two problems. The privileged capabilities were a hard no for anyone running multi-tenant, and the estimates spiked away from reality under load.</p>
+    <p>The rewrite reads <code>/proc</code> and <code>/sys</code> read-only, needs no privileges, and does proportional attribution of <b>measured</b> node power rather than modelling it. <code>node_cpu_watts</code> tracks IPMI ground truth. Validation came from CERN and Red Hat.</p>
+    <p class="say">"They ripped out the fashionable technology because the boring one was more correct."</p>
+    <p><b>Deliver that line dry and move on.</b> It gets a laugh from exactly the people you want laughing. Source: the CNCF blog, 30 June 2026.</p>
+  </div>
+</section>
+
+<!-- 14 .................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">02</span>
+  <h2>Shift</h2>
+  <p class="lede">Batch work needs to finish, not to start at 2 PM. Flexibility is stored value.</p>
+  <div class="s-notes">
+    <p>Second move: shift. The premise is one sentence — <b>workloads are not equally urgent</b>, and your scheduler currently treats them as if they were.</p>
+    <p>Everything in this section is stock upstream Kubernetes. Say that early; the room is braced for a vendor pitch.</p>
+  </div>
+</section>
+
+<!-- 15 .................................................................... -->
+<section class="slide on-light slide--duo">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Shift</span></div>
+  <h2>Power caps and time windows</h2>
+  <p class="lede">Two upstream projects, no forks, no custom scheduler. One controls admission against a physical cap; the other controls scale against a signal.</p>
+  <div class="duo">
+    <div class="card dark">
+      <span class="lbl">Admission</span>
+      <h3>Kueue</h3>
+      <p class="eg">quota denominated in watts</p>
+      <ul>
+        <li>Jobs request watts like any extended resource</li>
+        <li>Admission never trips the breaker — by construction</li>
+        <li>A cron patch widens the batch envelope at 22:00</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="lbl">Scale</span>
+      <h3>KEDA</h3>
+      <p class="eg">carbon intensity is just a signal</p>
+      <ul>
+        <li>Scale backfills up when the grid is clean</li>
+        <li>Electricity Maps covers Vietnam</li>
+        <li>Swap the metric for a price signal — same pattern</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq">Day tariff / night tariff, commonly a <b>3× spread</b>. DeepSeek's day-inference, night-training flip was, at its core, a scheduling decision.</p>
+  <div class="s-notes">
+    <p><b>Kueue:</b> denominate quota in <b>watts</b>. Worked example — a 40 kW rack, 25 kW to inference, 15 kW to batch; a CronJob patches batch to 30 kW at 22:00. That is time-of-use admission control in about thirty lines of YAML, and the receipt is on the next slide.</p>
+    <p><b>KEDA:</b> carbon intensity as a scale signal. Microsoft ships a carbon-aware operator, so this is off-the-shelf, not a research project.</p>
+    <p>The arithmetic to hold in your head: 100 GPU-hours ≈ 70 kWh at the GPUs, roughly double at the wall. With a 3× day/night spread, that is one third the cost at night. The full version is three slides away.</p>
+    <p>The DeepSeek line is the credibility anchor — a widely-reported efficiency story that was, underneath, scheduling.</p>
+  </div>
+</section>
+
+<!-- 16 .................................................................... -->
+<section class="slide on-light slide--code">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Shift</span></div>
+  <h2>Power as quota: 30 lines of YAML</h2>
+  <div class="notes-col">
+    <ul>
+      <li>Jobs request watts like any <b>extended resource</b> — no scheduler plugin, no fork.</li>
+      <li>Admission fits the breaker <b>by construction</b>, not by alerting after the fact.</li>
+      <li>A CronJob patches <b>nominalQuota</b> to 30000 at 22:00 — that is the entire night-window mechanism.</li>
+    </ul>
+    <p class="tagline">time-of-use admission control · stock Kueue · composes with PyTorchJob, JobSet, anything</p>
+  </div>
+  <div class="codewrap">
+<pre><span class="k">apiVersion</span>: kueue.x-k8s.io/v1beta1
+<span class="k">kind</span>: ClusterQueue
+<span class="k">metadata</span>:
+  <span class="k">name</span>: batch-power-capped
+<span class="k">spec</span>:
+  <span class="k">resourceGroups</span>:
+  - <span class="k">coveredResources</span>:
+    - nvidia.com/gpu
+<span class="hl">    - power.acme.io/watts
+</span>    <span class="k">flavors</span>:
+    - <span class="k">name</span>: gpu-nodes
+      <span class="k">resources</span>:
+      - <span class="k">name</span>: nvidia.com/gpu
+        <span class="k">nominalQuota</span>: <span class="s">16</span>
+      - <span class="k">name</span>: power.acme.io/watts
+<span class="hl">        <span class="k">nominalQuota</span>: <span class="s">15000</span>  <span class="c"># daytime envelope</span></span></pre>
+  </div>
+  <div class="s-notes">
+    <p><b>Give them the receipt, but read nothing aloud.</b> Point at three lines only.</p>
+    <p>One: <code>coveredResources</code> includes a watts extended resource alongside the GPU. Two: <code>nominalQuota: 15000</code> — that is the daytime envelope, fifteen kilowatts. Three: jobs request watts exactly the way they request GPUs.</p>
+    <p>Then the mechanism in one sentence: a CronJob patches that number to 30000 at 22:00, and the night window exists.</p>
+    <p class="say">"Stock Kueue. No forks, no custom scheduler. It composes with PyTorchJob, JobSet, whatever you already run."</p>
+    <p>Full manifests are in the repo — point at the QR on the closing slide rather than reading YAML at people.</p>
+  </div>
+</section>
+
+<!-- 17 .................................................................... -->
+<section class="slide on-light slide--code">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Shift</span></div>
+  <h2>Carbon is just a signal: KEDA</h2>
+  <div class="notes-col">
+    <ul>
+      <li><b>min 0 / max 20</b> — scale to zero when the grid is dirty.</li>
+      <li>The query <b>inverts</b> carbon intensity, so cleaner grid means bigger number means more replicas.</li>
+      <li><b>avg_over_time[30m]</b> smooths the signal; <b>cooldownPeriod</b> stops the accordion.</li>
+    </ul>
+    <p class="tagline">grid gCO₂/kWh from Electricity Maps · Vietnam is covered · swap the metric for a price signal</p>
+  </div>
+  <div class="codewrap">
+<pre><span class="k">apiVersion</span>: keda.sh/v1alpha1
+<span class="k">kind</span>: ScaledObject
+<span class="k">metadata</span>:
+  <span class="k">name</span>: backfill-carbon-aware
+<span class="k">spec</span>:
+  <span class="k">scaleTargetRef</span>:
+    <span class="k">name</span>: embedding-backfill
+<span class="hl">  <span class="k">minReplicaCount</span>: <span class="s">0</span>
+  <span class="k">maxReplicaCount</span>: <span class="s">20</span>
+</span>  <span class="k">cooldownPeriod</span>: <span class="s">600</span>
+  <span class="k">triggers</span>:
+  - <span class="k">type</span>: prometheus
+    <span class="k">metadata</span>:
+<span class="hl">      <span class="k">query</span>: 400 - avg_over_time(grid_co2_g_kwh[30m])
+</span>      <span class="k">threshold</span>: <span class="s">"100"</span></pre>
+  </div>
+  <div class="s-notes">
+    <p><b>Second receipt. Same discipline — point, don't read.</b></p>
+    <p>Point at <code>minReplicaCount: 0</code> and <code>max: 20</code> — scale to zero when the grid is dirty. Then the query: it subtracts carbon intensity from a constant, so a cleaner grid produces a bigger number and more replicas. Then <code>avg_over_time[30m]</code> is the smoothing and <code>cooldownPeriod: 600</code> is the anti-flap.</p>
+    <p>Mention Microsoft's <code>carbon-aware-keda-operator</code> for people who want zero assembly.</p>
+    <p class="say">"The same pattern works for a price signal. Swap the metric, keep the shape. Carbon and money point the same direction more often than people expect."</p>
+  </div>
+</section>
+
+<!-- 18 .................................................................... -->
+<section class="slide on-light slide--chain">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Shift</span></div>
+  <h2>The arithmetic of when</h2>
+  <div class="chain">
+    <div class="cell frag">
+      <span class="cl">The job, at the GPUs</span>
+      <div class="cv">70<span style="font-size:0.4em"> kWh</span></div>
+      <p class="cs">100 GPU-hours × 700 W</p>
+    </div>
+    <div class="arw frag">→<em>host + cooling</em></div>
+    <div class="cell frag">
+      <span class="cl">The job, at the wall</span>
+      <div class="cv">140<span style="font-size:0.4em"> kWh</span></div>
+      <p class="cs">× ~2 for host power and cooling</p>
+    </div>
+    <div class="arw frag">→<em>run it at 02:00</em></div>
+    <div class="cell win frag">
+      <span class="cl">Same job, same tokens</span>
+      <div class="cv">⅓</div>
+      <p class="cs">the cost, at a 3× day/night spread</p>
+    </div>
+  </div>
+  <p class="kq"><b>Nothing about the job changed. Only when.</b></p>
+  <div class="s-notes">
+    <p><b>Slow down here — this is the slide people repeat to their manager.</b> One click per box.</p>
+    <p>100 GPU-hours at 700 W is 70 kWh at the GPUs. Roughly double that at the wall once you count host power and cooling — call it 140. With a 3× day/night spread, which is common on spot markets, the identical job at two in the morning costs a third.</p>
+    <p class="say">"Nothing about the job changed. Only when."</p>
+    <p><b>Pause after that line.</b> It is the thesis of the whole SHIFT section compressed into six words.</p>
+  </div>
+</section>
+
+<!-- 19 .................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">03</span>
+  <h2>Pack</h2>
+  <p class="lede">Every point of tokens per watt is capacity you sell without touching the power feed.</p>
+  <div class="s-notes">
+    <p>Third move: pack. <b>This is where the capacity actually is</b>, and where a provider in this room makes money in weeks rather than the twelve to eighteen months a feed upgrade takes.</p>
+  </div>
+</section>
+
+<!-- 20 .................................................................... -->
+<section class="slide on-light slide--levers">
+  <div class="ref"><span class="ref-n">§ 03</span><span>Pack</span></div>
+  <div class="top">
+    <div>
+      <div class="bignum">10–40%</div>
+      <p class="bigcap">Real-world GPU utilization<br>reported across multiple vendors</p>
+    </div>
+    <div>
+      <h2>Pack: tokens per watt</h2>
+      <p class="lede">Four levers, in order of effort. The first one is free and you can do it on Monday.</p>
+    </div>
+  </div>
+  <div class="levers">
+    <div class="lever frag"><b>Kill the zero-percent club</b><span>Allocated, idle GPUs — free capacity, zero risk. This is the flatline from twelve slides ago.</span></div>
+    <div class="lever frag"><b>Fractional GPUs (MIG)</b><span>Seven small services packed on one GPU, not seven GPUs at 10%.</span></div>
+    <div class="lever frag"><b>Bin-pack, don't spread</b><span>MostAllocated scoring — so empty nodes go <em>truly</em> empty.</span></div>
+    <div class="lever frag"><b>Turn empty nodes off</b><span>Karpenter consolidation — an idle node is 300 W of nothing.</span></div>
+  </div>
+  <p class="kq">Two GPUs at 40% draw more total power than one at 80% doing the same work. <b>You pay full price — in dollars and in watts — for part-time refining.</b></p>
+  <div class="s-notes">
+    <p>Industry numbers from multiple vendors put real GPU utilization between 10 and 40 percent. Not a strawman — that is the reported middle of the market.</p>
+    <p>The physical fact underneath: two GPUs at 40% draw more total watts than one at 80% for the same work, because of the idle floor. So packing is not hygiene, it is capacity.</p>
+    <p><b>Callback:</b> when you reveal the first lever, point back at the flatline. "That GPU. That is lever one, and it costs you nothing."</p>
+    <p><b>For the providers in the room:</b> tokens/watt gains are sellable capacity in weeks. A feed upgrade is twelve to eighteen months and a conversation with a utility. Say that explicitly — it is the commercial close of the technical half.</p>
+  </div>
+</section>
+
+<!-- 21 .................................................................... -->
+<section class="slide on-light slide--trio">
+  <div class="ref"><span class="ref-n">§ 03</span><span>Failure modes</span></div>
+  <h2>How this bites you</h2>
+  <p class="lede">Three ways power-aware scheduling goes wrong. Learn them here, not in production.</p>
+  <div class="trio">
+    <div class="card">
+      <h3>Thermal throttling</h3>
+      <p>Packing concentrates heat. A throttled GPU pays full power for reduced throughput — the exact anti-goal.</p>
+      <p class="fix">watch DCGM temp + throttle reasons · hot chassis positions are placement signals</p>
+    </div>
+    <div class="card">
+      <h3>Queue starvation</h3>
+      <p>Tight envelopes plus long queues starve low-priority jobs forever, and nobody notices until someone complains.</p>
+      <p class="fix">Kueue priorities · alert on pending-workload age</p>
+    </div>
+    <div class="card">
+      <h3>Oscillation</h3>
+      <p>Noisy carbon and price signals make the cluster breathe like an accordion, and you pay for every cold start.</p>
+      <p class="fix">smooth over 30 min · cooldowns · hysteresis (up &lt;250, down &gt;350)</p>
+    </div>
+  </div>
+  <p class="kq"><b>These three are your practitioner credibility.</b> A talk that only lists wins is a vendor talk.</p>
+  <div class="s-notes">
+    <p><b>One minute, three modes.</b> This slide is why they trust the previous fifteen.</p>
+    <p><b>Throttling</b> is the anti-goal made concrete: full power, less throughput. It is the one failure that makes your tokens/watt number worse while looking like success on a utilization dashboard.</p>
+    <p><b>Starvation</b> is a capacity conversation backed by data — when low-priority work never lands, that is your evidence for more capacity, not a reason to abandon the envelope.</p>
+    <p><b>Oscillation</b>: smooth, cooldown, hysteresis. Give the actual asymmetric thresholds — it signals you have run this.</p>
+  </div>
+</section>
+
+<!-- 22 .................................................................... -->
+<section class="slide on-light slide--duo">
+  <div class="ref"><span class="ref-n">§ 03</span><span>Contribute</span></div>
+  <h2>This needs you — specifically you</h2>
+  <p class="lede">Two doors, both open today, both wanting exactly the people in this room.</p>
+  <div class="duo">
+    <div class="card dark">
+      <span class="lbl">Kepler needs GPU testers</span>
+      <h3>That is this room</h3>
+      <ul>
+        <li>GPU power monitoring is still behind an experimental flag</li>
+        <li>Maintainers are asking for end users running real AI/ML workloads to validate it</li>
+        <li>Also wanted: VM power-model training · accuracy validation against IPMI</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="lbl">Env Sustainability TCG</span>
+      <h3>Come say hi, I'll walk you in</h3>
+      <p class="eg">ocgroups.dev/cncf/group/env · #tcg-environmental-sustainability</p>
+      <ul>
+        <li>CNCF's sustainability group, rebooted as a Technical Community Group</li>
+        <li>Open to everyone, twice a month, EMEA/APAC-friendly slot</li>
+        <li>I served as its tech lead</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq">Cloud Native Sustainability Month, the group's global event series, runs yearly. <b>Your KCD talk could be next.</b></p>
+  <div class="s-notes">
+    <p><b>~30 seconds, and make it personal.</b> The Kepler team explicitly asked for AI/ML end users to test the experimental GPU power monitoring flag. Land it: "that is this room."</p>
+    <p>Then the community door. The Environmental Sustainability group, formerly a TAG, rebooted as a TCG on Open Community Groups, meets twice a month with a slot that genuinely works from Hanoi — say that, because the usual objection is timezone.</p>
+    <p><b>Say that you were its tech lead.</b> It is credibility and an invitation in the same sentence, and it is the difference between a link on a slide and someone actually showing up.</p>
+  </div>
+</section>
+
+<!-- 23 .................................................................... -->
+<section class="slide on-light slide--timeline">
+  <div class="ref"><span class="ref-n">§ 04</span><span>The plan</span></div>
+  <h2>Monday morning</h2>
+  <p class="lede">Four weeks, in order, each one shippable on its own. Do not do them in parallel.</p>
+  <ul class="tl">
+    <li>
+      <span class="date">Week 1</span>
+      <b>Deploy Kepler. Measure.</b>
+      <p>Change nothing else. Let the dashboard do the politics for you.</p>
+    </li>
+    <li>
+      <span class="date">Week 2</span>
+      <b>Reclaim the idle GPUs</b>
+      <p>Free capacity, zero risk, and the fastest number you will ever report upward.</p>
+    </li>
+    <li>
+      <span class="date">Week 3</span>
+      <b>Cap batch in watts</b>
+      <p>A power-denominated Kueue quota plus a night window via a CronJob patch.</p>
+    </li>
+    <li>
+      <span class="date">Week 4</span>
+      <b>Wire a carbon signal into KEDA</b>
+      <p>Smooth it over 30 minutes. Add cooldowns. Add hysteresis. Then leave it alone.</p>
+    </li>
+  </ul>
+  <div class="s-notes">
+    <p><b>The close starts here.</b> Read the four weeks quickly — the value is that it is short, ordered, and obviously doable.</p>
+    <p>Emphasise week 1: <b>change nothing</b>. The most common failure is a team that deploys Kepler and immediately starts capping things, then cannot tell which change did what.</p>
+    <p class="say">"Token prices keep halving. The power feed will not grow. Between those two curves sits your scheduler — blind today, teachable this week."</p>
+  </div>
+</section>
+
+<!-- 24 .................................................................... -->
+<section class="slide on-dark slide--cta">
+  <div>
+    <h2>Tokens are the product.<br>Watts are the crude.<br><em>Go tune your refinery.</em></h2>
+    <p class="ask">Manifests, dashboards and the full Kueue and KEDA examples are in the repo. Take them, break them, send a PR.</p>
+    <ul>
+      <li><span>Repo</span><a href="https://github.com/ams0/watts-matter">github.com/ams0/watts-matter</a></li>
+      <li><span>Kepler</span><a href="https://sustainable-computing.io">sustainable-computing.io</a></li>
+      <li><span>TCG</span><a href="https://ocgroups.dev/cncf/group/env">ocgroups.dev/cncf/group/env</a></li>
+    </ul>
+    <p class="thanks">Cảm ơn các bạn rất nhiều!</p>
+  </div>
+  <div class="me-col">
+    <img class="portrait" src="alessandro-vozza.jpg" alt="Alessandro Vozza">
+    <span class="who">Alessandro Vozza</span>
+    <span class="role">Lovelace Engineering<br>Golden Kubestronaut<br>Amsterdam · @ams0</span>
+  </div>
+  <div class="s-notes">
+    <p><b>Land the triple, pause, then thank them in Vietnamese.</b> Practise the phrase out loud beforehand — say it once, cleanly, and do not apologise for the accent.</p>
+    <p class="say">"Tokens are the product. Watts are the crude. Go tune your refinery."</p>
+    <p><b>Before you present: replace the repo link with a real QR code.</b> Nobody types a URL off a slide in a conference hall.</p>
+    <p>Leave this slide up for the whole Q&amp;A. It is the only slide anyone photographs.</p>
+  </div>
+</section>
+
+<!-- 25 .................................................................... -->
+<section class="slide on-light slide--srcs">
+  <div class="ref"><span class="ref-n">§ 04</span><span>Backup — sources</span></div>
+  <h2>Sources and further reading</h2>
+  <ul class="srcs">
+    <li><b>Landauer, IBM J. Res. Dev., 1961</b>Irreversibility and heat generation in the computing process — the kT ln 2 floor.</li>
+    <li><b>Kepler — sustainable-computing.io</b>CNCF sandbox since 2023. DaemonSet + Helm chart; RAPL, DCGM, IPMI.</li>
+    <li><b>CNCF blog, 30 June 2026</b>The Kepler rewrite: /proc and /sys over eBPF+ML; IPMI validation at CERN and Red Hat.</li>
+    <li><b>Kueue — kueue.sigs.k8s.io</b>ClusterQueue, extended resources, nominalQuota. Kubernetes SIG project.</li>
+    <li><b>KEDA — keda.sh</b>ScaledObject, Prometheus trigger, scale-to-zero. Plus Microsoft's carbon-aware-keda-operator.</li>
+    <li><b>Electricity Maps</b>Grid carbon intensity in gCO₂/kWh. Vietnam is covered.</li>
+    <li><b>IEA, Energy and AI, 2025</b>Data center electricity demand reaching ~945 TWh by 2030.</li>
+    <li><b>NVIDIA GTC 2026 keynote</b>AI factories: raw material in is data and electricity, product out is tokens.</li>
+    <li><b>NVIDIA DCGM exporter</b>DCGM_FI_DEV_POWER_USAGE, DCGM_FI_DEV_GPU_UTIL, throttle reason fields.</li>
+    <li><b>CNCF Environmental Sustainability TCG</b>ocgroups.dev/cncf/group/env · Cloud Native Sustainability Month.</li>
+  </ul>
+  <div class="s-notes">
+    <p><b>Backup slide. Do not present it.</b> It exists so that when someone asks "where's the 945 TWh from" you press End and point.</p>
+    <p>Every number spoken in this talk is on this slide or is explicitly flagged as illustrative. Keep it that way as you edit — if you add a figure, add its source here in the same commit.</p>
+  </div>
+</section>
+
+</main>
+
+<div id="counter"><span id="cur">1</span> / <span id="tot">1</span></div>
+<div id="help">N notes · T timer · F fullscreen · P print</div>
+
+<div id="notes">
+  <h4><span>Speaker notes</span><span id="nslide"></span><span class="clock" id="clock">timer stopped — press T</span></h4>
+  <div id="nbody"></div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length, idx = 0;
+  var cur = document.getElementById('cur'), tot = document.getElementById('tot');
+  var prog = document.getElementById('progress');
+  var notes = document.getElementById('notes'), nbody = document.getElementById('nbody'), nslide = document.getElementById('nslide');
+  var clock = document.getElementById('clock');
+  tot.textContent = total;
+
+  /* Footer rule: section label on the left (authored per slide), page number on
+     the right (added here so slide numbers never drift when a slide is inserted). */
+  slides.forEach(function (s, i) {
+    if (s.classList.contains('slide--title') || s.classList.contains('slide--cta')) return;
+    var f = s.querySelector('.ref');
+    if (!f) {
+      f = document.createElement('div');
+      f.className = 'ref';
+      var num = s.querySelector('.num'), head = s.querySelector('h2');
+      f.innerHTML = (s.classList.contains('slide--section') && num && head)
+        ? '<span class="ref-n">§ ' + num.textContent.trim() + '</span><span>' + head.textContent.trim() + '</span>'
+        : '<span>Watts Matter</span>';
+      s.appendChild(f);
+    }
+    var right = document.createElement('span');
+    right.className = 'ref-right';
+    right.innerHTML = '<span class="ref-pg">' + (i + 1) + '</span>';
+    f.appendChild(right);
+  });
+
+  var helpEl = document.getElementById('help');
+  var booted = false;
+  setTimeout(function () { helpEl.classList.add('gone'); }, 8000);
+
+  /* Step-through reveal. Any slide can opt in: give its items class="frag"
+     and they appear one click at a time before the deck moves on. */
+  var step = 0;
+  function frags(i) { return slides[i].querySelectorAll('.frag'); }
+  function applyStep() {
+    var f = frags(idx);
+    for (var i = 0; i < f.length; i++) f[i].classList.toggle('on', i < step);
+  }
+
+  function show(n, atEnd) {
+    idx = Math.max(0, Math.min(total - 1, n));
+    if (booted) helpEl.classList.add('gone');
+    for (var i = 0; i < total; i++) slides[i].classList.toggle('is-active', i === idx);
+    cur.textContent = idx + 1;
+    prog.style.width = ((idx + 1) / total * 100) + '%';
+    var s = slides[idx].querySelector('.s-notes');
+    nbody.innerHTML = s ? s.innerHTML : '<p style="color:#8e959b">No notes for this slide.</p>';
+    nslide.textContent = 'slide ' + (idx + 1) + ' of ' + total;
+    step = atEnd ? frags(idx).length : 0;
+    applyStep();
+    try { sessionStorage.setItem('wm-slide', idx); } catch (e) {}
+  }
+
+  /* Forward: reveal the next item, or move on once they are all out.
+     Backward: hide the last item, or step back into the previous slide fully revealed. */
+  function next() {
+    if (step < frags(idx).length) { step++; applyStep(); if (booted) helpEl.classList.add('gone'); return; }
+    show(idx + 1);
+  }
+  function prev() {
+    if (step > 0) { step--; applyStep(); return; }
+    show(idx - 1, true);
+  }
+
+  var start = 0, running = false;
+  function tick() {
+    if (!running) return;
+    var s = Math.floor((Date.now() - start) / 1000);
+    var m = Math.floor(s / 60);
+    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 28 ? '  ·  into Q&A' : '  ·  target 28:00');
+  }
+  setInterval(tick, 1000);
+
+  function rescale() {
+    var pad = notes.classList.contains('on') ? 0.62 : 1;
+    var s = Math.min(window.innerWidth / 1920, (window.innerHeight * pad) / 1080);
+    document.documentElement.style.setProperty('--scale', s);
+    document.getElementById('deck').style.alignItems = 'center';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    switch (e.key) {
+      case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'ArrowDown': e.preventDefault(); show(idx + 1); break;
+      case 'ArrowUp': e.preventDefault(); show(idx - 1, true); break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(total - 1); break;
+      case 'n': case 'N': e.preventDefault(); notes.classList.toggle('on'); rescale(); break;
+      case 't': case 'T':
+        e.preventDefault();
+        if (!running) { start = Date.now(); running = true; tick(); }
+        else { running = false; clock.textContent = 'timer stopped — press T'; }
+        break;
+      case 'f': case 'F':
+        e.preventDefault();
+        if (!document.fullscreenElement) { if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); }
+        else document.exitFullscreen();
+        break;
+      case 'p': case 'P': e.preventDefault(); window.print(); break;
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a, button, input, textarea, #notes')) return;
+    next();
+  });
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) { if (dx < 0) next(); else prev(); }
+    tx = null;
+  });
+
+  window.addEventListener('resize', rescale);
+  rescale();
+  var saved = 0;
+  try { saved = parseInt(sessionStorage.getItem('wm-slide') || '0', 10) || 0; } catch (e) {}
+  show(saved >= 0 && saved < total ? saved : 0);
+  booted = true;
+})();
+</script>
+
+</body>
+</html>
