@@ -9,7 +9,7 @@ Live at **https://ams0.github.io/talks/**
 | Date | Talk | Event | Audience |
 |---|---|---|---|
 | 3 Sep 2026 | [Beyond the Clouds](https://ams0.github.io/talks/beyond-the-clouds/) — Sovereign AI infrastructure to regain control and autonomy | ADA AI Leadership Day, Amsterdam | Non-technical (founders, directors) |
-| 9 Sep 2026 | [Beyond the Clouds — technical cut](https://ams0.github.io/talks/beyond-the-clouds-tech/) — the same argument, then down the stack: gateways, inference routing, GPU sharing, the HBM budget | Engineering audience, 45 min | Technical (platform and ML engineers) |
+| 9 Sep 2026 | [Beyond the Clouds — technical cut](https://ams0.github.io/talks/beyond-the-clouds-tech/) — the same argument, then down the stack: gateways, inference routing, GPU sharing, the HBM budget | Cloud Native Groningen | Technical (platform and ML engineers) |
 
 `beyond-the-clouds/` is the **non-technical cut**: 47 slides plus a sources backup, plain-language architecture, eight charts, the European regulatory timeline, and a five-minute inventory exercise for the interactive half. `SCRIPT.md` beside it is the delivery script — running order, timings, the lines to say verbatim, and the cut order if you are behind.
 

@@ -1,6 +1,6 @@
 # Beyond the Clouds — technical cut · delivery script
 
-9 September 2026 · 45 minutes hard stop: **≈33 min talk, 10–12 min questions**. Engineering audience.
+Cloud Native Groningen · 9 September 2026 · 45 minutes hard stop: **≈33 min talk, 10–12 min questions**. Engineering audience.
 Same argument as the leadership cut in `../beyond-the-clouds/`, with sections 01–02 compressed and
 section 03 rebuilt to go down the stack one layer at a time, with YAML on the screen.
 Quoted lines are verbatim — say those. Everything else is a cue.
