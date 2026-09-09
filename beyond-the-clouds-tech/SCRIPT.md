@@ -21,15 +21,15 @@ click) brings out the next item, then moves on; left arrow steps back. **Down/Up
 The technical slides are deliberately static: a code panel that appears in pieces is worse than one you
 can point at.
 
-**Timing.** Delivered in full the deck runs **≈33 min**. The technical middle (23–29) is twelve of those
+**Timing.** Delivered in full the deck runs **≈33 min**. The technical middle (23–30) is twelve of those
 minutes and is where the room will try to pull you into detail — answer the factual ones in one
 sentence and park the rest for the end.
 
-**Cut order if you are behind: 42 → 37 → 22 → 18 → 29 → 7.** Never cut 24, 28, 40 or 41. If you
-are badly behind at slide 30, jump straight to 34 with "Europe is building the bottom layer; I'll skip
+**Cut order if you are behind: 43 → 39 → 22 → 18 → 30 → 7.** Never cut 24, 28, 29 or 42. If you
+are badly behind at slide 32, jump straight to 36 with "Europe is building the bottom layer; I'll skip
 the megawatts" — the technical room already believes the supply side is arriving.
 
-**The morning of the talk.** agentgateway and llm-d both ship monthly. The versions on 25, 26, 27 and 50
+**The morning of the talk.** agentgateway and llm-d both ship monthly. The versions on 25, 26, 27 and 51
 were checked on 8 September; a thirty-second look at the release pages is cheap insurance against the
 one person in the room who ran the newer one last night.
 
@@ -97,7 +97,7 @@ different, and it's yours."
 betting you can stay in the commons and still have a vote. This is the open-source governance argument
 and engineers care about it more than directors did.
 
-## 03 The stack is ready — 13 min (slides 19–33)
+## 03 The stack is ready — 12 min (slides 19–30)
 
 **Change your voice.** Sections 01–02 were risk; this is the part they came for. Twelve minutes for
 23–29. Point, don't read; every code panel has its source in the footer.
@@ -113,7 +113,7 @@ challenged that tier 3 is behind the frontier, agree without hedging.
 
 **22 · KubeCon sessions.** Fifteen seconds. *Cut if short.*
 
-**23 · Reference architecture ★rebuilt.** Sixty seconds, the map for the next six slides. Eight layers;
+**23 · Reference architecture ★rebuilt.** Sixty seconds, the map for the next seven slides. Eight layers;
 point at the **three new since 2024**: the agent gateway (who may call what), inference routing (which
 replica answers), fractional GPU scheduling (how much of the card). Then the data layer (the moat) and
 the bottom layer (cannot download). "Each of those three was a proprietary advantage eighteen months ago."
@@ -155,75 +155,80 @@ token — a 671B model with a *smaller* per-token cache than a 70B dense one —
 with 1.3 TB spare. On FP8 KV quality: the vLLM team measured at most 1–2 points on reasoning; "measure
 it on your evals."
 
-**29 · The knobs ★new.** Ninety seconds; **do not read the table.** First row and last row. "The first
-row is free and closes most tickets. FP8 weights and FP8 KV are the two flags from the memory slide.
-Four-bit is where you start trading accuracy for money and need your own evals. And the bottom row is
-what a hyperscaler's serving team was doing for you — now a Helm chart, still their job's worth of
-complexity." *Cut if short* — 28 carries the point on its own.
-
-**30–33 · The build-out.** Ninety seconds total. "The bottom bar is live this month, twenty kilometres
-from here. The constraint isn't chips or capital — it's a grid connection." **Disclose the VOLT
-relationship plainly.** Then: "Every AI strategy in this country eventually becomes an energy strategy."
-
-## 04 What the keynote leaves out — 7 min (slides 34–42)
-
-Credibility section. Do not rush, do not soften.
-
-**35 · Four failure modes (builds).** "I've watched two teams fight over eight GPUs for six weeks. No
-technology fixed it. A quota policy and one uncomfortable meeting fixed it." Then: "The technical half
-is the next slide."
-
-**36 · HAMi ★new.** Ninety seconds. "Kubernetes hands out GPUs as whole integers. An embedding model
-that needs 20 gigabytes gets a 288-gigabyte card and the other team gets nothing. HAMi lets the pod ask
-for 24 gigabytes and 15 per cent of the SMs, and enforces it in the CUDA layer. The fight goes away
-because the scarcity was mostly fake." Caveats to volunteer: software isolation is a trust boundary
-inside one organisation, not between hostile tenants — MIG or separate nodes for that. If asked HAMi or
-DRA: "DRA is the API, HAMi is the policy." The seven non-NVIDIA vendors are the sovereignty point.
-
-**37 · Open source is the floor.** *Cut if short.* "If you adopt an open stack and fund none of it, you
-haven't become sovereign — you've moved your dependency somewhere with no support contract." The ask:
-name the dependencies you could not replace in a quarter, budget line against each.
-
-**38–39 · Economics.** Same H100: $0.21 to $15.25 per million output tokens. Give permission not to
-self-host: "€4,000 a month and spiky is a hobby. Come back at €40,000 and flat."
-
-**40 · One 8×B300 box, K3s ★new.** Two minutes; slow down on step four. "K3s is right here for the same
+**29 · One 8×B300 box, K3s ★new.** Two minutes; slow down on step four. "K3s is right here for the same
 reason it's wrong for a datacentre: one binary, SQLite instead of etcd, containerd embedded. On one box
 that is exactly the amount of Kubernetes you need. The point isn't the box — once the workload runs
 behind a Gateway API route here, moving it to a European neocloud is a kubeconfig change." Step 4 is the
 memory slide in flags: 70B FP8 at TP 4 leaves ~900 GB of KV across four cards. The last line is the
 punchline: half the node is spare — two NVFP4 DeepSeek replicas, or a nightly eval fleet. If asked about
 power: 14 kW per box, 56 kW per rack of four, nothing on this slide fits in an office — that is why
-section 03 ended in megawatts.
+section 04 is about megawatts.
 
-**41 · Self-host / federate / rent (builds).** **Never cut.** Row two: "You don't have to leave the
+**30 · The knobs ★new.** Ninety seconds; **do not read the table.** First row and last row. "The first
+row is free and closes most tickets. FP8 weights and FP8 KV are the two flags from the memory slide.
+Four-bit is where you start trading accuracy for money and need your own evals. And the bottom row is
+what a hyperscaler's serving team was doing for you — now a Helm chart, still their job's worth of
+complexity." *Cut if short* — 28 and 29 carry the point on their own.
+
+## 04 The bottom layer — 2 min (slides 31–35)
+
+**31 · Divider.** Register change. You have just spent twelve minutes in HBM budgets and Helm charts;
+drop the numbers and zoom out to the floor all of it stands on.
+
+**32–35 · The build-out.** Ninety seconds total. "The bottom bar is live this month, twenty kilometres
+from here. The constraint isn't chips or capital — it's a grid connection." **Disclose the VOLT
+relationship plainly.** Then: "Every AI strategy in this country eventually becomes an energy strategy."
+
+## 05 What the keynote leaves out — 7 min (slides 36–43)
+
+Credibility section. Do not rush, do not soften.
+
+**37 · Four failure modes (builds).** "I've watched two teams fight over eight GPUs for six weeks. No
+technology fixed it. A quota policy and one uncomfortable meeting fixed it." Then: "The technical half
+is the next slide."
+
+**38 · HAMi ★new.** Ninety seconds. "Kubernetes hands out GPUs as whole integers. An embedding model
+that needs 20 gigabytes gets a 288-gigabyte card and the other team gets nothing. HAMi lets the pod ask
+for 24 gigabytes and 15 per cent of the SMs, and enforces it in the CUDA layer. The fight goes away
+because the scarcity was mostly fake." Caveats to volunteer: software isolation is a trust boundary
+inside one organisation, not between hostile tenants — MIG or separate nodes for that. If asked HAMi or
+DRA: "DRA is the API, HAMi is the policy." The seven non-NVIDIA vendors are the sovereignty point.
+
+**39 · Open source is the floor.** *Cut if short.* "If you adopt an open stack and fund none of it, you
+haven't become sovereign — you've moved your dependency somewhere with no support contract." The ask:
+name the dependencies you could not replace in a quarter, budget line against each.
+
+**40–41 · Economics.** Same H100: $0.21 to $15.25 per million output tokens. Give permission not to
+self-host: "€4,000 a month and spiky is a hobby. Come back at €40,000 and flat."
+
+**42 · Self-host / federate / rent (builds).** **Never cut.** Row two: "You don't have to leave the
 hyperscalers to stop being captured by them. You have to own the layer where the decisions are made."
 For this room, "the layer" now has a name: hops two and three.
 
-**42 · People (builds).** *Cut first.* "Every infrastructure question in this talk is a hiring question
+**43 · People (builds).** *Cut first.* "Every infrastructure question in this talk is a hiring question
 in disguise."
 
-## 05 Close — 2 min (slides 43–45)
+## 06 Close — 2 min (slides 44–46)
 
-**43 · Ninety days, four moves (builds).** Slow down. Inventory → gateway in front (model calls *and*
+**44 · Ninety days, four moves (builds).** Slow down. Inventory → gateway in front (model calls *and*
 tool calls) → prove portability once, behind the same route → SEAL level in the next procurement. "None
 of these need a business case. The first is a spreadsheet, and I'd bet nobody here can produce it today."
 
-**44 · "The clouds aren't going anywhere. Your autonomy shouldn't live there."** Pause. Do not fill it.
+**45 · "The clouds aren't going anywhere. Your autonomy shouldn't live there."** Pause. Do not fill it.
 
-**45 · Sovereignty is not a product. It's a practice.** Forty seconds, the three middle lines slowly.
+**46 · Sovereignty is not a product. It's a practice.** Forty seconds, the three middle lines slowly.
 "Landlord model" is the line that lands. Then stop, advance, and let them start.
 
-## 06 Questions — 10–12 min (slides 46–48)
+## 07 Questions — 10–12 min (slides 47–49)
 
-**46 · Five things I believe (builds).** Leave it up. "Pick a number and take it apart." If the room is
+**47 · Five things I believe (builds).** Leave it up. "Pick a number and take it apart." If the room is
 quiet, open #4 yourself — who has tried to hire a platform engineer this year. With engineers, expect
 the pushback on #1 (slide 18 is your answer) and a detailed one on the HBM arithmetic — welcome it, the
 numbers are on 28 and the sources on 50.
 
-**47 · ChemAI card.** Fifteen seconds, then stop talking and let them photograph it.
+**48 · ChemAI card.** Fifteen seconds, then stop talking and let them photograph it.
 
-**48 · Close.** Who I am, the VOLT disclosure one last time, the deck URL. Fifteen seconds.
+**49 · Close.** Who I am, the VOLT disclosure one last time, the deck URL. Fifteen seconds.
 
-**49–50 · Sources.** Backup. 49 is the argument, 50 is the stack. Only open if a number is challenged —
+**50–51 · Sources.** Backup. 50 is the argument, 51 is the stack. Only open if a number is challenged —
 then find the line and read it.
