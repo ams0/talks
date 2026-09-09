@@ -1409,10 +1409,10 @@ tr.frag { transform: none; }
   <h2>llm-d: the serving layer, as three well-lit paths</h2>
   <p class="lede">Founded by Red Hat, Google Cloud, IBM Research, CoreWeave and NVIDIA; AMD, Cisco, Hugging Face, Intel, Lambda and Mistral AI joined. CNCF Sandbox since March 2026, v0.9 in August. Not a new engine — vLLM, plus the pieces that turn one engine into a fleet.</p>
   <ul class="points two-col compact">
-    <li><b>Path 1 · Intelligent inference scheduling</b><span>The Inference Extension EPP with prefix-cache-aware and load-aware scoring, plus a latency predictor. Reported: 3× output throughput and 2× faster TTFT versus round-robin; 40% lower TTFT/ITL from predicted-latency scheduling.</span></li>
-    <li><b>Path 2 · Prefill/decode disaggregation</b><span>Prefill is compute-bound, decode is memory-bound; sharing a GPU wastes one of the two. Separate pools, KV blocks moved over NIXL. Reported: up to 70% more tokens per second.</span></li>
-    <li><b>Path 3 · Wide expert parallelism</b><span>MoE models like DeepSeek spread experts across many GPUs, so each holds fewer weights and more KV cache. Reported: 50k tokens/s cluster-wide on B200.</span></li>
-    <li><b>Under all three · KV-cache management</b><span>LMCache tiers blocks to CPU and NVMe; a global indexer tells the scheduler where every prefix lives. Cache hits survive a pod restart, and routing becomes cache-aware instead of hopeful.</span></li>
+    <li class="frag"><b>Path 1 · Intelligent inference scheduling</b><span>The Inference Extension EPP with prefix-cache-aware and load-aware scoring, plus a latency predictor. Reported: 3× output throughput and 2× faster TTFT versus round-robin; 40% lower TTFT/ITL from predicted-latency scheduling.</span></li>
+    <li class="frag"><b>Path 2 · Prefill/decode disaggregation</b><span>Prefill is compute-bound, decode is memory-bound; sharing a GPU wastes one of the two. Separate pools, KV blocks moved over NIXL. Reported: up to 70% more tokens per second.</span></li>
+    <li class="frag"><b>Path 3 · Wide expert parallelism</b><span>MoE models like DeepSeek spread experts across many GPUs, so each holds fewer weights and more KV cache. Reported: 50k tokens/s cluster-wide on B200.</span></li>
+    <li class="frag"><b>Under all three · KV-cache management</b><span>LMCache tiers blocks to CPU and NVMe; a global indexer tells the scheduler where every prefix lives. Cache hits survive a pod restart, and routing becomes cache-aware instead of hopeful.</span></li>
   </ul>
   <div class="s-notes">
     <p><b>Two minutes.</b> The slide before showed the routing hop; this is hop four. The framing that works for engineers is "vLLM plus the fleet problems": scheduling, disaggregation, cache.</p>
@@ -1428,19 +1428,19 @@ tr.frag { transform: none; }
   <h2>HBM is the budget. Weights are rent; the KV cache is what you actually sell.</h2>
   <p class="lede">One B300 has 288 GB of HBM3e. vLLM keeps 10% back by default, the model takes a fixed slice, and every remaining byte is KV cache — which is your concurrency. Shrinking the weights buys tokens in flight, not just a smaller download.</p>
   <div class="mem">
-    <div class="mrow">
+    <div class="mrow frag">
       <div class="ml"><b>Llama 3.3 70B · BF16 weights</b><span>KV/token ≈ 320 KB (80 layers · 8 KV heads · 128 dims · 2 B)</span></div>
       <div class="mbar"><div class="w" style="width:49%">141 GB weights</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:38.2%">≈110 GB KV · ≈340k tokens</div></div>
     </div>
-    <div class="mrow">
+    <div class="mrow frag">
       <div class="ml"><b>Same model · FP8 weights</b><span>--quantization fp8 · same KV dtype</span></div>
       <div class="mbar"><div class="w" style="width:24.6%">71 GB</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:62.6%">≈180 GB KV · ≈550k tokens</div></div>
     </div>
-    <div class="mrow">
+    <div class="mrow frag">
       <div class="ml"><b>FP8 weights + FP8 KV cache</b><span>--kv-cache-dtype fp8 · KV/token ≈ 160 KB</span></div>
       <div class="mbar"><div class="w" style="width:24.6%">71 GB</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:62.6%">≈180 GB KV · ≈1.1M tokens</div></div>
     </div>
-    <div class="mrow node">
+    <div class="mrow node frag">
       <div class="ml"><b>Whole node · DeepSeek-V3.2, native FP8</b><span>8 × B300 = 2,304 GB · TP 8 · MLA KV/token ≈ 70 KB</span></div>
       <div class="mbar"><div class="w" style="width:29.7%">685 GB weights</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:57.5%">≈1.3 TB KV · ≈19M tokens · ≈150 sessions at 128k</div></div>
     </div>
@@ -1449,7 +1449,7 @@ tr.frag { transform: none; }
     <span><i style="background:var(--ink)"></i>weights</span>
     <span><i style="background:#7a9a76"></i>vLLM headroom + activations</span>
     <span><i style="background:var(--accent)"></i>KV cache = concurrency</span>
-    <span class="kq"><b>Same GPU, same model:</b> 340k → 1.1M tokens in flight, from two flags.</span>
+    <span class="kq frag"><b>Same GPU, same model:</b> 340k → 1.1M tokens in flight, from two flags.</span>
   </div>
   <div class="s-notes">
     <p><b>Two minutes, and this is the slide engineers photograph.</b> The bars are arithmetic, not benchmarks: <code>--gpu-memory-utilization 0.9</code> gives 259 GB; the reserve band is that 10% plus roughly 8 GB of activation/workspace that vLLM profiles at start-up; everything left is KV blocks in 16-token pages.</p>
@@ -1468,13 +1468,13 @@ tr.frag { transform: none; }
   <table class="cmp">
     <thead><tr><th>Knob</th><th>How</th><th>Runs on</th><th>What you get · what it costs</th></tr></thead>
     <tbody>
-      <tr class="hi"><th>Free defaults<em>turn on nothing</em></th><td>Prefix caching, chunked prefill, PagedAttention in 16-token blocks. Set <code>--max-model-len</code> honestly and <code>--max-num-seqs</code> to what the cache can hold.</td><td class="tag">any GPU</td><td>Most "we need more GPUs" tickets close here. Costs nothing but a look at the metrics.</td></tr>
-      <tr><th>FP8 weights<em>W8A8</em></th><td><code>--quantization fp8</code>, or a pre-quantised checkpoint. Native tensor-core path.</td><td class="tag">Hopper, Blackwell</td><td>Half the HBM, near-lossless. Should be the default for anything above 8B.</td></tr>
-      <tr><th>FP8 KV cache</th><td><code>--kv-cache-dtype fp8</code>; skip sliding-window layers with <code>--kv-cache-dtype-skip-layers</code>.</td><td class="tag">FA3 on Hopper · FlashInfer on Blackwell</td><td>Per-token KV cost down to 54% of BF16; +14.9% throughput on Llama-3.1-8B; ≤1–2 pts on reasoning evals. Break-even ~4k tokens on B200.</td></tr>
-      <tr><th>NVFP4 / MXFP4 weights</th><td>NVIDIA <code>*-NVFP4</code> checkpoints (ModelOpt); MXFP4 as shipped by gpt-oss. <code>VLLM_USE_FLASHINFER_MOE_FP4=1</code> for MoE.</td><td class="tag">Blackwell only</td><td>Quarter the HBM. DeepSeek-V3.2 on two GB300s at 7,360 prefill tokens/GPU/s — 8× an H200. Calibrate before you trust it.</td></tr>
-      <tr><th>INT4 weight-only<em>AWQ · GPTQ · compressed-tensors</em></th><td>Quantise yourself with LLM Compressor; load with <code>--quantization compressed-tensors</code>.</td><td class="tag">any GPU</td><td>Wins when decode-bound and memory-poor. Loses accuracy faster than FP8; run your evals, not the model card's.</td></tr>
-      <tr><th>Speculative decoding</th><td>EAGLE-3 draft heads; DeepSeek's MTP head via <code>--speculative-config</code>.</td><td class="tag">any GPU</td><td>Faster decode at low concurrency. Fades as the batch fills — an interactive-workload tool, not a throughput tool.</td></tr>
-      <tr><th>Across the fleet<em>llm-d</em></th><td>P/D disaggregation over NIXL; KV tiering to CPU and NVMe with LMCache; cache-aware EPP routing.</td><td class="tag">multi-node</td><td>The 3× / 2× / 70% numbers from the previous slide. Complexity you should earn, not start with.</td></tr>
+      <tr class="hi frag"><th>Free defaults<em>turn on nothing</em></th><td>Prefix caching, chunked prefill, PagedAttention in 16-token blocks. Set <code>--max-model-len</code> honestly and <code>--max-num-seqs</code> to what the cache can hold.</td><td class="tag">any GPU</td><td>Most "we need more GPUs" tickets close here. Costs nothing but a look at the metrics.</td></tr>
+      <tr class="frag"><th>FP8 weights<em>W8A8</em></th><td><code>--quantization fp8</code>, or a pre-quantised checkpoint. Native tensor-core path.</td><td class="tag">Hopper, Blackwell</td><td>Half the HBM, near-lossless. Should be the default for anything above 8B.</td></tr>
+      <tr class="frag"><th>FP8 KV cache</th><td><code>--kv-cache-dtype fp8</code>; skip sliding-window layers with <code>--kv-cache-dtype-skip-layers</code>.</td><td class="tag">FA3 on Hopper · FlashInfer on Blackwell</td><td>Per-token KV cost down to 54% of BF16; +14.9% throughput on Llama-3.1-8B; ≤1–2 pts on reasoning evals. Break-even ~4k tokens on B200.</td></tr>
+      <tr class="frag"><th>NVFP4 / MXFP4 weights</th><td>NVIDIA <code>*-NVFP4</code> checkpoints (ModelOpt); MXFP4 as shipped by gpt-oss. <code>VLLM_USE_FLASHINFER_MOE_FP4=1</code> for MoE.</td><td class="tag">Blackwell only</td><td>Quarter the HBM. DeepSeek-V3.2 on two GB300s at 7,360 prefill tokens/GPU/s — 8× an H200. Calibrate before you trust it.</td></tr>
+      <tr class="frag"><th>INT4 weight-only<em>AWQ · GPTQ · compressed-tensors</em></th><td>Quantise yourself with LLM Compressor; load with <code>--quantization compressed-tensors</code>.</td><td class="tag">any GPU</td><td>Wins when decode-bound and memory-poor. Loses accuracy faster than FP8; run your evals, not the model card's.</td></tr>
+      <tr class="frag"><th>Speculative decoding</th><td>EAGLE-3 draft heads; DeepSeek's MTP head via <code>--speculative-config</code>.</td><td class="tag">any GPU</td><td>Faster decode at low concurrency. Fades as the batch fills — an interactive-workload tool, not a throughput tool.</td></tr>
+      <tr class="frag"><th>Across the fleet<em>llm-d</em></th><td>P/D disaggregation over NIXL; KV tiering to CPU and NVMe with LMCache; cache-aware EPP routing.</td><td class="tag">multi-node</td><td>The 3× / 2× / 70% numbers from the previous slide. Complexity you should earn, not start with.</td></tr>
     </tbody>
   </table>
   <div class="s-notes">
