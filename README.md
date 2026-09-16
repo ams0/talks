@@ -11,10 +11,13 @@ Live at **https://ams0.github.io/talks/**
 | 25 Jul 2026 | [Watts Matter](https://ams0.github.io/talks/watt-matters/) — Power- and carbon-aware scheduling for the AI-era data center | KCD & OpenInfra Days Vietnam, Hà Nội | Technical (platform, infra, SRE) |
 | 3 Sep 2026 | [Beyond the Clouds](https://ams0.github.io/talks/beyond-the-clouds/) — Sovereign AI infrastructure to regain control and autonomy | ADA AI Leadership Day, Amsterdam | Non-technical (founders, directors) |
 | 9 Sep 2026 | [Beyond the Clouds — technical cut](https://ams0.github.io/talks/beyond-the-clouds-tech/) — the same argument, then down the stack: gateways, inference routing, GPU sharing, the HBM budget | Cloud Native Groningen | Technical (platform and ML engineers) |
+| TBD | [Turning AI Into Your Advantage](https://ams0.github.io/talks/ai-advantage/) — a 40-minute hands-on workshop: the three calls, a community case study, three timed exercises | Workshop (event TBD) | Non-technical (business operators) |
 
 `beyond-the-clouds/` is the **non-technical cut**: 47 slides plus a sources backup, plain-language architecture, eight charts, the European regulatory timeline, and a five-minute inventory exercise for the interactive half. `SCRIPT.md` beside it is the delivery script — running order, timings, the lines to say verbatim, and the cut order if you are behind.
 
 `beyond-the-clouds-tech/` is the **technical cut** of the same talk: 50 slides plus two sources slides. It drops the leadership-only material (the proverb, the six-laws table, the framework card, the quote wall, the workshop exercise) and rebuilds section 03 to go down the stack one layer at a time — the request path through an agent gateway and an inference gateway, the Gateway API Inference Extension with an `InferencePool` on screen, agentgateway for MCP/A2A policy, llm-d's three well-lit paths, an HBM budget slide (weights versus KV cache on a B300, with the arithmetic), the vLLM/llm-d optimisation knobs in order, HAMi for fractional GPUs, and a five-step K3s build on a single 8×B300 node. Code panels use a real monospace stack; everything else keeps the VOLT house style. It has its own `SCRIPT.md`. The two decks are separate files on purpose: they share a skeleton but are edited for different rooms.
+
+`ai-advantage/` is a **40-minute working session** for business operators: 22 slides (21 plus a sources backup) built around three calls — build on top, keep human, change your mind on a schedule — a community case study (Luca) and three timed exercises. Exercise slides carry an on-slide countdown: press `X` to start or pause it, `R` to reset. `handout.html` beside it is the two-page A4 worksheet (print double-sided), and `SCRIPT.md` is the delivery script. It carries its own palette: blueprint navy, a highlighter-yellow marker stroke, and three verdict colours (green automate, amber assist, coral keep human). Slides 11 and 12 are marked *Fill in before presenting* — Luca's story is still a placeholder.
 
 `watt-matters/` is the KCD cut of *Watts Matter*: 25 slides across three moves — measure, shift, pack — with two YAML receipts (Kueue power quota, carbon-aware KEDA), five inline SVG charts and a sources backup. `SCRIPT.md` beside it is the delivery script. It carries its own palette rather than the VOLT house style, since it is a community talk: graphite ground, amber for watts, teal for a clean grid, rust for the idle and throttled states. Type is Newsreader plus Be Vietnam Pro — both cover Vietnamese, which Tiro Tamil does not, and the closing slide needs the diacritics. Two slides are marked *illustrative* on the slide itself — the namespace dashboard and the idle-GPU flatline; replace them with live captures from a real cluster before presenting.
 
@@ -26,6 +29,7 @@ Live at **https://ams0.github.io/talks/**
 | `←` | Previous slide |
 | `N` | Toggle speaker notes |
 | `T` | Start/stop the presenter timer |
+| `X` / `R` | Start-pause / reset the exercise countdown (`ai-advantage` only) |
 | `F` | Fullscreen |
 | `P` | Print to PDF |
 

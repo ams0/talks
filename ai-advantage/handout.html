@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worksheet — Turning AI Into Your Advantage</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+  :root { --ink: #102338; --muted: #56657a; --rule: #c9d1d8; --auto: #2f8f5b; --assist: #b07800; --human: #c2412d; --marker: #ffd23f;
+    --display: 'Bricolage Grotesque', 'Avenir Next', sans-serif; --body: 'Atkinson Hyperlegible', Verdana, sans-serif; --code: ui-monospace, Menlo, Consolas, monospace; }
+  @page { size: A4; margin: 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--body); color: var(--ink); background: #eceee9; font-size: 10.5pt; line-height: 1.4; }
+  .page { width: 210mm; min-height: 297mm; margin: 12px auto; background: #fff; padding: 14mm; }
+  .bar { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--ink); padding-bottom: 6px; margin-bottom: 14px; }
+  h1 { font-family: var(--display); font-weight: 800; font-size: 22pt; letter-spacing: -0.02em; }
+  .bar span { color: var(--muted); font-size: 9.5pt; }
+  h2 { font-family: var(--display); font-weight: 800; font-size: 15pt; margin: 16px 0 6px; }
+  h2 small { font-family: var(--body); font-weight: 400; font-size: 9.5pt; color: var(--muted); margin-left: 8px; }
+  p.hint { color: var(--muted); margin-bottom: 8px; }
+  .line { border-bottom: 1px solid var(--rule); height: 22px; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  th { background: var(--ink); color: #fff; text-align: left; font-size: 9pt; padding: 5px 6px; }
+  td { border: 1px solid var(--rule); height: 30px; padding: 0 6px; font-size: 9pt; color: var(--muted); }
+  td.s { text-align: center; width: 17%; letter-spacing: 0.3em; }
+  td.v { width: 16%; }
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .rules div { border: 1px solid var(--rule); border-top: 5px solid; border-radius: 6px; padding: 8px 10px; font-size: 9.5pt; }
+  .rules b { font-family: var(--display); font-size: 12pt; display: block; margin-bottom: 2px; }
+  .a { border-top-color: var(--auto) !important; } .a b { color: var(--auto); }
+  .s2 { border-top-color: var(--assist) !important; } .s2 b { color: var(--assist); }
+  .h { border-top-color: var(--human) !important; } .h b { color: var(--human); }
+  pre { font-family: var(--code); font-size: 9.3pt; line-height: 1.5; background: #f3f5f7; border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; white-space: pre-wrap; }
+  pre .k { font-weight: 700; }
+  pre .hl { background: var(--marker); }
+  .warn { margin-top: 8px; padding: 7px 10px; border: 1px solid var(--human); border-radius: 6px; color: var(--human); font-size: 9.5pt; }
+  dl { display: grid; grid-template-columns: 40mm 1fr; gap: 6px 10px; margin-top: 6px; }
+  dt { font-weight: 700; padding-top: 6px; }
+  dd { border-bottom: 1px solid var(--rule); min-height: 24px; color: var(--muted); font-size: 8.5pt; padding-top: 8px; }
+  .boxes { display: flex; gap: 14px; margin-top: 6px; font-size: 10pt; }
+  .commit { margin-top: 10px; border: 2px dashed var(--ink); border-radius: 8px; padding: 12px 14px; font-size: 12pt; line-height: 2.1; }
+  .commit u { text-decoration: none; display: inline-block; border-bottom: 1px solid var(--ink); min-width: 55mm; }
+  .page + .page { break-before: page; }
+  @media print { body { background: #fff; } .page { margin: 0; padding: 0; min-height: auto; width: auto; } }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <div class="bar"><h1>Turning AI into your advantage</h1><span>Worksheet · page 1 of 2</span></div>
+
+  <h2>Exercise 1 — Workflow X-ray <small>8 minutes</small></h2>
+  <p class="hint">Pick one process you run every week. Keep it small: "follow-up after a sales call", not "sales".</p>
+  <p><b>Process:</b></p><div class="line"></div>
+  <p><b>Hours per week it takes today:</b></p><div class="line" style="width:40%"></div>
+
+  <table>
+    <thead><tr><th>Step</th><th>Repetitive</th><th>Needs judgment</th><th>Cost of a mistake</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>1.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+      <tr><td>2.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+      <tr><td>3.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+      <tr><td>4.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+      <tr><td>5.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+      <tr><td>6.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+      <tr><td>7.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+      <tr><td>8.</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="s">1 2 3</td><td class="v"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rules">
+    <div class="a"><b>Automate</b>Very repetitive, little judgment, a mistake is cheap and easy to fix.</div>
+    <div class="s2"><b>Assist</b>Very repetitive but needs judgment. AI drafts, you decide.</div>
+    <div class="h"><b>Keep human</b>Expensive or irreversible if wrong, or a relationship is on the line.</div>
+  </div>
+
+  <h2>Partner check</h2>
+  <p class="hint">Your partner picks one verdict and asks "why?". Did you change it?</p>
+  <div class="boxes"><span>☐ Kept it</span><span>☐ Changed it to: ____________________</span></div>
+  <p style="margin-top:12px"><b>My top candidate for Exercise 2:</b></p><div class="line"></div>
+
+  <h2>Four things I keep human, whatever happens</h2>
+  <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+</section>
+
+<section class="page">
+  <div class="bar"><h1>Turning AI into your advantage</h1><span>Worksheet · page 2 of 2</span></div>
+
+  <h2>Exercise 2 — Build a teammate <small>8 minutes</small></h2>
+  <p class="hint">Fill in the brackets, paste it into your assistant, then run it on one example.</p>
+<pre><span class="k">ROLE</span>
+You are the [job title] for [company], a [one-line description].
+
+<span class="k">TASK</span>
+Each time I give you [input — e.g. a customer email], produce [output — e.g. a reply draft].
+
+<span class="k">RULES</span>
+- Tone: [e.g. warm, direct, no jargon]
+- Always: [e.g. give a delivery time, end with a question]
+- Never: [e.g. promise refunds, quote prices, invent facts]
+<span class="hl">- If unsure, reply "NEEDS HUMAN" and say why.</span>
+
+<span class="k">FORMAT</span>
+[e.g. subject line, then at most 120 words]
+
+<span class="k">EXAMPLE OF A GOOD ANSWER</span>
+[paste one you'd happily send]</pre>
+  <p class="warn">Before pasting: remove names, email addresses, amounts and anything confidential. Invent details if needed.</p>
+  <p style="margin-top:10px"><b>Partner's attack that broke it:</b></p><div class="line"></div>
+  <p><b>Rule I added to fix it:</b></p><div class="line"></div>
+
+  <h2>Exercise 3 — Kill switch <small>4 minutes</small></h2>
+  <dl>
+    <dt>Owner</dt><dd>who checks it every week</dd>
+    <dt>Success looks like</dt><dd>e.g. 7 in 10 drafts sent with light edits</dd>
+    <dt>Stop signal</dt><dd>e.g. one wrong promise reaches a customer</dd>
+    <dt>Review date</dt><dd>no more than two weeks from today — put it in your calendar now</dd>
+  </dl>
+  <div class="boxes" style="margin-top:10px"><b>If it fails, I will:</b><span>☐ fix the rules</span><span>☐ downgrade to Assist</span><span>☐ switch it off</span></div>
+
+  <h2>My 30-day commitment</h2>
+  <div class="commit">In the next 30 days I will put <u></u><br>into <u></u>,<br>and review it on <u></u>.</div>
+  <p class="hint" style="margin-top:10px">Take a photo of this box. Slides: ams0.github.io/talks/ai-advantage</p>
+</section>
+
+</body>
+</html>
