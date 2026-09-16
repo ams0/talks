@@ -104,7 +104,10 @@ h2 { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.02em; l
 .slide--title .kind { font-size: 28px; color: var(--fg-muted-dark); margin-bottom: 36px; }
 .slide--title .kind b { color: var(--marker); font-weight: 700; }
 .slide--title h1 { font-family: var(--f-display); font-size: 160px; line-height: 0.96; font-weight: 800; letter-spacing: -0.035em; max-width: 15ch; }
-.slide--title h1 .mark { font-weight: 800; }
+.slide--title h1 .mark { font-weight: 800;
+  /* the stroke hugs the word: cap-height to just past the descender, not the whole line box */
+  background: linear-gradient(transparent 15%, var(--marker) 15%, var(--marker) 96%, transparent 96%);
+  padding: 0 0.08em; }
 .slide--title .sub { font-size: 36px; line-height: 1.35; color: var(--fg-muted-dark); margin-top: 40px; max-width: 44ch; }
 .slide--title .meta { position: absolute; bottom: 80px; left: 110px; right: 110px; display: flex; gap: 40px; align-items: baseline;
   font-size: 23px; color: var(--fg-muted-dark); border-top: 1px solid var(--rule-dark); padding-top: 26px; }
