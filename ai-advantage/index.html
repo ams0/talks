@@ -278,6 +278,26 @@ table.xray { width: 100%; border-collapse: collapse; margin-top: 44px; font-size
 .xray td.n { text-align: center; font-family: var(--f-display); font-weight: 600; font-size: 32px; }
 .xray td.v { font-family: var(--f-display); font-weight: 800; font-size: 30px; }
 
+/* ---------- the a-ha: one email, two briefs ---------- */
+.slide--aha { padding: 96px 110px 130px; display: flex; flex-direction: column; justify-content: center; }
+.slide--aha h2 { font-size: 72px; }
+.inbound { margin-top: 30px; background: #fff; border-left: 8px solid var(--ink); border-radius: 0 16px 16px 0; padding: 20px 32px;
+  font-family: var(--f-display); font-weight: 600; font-size: 34px; line-height: 1.3; letter-spacing: -0.01em; }
+.inbound .from { display: block; font-family: var(--f-body); font-weight: 400; font-size: 21px; color: var(--fg-muted); margin-bottom: 6px; letter-spacing: 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+.side { background: #fff; border: 1px solid var(--rule); border-top: 8px solid; border-radius: 20px; padding: 30px 34px 32px; }
+.side.bad { border-top-color: var(--human); }
+.side.good { border-top-color: var(--auto); }
+.side .brief { font-family: var(--f-code); font-size: 23px; line-height: 1.45; background: var(--paper-2); border-radius: 10px; padding: 16px 20px; }
+.side .brief .lbl { display: block; font-family: var(--f-body); font-size: 20px; color: var(--fg-muted); margin-bottom: 6px; }
+.side .brief b { background: var(--marker); font-weight: 700; padding: 0 0.15em; }
+.side .out { margin-top: 24px; font-size: 28px; line-height: 1.4; }
+.side .out mark { background: rgba(194,65,45,0.16); color: var(--human); font-weight: 700; padding: 0 0.12em; }
+.side.good .out b { color: var(--auto); }
+.side .verdict { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 24px; line-height: 1.35; color: var(--fg-muted); }
+.side.bad .verdict { color: var(--human); font-weight: 700; }
+.side.good .verdict b { color: var(--fg-on-light); }
+
 /* ---------- prompt template ---------- */
 .slide--code { padding: 96px 100px 120px; display: grid; grid-template-columns: 1fr 1020px; gap: 64px; align-items: center; }
 .slide--code h2 { font-size: 80px; }
@@ -695,6 +715,37 @@ table.xray { width: 100%; border-collapse: collapse; margin-top: 44px; font-size
 </section>
 
 <!-- 16 .................................................................... -->
+<section class="slide on-light slide--aha">
+  <h2>One customer email. Two briefs.</h2>
+  <blockquote class="inbound"><span class="from">Inbound, Tuesday 08:57</span>"Third time my order is late. I want a full refund and I'm posting a review tonight."</blockquote>
+  <div class="two">
+    <div class="side bad">
+      <div class="brief"><span class="lbl">The brief</span>Reply to customer emails. Be helpful and friendly.</div>
+      <p class="out">Hi Mark, I'm so sorry — you're completely right. I've issued a <mark>full refund</mark> and added a <mark>20% code</mark> for your next order. Thanks for your patience!</p>
+      <p class="verdict">Sent 09:02. Nobody read it. A refund and a discount nobody approved.</p>
+    </div>
+    <div class="side good frag">
+      <div class="brief"><span class="lbl">The brief</span>Reply to customer emails. Be helpful and friendly. <b>If unsure, reply "NEEDS HUMAN" and say why.</b></div>
+      <p class="out"><b>NEEDS HUMAN.</b> The customer is asking for a refund and threatening a public review. That's a decision for you, not for me.</p>
+      <p class="verdict">Nothing left the building. <b>It landed in your inbox at 09:02 instead.</b></p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>The a-ha.</b> Read the email aloud. Show the left card and let it sit — someone will wince at "full refund". Then one click for the right card. Don't explain it yet; the next slide does.</p>
+    <p class="say">"Same model. Same email. Read the two briefs again. Find the difference."</p>
+    <p><b>Before the event:</b> run both briefs on your own assistant with this email and screenshot the results. If your outputs differ from the slide, put your real ones on it — "I ran this last night" is worth more than a tidy example.</p>
+  </div>
+</section>
+
+<section class="slide on-dark slide--claim">
+  <p>Same model. Same email. <span class="mark">One line</span> you wrote.</p>
+  <p class="after frag">That's the whole trick. Automate harder than feels comfortable — and write down, in the brief, where it has to stop and come back to you.</p>
+  <div class="s-notes">
+    <p>Pause on the first line. Then click. This is where the room understands that "keep human" is not a brake, it's the thing that lets them press the accelerator.</p>
+    <p>The template on the next slide shows where that line lives in the brief. Slide 24 returns to it after they've made it fire on their own phone.</p>
+  </div>
+</section>
+
 <section class="slide on-light slide--code">
   <div>
     <h2>Exercise 2 — brief it like a new hire, not a search box</h2>

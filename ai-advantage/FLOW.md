@@ -1,6 +1,6 @@
 # Flow review — Turning AI Into Your Advantage
 
-Reviewed 17 Sep 2026 against the deck (26 slides), `SCRIPT.md` and `handout.html`.
+Reviewed 17 Sep 2026 against the deck (28 slides), `SCRIPT.md` and `handout.html`.
 The script's slide numbers, cut order and verbatim lines all match the deck. The arc is
 sound. The problem is the clock in the exercise block.
 
@@ -27,21 +27,24 @@ sound. The problem is the clock in the exercise block.
 | 17 | Section: Your turn | Pairs confirmed, pens up. | 18:45 |
 | 18 | Exercise 1 — Workflow X-ray, 8:00 | Solo 3 · pairs 4 · two shares 1. Feeds Exercise 2. | 19:30 |
 | 19 | Verdict example (sales call) | "Before the timer if unsure, or after as debrief." | 27:30 |
-| 20 | Exercise 2 template | Role · task · rules · **NEEDS HUMAN** exit. 60 seconds. | 28:30 |
-| 21 | Exercise 2 — Build a teammate, 8:00 | Data warning, live build, partner attack, show of hands. | 29:30 |
-| 22 | "NEEDS HUMAN is your control point" | Thesis #2, landed *after* they felt it. Links back to slide 16. | 37:30 |
-| 23 | Exercise 3 — Kill switch, 4:00 | Owner, success, stop signal, review date in the calendar. | 38:00 |
-| 24 | Three takeaways | One line each, no re-teaching. | 42:00 |
-| 25 | CTA + commitment sentence | Photo of the box. Closing line. Stays up for Q&A. | 43:00 |
-| 26 | Sources (backup) | Press End if challenged. | — |
+| 20 | One customer email, two briefs | **The a-ha.** Same angry email; sticky-note brief promises a refund, one extra line stops it. | 28:30 |
+| 21 | "Same model. Same email. One line you wrote." | The reveal, said slowly. Keep-human is the accelerator, not the brake. | 29:30 |
+| 22 | Exercise 2 template | Role · task · rules · **NEEDS HUMAN** exit. 60 seconds. Now a "here's where that line lives". | 30:00 |
+| 23 | Exercise 2 — Build a teammate, 8:00 | Data warning, live build, partner attack, show of hands. | 31:00 |
+| 24 | "NEEDS HUMAN is your control point" | Thesis #2, landed *after* they felt it. Links back to slide 16. | 39:00 |
+| 25 | Exercise 3 — Kill switch, 4:00 | Owner, success, stop signal, review date in the calendar. | 39:30 |
+| 26 | Three takeaways | One line each, no re-teaching. | 43:30 |
+| 27 | CTA + commitment sentence | Photo of the box. Closing line. Stays up for Q&A. | 44:30 |
+| 28 | Sources (backup) | Press End if challenged. | — |
 
 Times in the right column are what actually happens if every slide takes the time its own
-notes ask for. The opening alone now runs ~6:45 against a 5-minute budget (the two show-of-hands slides cost ~1:50), and the exercise block still overruns; the session finishes at ~45 minutes, not 40.
+notes ask for. The opening alone now runs ~6:45 against a 5-minute budget (the two show-of-hands slides cost ~1:50), and the exercise block still overruns; the session finishes at ~46–47 minutes, not 40.
 
 ## What works
 
-- **One analogy, carried all the way.** Kitchen on 4, 10, 11, 14, 24. The exercises are literally "your kitchen".
-- **Two theses, placed right.** "Decisions are the advantage" (6) opens; "NEEDS HUMAN is your control point" (22) lands only after the room has typed it and watched it fire in Exercise 2. Don't move 22.
+- **One analogy, carried all the way.** Kitchen on 4, 10, 11, 14, 26. The exercises are literally "your kitchen".
+- **The a-ha is shown before it is told.** Slides 20–21 make the room watch a refund go out the door, then watch one line stop it — before they build their own in Exercise 2 and before slide 24 names it. That order (see it → do it → name it) is the strongest thing in the deck.
+- **Two theses, placed right.** "Decisions are the advantage" (6) opens; "NEEDS HUMAN is your control point" (24) lands only after the room has typed it and watched it fire in Exercise 2. Don't move 24.
 - **The setup pair (7–8) sells the exercises before the theory starts.** Slide 7 promises three photographable outputs; slide 8 shows that half the clock is theirs. People sit differently once they know they'll be working.
 - **Exercises map onto the calls.** Ex 1 = find where to build (Call 1) and what to keep (Call 2). Ex 2 = build it, with the Call 2 exit. Ex 3 = Call 3. Each exercise's output feeds the next (top candidate → brief → kill switch → commitment). The handout mirrors this exactly, and now carries a worked example for every box.
 - **Dark/light rhythm.** Every exercise and section break is on navy with the big countdown; the teaching is on paper. The room learns "dark = stop listening, do".
@@ -50,7 +53,7 @@ notes ask for. The opening alone now runs ~6:45 against a 5-minute budget (the t
 ## What doesn't: the exercise block is overbooked by ~4 minutes
 
 Minutes 17–37 are 20 minutes. The three countdowns alone are 20 minutes (8 + 8 + 4).
-Everything else in that block — pairing up, slide 19, slide 20, the data warning, slide 22
+Everything else in that block — pairing up, slide 19, slide 22, the data warning, slide 24
 said slowly — is on top. Realistic total: 24–25 minutes. The two setup slides (7–8) add about 45 seconds net to the opening and the two show-of-hands
 slides (2–3) about 1:50, so the retiming below is now needed, not optional — or move the
 four audience-count questions on slide 2 down to two (owner? more than twenty people?).
@@ -62,7 +65,7 @@ Pick from these, in this order:
 3. **Decide slide 19 now.** "Before or after" is a decision made under pressure in the room. Recommendation: move it *before* slide 18 and give it 30 seconds — the first time people see the 1–3 scoring they will be unsure. If you'd rather keep the momentum from slide 17 straight into the timer, cut it (it's already #1 in the cut order; the rule box and a worked example row are on the worksheet).
 4. **Exercise 3 to 3:00.** The output is a calendar entry. The script already says two minutes is enough when behind. Update slide 8's "4:00" too.
 
-2 + 4 bring the block to ~21 minutes with slide 19 kept. Slides 24–25 then get their three
+2 + 4 bring the block to ~21 minutes with slide 19 kept. Slides 26–25 then get their three
 minutes and the commitment photo happens before people stand up.
 
 ## Other findings
@@ -71,4 +74,4 @@ minutes and the commitment photo happens before people stand up.
 - **Two room questions in the six-minute calls section** (slide 11 "what could you offer", slide 12 "which would you add"). Each costs 45–60 seconds. Keep one; slide 12's is better because the answers ("hiring", "legal") go straight onto the worksheet's "four things I keep human".
 - **Two places print the timing** — the section slides (5–11, 11–17, 17–37) and slide 8's blocks. If you change any countdown, update both in the same commit.
 - **Handout ↔ deck consistency: clean.** Same rule box, same template with the same highlighted line, same kill-switch fields, same commitment sentence. The only mismatch will be the exercise minutes if you shorten them.
-- **Still open from the pre-event checklist:** date on slide 1, QR on slide 25, Luca's permission, the backup run for Exercise 2.
+- **Still open from the pre-event checklist:** date on slide 1, QR on slide 27, Luca's permission, the backup run for Exercise 2.
