@@ -119,6 +119,24 @@ h2 { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.02em; l
 .slide--claim p { font-family: var(--f-display); font-size: 104px; line-height: 1.1; font-weight: 600; max-width: 20ch; letter-spacing: -0.025em; }
 .slide--claim .after { font-family: var(--f-body); font-size: 32px; line-height: 1.4; font-weight: 400; color: var(--fg-muted); margin-top: 48px; max-width: 58ch; letter-spacing: 0; }
 
+/* ---------- goals + agenda (the setup, right after the claim) ---------- */
+.slide--agenda { padding: 130px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--agenda h2 { font-size: 84px; }
+.agenda { display: flex; gap: 14px; margin-top: 64px; }
+.agenda > div { flex: 1 1 0; min-width: 215px; border-radius: 18px; padding: 30px 30px 34px; background: var(--paper-2); border: 1px solid var(--rule); display: flex; flex-direction: column; }
+.agenda .min { font-family: var(--f-display); font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+.agenda .min small { font-size: 26px; font-weight: 600; color: var(--fg-muted); margin-left: 6px; letter-spacing: 0; }
+.agenda .what { font-family: var(--f-display); font-weight: 600; font-size: 32px; line-height: 1.1; margin-top: 18px; }
+.agenda .how { font-size: 24px; line-height: 1.35; color: var(--fg-muted); margin-top: 10px; }
+.agenda .now { background: var(--ink); color: var(--fg-on-dark); border-color: var(--ink); }
+.agenda .now .how, .agenda .now .min small { color: var(--fg-muted-dark); }
+.agenda .do { background: var(--marker); border-color: var(--marker); }
+.agenda .do .how, .agenda .do .min small { color: rgba(16,35,56,0.72); }
+.agenda .do .sub { display: flex; gap: 10px; margin-top: auto; padding-top: 24px; }
+.agenda .do .sub span { flex: 1; background: rgba(16,35,56,0.12); border-radius: 10px; padding: 10px 12px; font-size: 22px; font-weight: 700; line-height: 1.25; }
+.slide--agenda .prep { margin-top: 52px; font-size: 30px; line-height: 1.45; color: var(--fg-muted); max-width: 60ch; }
+.slide--agenda .prep b { color: var(--fg-on-light); }
+
 /* ---------- section ---------- */
 .slide--section { padding: 130px 140px 170px; display: flex; flex-direction: column; justify-content: flex-end; }
 .slide--section .num { font-family: var(--f-display); font-size: 260px; font-weight: 800; line-height: 0.82; color: var(--marker); letter-spacing: -0.05em; }
@@ -390,11 +408,43 @@ table.xray { width: 100%; border-collapse: collapse; margin-top: 44px; font-size
   <p class="after">Three decisions, specifically. We'll name them, see them in a real business, and then you'll make them for your own.</p>
   <div class="s-notes">
     <p><b>Pause after the first sentence. Two full seconds.</b></p>
-    <p>Then set up the shape of the session: framework (6 min), Luca (6 min), three exercises (20 min), close.</p>
+    <p>The next two slides do the setup: what they leave with, then how the time runs. Don't pre-empt them here.</p>
   </div>
 </section>
 
 <!-- 5 ..................................................................... -->
+<section class="slide on-light slide--take">
+  <h2>What you leave with</h2>
+  <ul class="take">
+    <li><b>One process in your week, X-rayed</b><span>Split into steps, each one marked automate, assist or keep human. On paper, in your handwriting.</span></li>
+    <li class="frag"><b>A working AI teammate you built</b><span>Briefed like a new hire, attacked by a partner, with a "NEEDS HUMAN" exit for the cases it shouldn't touch.</span></li>
+    <li class="frag"><b>A review date in your calendar</b><span>With an owner, one number that means success, and the signal that switches it off.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Builds one per click. Point at the worksheet on the table: every one of these is a box on it.</p>
+    <p class="say">"Not a tour of tools. Not a list of prompts. Three things you can photograph on your way out."</p>
+  </div>
+</section>
+
+<!-- 6 ..................................................................... -->
+<section class="slide on-light slide--agenda">
+  <h2>How the next forty minutes run</h2>
+  <div class="agenda">
+    <div class="now"><div class="min">5<small>min</small></div><div class="what">Why</div><div class="how">Same ingredients, different queue. The gap in the numbers.</div></div>
+    <div><div class="min">6<small>min</small></div><div class="what">The three calls</div><div class="how">Build on top. Keep. Change your mind on a schedule.</div></div>
+    <div><div class="min">6<small>min</small></div><div class="what">Luca's kitchen</div><div class="how">One real business: automated to the extreme, still in control.</div></div>
+    <div class="do" style="flex-grow: 2.6"><div class="min">20<small>min</small></div><div class="what">Your turn</div><div class="how">Three exercises on the worksheet, in pairs.</div>
+      <div class="sub"><span>X-ray<br>8:00</span><span>Build<br>8:00</span><span>Kill switch<br>4:00</span></div></div>
+    <div><div class="min">3<small>min</small></div><div class="what">Close</div><div class="how">Three takeaways and one sentence you photograph.</div></div>
+  </div>
+  <p class="prep"><b>Phones out</b> — you'll build on whatever assistant is on it. <b>Pens ready</b> — the worksheet is on your table. <b>Pair up</b> with someone you don't work with.</p>
+  <div class="s-notes">
+    <p><b>Thirty seconds.</b> The point of this slide is the yellow block: half the session is them working, not you talking.</p>
+    <p class="say">"I talk for seventeen minutes. You work for twenty. Find your partner now."</p>
+  </div>
+</section>
+
+<!-- 7 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">1</span>
   <h2>The three calls</h2>
@@ -551,7 +601,7 @@ table.xray { width: 100%; border-collapse: collapse; margin-top: 44px; font-size
   <p class="lede">Three exercises, twenty minutes. You leave with a working helper and a date to review it.</p>
   <p class="clock">Minutes 17–37</p>
   <div class="s-notes">
-    <p><b>Hand out the worksheet now</b> (handout.html, printed double-sided). Pens on every table. Ask people to pair up with someone they don't work with.</p>
+    <p><b>Worksheets are already on the tables</b> (handout.html, printed double-sided) and pairs were formed at slide 6. Check nobody is sitting alone, then press X on the next slide.</p>
   </div>
 </section>
 
@@ -667,7 +717,7 @@ produce <span class="f">[a reply draft]</span>.
   <p class="after">It lets you automate far more than feels comfortable, because the risky cases come back to you instead of going out the door.</p>
   <div class="s-notes">
     <p><b>This is the thesis of the workshop. Say it slowly.</b></p>
-    <p>Link back to Luca's coral box on slide 12.</p>
+    <p>Link back to Luca's coral box on slide 14.</p>
   </div>
 </section>
 
