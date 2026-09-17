@@ -119,6 +119,19 @@ h2 { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.02em; l
 .slide--claim p { font-family: var(--f-display); font-size: 104px; line-height: 1.1; font-weight: 600; max-width: 20ch; letter-spacing: -0.025em; }
 .slide--claim .after { font-family: var(--f-body); font-size: 32px; line-height: 1.4; font-weight: 400; color: var(--fg-muted); margin-top: 48px; max-width: 58ch; letter-spacing: 0; }
 
+/* ---------- show of hands (who is in the room) ---------- */
+.slide--poll { padding: 120px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--poll .kicker { font-family: var(--f-display); font-size: 34px; font-weight: 800; color: var(--marker); }
+.slide--poll h2 { font-size: 88px; font-weight: 800; margin-top: 12px; max-width: 18ch; }
+.poll { list-style: none; counter-reset: q; display: grid; gap: 26px; margin-top: 54px; }
+.poll li { counter-increment: q; display: grid; grid-template-columns: 72px 1fr; column-gap: 28px; row-gap: 6px; align-items: start; }
+.poll li::before { content: counter(q); font-family: var(--f-display); font-weight: 800; font-size: 34px; width: 60px; height: 60px; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(255,210,63,0.16); color: var(--marker); margin-top: 2px; }
+.poll b { grid-column: 2; font-family: var(--f-display); font-weight: 700; font-size: 42px; line-height: 1.1; letter-spacing: -0.02em; }
+.poll em { grid-column: 2; font-style: normal; color: var(--fg-muted-dark); font-size: 26px; line-height: 1.35; }
+.slide--poll .after { margin-top: 48px; font-size: 30px; line-height: 1.4; color: var(--fg-muted-dark); max-width: 60ch; }
+.slide--poll .after b { color: var(--fg-on-dark); }
+
 /* ---------- goals + agenda (the setup, right after the claim) ---------- */
 .slide--agenda { padding: 130px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
 .slide--agenda h2 { font-size: 84px; }
@@ -357,13 +370,45 @@ table.xray { width: 100%; border-collapse: collapse; margin-top: 44px; font-size
   </footer>
   <div class="s-notes">
     <p><b>Before you start: add the event name and date to this slide.</b> The meta line has no date on purpose until you confirm it.</p>
-    <p><b>Open with the show of hands, not with your bio.</b> The host has read the bio already. Your first line is a question.</p>
-    <p class="say">"Hands up if you used an AI tool this week." (Wait.) "Keep it up if you can tell me the euros it earned or saved you last month." (Most hands drop.) "That gap is what we close in the next forty minutes."</p>
+    <p><b>Open with the show of hands on the next two slides, not with your bio.</b> The host has read the bio already. Your first line is a question.</p>
     <p>Bio correction: you are no longer at Microsoft (ended 31 Aug 2026). If the host reads "today he partners with enterprises at Microsoft", correct it lightly: "formerly — these days I do this independently."</p>
   </div>
 </section>
 
 <!-- 2 ..................................................................... -->
+<section class="slide on-dark slide--poll">
+  <p class="kicker">Show of hands</p>
+  <h2>Who's in the room?</h2>
+  <ul class="poll">
+    <li><b>You own the business, or the P&amp;L is yours</b><em>Owners, founders, managing directors.</em></li>
+    <li class="frag"><b>You run a team inside someone else's business</b><em>Operations, sales, finance, support, delivery.</em></li>
+    <li class="frag"><b>You are the whole team</b><em>Freelancers and solo founders. Your first hire may be the one you build today.</em></li>
+    <li class="frag"><b>More than twenty people work where you work</b><em>Keep it up if it's more than a hundred.</em></li>
+  </ul>
+  <div class="s-notes">
+    <p>Builds one per click. Count roughly, say the count back to the room. This is where you pick your examples for the next forty minutes.</p>
+    <p><b>Mostly owners:</b> talk euros and hours. <b>Mostly team leads:</b> the "keep human" list on the worksheet is something they agree with their boss; say so at Call 2. <b>Mostly solo:</b> the teammate they build in Exercise 2 is literally their first hire.</p>
+  </div>
+</section>
+
+<!-- 3 ..................................................................... -->
+<section class="slide on-dark slide--poll">
+  <p class="kicker">Keep them up</p>
+  <h2>Where are you with AI?</h2>
+  <ul class="poll">
+    <li><b>You used an AI tool this week</b><em>Any tool, any task. Nearly every hand.</em></li>
+    <li class="frag"><b>Something AI does in your business every week without you touching it</b><em>Not "I ask it things" — it runs.</em></li>
+    <li class="frag"><b>You can name the euros it earned or saved you last month</b><em>A number, not a feeling.</em></li>
+  </ul>
+  <p class="after frag"><b>That drop between the first hand and the last</b> is what we close in the next forty minutes.</p>
+  <div class="s-notes">
+    <p>Three questions, hands stay up, so the room watches the hands go down. Wait a full two seconds after each.</p>
+    <p class="say">"Hands up if you used an AI tool this week." (Nearly all.) "Keep it up if something AI does in your business every week without you touching it." (A third.) "Keep it up if you can tell me the euros it earned or saved you last month." (Two or three.) "That drop is what we close in the next forty minutes."</p>
+    <p>If more hands than expected survive the last question, name them — they are your Luca if Luca isn't in the room.</p>
+  </div>
+</section>
+
+<!-- 4 ..................................................................... -->
 <section class="slide on-light slide--duo">
   <h2>Every restaurant on the street buys from the same supplier</h2>
   <div class="duo">
@@ -601,7 +646,7 @@ table.xray { width: 100%; border-collapse: collapse; margin-top: 44px; font-size
   <p class="lede">Three exercises, twenty minutes. You leave with a working helper and a date to review it.</p>
   <p class="clock">Minutes 17–37</p>
   <div class="s-notes">
-    <p><b>Worksheets are already on the tables</b> (handout.html, printed double-sided) and pairs were formed at slide 6. Check nobody is sitting alone, then press X on the next slide.</p>
+    <p><b>Worksheets are already on the tables</b> (handout.html, printed double-sided) and pairs were formed at slide 8. Check nobody is sitting alone, then press X on the next slide.</p>
   </div>
 </section>
 
@@ -717,7 +762,7 @@ produce <span class="f">[a reply draft]</span>.
   <p class="after">It lets you automate far more than feels comfortable, because the risky cases come back to you instead of going out the door.</p>
   <div class="s-notes">
     <p><b>This is the thesis of the workshop. Say it slowly.</b></p>
-    <p>Link back to Luca's coral box on slide 14.</p>
+    <p>Link back to Luca's coral box on slide 16.</p>
   </div>
 </section>
 
