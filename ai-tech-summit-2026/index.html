@@ -1,0 +1,1676 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sovereign AI infrastructure to regain control and autonomy — AI Tech Summit „Filip Avramchev“ 2026, Skopje. Alessandro Vozza.">
+<link rel="icon" href="ai-tech-summit-favicon.png">
+<title>Beyond the Clouds — Skopje</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,800&display=swap">
+
+<style>
+/* ============================================================
+   BEYOND THE CLOUDS — AI Tech Summit „Filip Avramchev“, Skopje (23 September 2026)
+   The Southeast-Europe cut: the leadership argument, the stack without the YAML,
+   and the sovereignty decisions North Macedonia took this summer.
+   Branded for the summit, not for VOLT: palette, type and logo taken from
+   techsummit.ai (September 2026). Ground: the summit's deep navy #010028 with
+   a lavender dot field and purple glow, echoing the particle-wave hero.
+   Type:   Montserrat throughout (the site's body face; 800 for display in
+           place of the site's Mokoto wordmark font, which is not licensed
+           for redistribution). Accents: #8026B0 purple, #E287FF lavender,
+           #FF4D54 for the one warning colour. Logo: the summit's 2026 mark,
+           beside the deck as ai-tech-summit-logo.png.
+   ============================================================ */
+:root {
+  --ink:            #010028;   /* summit deep navy — ground for dark slides */
+  --ink-2:          #1a0f3d;   /* purple-tinted card */
+  --paper:          #0b0a2e;   /* lifted navy — ground for "light" slides */
+  --paper-2:        #151a33;   /* slate card */
+  --surface-muted:  #151a33;   /* slate card / track */
+  --cream:          #2a1650;   /* purple tint */
+  --navy:           #13245d;   /* summit button navy */
+  --fg-on-light:    #ffffff;
+  --fg-on-dark:     #ffffff;
+  --fg-muted:       #b4b0d8;
+  --fg-muted-dark:  #b4b0d8;
+  --accent:         #e287ff;   /* summit lavender */
+  --accent-soft:    #e287ff;
+  --accent-deep:    #8026b0;   /* summit purple, for fills that carry text */
+  --warn:           #ff4d54;   /* the site's gradient stop — one warning colour */
+  --on-accent:      #ffffff;
+  --rule:           rgba(255,255,255,0.16);
+  --rule-dark:      rgba(255,255,255,0.16);
+
+  --f-display: 'Montserrat', Arial, Helvetica, sans-serif;
+  --f-body:    'Montserrat', Arial, Helvetica, sans-serif;
+  --f-mono:    'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+/* On dark grounds the whole token set lifts, so every rule below
+   that reads var(--accent) resolves to the legible variant. */
+.on-dark, .slide--hook { --accent: var(--accent-soft); --fg-muted: var(--fg-muted-dark); --rule: var(--rule-dark); }
+.layer.phys { --accent: var(--accent-soft); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--ink); font-family: var(--f-body); color: var(--fg-on-dark); }
+
+#deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--ink); }
+
+.slide {
+  position: absolute; top: 50%; left: 50%;
+  width: 1920px; height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  transform-origin: center center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 140ms ease;
+  font-family: var(--f-body); overflow: hidden;
+}
+.slide.is-active { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+
+/* ---- footer rule: section left, summit logo + page right ---- */
+.ref {
+  position: absolute; bottom: 44px; left: 78px; right: 78px;
+  display: flex; align-items: center; gap: 26px;
+  border-top: 1px solid var(--rule); padding-top: 16px;
+  font-family: var(--f-body); font-size: 19px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.ref .ref-n { color: var(--accent); font-weight: 700; }
+.ref .ref-mid { margin-left: auto; letter-spacing: 0.14em; opacity: 0.75; }
+.ref .ref-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+.ref .ref-logo { height: 40px; width: auto; display: block; }
+.ref .ref-pg { font-size: 22px; font-weight: 700; letter-spacing: 0; }
+.on-light .ref { color: var(--fg-muted); }
+.on-dark  .ref { color: var(--fg-muted-dark); }
+
+/* Cover treatment for title and closing slides: wordmark, no rule. */
+.cover-mark { position: absolute; height: 96px; width: auto; }
+.slide--title .cover-mark { top: 92px; right: 110px; }
+.slide--cta   .cover-mark { bottom: 96px; right: 130px; }
+
+/* ---- dot-field ground (10px pitch), navy with a purple glow ---- */
+.on-light {
+  background-color: var(--paper); color: var(--fg-on-light);
+  background-image:
+    radial-gradient(circle, rgba(226,135,255,0.10) 1px, transparent 1.5px),
+    radial-gradient(1000px 660px at 76% 42%, rgba(128,38,176,0.32), transparent 70%),
+    radial-gradient(900px 600px at 8% 100%, rgba(0,127,255,0.14), transparent 70%);
+  background-size: 10px 10px, 100% 100%;
+}
+.on-dark {
+  background-color: var(--ink); color: var(--fg-on-dark);
+  background-image:
+    radial-gradient(circle, rgba(226,135,255,0.12) 1px, transparent 1.5px),
+    radial-gradient(1150px 720px at 22% 34%, rgba(128,38,176,0.42), transparent 72%),
+    radial-gradient(900px 600px at 92% 92%, rgba(0,127,255,0.16), transparent 70%);
+  background-size: 10px 10px, 100% 100%;
+}
+
+/* ---------- summit type tune ---------- */
+h1, h2, .slide--claim p, .slide--hook p, .slide--proverb blockquote, .slide--quote blockquote { letter-spacing: -0.025em; }
+.slide--metric .num, .bar .v, .col .pc, .dcenter .dn, .dlegend .p, .rules .n { letter-spacing: -0.03em; }
+.slide--title h1 { line-height: 1.0; }
+.slide--section h2 { line-height: 1.08; }
+.slide--content.tight.has-kq h2 { font-size: 56px; }
+
+/* ---------- title ---------- */
+.slide--title { padding: 120px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--title::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(1100px 640px at 78% 68%, rgba(128,38,176,0.45), transparent 68%),
+              radial-gradient(800px 520px at 10% 18%, rgba(0,127,255,0.22), transparent 70%);
+}
+.slide--title > *:not(.cover-mark) { position: relative; }
+.slide--title .eyebrow { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 40px; }
+.slide--title h1 { font-family: var(--f-display); font-size: 121px; line-height: 0.94; font-weight: 800; letter-spacing: -0.015em; max-width: 15ch; }
+.slide--title h1 em { font-style: italic; color: var(--accent-soft); }
+.slide--title .sub { font-size: 34px; line-height: 1.35; color: var(--fg-muted-dark); margin-top: 44px; max-width: 42ch; }
+.slide--title .meta { position: absolute; bottom: 84px; left: 110px; right: 110px; display: flex; gap: 28px; align-items: baseline;
+  font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.06em; color: var(--fg-muted-dark); border-top: 1px solid var(--rule-dark); padding-top: 26px; }
+.slide--title .meta .who { color: var(--fg-on-dark); font-weight: 500; }
+.slide--title .meta .spacer { flex: 1; }
+
+/* ---------- hook ---------- */
+.slide--hook {
+  background-color: #3a1266; color: var(--on-accent);
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.13) 1px, transparent 1.5px),
+    radial-gradient(1100px 700px at 50% 40%, rgba(1,0,40,0.55), transparent 74%);
+  background-size: 10px 10px, 100% 100%;
+  display: grid; place-items: center; padding: 140px 120px 190px; text-align: center;
+}
+.slide--hook p { font-family: var(--f-display); font-size: 89px; line-height: 1.06; font-weight: 800; max-width: 20ch; letter-spacing: -0.01em; }
+.slide--hook .sub { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.78; margin-top: 54px; white-space: nowrap; }
+
+/* ---------- session rules / housekeeping ---------- */
+.slide--rules { padding: 140px 130px 136px; display: grid; grid-template-columns: 1fr 460px; gap: 92px; align-items: center; }
+.slide--rules .kicker { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+.slide--rules h2 { font-family: var(--f-display); font-size: 71px; font-weight: 800; line-height: 1.04; margin-top: 18px; max-width: 18ch; }
+.rules { list-style: none; display: grid; gap: 30px; margin-top: 52px; }
+.rules li { display: grid; grid-template-columns: 92px 1fr; gap: 26px; align-items: baseline; }
+.rules .n { font-family: var(--f-display); font-size: 44px; line-height: 1; color: var(--accent); letter-spacing: -0.02em; font-weight: 800; }
+.rules b { display: block; font-size: 33px; font-weight: 600; line-height: 1.24; }
+.rules span { display: block; font-size: 25px; line-height: 1.38; color: var(--fg-muted); margin-top: 7px; }
+.clock { background: var(--ink); color: var(--fg-on-dark); border-radius: 4px; padding: 54px 48px; display: grid; gap: 30px; }
+.clock .row { display: grid; gap: 6px; }
+.clock .t { font-family: var(--f-display); font-size: 61px; line-height: 1; letter-spacing: -0.02em; font-weight: 800; }
+.clock .row.talk .t { color: var(--accent-soft); }
+.clock .l { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted-dark); }
+.clock .rule { height: 1px; background: var(--rule-dark); }
+.clock .note { font-size: 22px; line-height: 1.4; color: var(--fg-muted-dark); }
+
+/* ---------- bold claim ---------- */
+.slide--claim { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; }
+.slide--claim p { font-family: var(--f-display); font-size: 75px; line-height: 1.1; font-weight: 800; max-width: 21ch;
+  border-left: 8px solid var(--accent); padding-left: 56px; letter-spacing: -0.01em; }
+.slide--claim p b { font-style: italic; font-weight: 400; color: var(--accent); }
+.slide--claim cite { margin-top: 48px; padding-left: 64px; font-style: normal; font-family: var(--f-mono);
+  font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
+
+/* ---------- section divider ---------- */
+.slide--section { padding: 130px 130px 165px; display: flex; flex-direction: column; justify-content: flex-end; }
+.slide--section .num { font-family: var(--f-display); font-size: 172px; font-weight: 800; line-height: 0.9; color: var(--accent); letter-spacing: -0.02em; }
+.slide--section h2 { font-family: var(--f-display); font-size: 79px; font-weight: 800; margin-top: 18px; max-width: 22ch; line-height: 1.05; }
+.slide--section .lede { font-size: 30px; color: var(--fg-muted-dark); margin-top: 30px; max-width: 52ch; line-height: 1.4; }
+
+/* ---------- content ---------- */
+.slide--content { padding: 160px 130px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--content h2 { font-family: var(--f-display); font-size: 67px; font-weight: 800; line-height: 1.06; letter-spacing: -0.01em; max-width: 24ch; }
+.slide--content .lede { font-size: 30px; color: var(--fg-muted); margin-top: 26px; max-width: 62ch; line-height: 1.4; }
+.on-dark.slide--content .lede { color: var(--fg-muted-dark); }
+.points { list-style: none; display: grid; gap: 30px; margin-top: 62px; max-width: 1400px; }
+.points.two-col { grid-template-columns: 1fr 1fr; gap: 32px 64px; }
+.points li { font-size: 30px; line-height: 1.4; padding-left: 32px; border-left: 4px solid var(--accent); }
+.points li b { font-weight: 600; display: block; font-size: 32px; margin-bottom: 6px; }
+.points li span { color: var(--fg-muted); }
+.on-dark .points li span { color: var(--fg-muted-dark); }
+
+.slide--content .kq { font-size: 24px; line-height: 1.38; margin-top: 34px; padding-left: 22px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 104ch; }
+.slide--content .kq b { color: var(--fg-on-light); font-weight: 600; }
+.slide--content.tight.has-kq { padding: 96px 130px 128px; }
+.slide--content.tight.has-kq h2 { font-size: 66px; }
+.slide--content.tight.has-kq .lede { margin-top: 16px; }
+.slide--content.tight.has-kq .points { margin-top: 34px; gap: 22px 60px; }
+.slide--content.tight.has-kq .points li { font-size: 25px; line-height: 1.36; }
+.slide--content .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+.slide--content.tight { padding: 118px 130px 118px; }
+.slide--content.tight h2 { font-size: 74px; }
+.slide--content.tight .lede { font-size: 28px; margin-top: 22px; }
+.slide--content.tight .points { margin-top: 46px; gap: 26px 60px; }
+.slide--table.tight { padding: 120px 110px 120px; }
+.slide--table.tight h2 { font-size: 70px; }
+.slide--table.tight .lede { margin-bottom: 34px; }
+
+/* ---------- before / after ---------- */
+.slide--ba { padding: 160px 130px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--ba h2 { font-family: var(--f-display); font-size: 64px; font-weight: 800; margin-bottom: 56px; }
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.ba-col { padding: 48px 46px; border-radius: 4px; }
+.ba-col.old { background: var(--surface-muted); }
+.ba-col.new { background: var(--ink-2); color: var(--fg-on-dark); border: 1px solid rgba(226,135,255,0.38); }
+.ba-col.old { border: 1px solid var(--rule); }
+.ba-col .lbl { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.65; }
+.ba-col.new .lbl { color: var(--accent-soft); opacity: 1; }
+.ba-col ul { list-style: none; display: grid; gap: 22px; margin-top: 34px; font-size: 28px; line-height: 1.35; }
+.ba-col li::before { content: "—"; margin-right: 14px; opacity: 0.45; }
+.slide--ba.tight { padding: 124px 128px 120px; }
+.slide--ba.tight h2 { font-size: 72px; margin-bottom: 42px; }
+.slide--ba.tight .ba-col { padding: 40px 38px; }
+.slide--ba.tight .ba-col ul { gap: 18px; font-size: 26px; margin-top: 28px; }
+.slide--ba .pull { font-family: var(--f-display); font-size: 33px; line-height: 1.24; margin-top: 46px;
+  padding-left: 26px; border-left: 4px solid var(--accent); max-width: 68ch; font-weight: 800; }
+.slide--ba .pull cite { display: block; font-family: var(--f-mono); font-style: normal; font-size: 20px;
+  letter-spacing: 0.06em; color: var(--fg-muted); margin-top: 14px; }
+
+/* ---------- three-way comparison cards ---------- */
+.slide--trio { padding: 96px 116px 136px; display: flex; flex-direction: column; justify-content: center; }
+.slide--trio h2 { font-family: var(--f-display); font-size: 62px; font-weight: 800; line-height: 1.06; max-width: 26ch; }
+.slide--trio .lede { font-size: 27px; color: var(--fg-muted); margin-top: 20px; max-width: 74ch; line-height: 1.4; }
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 32px; }
+.trio .card { padding: 26px 28px; border-radius: 4px; background: var(--surface-muted); display: flex; flex-direction: column; gap: 13px; }
+.trio .card.best { background: var(--ink-2); color: var(--fg-on-dark); border: 1px solid rgba(226,135,255,0.38); }
+.trio .card { border: 1px solid var(--rule); }
+.trio .lbl { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.6; }
+.trio .card.best .lbl { color: var(--accent-soft); opacity: 1; }
+.trio h3 { font-family: var(--f-display); font-size: 33px; font-weight: 800; line-height: 1.08; }
+.trio .eg { font-family: var(--f-mono); font-size: 20px; line-height: 1.35; color: var(--accent); }
+.trio .card.best .eg { color: var(--accent-soft); }
+.trio ul { list-style: none; display: grid; gap: 11px; font-size: 23px; line-height: 1.34; margin-top: 3px; }
+.trio .card li { color: var(--fg-muted); }
+.trio .card.best li { color: #d9d2f0; }
+.trio li::before { content: "—"; margin-right: 10px; opacity: 0.45; }
+.slide--trio .kq { font-size: 23px; line-height: 1.38; margin-top: 24px; padding-left: 22px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 108ch; }
+.slide--trio .kq b { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- comparison table ---------- */
+.slide--table { padding: 150px 110px 145px; display: flex; flex-direction: column; justify-content: center; }
+.slide--table h2 { font-family: var(--f-display); font-size: 61px; font-weight: 800; margin-bottom: 14px; }
+.slide--table .lede { font-size: 26px; color: var(--fg-muted); margin-bottom: 44px; max-width: 70ch; }
+table.cmp { width: 100%; border-collapse: collapse; font-size: 25px; font-variant-numeric: tabular-nums; color: var(--fg-on-light); }
+table.cmp th, table.cmp td { padding: 17px 22px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.3; }
+table.cmp thead th { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); border-bottom: 2px solid var(--fg-on-light); }
+table.cmp tbody th { font-weight: 600; width: 15%; }
+table.cmp td.tag { font-family: var(--f-mono); font-size: 22px; }
+table.cmp tr.hi td, table.cmp tr.hi th { background: rgba(226,135,255,0.10); }
+table.cmp .mark { color: var(--accent); font-weight: 600; }
+
+/* ---------- metric ---------- */
+.slide--metric { display: grid; place-items: center; padding: 120px 120px 165px; text-align: center; }
+.slide--metric .num { font-family: var(--f-display); font-size: 262px; font-weight: 800; line-height: 0.86; color: var(--accent); letter-spacing: -0.03em; }
+.slide--metric .num .u { font-size: 0.42em; letter-spacing: 0; margin-left: 0.08em; }
+.slide--metric .cap { font-family: var(--f-display); font-size: 44px; line-height: 1.2; max-width: 26ch; margin-top: 46px; font-weight: 800; }
+.slide--metric .src { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.08em; color: var(--fg-muted-dark); margin-top: 34px; }
+
+/* ---------- quote ---------- */
+.slide--quote { padding: 170px 150px 155px; display: flex; flex-direction: column; justify-content: center; }
+.slide--quote blockquote { font-family: var(--f-display); font-size: 67px; line-height: 1.16; font-weight: 800; max-width: 27ch; }
+.slide--quote blockquote::before { content: "\201C"; color: var(--accent); }
+.slide--quote cite { margin-top: 54px; font-style: normal; font-family: var(--f-mono); font-size: 23px; line-height: 1.6;
+  letter-spacing: 0.06em; color: var(--fg-muted); display: block; max-width: 70ch; }
+.slide--quote cite b { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- proverb ---------- */
+.slide--proverb { display: grid; place-items: center; padding: 150px 140px 175px; text-align: center; }
+.slide--proverb blockquote { font-family: var(--f-display); font-size: 85px; line-height: 1.1; font-weight: 800;
+  max-width: 19ch; letter-spacing: -0.015em; }
+.slide--proverb blockquote em { font-style: italic; color: var(--accent); }
+.slide--proverb cite { display: block; margin-top: 58px; font-style: normal; font-family: var(--f-mono);
+  font-size: 23px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
+
+/* ---------- practice / principles close ---------- */
+.slide--practice { padding: 140px 130px 136px; display: flex; flex-direction: column; justify-content: center; }
+.slide--practice h2 { font-family: var(--f-display); font-size: 85px; font-weight: 800; line-height: 1.04;
+  max-width: 20ch; letter-spacing: -0.015em; }
+.slide--practice h2 em { font-style: italic; color: var(--accent-soft); }
+.slide--practice .top { font-size: 34px; font-weight: 600; color: var(--accent-soft); margin-top: 56px;
+  padding-bottom: 30px; border-bottom: 1px solid var(--rule-dark); }
+.slide--practice ul { list-style: none; display: grid; gap: 20px; margin-top: 32px; }
+.slide--practice li { font-size: 32px; line-height: 1.34; color: var(--fg-muted-dark); }
+.slide--practice li b { color: var(--fg-on-dark); font-weight: 600; }
+.slide--practice .floor { font-family: var(--f-display); font-size: 38px; line-height: 1.2; margin-top: 44px;
+  padding-left: 28px; border-left: 5px solid var(--accent-soft); color: var(--fg-on-dark); font-weight: 800; }
+
+/* ---------- timeline ---------- */
+.slide--timeline { padding: 160px 110px 150px; display: flex; flex-direction: column; justify-content: center; }
+.slide--timeline h2 { font-family: var(--f-display); font-size: 61px; font-weight: 800; margin-bottom: 70px; }
+.tl { list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 34px; position: relative; }
+.tl::before { content: ""; position: absolute; top: 13px; left: 0; right: 0; height: 2px; background: var(--rule); }
+.tl li { position: relative; padding-top: 56px; }
+.tl li::before { content: ""; position: absolute; top: 0; left: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); }
+.tl .date { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.08em; color: var(--accent); display: block; margin-bottom: 14px; }
+.tl b { display: block; font-size: 30px; line-height: 1.25; font-weight: 600; }
+.tl p { font-size: 24px; line-height: 1.35; color: var(--fg-muted); margin-top: 12px; }
+
+/* ---------- architecture (CSS box diagram) ---------- */
+.slide--arch { padding: 100px 90px 128px; display: grid; grid-template-rows: auto 1fr auto; gap: 20px; }
+.slide--arch h2 { font-family: var(--f-display); font-size: 51px; font-weight: 800; }
+.arch { display: grid; grid-template-columns: 210px 1fr 210px; gap: 20px; align-items: stretch; }
+.rail { border: 2px solid var(--rule); border-radius: 4px; padding: 24px 18px; display: flex; flex-direction: column; justify-content: center; gap: 16px; text-align: center; }
+.rail .rl { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.rail p { font-size: 21px; line-height: 1.35; color: var(--fg-muted); }
+.layers { display: grid; gap: 9px; }
+.layer { display: grid; grid-template-columns: 300px 1fr; align-items: center; gap: 22px; background: var(--paper-2); border-left: 6px solid var(--accent); border-radius: 3px; padding: 12px 22px; }
+.layer.phys { background: var(--ink-2); color: var(--fg-on-dark); }
+.layer .ln { font-weight: 600; font-size: 25px; line-height: 1.2; }
+.layer .ln em { display: block; font-style: normal; font-family: var(--f-mono); font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); margin-top: 4px; }
+.layer.phys .ln em { color: var(--fg-muted-dark); }
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+.chip { font-family: var(--f-mono); font-size: 18px; padding: 6px 12px; border: 1px solid var(--rule); border-radius: 3px; background: var(--paper); }
+.layer.phys .chip { background: var(--ink-2); border-color: var(--rule-dark); }
+.slide--arch .cap { font-family: var(--f-mono); font-size: 20px; color: var(--fg-muted); letter-spacing: 0.04em; }
+
+/* ---------- debate ---------- */
+.slide--debate { padding: 150px 110px 145px; display: flex; flex-direction: column; justify-content: center; }
+.slide--debate h2 { font-family: var(--f-display); font-size: 64px; font-weight: 800; margin-bottom: 16px; }
+.slide--debate .lede { font-size: 27px; color: var(--fg-muted-dark); margin-bottom: 54px; }
+.provs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 26px 48px; counter-reset: p; }
+.provs li { counter-increment: p; display: grid; grid-template-columns: 62px 1fr; gap: 20px; align-items: start;
+  font-size: 29px; line-height: 1.34; padding-bottom: 22px; border-bottom: 1px solid var(--rule-dark); }
+.provs li::before { content: counter(p, decimal-leading-zero); font-family: var(--f-mono); font-size: 30px; font-weight: 600; color: var(--accent); }
+
+/* ---------- workshop exercise ---------- */
+.slide--exercise { padding: 116px 118px 112px; display: flex; flex-direction: column; justify-content: center; }
+.slide--exercise .tag { display: inline-flex; align-items: center; gap: 14px; align-self: flex-start;
+  font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--on-accent); background: var(--accent); padding: 10px 20px; border-radius: 3px; }
+.slide--exercise h2 { font-family: var(--f-display); font-size: 62px; font-weight: 800; line-height: 1.04; margin-top: 24px; }
+.slide--exercise .lede { font-size: 27px; color: var(--fg-muted); margin-top: 16px; max-width: 78ch; line-height: 1.4; }
+.boxes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 42px; }
+.box { border: 2px solid var(--rule); border-radius: 4px; padding: 30px 26px 34px; background: rgba(255,255,255,0.06);
+  display: flex; flex-direction: column; gap: 12px; min-height: 260px; }
+.box .bn { font-family: var(--f-mono); font-size: 19px; font-weight: 700; letter-spacing: 0.14em; color: var(--accent); }
+.box .bq { font-size: 26px; line-height: 1.3; font-weight: 600; }
+.box .bh { font-size: 21px; line-height: 1.34; color: var(--fg-muted); margin-top: auto; }
+.slide--exercise .then { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: baseline; margin-top: 36px;
+  padding-left: 22px; border-left: 4px solid var(--accent); }
+.slide--exercise .then b { font-size: 27px; }
+.slide--exercise .then span { font-size: 25px; line-height: 1.38; color: var(--fg-muted); }
+
+/* ---------- conversation starters ---------- */
+.slide--starters { padding: 130px 118px 126px; display: flex; flex-direction: column; justify-content: center; }
+.slide--starters h2 { font-family: var(--f-display); font-size: 64px; font-weight: 800; line-height: 1.05; }
+.slide--starters .lede { font-size: 27px; color: var(--fg-muted-dark); margin-top: 18px; max-width: 80ch; line-height: 1.4; }
+.starters { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 30px 56px; margin-top: 52px; }
+.starters li { padding-left: 24px; border-left: 4px solid var(--accent); }
+.starters .who { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.starters .q { display: block; font-size: 29px; line-height: 1.32; margin-top: 12px; }
+
+/* ---------- cta ---------- */
+.slide--cta { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; gap: 46px; }
+.slide--cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(980px 600px at 18% 78%, rgba(78,124,74,0.30), transparent 66%); }
+.slide--cta > *:not(.cover-mark) { position: relative; }
+.slide--cta h2 { font-family: var(--f-display); font-size: 92px; font-weight: 800; line-height: 1.02; max-width: 20ch; }
+.slide--cta h2 em { font-style: italic; color: var(--accent-soft); }
+.slide--cta .ask { font-size: 32px; max-width: 46ch; line-height: 1.4; color: var(--fg-muted-dark); }
+.slide--cta ul { list-style: none; display: grid; gap: 16px; font-family: var(--f-mono); font-size: 25px; }
+.slide--cta ul span { display: inline-block; width: 190px; color: var(--accent-soft); letter-spacing: 0.1em; text-transform: uppercase; font-size: 20px; }
+.slide--cta ul a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(226,135,255,0.55); }
+
+/* ---------- full-bleed image card ---------- */
+.slide--full { padding: 0; background: var(--ink); }
+.slide--full img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- closing CTA with speaker portrait ---------- */
+.slide--cta.with-me { display: grid; grid-template-columns: 1fr 400px; gap: 96px; align-items: center; padding: 140px 130px; }
+.slide--cta.with-me .cover-mark { bottom: 78px; right: 118px; left: auto; height: 52px; }
+.slide--cta.with-me h2 { font-size: 96px; max-width: 17ch; }
+.slide--cta.with-me .ask { font-size: 29px; margin-top: 34px; }
+.slide--cta.with-me ul { margin-top: 40px; }
+.me-col { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.me-col .portrait { width: 300px; height: 300px; border-radius: 50%; object-fit: cover;
+  border: 8px solid rgba(226,135,255,0.22); box-shadow: 0 0 0 2px var(--accent-soft); }
+.me-col .who { font-family: var(--f-display); font-size: 38px; line-height: 1.05; font-weight: 800; }
+.me-col .role { font-family: var(--f-mono); font-size: 21px; line-height: 1.45; color: var(--fg-muted-dark); letter-spacing: 0.04em; margin-top: -10px; }
+.me-col .disc { font-size: 20px; line-height: 1.4; padding-left: 18px; border-left: 3px solid var(--accent-soft); color: var(--fg-muted-dark); }
+
+/* ---------- appendix / sources ---------- */
+.slide--srcs { padding: 74px 88px 78px; display: flex; flex-direction: column; justify-content: center; }
+.slide--srcs h2 { font-family: var(--f-display); font-size: 48px; font-weight: 800; margin-bottom: 30px; }
+.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 7px 42px; font-size: 17px; line-height: 1.26; }
+.srcs li { padding-left: 22px; border-left: 3px solid var(--accent); color: var(--fg-muted); }
+.srcs li b { display: block; color: var(--fg-on-light); font-weight: 600; }
+.srcs a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(226,135,255,0.45); }
+
+/* ---------- horizontal bar chart ---------- */
+.slide--bars { padding: 150px 130px 148px; display: flex; flex-direction: column; justify-content: center; }
+.slide--bars h2 { font-family: var(--f-display); font-size: 61px; font-weight: 800; line-height: 1.05; }
+.slide--bars .lede { font-size: 27px; color: var(--fg-muted); margin-top: 20px; max-width: 74ch; line-height: 1.4; }
+.bars { display: grid; gap: 26px; margin-top: 54px; }
+.bar { display: grid; grid-template-columns: 150px 1fr; gap: 32px; align-items: center; }
+.bar .v { font-family: var(--f-display); font-size: 49px; line-height: 1; color: var(--accent); text-align: right; letter-spacing: -0.02em; font-weight: 800; }
+.bar .v .u { font-size: 0.46em; margin-left: 0.06em; }
+.bar .lab { font-size: 25px; line-height: 1.3; margin-bottom: 9px; display: block; }
+.bar .lab em { font-style: normal; color: var(--fg-muted); }
+.bar .track { position: relative; height: 26px; background: var(--surface-muted); border-radius: 3px; }
+.bar .fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--accent); border-radius: 3px; }
+.bar .fill.soft { background: #6f5fb0; }
+.bar .ghost { position: absolute; top: 0; bottom: 0; border-right: 2px dashed var(--fg-muted); }
+.bar .ghost::after { content: attr(data-l); position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.06em; color: var(--fg-muted); white-space: nowrap; }
+.slide--bars .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 42px; }
+
+/* ---------- stacked share-over-time columns ---------- */
+.slide--stack { padding: 112px 120px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--stack h2 { font-family: var(--f-display); font-size: 59px; font-weight: 800; line-height: 1.05; max-width: 27ch; }
+.slide--stack .lede { font-size: 26px; color: var(--fg-muted); margin-top: 18px; max-width: 78ch; line-height: 1.4; }
+.skey { display: flex; gap: 34px; margin-top: 30px; font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.06em; color: var(--fg-muted); }
+.skey i { display: inline-block; width: 16px; height: 16px; border-radius: 2px; margin-right: 10px; vertical-align: -2px; }
+.cols { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 30px; align-items: end; margin-top: 26px; height: 380px; }
+.col { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+.col .stk { display: flex; flex-direction: column; height: 100%; border-radius: 3px; overflow: hidden; }
+.col .us { background: var(--accent-deep); display: flex; align-items: center; justify-content: center; }
+.col .eu { background: #4a3f7a; display: flex; align-items: center; justify-content: center; }
+.col .pc { font-family: var(--f-display); font-size: 28px; color: #ffffff; letter-spacing: -0.01em; font-weight: 800; }
+.col .eu .pc { color: var(--accent); font-size: 30px; }
+.col .yr { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.08em; color: var(--fg-muted); text-align: center; margin-top: 16px; }
+.col.now .yr { color: var(--accent); font-weight: 700; }
+.slide--stack .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+.slide--stack .kq { font-size: 25px; line-height: 1.4; margin-top: 28px; padding-left: 22px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 104ch; }
+.slide--stack .kq b { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- concentration donut ---------- */
+.slide--donut { padding: 104px 118px 134px; display: grid; grid-template-columns: 1fr 440px; gap: 76px; align-items: center; }
+.slide--donut h2 { font-family: var(--f-display); font-size: 56px; font-weight: 800; line-height: 1.06; }
+.slide--donut .lede { font-size: 26px; color: var(--fg-muted); margin-top: 18px; line-height: 1.4; }
+.dlegend { display: grid; gap: 17px; margin-top: 30px; }
+.dlegend div { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: baseline; }
+.dlegend .p { font-family: var(--f-display); font-size: 36px; line-height: 1; color: var(--accent); text-align: right; font-weight: 800; }
+.dlegend .p.mut { color: #b4b0d8; }
+.dlegend .t { font-size: 24px; line-height: 1.32; }
+.dlegend .t em { font-style: normal; color: var(--fg-muted); display: block; font-size: 21px; margin-top: 3px; }
+.dwrap { position: relative; width: 440px; height: 440px; }
+.dwrap svg { display: block; width: 100%; height: 100%; }
+.dcenter { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.dcenter .dn { font-family: var(--f-display); font-size: 62px; line-height: 1; color: var(--fg-on-light); letter-spacing: -0.02em; font-weight: 800; }
+.dcenter .dl { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
+.slide--donut .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+.slide--donut .kq { grid-column: 1 / -1; font-size: 25px; line-height: 1.4; margin-top: 6px; padding-left: 22px;
+  border-left: 4px solid var(--accent); color: var(--fg-muted); max-width: 112ch; }
+.slide--donut .kq b { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- document reference card ---------- */
+.slide--doc { padding: 130px 120px 128px; display: grid; grid-template-columns: 1fr 640px; gap: 84px; align-items: center; }
+.slide--doc h2 { font-family: var(--f-display); font-size: 57px; font-weight: 800; line-height: 1.05; max-width: 21ch; }
+.slide--doc .lede { font-size: 27px; color: var(--fg-muted); margin-top: 20px; line-height: 1.4; max-width: 52ch; }
+.slide--doc .pts { list-style: none; display: grid; gap: 18px; margin-top: 34px; }
+.slide--doc .pts li { font-size: 25px; line-height: 1.35; padding-left: 24px; border-left: 4px solid var(--accent); color: var(--fg-muted); }
+.slide--doc .pts b { color: var(--fg-on-light); font-weight: 600; }
+.doccard { background: var(--paper-2); border: 1px solid var(--rule); border-radius: 4px; padding: 52px 56px; }
+.doccard .issuer { font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); line-height: 1.6; }
+.doccard .dt { font-family: var(--f-display); font-size: 38px; line-height: 1.1; margin-top: 22px; font-weight: 800; }
+.doccard .ver { font-family: var(--f-mono); font-size: 22px; color: var(--accent); margin-top: 12px; letter-spacing: 0.06em; }
+.doccard ol { list-style: none; counter-reset: c; margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--rule); display: grid; gap: 13px; }
+.doccard li { counter-increment: c; font-size: 22px; color: var(--fg-muted); display: flex; gap: 14px; }
+.doccard li::before { content: counter(c) "."; color: var(--accent); font-weight: 700; font-family: var(--f-mono); }
+.doccard li.hi { color: var(--fg-on-light); font-weight: 600; }
+
+/* ---------- regulation gantt ---------- */
+.slide--gantt { padding: 132px 100px 132px; display: flex; flex-direction: column; justify-content: center; }
+.slide--gantt h2 { font-family: var(--f-display); font-size: 56px; font-weight: 800; line-height: 1.05; }
+.slide--gantt .lede { font-size: 25px; color: var(--fg-muted); margin-top: 16px; max-width: 80ch; line-height: 1.4; }
+.gantt { display: grid; grid-template-columns: 360px 1fr; margin-top: 38px; }
+.gcol, .glanes { display: flex; flex-direction: column; }
+.glanes { position: relative; }
+.ghead, .years { height: 42px; }
+.years { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--rule);
+  font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.1em; color: var(--fg-muted); }
+.years span { border-left: 1px solid var(--rule); padding: 4px 0 0 10px; }
+.nm, .lane { height: 60px; display: flex; flex-direction: column; justify-content: center; }
+.nm { padding-right: 28px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.nm b { font-size: 24px; font-weight: 600; line-height: 1.15; }
+.nm em { font-style: normal; font-size: 18px; color: var(--fg-muted); margin-top: 2px; }
+.lane { position: relative; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.lane .b { position: absolute; top: 50%; transform: translateY(-50%); height: 26px; background: var(--accent); border-radius: 13px; }
+.lane .b.soft { background: #6f5fb0; }
+.lane .b .t { position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.05em; color: #fff; white-space: nowrap; }
+.lane .b.soft .t { color: var(--ink); }
+.lane .pin { position: absolute; top: 8px; bottom: 8px; width: 3px; background: var(--ink); border-radius: 2px; }
+.lane .pin::after { content: attr(data-l); position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-mono); font-size: 15px; letter-spacing: 0.04em; color: var(--ink); white-space: nowrap; }
+.today { position: absolute; top: 42px; bottom: 0; width: 2px; background: var(--warn); z-index: 4; }
+.today span { position: absolute; top: -34px; left: 50%; transform: translateX(-50%); background: var(--warn); color: #fff;
+  font-family: var(--f-mono); font-size: 15px; letter-spacing: 0.14em; padding: 4px 10px; border-radius: 2px; white-space: nowrap; }
+.slide--gantt .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); margin-top: 34px; }
+
+/* ---------- dense table variant ---------- */
+.slide--table.dense { padding: 120px 100px 126px; }
+.slide--table.dense h2 { font-size: 64px; }
+.slide--table.dense .lede { margin-bottom: 32px; }
+.slide--table.dense table.cmp { font-size: 23px; }
+.slide--table.dense table.cmp th, .slide--table.dense table.cmp td { padding: 14px 20px; }
+.slide--table.dense table.cmp tbody th { width: 22%; }
+.slide--table.dense table.cmp tbody th em { display: block; font-style: normal; font-family: var(--f-mono);
+  font-size: 17px; font-weight: 400; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 4px; }
+
+/* ---------- line chart ---------- */
+.slide--curve { padding: 80px 108px 104px; display: flex; flex-direction: column; justify-content: center; }
+.slide--curve h2 { font-family: var(--f-display); font-size: 56px; font-weight: 800; line-height: 1.05; }
+.slide--curve .lede { font-size: 26px; color: var(--fg-muted); margin-top: 16px; max-width: 76ch; line-height: 1.4; }
+.chart { margin-top: 18px; }
+.chart svg { display: block; width: 100%; max-width: 1560px; height: auto; margin: 0 auto; }
+.slide--curve .foot { font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 14px; }
+
+/* ---------- quote wall ---------- */
+.slide--quotes { padding: 150px 120px 148px; display: flex; flex-direction: column; justify-content: center; }
+.slide--quotes h2 { font-family: var(--f-display); font-size: 51px; font-weight: 800; margin-bottom: 50px; }
+.qwall { display: grid; grid-template-columns: 1fr 1fr; gap: 46px 64px; }
+.qw { border-left: 5px solid var(--accent); padding-left: 34px; }
+.qw p { font-family: var(--f-display); font-size: 33px; line-height: 1.18; font-weight: 800; }
+.qw cite { display: block; font-style: normal; font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em;
+  color: var(--fg-muted); margin-top: 18px; line-height: 1.5; }
+.on-dark .qw cite { color: var(--fg-muted-dark); }
+
+/* ---------- conference sessions / further reading ---------- */
+.slide--talks { padding: 104px 92px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--talks h2 { font-family: var(--f-display); font-size: 52px; font-weight: 800; line-height: 1.05; }
+.slide--talks .lede { font-size: 25px; color: var(--fg-muted); margin-top: 12px; max-width: 88ch; line-height: 1.35; }
+.talks { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 26px 50px; margin-top: 42px; }
+.talks li { padding-left: 22px; border-left: 3px solid var(--accent); }
+.talks li > b { display: block; font-weight: 600; font-size: 24px; line-height: 1.24; }
+.talks li span b { display: inline; font-weight: 600; font-size: inherit; color: var(--fg-on-light); }
+.talks li span { display: block; font-size: 21px; color: var(--fg-muted); margin-top: 6px; line-height: 1.32; }
+.talks li i { display: block; font-style: normal; font-family: var(--f-mono); font-size: 17px;
+  letter-spacing: 0.02em; color: var(--accent); margin-top: 4px; }
+.talks a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(226,135,255,0.45); }
+.on-dark .talks li span b { color: var(--fg-on-dark); }
+.on-dark .talks a { border-bottom-color: rgba(226,135,255,0.5); }
+
+/* ---------- chrome ---------- */
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: #e287ff; z-index: 200; transition: width 180ms ease; }
+#counter { display: none; }
+#notes {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 300;
+  background: #050418; border-top: 3px solid var(--accent-soft);
+  padding: 20px 28px 22px; max-height: 42vh; overflow-y: auto; display: none;
+  font-size: 15px; line-height: 1.55; color: #cfcbe6;
+}
+#notes.on { display: block; }
+#notes h4 { font-family: var(--f-body); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-soft); margin-bottom: 10px; display: flex; gap: 18px; align-items: baseline; }
+#notes h4 .clock { margin-left: auto; color: #8d89b8; }
+#notes p { margin-bottom: 8px; max-width: 110ch; }
+#notes b { color: #fff; }
+#notes .say { border-left: 3px solid var(--accent); padding-left: 12px; font-style: italic; color: #f1edff; }
+.s-notes { display: none; }
+#help { position: fixed; bottom: 14px; left: 20px; font-family: var(--f-body); font-size: 13px; color: #8d89b8; z-index: 200;
+  transition: opacity 400ms ease; pointer-events: none; }
+#help.gone { opacity: 0; }
+
+/* ---------- SEAL ladder ---------- */
+.slide--seal { padding: 104px 118px 102px; display: flex; flex-direction: column; justify-content: center; }
+.slide--seal h2 { font-family: var(--f-display); font-size: 56px; font-weight: 800; line-height: 1.05; }
+.slide--seal .lede { font-size: 25px; color: var(--fg-muted); margin-top: 16px; max-width: 92ch; line-height: 1.4; }
+.slide--seal .lede b { color: var(--fg-on-light); font-weight: 600; }
+.rungs { display: grid; gap: 18px; margin-top: 36px; }
+.rung { display: grid; grid-template-columns: 128px 1fr 330px; gap: 26px; align-items: start; }
+.rung .lvl { font-family: var(--f-mono); font-size: 25px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; padding-top: 2px; }
+.rung .nm { display: block; font-size: 27px; font-weight: 600; line-height: 1.24; }
+.rung .nm em { font-style: normal; font-weight: 400; color: var(--fg-muted); }
+.rung .track { position: relative; height: 14px; background: var(--surface-muted); border-radius: 3px; margin-top: 9px; }
+.rung .fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 3px; }
+.rung .fill.pale { background: #6f5fb0; }
+.rung .brk { font-size: 21px; line-height: 1.3; color: var(--fg-muted); padding-left: 20px; border-left: 3px solid var(--rule); align-self: stretch; }
+.rung.here .brk { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+.slide--seal .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 32px; }
+
+/* ---------- click-through reveal ---------- */
+/* Items keep their layout space, so nothing reflows as they appear. */
+.frag { opacity: 0; transition: opacity 300ms ease, transform 300ms ease; transform: translateY(10px); }
+.frag.on { opacity: 1; transform: none; }
+tr.frag { transform: none; }
+@media (prefers-reduced-motion: reduce) { .frag { transition: none; transform: none; } }
+
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { overflow: visible; }
+  #deck { width: auto; height: auto; }
+  #progress, #counter, #notes, #help { display: none !important; }
+  .frag { opacity: 1 !important; transform: none !important; }
+  .slide { position: relative; top: auto; left: auto; transform: none; opacity: 1 !important; page-break-after: always; }
+}
+
+/* ============================================================
+   TECHNICAL CUT additions — code panels, request-path flow,
+   HBM budget bars. Everything below is only used by the slides
+   added for the engineering audience.
+   ============================================================ */
+:root { --f-code: 'SF Mono', Menlo, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', monospace; }
+
+/* ---------- code panel ---------- */
+.code { font-family: var(--f-code); font-size: 19px; line-height: 1.45; background: var(--ink); color: #e6e3f5;
+  border-radius: 4px; padding: 26px 30px; white-space: pre; overflow: hidden; tab-size: 2; }
+.code .c { color: #8d89b8; }              /* comment */
+.code .k { color: var(--accent-soft); }   /* key, flag, resource name */
+.code .v { color: #ffd59e; }              /* value worth noticing */
+.on-dark .code { background: #050418; border: 1px solid var(--rule-dark); }
+
+/* ---------- split slide: argument left, code right ---------- */
+.slide--split { padding: 78px 108px 112px; display: flex; flex-direction: column; justify-content: center; }
+.slide--split h2 { font-family: var(--f-display); font-size: 51px; font-weight: 800; line-height: 1.05; max-width: 52ch; text-wrap: balance; }
+.slide--split .lede { font-size: 24px; color: var(--fg-muted); margin-top: 12px; max-width: 96ch; line-height: 1.4; }
+.on-dark.slide--split .lede { color: var(--fg-muted-dark); }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 26px; }
+.split.wide-code { grid-template-columns: 0.85fr 1.15fr; }
+.split .points { margin-top: 0; gap: 20px; max-width: none; }
+.split .points li { font-size: 23px; line-height: 1.36; padding-left: 24px; }
+.split .points li b { font-size: 25px; margin-bottom: 3px; }
+.slide--split .foot { font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.04em; color: var(--fg-muted); margin-top: 22px; }
+.on-dark.slide--split .foot { color: var(--fg-muted-dark); }
+
+/* ---------- request-path flow ---------- */
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 56px; margin-top: 44px; align-items: stretch; }
+.flow .node { position: relative; background: var(--paper-2); border-left: 6px solid var(--accent); border-radius: 3px;
+  padding: 26px 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+.flow .node.own { background: var(--ink); color: var(--fg-on-dark); }
+.flow .node::after { content: "\2192"; position: absolute; right: -46px; top: 50%; transform: translateY(-50%);
+  font-size: 40px; line-height: 1; color: var(--accent); }
+.flow .node:last-child::after { content: none; }
+.flow .lbl { font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.flow .node.own .lbl { color: var(--accent-soft); }
+.flow h3 { font-family: var(--f-display); font-size: 30px; font-weight: 800; line-height: 1.08; }
+.flow .eg { font-family: var(--f-code); font-size: 17px; line-height: 1.4; color: var(--fg-muted); }
+.flow .node.own .eg { color: var(--fg-muted-dark); }
+.flow ul { list-style: none; display: grid; gap: 9px; font-size: 21px; line-height: 1.32; color: var(--fg-muted); margin-top: 4px; }
+.flow .node.own ul { color: #d9d2f0; }
+.flow li::before { content: "\2014"; margin-right: 10px; opacity: 0.45; }
+.flow .signals { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); font-family: var(--f-code); font-size: 16px; line-height: 1.5; color: var(--fg-muted); }
+.flow .node.own .signals { border-top-color: var(--rule-dark); color: var(--fg-muted-dark); }
+
+/* ---------- HBM budget bars ---------- */
+.mem { display: grid; gap: 26px; margin-top: 38px; }
+.mrow { display: grid; grid-template-columns: 400px 1fr; gap: 30px; align-items: center; }
+.mrow .ml b { display: block; font-size: 25px; font-weight: 600; line-height: 1.2; }
+.mrow .ml span { display: block; font-size: 19px; color: var(--fg-muted); margin-top: 4px; line-height: 1.3; font-family: var(--f-code); }
+.mbar { display: flex; height: 62px; border-radius: 4px; overflow: hidden; background: var(--surface-muted); }
+.mbar div { display: flex; align-items: center; justify-content: center; font-family: var(--f-code); font-size: 17px;
+  color: #fff; white-space: nowrap; overflow: hidden; }
+.mbar .w  { background: var(--ink); }
+.mbar .ov { background: #6f5fb0; }
+.mbar .kv { background: var(--accent); }
+.mrow.node .mbar { outline: 2px solid var(--ink); outline-offset: 2px; }
+.mkey { display: flex; gap: 30px; margin-top: 26px; font-family: var(--f-mono); font-size: 19px; letter-spacing: 0.05em; color: var(--fg-muted); }
+.mkey i { display: inline-block; width: 16px; height: 16px; border-radius: 2px; margin-right: 10px; vertical-align: -2px; }
+.mkey .kq { flex: 1; text-align: right; letter-spacing: 0; font-family: var(--f-body); }
+.mkey .kq b { color: var(--fg-on-light); }
+
+/* ---------- dense table variant for the quantisation slide ---------- */
+.slide--table.tech { padding-top: 96px; }
+.slide--table.tech table.cmp { font-size: 20px; }
+.slide--table.tech table.cmp th, .slide--table.tech table.cmp td { padding: 11px 16px; }
+.slide--table.tech table.cmp tbody th { width: 17%; }
+.slide--table.tech table.cmp td code, .points code, .srcs code, .flow code { font-family: var(--f-code); font-size: 0.86em; background: rgba(226,135,255,0.12); padding: 1px 6px; border-radius: 3px; }
+.on-dark code { background: rgba(226,135,255,0.16); }
+
+/* ---------- fit tweaks for the denser technical slides ---------- */
+.slide--arch.eight { padding: 92px 90px 110px; gap: 16px; }
+.slide--arch.eight h2 { font-size: 54px; }
+.slide--arch.eight .layers { gap: 8px; }
+.slide--arch.eight .layer { padding: 11px 22px; }
+.slide--arch.eight .layer .ln { font-size: 22px; }
+.slide--arch.eight .layer .ln em { font-size: 15px; margin-top: 3px; }
+.slide--arch.eight .chip { font-size: 17px; padding: 5px 11px; }
+.slide--arch.eight .rail p { font-size: 19px; }
+.code.tight { font-size: 18px; line-height: 1.36; padding: 22px 26px; }
+.split .points.compact { gap: 16px; }
+.split .points.compact li { font-size: 22px; line-height: 1.34; }
+.split .points.compact li b { font-size: 24px; }
+.points li span b { display: inline; font-size: inherit; margin: 0; color: var(--fg-on-light); }
+.on-dark .points li span b { color: var(--fg-on-dark); }
+.points.two-col.compact { gap: 22px 56px; }
+.points.two-col.compact li { font-size: 26px; }
+.points.two-col.compact li b { font-size: 28px; }
+</style>
+
+</head>
+<body>
+
+<div id="progress"></div>
+
+<main id="deck">
+
+<!-- 1 ..................................................................... -->
+<section class="slide on-dark slide--title">
+  <p class="eyebrow">AI Tech Summit „Filip Avramchev“ · Human × AI · Skopje 2026</p>
+  <h1>Beyond the Clouds</h1>
+  <p class="sub">Sovereign AI infrastructure to regain control and autonomy — and what the argument looks like from Skopje.</p>
+  <footer class="meta">
+    <span class="who">Alessandro Vozza</span>
+    <span>Lovelace Engineering / VOLT Datacenters</span>
+    <span class="spacer"></span>
+    <span>National Opera &amp; Ballet, Skopje · 23 September 2026</span>
+  </footer>
+  <div class="s-notes">
+    <p><b>Timing target: about 22 minutes of content, then lunch at 12:15. Thirty-minute slot, hard stop — the room is hungry.</b> Main stage, day two, 11:45. This is the first slide, up as the chair introduces you. You come on straight from the twenty-minute panel with Koen van den Berg (NVIDIA), so do not re-introduce yourself at length: one line, then the argument.</p>
+    <p class="say">"I build AI infrastructure for a living. For the next twenty minutes I want to argue that the most important AI decision you'll make this year isn't which model — it's whose jurisdiction you run it in. And then I want to show you what that looks like from here, not from Amsterdam."</p>
+    <p>Set the contract in one breath: "Twenty minutes, then lunch. There's a slide at the end with five things I believe and you might not — argue with me in the foyer." Say the actual clock time for lunch out loud; it buys goodwill and it stops you overrunning.</p>
+    <p>The agenda lists the session under both <i>Beyond the Clouds</i> and <i>Watts Matter</i>. This deck is the former; the power argument lives in § 04 and in provocation five. If someone came for the scheduling talk, point them at the slides URL on the last slide.</p>
+  </div>
+</section>
+
+<!-- 2 ..................................................................... -->
+<section class="slide slide--hook">
+  <p>Could you move your AI workloads to another provider in ninety days?</p>
+  <p class="sub">Show of hands — then keep them up if you've tested it</p>
+  <div class="s-notes">
+    <p><b>Do the show of hands. Wait for it.</b> Roughly a third go up on the first question; almost none stay up on the second. That gap is the talk. This is a summit room — students, founders, executives, a few engineers — so most hands belong to people who <i>buy</i> AI rather than run it. That makes the second question land harder, not softer.</p>
+    <p class="say">"Right. So most of us believe we could. Almost none of us have proved it. In every other part of the business we'd call that an untested disaster recovery plan."</p>
+  </div>
+</section>
+
+<!-- 3 ..................................................................... -->
+<section class="slide on-light slide--claim">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
+  <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
+  <cite>The thesis of this talk</cite>
+  <div class="s-notes">
+    <p>Land this slowly. The word that does the work is <b>jurisdiction</b> — not "data", not "privacy". Leaders in this room already own jurisdiction risk in every other supplier contract.</p>
+    <p class="say">"Nobody signed off on a foreign-policy exposure. Somebody signed off on a credit card and a rate limit. Those turned out to be the same decision."</p>
+  </div>
+</section>
+
+<!-- 4 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">01</span>
+  <h2>The ground moved</h2>
+  <p class="lede">Four things changed between your last AI budget cycle and this one. None of them were announced by your vendor.</p>
+  <div class="s-notes"><p>Section is ~5 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet. This room is not in the EU, so the payload of the section is slide 8: which of these rules bind you anyway, and why.</p></div>
+</section>
+
+<!-- 5 ..................................................................... -->
+<section class="slide on-light slide--stack">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>Start with where you actually are</h2>
+  <p class="lede">European cloud providers' share of their own home market, against everyone else's. The market grew sixfold. Their share of it halved.</p>
+  <div class="skey">
+    <span><i style="background:#8026b0"></i>Non-European providers</span>
+    <span><i style="background:#4a3f7a"></i>European providers</span>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <div class="stk"><div class="us" style="height:71%"><span class="pc">71%</span></div><div class="eu" style="height:29%"><span class="pc">29%</span></div></div>
+      <span class="yr">2017</span>
+    </div>
+    <div class="col">
+      <div class="stk"><div class="us" style="height:85%"><span class="pc">85%</span></div><div class="eu" style="height:15%"><span class="pc">15%</span></div></div>
+      <span class="yr">2022</span>
+    </div>
+    <div class="col now">
+      <div class="stk"><div class="us" style="height:85%"><span class="pc">85%</span></div><div class="eu" style="height:15%"><span class="pc">15%</span></div></div>
+      <span class="yr">2025</span>
+    </div>
+  </div>
+  <p class="kq"><b>The plateau is the uncomfortable part.</b> Three years of sovereignty debate, a €74bn market growing 24% a year, and the European share has not moved off 15%. Rhetoric did not shift a single point of it.</p>
+  <p class="foot">Synergy Research Group, July 2025 · European cloud infrastructure services, share of the European market</p>
+  <div class="s-notes">
+    <p>Forty-five seconds. This is the baseline the whole talk sits on, and it is the slide that makes the room uncomfortable in the right way. Do not editorialise — the two numbers do it.</p>
+    <p class="say">"Before anything else, here is where we are. In 2017 European providers had twenty-nine percent of their own market. Today it's fifteen, and it has been fifteen for three years. The market grew sixfold in that time — the share halved."</p>
+    <p>The plateau matters more than the decline. Anyone can dismiss a decline as the past. A plateau through the loudest three years of sovereignty rhetoric in European history says the talking is not working, which sets up the "procurement, not manifestos" line later.</p>
+    <p>If challenged on the definition: this is Synergy's cloud infrastructure services measure, European providers' share of the European market. The complement is not all US — but it is overwhelmingly US: Amazon, Microsoft and Google alone are about 70%, and the largest European provider is 2%. Say that as one sentence; there is no separate slide for it in this cut.</p>
+    <p><b>Two survey numbers to say off this slide, not to show:</b> 93% of enterprises are repatriating, mid-repatriation or evaluating it (Cloudian, March 2026), and public cloud as the primary <i>inference</i> environment fell from 56% to 41% in one year (Broadcom, 2026). "Whatever you think of sovereignty as a principle, the market has already voted — with procurement forms, not manifestos." Concede survey bias at once if challenged.</p>
+    <p>The local line, also off this slide: none of the big three has a region in the Western Balkans. Every prompt sent from this building crosses a border before it reaches a GPU.</p>
+  </div>
+</section>
+
+<!-- 6 ..................................................................... -->
+<section class="slide on-light slide--quote">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
+  <cite><b>Anton Carniaux</b>, Director of Public &amp; Legal Affairs, Microsoft France — under oath, French Senate inquiry into digital sovereignty, 21 July 2025. Microsoft's technical director added that a <i>contractual</i> guarantee keeps EU customer data in the EU. A contract is not a jurisdiction.</cite>
+  <div class="s-notes">
+    <p><b>The single most useful slide in the deck for this audience.</b> It is not an activist claim — it's sworn testimony from the vendor most of this room already buys from.</p>
+    <p>Be scrupulously fair: he also said it had never actually happened, and Microsoft has since strengthened its EU Data Boundary. The point is not that Microsoft is untrustworthy. The point is <b>structural</b>: no US-parented company can contract its way out of the CLOUD Act.</p>
+    <p class="say">"This is the vendor's own lawyer, under oath. Nobody is accusing anyone of anything. He's describing the structure of the problem more honestly than most of us do in our own risk registers."</p>
+  </div>
+</section>
+
+<!-- 7 ..................................................................... -->
+<section class="slide on-light slide--timeline">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>Four dates that changed the calculus</h2>
+  <ol class="tl">
+    <li><span class="date">21 JUL 2025</span><b>Microsoft France testifies</b><p>Cannot guarantee EU data is beyond US reach. Contractual, not jurisdictional.</p></li>
+    <li><span class="date">15 JAN 2026</span><b>AWS European Sovereign Cloud goes live</b><p>€7.8bn, Brandenburg, EU-incorporated parent, EU-resident operators. The hyperscalers concede the premise.</p></li>
+    <li><span class="date">29 JUN 2026</span><b>Trump v. Slaughter</b><p>US Supreme Court removes for-cause protection for FTC commissioners — the independence the adequacy decision relied on.</p></li>
+    <li><span class="date">31 JUL 2026</span><b>EDPB writes to the Commission</b><p>Asks it to assess whether the FTC can still uphold Data Privacy Framework commitments. A review, not a revocation — yet.</p></li>
+  </ol>
+  <div class="s-notes">
+    <p>Walk it left to right in about 90 seconds. The arc: <b>the vendor admitted it → the vendors responded to it → the legal ground under the response moved anyway.</b></p>
+    <p>On AWS: this is genuinely a serious offer, and note what it concedes. €7.8bn is not a marketing budget. If sovereignty were a fringe European anxiety, they would not have built a separate legal entity for it.</p>
+    <p>On Slaughter/EDPB: the General Court <i>upheld</i> the Data Privacy Framework in September 2025 (the Latombe case). Transfers are lawful today. But the adequacy decision explicitly leaned on FTC independence, and that premise is now contested. <b>Schrems III is a question of when, not whether.</b></p>
+    <p class="say">"Three times in ten years, the legal basis for transatlantic data transfer has been struck down. If your AI architecture assumes it survives a fourth challenge, that's a bet, not a plan."</p>
+  </div>
+</section>
+
+<!-- 8 ..................................................................... -->
+<section class="slide on-light slide--content tight has-kq">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <h2>You are not in the EU. Most of its rulebook binds you anyway.</h2>
+  <p class="lede">A candidate, not a member. But the market Macedonian software is sold into is the single market — and its AI rules follow the customer, not the flag.</p>
+  <ul class="points two-col">
+    <li><b>The AI Act reaches across the border</b><span>Article 2: anyone placing an AI system on the EU market, and providers and deployers <i>anywhere</i> whose output is used inside the EU. Where you run it does not matter.</span></li>
+    <li><b>Personal data already mirrors GDPR</b><span>The 2020 Law on Personal Data Protection is a GDPR transposition, transfer chapter included. The sovereignty clause is already national law.</span></li>
+    <li><b>Your exit rights come with the invoice</b><span>The Data Act binds every EU cloud provider you buy from: from 12 January 2027 they may not charge you to leave. Buy European and you inherit the exit clause.</span></li>
+    <li><b>The rest is on the accession path</b><span>SMART/MK 2030 makes AI a priority; the Council of Europe AI Convention was signed on 8 May 2026; NIS2 and the AI Act are acquis you align with before you join.</span></li>
+  </ul>
+  <p class="kq"><b>The practical reading:</b> a Macedonian company serving EU customers has the same deadline as a Dutch one — and, until accession, less say over the rules. An argument for owning the architecture, not for waiting.</p>
+  <div class="s-notes">
+    <p><b>Ninety seconds. This is the slide that earns the talk its place in Skopje</b> — without it, the previous four slides are somebody else's problem. Read the first and third points; the other two are for the photograph.</p>
+    <p class="say">"You might be thinking: none of this binds me, we're not in the EU. Two answers. First, the AI Act doesn't care where you are — it cares where your customer is, and for most of the software built in this country the customer is in the EU. Second, the one law in this list that <i>helps</i> you, the Data Act, helps you through your supplier: buy from a European provider and from January they cannot charge you to leave. You inherit the protections and the obligations of a market you don't yet vote in. That's an argument for owning the architecture, not for waiting."</p>
+    <p>If challenged on Article 2: the extraterritorial reach is 2(1)(a) for providers placing systems on the EU market and 2(1)(c) for third-country providers and deployers whose output is used in the Union. Say it once, do not litigate it.</p>
+    <p>If challenged on the 2020 data law: yes, it is a GDPR mirror rather than GDPR itself, and yes, the amendment easing transfers to NATO countries shows the mirror can bend. That is the point — a rule you inherit can be bent by others; an architecture you own cannot.</p>
+    <p>Do not turn this into an accession lecture. The room has opinions about Brussels that are not yours to fix in ninety seconds. The only claim you need is: the rulebook already reaches you; the vote does not — yet.</p>
+  </div>
+</section>
+
+<!-- 9 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">02</span>
+  <h2>Sovereignty is a dial, not a switch</h2>
+  <p class="lede">The unproductive version of this debate is "cloud or on-prem". The productive version is "which level, for which workload, at what price".</p>
+  <div class="s-notes"><p>Section ~5 min. This is the reframe that makes the rest of the talk actionable, and it's the part most likely to change what someone does on Monday.</p></div>
+</section>
+
+<!-- 10 ..................................................................... -->
+<section class="slide on-light slide--seal">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>The scale itself: SEAL 0 to 4</h2>
+  <p class="lede"><b>Sovereignty Effective Assurance Levels.</b> Five rungs, scored across eight dimensions — legal, operational, supply chain, technological openness, security, environmental — and totalled into one comparable sovereignty score. They do not say a provider is good or bad. They say how much of your control is contractual and how much is structural.</p>
+  <div class="rungs">
+    <div class="rung frag">
+      <span class="lvl">SEAL-0</span>
+      <div><span class="nm">No sovereignty <em>— governed and controlled outside EU jurisdiction</em></span>
+        <div class="track"><span class="fill pale" style="width:6%"></span></div></div>
+      <span class="brk">Survives nothing. Standard commercial terms.</span>
+    </div>
+    <div class="rung frag">
+      <span class="lvl">SEAL-1</span>
+      <div><span class="nm">Jurisdictional <em>— EU law may apply, operational control stays external</em></span>
+        <div class="track"><span class="fill pale" style="width:28%"></span></div></div>
+      <span class="brk">Does not survive the vendor simply changing its mind.</span>
+    </div>
+    <div class="rung frag">
+      <span class="lvl">SEAL-2</span>
+      <div><span class="nm">Data sovereignty <em>— enforceable, but still leaning on non-EU dependencies</em></span>
+        <div class="track"><span class="fill pale" style="width:52%"></span></div></div>
+      <span class="brk">Does not survive a foreign legal order against the parent.</span>
+    </div>
+    <div class="rung frag here">
+      <span class="lvl">SEAL-3</span>
+      <div><span class="nm">Digital resilience <em>— EU actors hold real operational and technical control</em></span>
+        <div class="track"><span class="fill" style="width:78%"></span></div></div>
+      <span class="brk">Where the 2026 awards actually landed.</span>
+    </div>
+    <div class="rung frag">
+      <span class="lvl">SEAL-4</span>
+      <div><span class="nm">Full digital sovereignty <em>— technology, operations and governance inside EU structures</em></span>
+        <div class="track"><span class="fill" style="width:100%"></span></div></div>
+      <span class="brk">Nothing operates here at scale. Not yet.</span>
+    </div>
+  </div>
+  <p class="foot">April 2026 · €180m awarded to Post Telecom, STACKIT, Scaleway and Proximus — most at SEAL-3, Proximus at SEAL-2. No hyperscaler bid at SEAL-3.</p>
+  <div class="s-notes">
+    <p>Ninety seconds, one rung per click. Do not read all five — read <b>0, 2 and 3</b>, and let them see the bars grow. The whole slide exists so that "how sovereign are you?" becomes a number a supplier has to write down.</p>
+    <p class="say">"Stop arguing about whether you're sovereign. There's a five-point scale, the Commission scores suppliers against it across eight dimensions, and it just spent a hundred and eighty million euros using it. Pick a number per workload, write it into the requirement, and make suppliers answer it. That's a procurement problem, and you already know how to run those."</p>
+    <p><b>The gap between 2 and 3 is the whole talk.</b> SEAL-2 is what a contract can buy you — it fails the moment a foreign court instructs the parent company. SEAL-3 is what an architecture buys you. That is the same distinction as the Microsoft testimony on slide 6, expressed as a procurement level.</p>
+    <p>If someone challenges SEAL-4 as unachievable: agree immediately, without hedging. Nothing operates there at scale, and that is precisely why the EU is funding gigafactories. Conceding it costs you nothing and buys you the rest of the argument.</p>
+    <p>Worth saying out loud: <b>no hyperscaler bid at SEAL-3.</b> They bid, and they landed lower. That is not an accusation, it is the structure of the thing.</p>
+    <p>For this room: SEAL is an EU procurement instrument, but nothing stops a Macedonian ministry, bank or hospital writing "SEAL-3 or a written explanation of why not" into a tender tomorrow. The framework is public. Use it before you are obliged to.</p>
+  </div>
+</section>
+
+<!-- 11 ..................................................................... -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>Four questions, asked per workload — not per company</h2>
+  <ul class="points two-col">
+    <li><b>Jurisdiction</b><span>Which court can compel this data, and who is legally capable of refusing? Not "where is the region".</span></li>
+    <li><b>Portability</b><span>If the price triples or the model is deprecated on Friday, what is the actual cost of leaving? Measure it in weeks.</span></li>
+    <li><b>Economics</b><span>At your real utilisation, not your peak slide — where does the crossover sit?</span></li>
+    <li><b>Capability</b><span>If this becomes core to the business, do you want to be able to build it, or only to buy it?</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>The load-bearing word is <b>per workload</b>. Your marketing copy generator and your claims-adjudication model do not deserve the same answer, and a company-wide "AI policy" that gives them the same answer is how you end up over-paying and under-protected simultaneously.</p>
+    <p class="say">"Most organisations have one AI policy and forty AI workloads. That's the mistake. Sovereignty is a per-workload property, like data classification — and you already classify data."</p>
+  </div>
+</section>
+
+<!-- 12 ..................................................................... -->
+<section class="slide on-light slide--ba">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>What actually changes when you own the control plane</h2>
+  <div class="ba-grid">
+    <div class="ba-col old">
+      <span class="lbl">API-first</span>
+      <ul>
+        <li>Capability arrives in days</li>
+        <li>Cost scales with success, forever</li>
+        <li>Model deprecated on the vendor's schedule</li>
+        <li>Audit trail is whatever the vendor exports</li>
+        <li>Terms of service change without your consent</li>
+        <li>Zero infrastructure headcount</li>
+      </ul>
+    </div>
+    <div class="ba-col new">
+      <span class="lbl">Control-plane-first</span>
+      <ul>
+        <li>Capability arrives in weeks, once</li>
+        <li>Cost is a fixed floor plus marginal compute</li>
+        <li>You choose when a model retires</li>
+        <li>Every prompt, retrieval and response is yours to log</li>
+        <li>Terms change when you change them</li>
+        <li>Real platform engineering, hired and retained</li>
+      </ul>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>Do not let the right column look free.</b> Read the last line of each column aloud, deliberately. That is the honest trade and the room will trust everything after it more.</p>
+    <p class="say">"The right-hand column is not better. It's different, and it's yours. Anyone who tells you the right column has no cost is selling you the right column."</p>
+  </div>
+</section>
+
+<!-- 13 ..................................................................... -->
+<section class="slide on-light slide--trio">
+  <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
+  <h2>Three decisions, one country, one summer</h2>
+  <p class="lede">Between May and July 2026 North Macedonia answered the sovereignty question three times without calling it that. Read them against the dial: each one lands on a different number.</p>
+  <div class="trio">
+    <div class="card best">
+      <p class="lbl">24 June 2026 · federate</p>
+      <h3>Vezilka, the AI Factory Antenna</h3>
+      <p class="eg">FINKI · Ministry of Digital Transformation · ≈ €6m</p>
+      <ul>
+        <li>Plugs Macedonian researchers, start-ups and companies into Pharos in Athens: 2,000+ GH200 superchips, 89 petaflops</li>
+        <li>Rents European compute; keeps the data, the models and the skills here</li>
+        <li>First priority: Macedonian language and culture; then health, energy, public administration, agriculture</li>
+      </ul>
+    </div>
+    <div class="card best">
+      <p class="lbl">2025 → 2026 · build</p>
+      <h3>A Macedonian model you can audit</h3>
+      <p class="eg">domestic-yak 8B · weights, corpus and code all open</p>
+      <ul>
+        <li>40 GB of Macedonian text, 3.5 billion words, 106k culturally grounded instructions</li>
+        <li>Beats every 8B model on Macedonian benchmarks; native speakers preferred it over larger ones</li>
+        <li>Tier 3 on the openness slide — the tier you can put in front of a regulator alone</li>
+      </ul>
+    </div>
+    <div class="card">
+      <p class="lbl">May – June 2026 · host</p>
+      <h3>The data-centre amendments</h3>
+      <p class="eg">Law on Urban Planning · Law on Construction · "hundreds of millions"</p>
+      <ul>
+        <li>The state pre-prepares sites and permits so large foreign data centres can be built fast</li>
+        <li>Investors, ownership and what runs inside: to be disclosed when negotiations are concrete. Grid and water impact: not yet published</li>
+        <li>Necessary — the bottom layer has to be poured somewhere — but hosting the servers is real estate, not sovereignty</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>Two make the country more sovereign. The third makes it a landlord</b> — unless the layers above the concrete are owned here too.</p>
+  <div class="s-notes">
+    <p><b>Two minutes, and this is the slide the talk was rebuilt for.</b> Everything before it was Europe's problem; this is Skopje's. The Vezilka card is also your answer to "isn't sovereignty just protectionism?": an antenna is staying in the European commons and keeping a vote, not building a national copy. Walk left to right, and be scrupulously fair to the third card — you work for a data-centre company, and the room knows it.</p>
+    <p class="say">"Three things happened here this summer. In June the Ministry and FINKI switched on Vezilka: six million euros, and it plugs this country into the Greek AI Factory — two thousand of the best chips in Europe, in Athens, without building any of them. That is 'stay in the commons and keep a vote', as a project. Second, a group of researchers released domestic-yak: an eight-billion-parameter Macedonian model where you can read the weights, the training data and the code. That is the only kind of 'open' that survives an auditor. And third, in May and June the government moved to change the planning and construction laws so large data centres can be built quickly, for investors it hasn't named yet."</p>
+    <p class="say">"I build data centres for a living, so hear this carefully: the third one is necessary. Somebody has to pour the bottom layer. But a hall full of somebody else's GPUs, running somebody else's software, for somebody else's customers, is an electricity export with a nice roof. The same hall with a Macedonian-run control plane on top is an AI industry. The law decides the hall. What this room does decides the rest."</p>
+    <p>Facts to have ready: Vezilka launched 24 June 2026, coordinated by FINKI with the Ministry of Digital Transformation, ≈€6m from Horizon Europe, EuroHPC JU, the ministry and FINKI; one of four Pharos antennas with Cyprus, Malta and Serbia, approved 15 October 2025. domestic-yak: Krsteski, Tashkovska, Sazdov, Gjoreski, Gerazov, SlavNLP at ACL 2025, weights on Hugging Face under LVSTCK. The amendments were announced by Deputy PM Nikoloski on 23 May and defended by PM Mickoski on 14 June; the critics' word is "digital extractivism", and you should not use it from the stage.</p>
+    <p>If someone from the ministry is in the room — likely — the line to offer is constructive: write "who operates the control plane" into the data-centre law, the way the Commission wrote SEAL into procurement. That is the ninety-day plan, move four, for a government.</p>
+  </div>
+</section>
+
+<!-- 14 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">03</span>
+  <h2>The stack is ready — that's the news</h2>
+  <p class="lede">Three years ago this argument failed on engineering grounds. It doesn't any more, and that's the part the room probably hasn't been told.</p>
+  <div class="s-notes"><p>Section ~6 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here. This cut keeps the map and the request path from the Groningen deck and drops the YAML: the room should leave knowing the two layers to own, not the field names.</p></div>
+</section>
+
+<!-- 15 ..................................................................... -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>AI infrastructure became boring. Boring is the achievement.</h2>
+  <ul class="points two-col">
+    <li><b>66%</b><span>of organisations serving generative AI models already run inference on Kubernetes. This is the mainstream, not the fringe.</span></li>
+    <li><b>31 certified platforms</b><span>under the CNCF Kubernetes AI Conformance programme as of March 2026 — up from 18 in November 2025.</span></li>
+    <li><b>Portability is now testable</b><span>Conformance covers disaggregated inference, inference ingress, GPU-aware scheduling. Portable means <i>certified</i> portable.</span></li>
+    <li><b>The hard parts got donated</b><span>llm-d — Red Hat, Google, IBM, NVIDIA, CoreWeave — entered the CNCF in March 2026, v0.9 in August. Prefill/decode disaggregation, KV-cache-aware routing, wide expert parallelism: open, and on the next slides.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Translate every term. "Disaggregated inference" = the expensive trick that makes GPUs 2–3× more efficient, which used to be proprietary and now isn't.</p>
+    <p class="say">"The reason I can stand here and make this argument in 2026, when I couldn't in 2023, is that the difficult engineering has been commoditised — by the people selling the alternative. That is unusual, and it's the window."</p>
+    <p>If challenged on maturity: llm-d benchmarks around 120k tokens/sec on 16 H100s with Qwen3-32B. Real numbers, open code, reproducible.</p>
+  </div>
+</section>
+
+<!-- 16 ..................................................................... -->
+<section class="slide on-light slide--trio">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>"Open weights" is not the same thing as an open model</h2>
+  <p class="lede">The substrate is solved. The model layer is not — and the word "open" is doing a great deal of work in vendor marketing right now. There are three tiers, and only one of them survives the sovereignty test.</p>
+  <div class="trio">
+    <div class="card">
+      <p class="lbl">Tier 1</p>
+      <h3>Closed APIs</h3>
+      <p class="eg">GPT-5 · Claude · Gemini</p>
+      <ul>
+        <li>No inspection, no control, no say in when it is retired</li>
+        <li>The vendor holds the pricing power and the terms of service</li>
+        <li>Genuinely the best capability available — that is why it is tempting</li>
+      </ul>
+    </div>
+    <div class="card">
+      <p class="lbl">Tier 2</p>
+      <h3>Open weights</h3>
+      <p class="eg">Llama 4 · DeepSeek R1</p>
+      <ul>
+        <li>You can read and run the weights — a real improvement</li>
+        <li>But: licence restrictions, no training-data audit, geopolitical entanglements</li>
+        <li>Portable, not accountable. Enough for lock-in, not enough for an AI Act file</li>
+      </ul>
+    </div>
+    <div class="card best">
+      <p class="lbl">Tier 3</p>
+      <h3>Actually open</h3>
+      <p class="eg">OpenEuroLLM · Mistral on EU infrastructure · domestic-yak</p>
+      <ul>
+        <li>Inspectable, forkable, and deployable on infrastructure you control</li>
+        <li>The only tier where you can answer an auditor without phoning a vendor</li>
+        <li>Behind the frontier today — and closing, which is the whole bet</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kq"><b>The question to ask any supplier:</b> is a model "open" if you can read the weights but cannot audit the training data, verify the alignment, or run it without GPU capacity you do not control?</p>
+  <div class="s-notes">
+    <p>This is the honesty beat inside the good-news section. The previous slide said the stack is ready; this one says the model layer is the part that genuinely is not, and you would rather they heard that from you than from a vendor.</p>
+    <p class="say">"Everybody in this room has been told they can have an open model. Read the middle card. You can download the weights, you cannot audit what went into them, and the licence still tells you what you may build. That's portable — it isn't accountable."</p>
+    <p>Ties directly to the workload table later: <b>rent the frontier knowingly</b>, through your own gateway. This slide is why "knowingly" is in that sentence.</p>
+    <p>If challenged that tier 3 is behind: agree, immediately and without hedging. Then note that tier 3 is the only one you can put in front of a regulator without a vendor on the call.</p>
+    <p>domestic-yak is on the third card on purpose: an eight-billion-parameter model is nowhere near the frontier, and it is the only model in this talk whose entire training corpus you can download. For Macedonian-language work it is also the best one that exists. Both things are true, and the next section is built on the second.</p>
+  </div>
+</section>
+
+<!-- 17 ..................................................................... -->
+<section class="slide on-light slide--arch eight">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>Every layer open, every layer replaceable</h2>
+  <div class="arch">
+    <div class="rail">
+      <span class="rl">Portability</span>
+      <p>OCI images<br>Gateway API<br>OpenAI-compatible API<br>MCP · A2A<br>S3 API<br>Open weights</p>
+      <p style="font-size:19px">Every boundary is a standard, so every layer is an exit.</p>
+    </div>
+    <div class="layers">
+      <div class="layer"><span class="ln">Applications &amp; agents<em>your product</em></span><div class="chips"><span class="chip">RAG services</span><span class="chip">agent runtimes</span><span class="chip">MCP servers</span><span class="chip">copilots</span></div></div>
+      <div class="layer"><span class="ln">Agent &amp; AI gateway<em>who may call what</em></span><div class="chips"><span class="chip">agentgateway</span><span class="chip">Envoy AI Gateway</span><span class="chip">kgateway</span><span class="chip">Keycloak</span><span class="chip">Kyverno / OPA</span></div></div>
+      <div class="layer"><span class="ln">Inference routing<em>which replica answers</em></span><div class="chips"><span class="chip">Gateway API Inference Extension</span><span class="chip">InferencePool + EPP</span><span class="chip">Istio / Envoy Gateway</span></div></div>
+      <div class="layer"><span class="ln">Model serving<em>tokens out</em></span><div class="chips"><span class="chip">vLLM</span><span class="chip">SGLang</span><span class="chip">llm-d</span><span class="chip">LMCache · NIXL</span><span class="chip">KServe</span></div></div>
+      <div class="layer"><span class="ln">Data &amp; retrieval<em>your actual moat</em></span><div class="chips"><span class="chip">Milvus</span><span class="chip">Qdrant</span><span class="chip">pgvector</span><span class="chip">MinIO / Ceph</span></div></div>
+      <div class="layer"><span class="ln">GPU scheduling<em>who gets how much of the card</em></span><div class="chips"><span class="chip">Kubernetes DRA</span><span class="chip">HAMi</span><span class="chip">NVIDIA DRA driver / MIG</span><span class="chip">Kueue</span><span class="chip">Volcano</span></div></div>
+      <div class="layer"><span class="ln">Platform substrate<em>boring on purpose</em></span><div class="chips"><span class="chip">Talos / RKE2 / K3s</span><span class="chip">Cluster API</span><span class="chip">Argo CD</span><span class="chip">GPU Operator · DCGM</span><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span></div></div>
+      <div class="layer phys"><span class="ln">Power, cooling, silicon<em>the part you cannot download</em></span><div class="chips"><span class="chip">B300 · MI355X · Gaudi</span><span class="chip">EU datacentre</span><span class="chip">grid connection</span><span class="chip">liquid cooling · heat reuse</span></div></div>
+    </div>
+    <div class="rail">
+      <span class="rl">Governance</span>
+      <p>Model registry<br>Eval harness<br>Prompt, tool &amp; response lineage<br>Immutable audit log</p>
+      <p style="font-size:19px">The AI Act evidence layer. Build it first, not last.</p>
+    </div>
+  </div>
+  <p class="cap">Eight layers, three new since 2024: the agent gateway, inference routing, fractional GPU scheduling. Next: one request through them.</p>
+  <div class="s-notes">
+    <p><b>60 seconds — this is the map for the next two slides, not a slide to read.</b> Translate as you point: "gateway" is the front door that decides who may ask what; "inference routing" is the receptionist that decides which machine answers; "GPU scheduling" is how you share an expensive card between teams. Every italic sub-label on the slide is the plain-language version — read those, not the chips.</p>
+    <p class="say">"There is nothing exotic here. Every box is open, documented, and someone else's problem to maintain. What's new since I last drew this is the three layers in the middle: an agent gateway that understands MCP, an inference router that understands the KV cache, and a scheduler that hands out fractions of a card. Each of those was a proprietary advantage eighteen months ago."</p>
+    <p>Point at exactly three things: the <b>two gateway layers</b> (the highest-leverage thing to own), the <b>data layer</b> (the moat nobody should rent), and the <b>bottom layer</b> (the thing you cannot download, which is why the build-out slides follow).</p>
+    <p>If an engineer asks what I would actually run on one box: K3s, host-installed driver, GPU Operator for the plugin and DCGM, HAMi for sharing, vLLM at TP 4 with FP8 weights and KV, kgateway with agentgateway, an InferencePool over the vLLM pods. The Groningen deck has that as five commands; point them at it rather than saying it to the room.</p>
+  </div>
+</section>
+
+<!-- 18 ..................................................................... -->
+<section class="slide on-light slide--split">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>One request, four hops — and you own the middle two</h2>
+  <p class="lede">The layers you actually have to run to be sovereign are the ones where decisions get made about a request: who may call what, and which GPU answers. Both are now open standards with more than one implementation — you are choosing an API, not a vendor.</p>
+  <div class="flow">
+    <div class="node">
+      <p class="lbl">1 · Caller</p>
+      <h3>Agent or app</h3>
+      <p class="eg">OpenAI-compatible client · MCP client · A2A peer</p>
+      <ul>
+        <li>Talks to one hostname, forever</li>
+        <li>Never learns which model, vendor or GPU answered</li>
+        <li>That ignorance is the portability</li>
+      </ul>
+    </div>
+    <div class="node own">
+      <p class="lbl">2 · Policy</p>
+      <h3>Agent gateway</h3>
+      <p class="eg">agentgateway · Envoy AI Gateway · kgateway</p>
+      <ul>
+        <li>AuthN/Z on every hop: JWT, OIDC, API key, SPIFFE</li>
+        <li>Tool-level RBAC for MCP, guardrails on prompts <i>and</i> tool calls</li>
+        <li>Token budgets, redaction, cost per request, OTel by default</li>
+      </ul>
+      <p class="signals">→ your own GPUs, by default<br>→ a frontier API, knowingly</p>
+    </div>
+    <div class="node own">
+      <p class="lbl">3 · Placement</p>
+      <h3>Inference gateway</h3>
+      <p class="eg">Gateway API Inference Extension · EPP via ext-proc</p>
+      <ul>
+        <li>Sees how busy every GPU is, per request</li>
+        <li>Knows which one already holds this conversation's context</li>
+        <li>Queues and prioritises when everything is full</li>
+      </ul>
+      <p class="signals">how loaded is each card<br>which card already has my context</p>
+    </div>
+    <div class="node">
+      <p class="lbl">4 · Tokens</p>
+      <h3>Model servers</h3>
+      <p class="eg">vLLM · SGLang · llm-d well-lit paths</p>
+      <ul>
+        <li>Open models on GPUs you chose, in a jurisdiction you chose</li>
+        <li>Or, through the same door, a rented frontier model</li>
+        <li>Reports its load back to hop 3, continuously</li>
+      </ul>
+      <p class="signals">a B300 in Skopje · a rack in Athens<br>a frontier API in Virginia — the caller cannot tell</p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>This is the technical spine of the talk — 90 seconds, and the most technical the deck gets.</b> The leadership version had one "gateway" box; this room can handle two, as long as you say what each one decides in plain words and never name a field.</p>
+    <p class="say">"Hop two decides <i>whether</i> a request may happen and what it may touch. Hop three decides <i>where</i> it runs. Own those two and it genuinely does not matter whether hop four is a GPU in Skopje, a rack in Athens or a frontier API in Virginia — the caller cannot tell, and neither can the audit log. That is the whole trick: you don't have to leave the cloud to stop being captured by it. You have to own the two boxes in the middle."</p>
+    <p>Why hop three exists, in one sentence if asked: two identical GPUs are not interchangeable once one of them is already holding your conversation, so an ordinary load balancer wastes the expensive part. The Groningen deck has the YAML for both hops; this one does not, on purpose.</p>
+    <p>Then the next slide: how small the whole thing can be.</p>
+  </div>
+</section>
+
+<!-- 19 ..................................................................... -->
+<section class="slide on-light slide--content tight has-kq">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>The smallest sovereign unit fits in one rack</h2>
+  <p class="lede">You do not need a gigafactory to prove the argument. One eight-GPU server in a Skopje colocation rack runs the whole reference architecture — and moving the workload anywhere in Europe is then a configuration change.</p>
+  <ul class="points two-col">
+    <li><b>One box, 2.3 terabytes of GPU memory</b><span>Eight NVIDIA B300s: a 70-billion-parameter open model for hundreds of simultaneous conversations, with half the machine free for a Macedonian model, an embedder and a nightly evaluation run.</span></li>
+    <li><b>Fourteen kilowatts, liquid-cooled</b><span>The number that matters is not the price of the box but whether the building can feed it. Four of them are a 56 kW rack. Nothing here fits in an office — hence the next section.</span></li>
+    <li><b>An afternoon of well-known software</b><span>Kubernetes in its one-binary form, the NVIDIA operator, vLLM to serve the model, a gateway in front, an inference pool behind. All open, documented, maintained by someone else.</span></li>
+    <li><b>The box is not the point</b><span>Once a workload runs behind a standard route here, redirecting it to a European neocloud, to Pharos, or to a frontier API is a change in one file. The users never notice.</span></li>
+  </ul>
+  <p class="kq"><b>For a market of two million people this is the right first step</b> — one box, one real workload, one bank or ministry, behind one gateway. Not a strategy document. A receipt.</p>
+  <div class="s-notes">
+    <p><b>Ninety seconds. This is what "the stack is ready" means for a small market</b>, and it is the slide that stops the talk being a story about Rotterdam and Athens.</p>
+    <p class="say">"This is one server. Eight GPUs, two-and-a-bit terabytes of memory, fourteen kilowatts. It runs a seventy-billion-parameter open model for hundreds of people at once and still has room for a Macedonian model next to it. The software is an afternoon — all of it open, none of it exotic. And the point isn't the box. The point is that once your workload runs behind a standard route on this box, sending it to Athens, or to a European cloud, or to OpenAI, is a change in one file. That's what portability actually looks like: boring."</p>
+    <p>Numbers if asked: 8 × 288 GB HBM3e = 2,304 GB; ~1,400 W per GPU so plan 14 kW and liquid cooling; a 70B model in FP8 on four cards leaves roughly 900 GB for context, which at 8k tokens is several hundred sessions. The full arithmetic is on the Groningen deck's memory slide.</p>
+    <p>"A receipt" is the line: this room has heard strategy documents for two days. Offer a single box with a single production workload on it as the alternative, and the ninety-day plan later will feel achievable rather than aspirational.</p>
+  </div>
+</section>
+
+<!-- 20 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">04</span>
+  <h2>The bottom layer is being poured</h2>
+  <p class="lede">Everything on the last three slides runs on a floor somebody has to build: megawatts, a grid connection, and a queue you cannot jump. That is the half of the stack Europe is pouring right now — and the half this country is legislating for this year.</p>
+  <div class="s-notes"><p>Section ~3 min, and keep it to that. <b>The room heard NVIDIA's keynote on this yesterday</b> — Koen van den Berg, "From Megawatts to Intelligence: Building the AI Factory", day one at 12:15 — and you were just on a panel with him about the infrastructure race. Do not re-explain what an AI factory is. Say "Koen showed you the factory yesterday; here is what it costs in grid, and what the same numbers look like from here." Make the VOLT disclosure here if you have not already.</p></div>
+</section>
+
+<!-- 21 ..................................................................... -->
+<section class="slide on-light slide--bars">
+  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
+  <h2>The bottom layer, in megawatts</h2>
+  <p class="lede">Announced and under construction in Europe — including the first bar with a Balkan address. The unit that matters is not GPUs, it is grid connection, because that is the thing you cannot order faster.</p>
+  <div class="bars">
+    <div class="bar">
+      <span class="v">800<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Rotterdam AI Gigafactory, ~250,000 GPUs <em>— VOLT, construction from 2027</em></span>
+        <div class="track"><span class="fill" style="width:100%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">310<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Lappeenranta, Finland <em>— Nebius, hyperscale neocloud model</em></span>
+        <div class="track"><span class="fill soft" style="width:38.75%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">240<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Near Lille, France <em>— Nebius, part of a 2.5 GW target</em></span>
+        <div class="track"><span class="fill soft" style="width:30%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">40<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Kragujevac State Data Centre expansion, Serbia <em>— e&amp; enterprise MoU, September 2025; 14 MW Tier IV today</em></span>
+        <div class="track"><span class="fill soft" style="width:5%"></span></div>
+      </div>
+    </div>
+    <div class="bar">
+      <span class="v">14<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Amsterdam Switch AMS4 — <b>operational this month</b> <em>— VOLT Dutch AI Cloud, with NorthC and Dell</em></span>
+        <div class="track"><span class="fill" style="width:1.75%"></span></div>
+      </div>
+    </div>
+  </div>
+  <p class="foot">19 EuroHPC AI Factories and 13 antennas — one of them Vezilka, in Skopje · €180m committed by the Commission · &gt;€20bn expected across up to 7 AI Gigafactories</p>
+  <div class="s-notes">
+    <p><b>The visual argument is the gap between the bottom two bars and the top one.</b> Do not explain it — let them see it, then say the line below.</p>
+    <p>Open with the footer line, since the "Europe is building it" slide is gone from this cut: "Nineteen AI Factories and thirteen antennas are running on EuroHPC money today, and one of the antennas is in this city. The supply side is arriving, and this country is already plugged into it." Then the bars.</p>
+    <p class="say">"The bar at the bottom went live in Amsterdam this month. The bar at the top is the same company in 2027 — a fifty-seven-fold step in eighteen months, and the constraint on it is not chips or capital, it is a grid connection. And look at the fourth bar: Kragujevac, three hundred kilometres from here. Serbia's state data centre, fourteen megawatts today, forty more promised by a Gulf telecom. That is the regional version of the same race, and it is already running."</p>
+    <p><b>Disclose again if you have not already:</b> Lovelace Engineering consults for VOLT Datacenters, and it is in the byline on slide 1. Nebius and Kragujevac are on the chart precisely so this is not a single-vendor slide.</p>
+    <p>Kragujevac facts if asked: built 2020 for about €30m, 1,080 racks, 14 MW, Tier IV; hosts Serbian e-government and, as tenants, Oracle Cloud, IBM and Huawei; the e&amp; enterprise MoU of 17 September 2025 is to add up to 40 MW. Note who the tenants are — that is the "landlord" point from § 02 with a Serbian address.</p>
+    <p><b>Cut this slide if you are short</b> — the 800 MW metric slide that follows makes the same point in five seconds.</p>
+  </div>
+</section>
+
+<!-- 22 ..................................................................... -->
+<section class="slide on-light slide--content tight">
+  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
+  <h2>What it looks like when someone builds the whole stack, not just the building</h2>
+  <p class="lede">VOLT — "from power to tokens" — is doing the full-stack version in the Netherlands: grid connection, hall, GPUs and the software above them, sold as a sovereign service. Not the only one; but the model a data-centre law could ask for.</p>
+  <ul class="points two-col">
+    <li><b>Dutch AI Cloud, live October 2026</b><span>Amsterdam, with NorthC and Dell. 14 MW at Switch AMS4, 42 MW planned at AMS5.</span></li>
+    <li><b>Rotterdam AI Gigafactory</b><span>Up to 800 MW, roughly 250,000 GPUs, construction from 2027.</span></li>
+    <li><b>Target sectors</b><span>Finance, healthcare, biotech, defence, government — the workloads that cannot answer the jurisdiction question with a contract.</span></li>
+    <li><b>The question for a data-centre law</b><span>Who operates the layers above the concrete? A hall of somebody else's GPUs is an electricity export with a roof. The same hall with a locally run control plane is an AI industry.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p><b>Disclose the relationship.</b> Say plainly that Lovelace Engineering consults for VOLT Datacenters — the byline already says it, so say it out loud too. Credibility in this room is worth more than the plug, and disclosing costs nothing.</p>
+    <p class="say">"Full disclosure — I work with these people. Which is also why I know the numbers are real and how hard the grid connection was. And it is why I'll say the uncomfortable thing about the fourth point: the law being written here this year decides whether the hall gets built. It does not decide whether anything Macedonian runs in it. Write that into the law, or write it into your own procurement."</p>
+    <p>Nebius is the useful contrast if asked: 310 MW in Lappeenranta, 240 MW near Lille, targeting 2.5 GW. Different model — hyperscale neocloud rather than full-stack sovereign. Kragujevac is the regional contrast: state-owned hall, foreign tenants.</p>
+    <p>Do not moralise about the amendments. The audience includes people who wrote them. The tone is "here is the one clause I would add", not "here is what you got wrong".</p>
+  </div>
+</section>
+
+<!-- 23 ..................................................................... -->
+<section class="slide on-dark slide--metric">
+  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
+  <div class="num">800<span class="u">MW</span></div>
+  <p class="cap">Rotterdam, from 2027. At full load, about seven terawatt-hours a year — more than North Macedonia generated in 2024. Sovereignty is, in the end, a question about electricity.</p>
+  <p class="src">VOLT AI Gigafactory · ~250,000 GPUs · construction from 2027 · North Macedonia generated 6.1 TWh in 2024, 89% of its own demand · REK Bitola 675 MW</p>
+  <div class="s-notes">
+    <p>Short beat, and the one number from this section the room will repeat at lunch. 800 MW × 8,760 hours ≈ 7.0 TWh. North Macedonia generated 6,129 GWh in 2024 — 89% of its own consumption, the rest imported — and the backbone of that is one coal plant, REK Bitola, 675 MW nameplate. So one European gigafactory at full load draws more than the country's entire generation, and more than its largest power station can produce.</p>
+    <p class="say">"That single site, running flat out, would use more electricity in a year than this whole country generated last year. I'm not saying that to frighten anyone. I'm saying it because every AI strategy eventually becomes an energy strategy — and a country that is deciding its data-centre law and its energy transition in the same parliament, in the same year, is in an unusually good position to decide them together."</p>
+    <p>Say "at full load" out loud; nobody runs at 100%. If challenged on the generation number: US Commercial Guide, 2024 production 6,129 GWh, 89% of domestic need. If challenged on the mix: coal about a quarter, hydro under a fifth, gas an eighth, imports the rest — the point is not the mix, it is the scale.</p>
+  </div>
+</section>
+
+<!-- 24 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">05</span>
+  <h2>What the vendor keynote leaves out</h2>
+  <p class="lede">If I only told you the good half, you'd make a bad decision and I'd deserve the blame.</p>
+  <div class="s-notes"><p>Section ~4 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land. In a summit room full of vendor keynotes, this is also the section that makes yours not one.</p></div>
+</section>
+
+<!-- 25 ..................................................................... -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
+  <h2>Four failure modes nobody demos on stage</h2>
+  <ul class="points two-col">
+    <li class="frag"><b>GPU scheduling contention</b><span>One team's training job starves everyone's inference. Fixable — quotas, fair-share, slicing one card between teams — but it is a political problem before it is a technical one. Sharing the GPU is solved; deciding who gets the share is not.</span></li>
+    <li class="frag"><b>Cold starts</b><span>Provisioning a scarce GPU: seconds to hours. Pulling a large image: 3–5 minutes. Then weights load. "Scale to zero" is a slide, not a capability.</span></li>
+    <li class="frag"><b>Capacity planning without an escape hatch</b><span>No elastic overflow. You size for peak, or you queue. Both cost money and one costs credibility.</span></li>
+    <li class="frag"><b>Model lifecycle is now your job</b><span>Evals, regressions, retirement. The vendor was doing unglamorous work you never saw an invoice for.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Say the quiet part: <b>the first failure is organisational.</b> GPU contention is a governance problem wearing a Kubernetes costume, and it lands on someone in this room, not on the platform team.</p>
+    <p class="say">"I've watched a data science team and a product team fight over eight GPUs for six weeks. No technology fixed it. A quota policy and one uncomfortable meeting fixed it."</p>
+    <p>Mitigation to name if pressed: keep a federated burst path to a European neocloud so you own the steady state and rent the spikes. That's the hybrid answer and it's the right one for most of this room.</p>
+  </div>
+</section>
+
+<!-- 26 ..................................................................... -->
+<section class="slide on-light slide--curve">
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
+  <h2>One chart decides this, and it isn't a chart about sovereignty</h2>
+  <p class="lede">The same H100 costs between <b>$0.21 and $15.25</b> per million output tokens. Nothing about the hardware changes. The only variable is how busy you keep it.</p>
+  <div class="chart">
+  <svg viewBox="0 0 1600 600" role="img" aria-label="Cost per million output tokens falls sharply as GPU utilisation rises, crossing typical API pricing at low utilisation.">
+    <rect x="130" y="50" width="210" height="460" fill="#ff4d54" opacity="0.07"/>
+    <rect x="340" y="50" width="1190" height="460" fill="#e287ff" opacity="0.07"/>
+
+    <g stroke="#262450" stroke-width="1">
+      <line x1="130" y1="57"  x2="1530" y2="57"/>
+      <line x1="130" y1="99"  x2="1530" y2="99"/>
+      <line x1="130" y1="172" x2="1530" y2="172"/>
+      <line x1="130" y1="341" x2="1530" y2="341"/>
+      <line x1="130" y1="414" x2="1530" y2="414"/>
+      <line x1="130" y1="505" x2="1530" y2="505"/>
+      <line x1="410"  y1="50" x2="410"  y2="510"/>
+      <line x1="690"  y1="50" x2="690"  y2="510"/>
+      <line x1="970"  y1="50" x2="970"  y2="510"/>
+      <line x1="1250" y1="50" x2="1250" y2="510"/>
+    </g>
+    <line x1="130" y1="510" x2="1530" y2="510" stroke="#eeeaff" stroke-width="2"/>
+    <line x1="130" y1="50"  x2="130"  y2="510" stroke="#eeeaff" stroke-width="2"/>
+
+    <g font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#b4b0d8" text-anchor="end">
+      <text x="116" y="64">$15</text>
+      <text x="116" y="106">$10</text>
+      <text x="116" y="179">$5</text>
+      <text x="116" y="348">$1</text>
+      <text x="116" y="421">$0.50</text>
+      <text x="116" y="512">$0.21</text>
+    </g>
+    <g font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#b4b0d8" text-anchor="middle">
+      <text x="130"  y="543">0%</text>
+      <text x="410"  y="543">20%</text>
+      <text x="690"  y="543">40%</text>
+      <text x="970"  y="543">60%</text>
+      <text x="1250" y="543">80%</text>
+      <text x="1530" y="543">100%</text>
+      <text x="830"  y="585" font-size="23" fill="#eeeaff" letter-spacing="1.5">GPU UTILISATION — HOW BUSY YOU ACTUALLY KEEP IT</text>
+    </g>
+    <text x="34" y="280" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#eeeaff"
+          text-anchor="middle" transform="rotate(-90 34 280)" letter-spacing="1.2">COST PER MILLION OUTPUT TOKENS</text>
+
+    <line x1="130" y1="306" x2="1530" y2="306" stroke="#ff4d54" stroke-width="3" stroke-dasharray="12 9"/>
+    <text x="1520" y="296" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#ff4d54" text-anchor="end">WHAT YOU PAY PER API CALL TODAY — draw this line where yours actually sits</text>
+
+    <line x1="340" y1="50" x2="340" y2="510" stroke="#eeeaff" stroke-width="2" stroke-dasharray="7 6"/>
+    <text x="352" y="82" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#eeeaff">CROSSOVER</text>
+
+    <polyline fill="none" stroke="#e287ff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"
+      points="150,57 158,94 172,137 200,190 242,240 270,263 340,306 410,336 550,378 690,409 830,432 970,451 1110,468 1250,481 1390,494 1530,505"/>
+
+    <circle cx="150" cy="57" r="10" fill="#ff4d54"/>
+    <text x="176" y="50" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="bold" fill="#ff4d54">$15.25 — a GPU you bought and left idle</text>
+    <circle cx="1530" cy="505" r="10" fill="#e287ff"/>
+    <text x="1512" y="484" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="bold" fill="#e287ff" text-anchor="end">$0.21 — the same GPU, kept busy</text>
+
+    <text x="235" y="470" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#ff4d54" text-anchor="middle" letter-spacing="1.4">RENT</text>
+    <text x="935" y="130" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#e287ff" text-anchor="middle" letter-spacing="1.4">OWN</text>
+  </svg>
+  </div>
+  <p class="foot">Log scale. Curve is fixed cost ÷ utilisation, anchored on the two published endpoints. Your crossover is wherever your own API line cuts it.</p>
+  <div class="s-notes">
+    <p><b>This is the most useful slide in the deck for a CFO, and the one to slow down on.</b> Two minutes. It also gives the room permission not to self-host, which is what makes the rest of the talk credible.</p>
+    <p class="say">"Same silicon. Seventy-fold difference in unit cost. Everything people argue about under the word sovereignty is, financially, an argument about where their own vertical line sits — and almost nobody in this room has measured it."</p>
+    <p><b>How to walk it:</b> (1) the red dot is a GPU you bought and did not keep busy — that is the failure mode, and it is the expensive one; (2) the red dashed line is your current API bill, and everyone's sits somewhere different; (3) where it cuts the curve is your break-even utilisation; (4) left of that, renting is simply correct.</p>
+    <p><b>Be scrupulous about the caveat:</b> the curve shape is arithmetic — fixed cost over utilisation — anchored on the two published endpoints. It is a shape, not a quote for your workload. Say that out loud if a numbers person is in the room; it costs you nothing and buys you everything.</p>
+    <p>The takeaway to state explicitly: <b>you cannot get this from a slide, you get it from a month of measurement.</b> That is move three in the ninety-day plan.</p>
+  </div>
+</section>
+
+<!-- 27 ..................................................................... -->
+<section class="slide on-light slide--table tight">
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
+  <h2>Self-host, federate, or rent — by workload class</h2>
+  <p class="lede">This is the blueprint, compressed. You do not need one answer; you need this table filled in for your own portfolio.</p>
+  <table class="cmp">
+    <thead><tr><th>Workload</th><th>Verdict</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr class="hi frag"><th>Data &amp; retrieval layer</th><td class="tag"><span class="mark">Self-host, always</span></td><td>It is your proprietary corpus. Renting it is the one decision with no upside.</td></tr>
+      <tr class="hi frag"><th>Inference gateway &amp; policy</th><td class="tag"><span class="mark">Self-host, always</span></td><td>Control, redaction, routing and the audit trail all live here. This is the cheapest sovereignty you can buy.</td></tr>
+      <tr class="frag"><th>Steady production inference</th><td class="tag">Self-host</td><td>Predictable volume, open weights, regulated data. Best economics and best jurisdiction answer.</td></tr>
+      <tr class="frag"><th>Training &amp; fine-tuning</th><td class="tag">Federate</td><td>Bursty and capital-intensive. Rent EU capacity — an AI Factory through its antenna, a European neocloud — and keep the weights.</td></tr>
+      <tr class="frag"><th>Frontier-model capability</th><td class="tag">Rent, knowingly</td><td>You will not match it. Route to it deliberately through your own gateway, with a documented exit.</td></tr>
+    </tbody>
+  </table>
+  <div class="s-notes">
+    <p><b>If you cut one slide for time, do not cut this one.</b> This is the "blueprint" the abstract promised, and it's what people photograph.</p>
+    <p>The load-bearing insight is row two: you can rent the model and still own the control plane. Most of the sovereignty benefit at a fraction of the cost — and it is achievable in a quarter.</p>
+    <p class="say">"You do not have to leave the hyperscalers to stop being captured by them. You have to own the layer where the decisions are made."</p>
+    <p>Row four is Vezilka as a procurement verdict: this country already has a federated training path, paid for, and most of the room has not heard of it. Say so.</p>
+  </div>
+</section>
+
+<!-- 28 ..................................................................... -->
+<section class="slide on-light slide--content">
+  <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
+  <h2>Ninety days. Four moves. No new budget line.</h2>
+  <ul class="points two-col">
+    <li class="frag"><b>Weeks 1–2 · Inventory</b><span>List every AI workload, its jurisdiction, and its exit cost in weeks. Most organisations have never written this down.</span></li>
+    <li class="frag"><b>Weeks 3–6 · Put a gateway in front</b><span>One control point for every model call <i>and</i> every tool call — hop two from the request-path slide. Logging, redaction, routing, cost attribution. Highest return per euro in this talk.</span></li>
+    <li class="frag"><b>Weeks 7–10 · Prove portability once</b><span>Move a single real workload to a European provider, to Pharos through Vezilka, or to the one box. Not a pilot — a production workload behind the same route. Measure what it actually cost.</span></li>
+    <li class="frag"><b>Weeks 11–13 · Set the SEAL requirement</b><span>Write a sovereignty level into your next AI procurement and make suppliers answer it in writing. If you are the ministry: write "who operates the control plane" into the data-centre law.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Deliver this as an executive instruction, not a suggestion. Slow down. This is the takeaway they write in the notebook.</p>
+    <p class="say">"None of these four need a business case. Three of them are someone's existing job. The first one is a spreadsheet — and I'd bet nobody in this room can produce it today."</p>
+  </div>
+</section>
+
+<!-- 29 ..................................................................... -->
+<section class="slide on-light slide--claim">
+  <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
+  <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
+  <cite>Alessandro Vozza · Lovelace Engineering / VOLT Datacenters</cite>
+  <div class="s-notes"><p>Pause. Then straight into the debate slide — do not fill the silence.</p></div>
+</section>
+
+<!-- 30 ..................................................................... -->
+<section class="slide on-dark slide--practice">
+  <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
+  <h2>Sovereignty is not a product. <em>It's a practice.</em></h2>
+  <p class="top">Sovereignty washing is the new greenwashing.</p>
+  <ul>
+    <li><b>Geographic residency without code transparency</b> is a landlord model. You are renting your own sovereignty.</li>
+    <li><b>Compliance without autonomy</b> is theatre — a file that satisfies an auditor and changes nothing.</li>
+    <li><b>Innovation without maintenance</b> is a liability wearing a roadmap.</li>
+  </ul>
+  <p class="floor">Open source is the floor, not the ceiling.</p>
+  <div class="s-notes">
+    <p>Forty seconds, and this is the last thing you say before you hand the room the microphone. Read the three middle lines slowly — they are the whole talk compressed, and each one is a test somebody in this room will fail on Monday.</p>
+    <p class="say">"If you remember one slide, make it this one. Sovereignty is not something you buy — there is no product on the market that makes you sovereign, and anyone selling you one is doing to sovereignty what a decade of marketing did to sustainability. It's a practice. It's what you do every quarter, in procurement, in architecture, and in who you hire."</p>
+    <p><b>Landlord model</b> is the line that lands hardest with this audience. Most of them have been sold EU region residency as sovereignty, and they already understand instinctively what it means to improve a property you do not own.</p>
+    <p>The last line carries the open-source maintenance argument on its own in this cut: "If you adopt an open stack and fund none of it, you haven't become sovereign — you've moved your dependency somewhere with no support contract." One sentence, then stop.</p>
+    <p>Then stop. Say nothing, advance to the provocations, and let them start.</p>
+  </div>
+</section>
+
+<!-- 31 ..................................................................... -->
+<section class="slide on-dark slide--debate">
+  <div class="ref"><span class="ref-n">§ 07</span><span>Over lunch</span></div>
+  <h2>Five things I believe. Pick one and find me at lunch.</h2>
+  <p class="lede">Lunch starts at 12:15, next door. Call a number.</p>
+  <ol class="provs">
+    <li class="frag">Sovereign AI is protectionism with better branding, and Europe — let alone a candidate country — will lose the capability race by insisting on it.</li>
+    <li class="frag">For a market of two million people, renting frontier models is the only rational choice. Only the data layer ever needed to be sovereign.</li>
+    <li class="frag">A country that hosts data centres but operates none of the software above them has become a landlord, not a sovereign.</li>
+    <li class="frag">Nobody in this room can hire the platform team this requires — the engineers who could run it already work for Berlin and Amsterdam, from Skopje.</li>
+    <li class="frag">Grid capacity — not chips, capital or regulation — decides who gets to do AI in Southeast Europe.</li>
+  </ol>
+  <div class="s-notes">
+    <p><b>There is no Q&amp;A block in a thirty-minute main-stage slot before lunch.</b> This slide is the substitute: leave it up while you say the closing lines, so people carry a number with them into the foyer. If the chair offers three minutes of questions, take one and point at this slide for the rest.</p>
+    <p>Honest positions: I half-believe #1 — protectionism is a real risk and SEAL-4 is not achievable today; the Vezilka card on slide 13 is my answer. I do not believe #2, and the one-box slide is why. #3 is the one I most want somebody from the ministry to argue with. I strongly believe #5, and it was the subject of the panel you just left.</p>
+    <p>If a question does come and it is about Watts Matter — the agenda listed both titles — answer it from #5 and offer the other deck's URL.</p>
+  </div>
+</section>
+
+<!-- 32 ..................................................................... -->
+<section class="slide on-dark slide--cta with-me">
+  <div>
+    <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
+    <p class="ask">If you write down every AI workload, its jurisdiction, and its exit cost, you will have done more sovereignty work this quarter than most organisations do in a year.</p>
+    <ul>
+      <li><span>Slides</span> <a href="https://ams0.github.io/talks/ai-tech-summit-2026/">ams0.github.io/talks/ai-tech-summit-2026</a></li>
+      <li><span>Contact</span> alessandro@stackmasters.com</li>
+      <li><span>LinkedIn</span> /in/alessandrovozza</li>
+      <li><span>Happy to</span> argue about any of this over lunch, or help you size the one box</li>
+    </ul>
+  </div>
+  <div class="me-col">
+    <img class="portrait" src="alessandro-vozza.jpg" alt="Portrait of Alessandro Vozza.">
+    <p class="who">Alessandro Vozza</p>
+    <p class="role">Lovelace Engineering<br>VOLT Datacenters</p>
+    <p class="disc">Disclosure: Lovelace Engineering consults for VOLT Datacenters — hence the byline. Nebius and Kragujevac are on the megawatt chart so that slide is not a single-vendor slide.</p>
+  </div>
+  <div class="s-notes">
+    <p>Keep it to fifteen seconds. The debate slide is the real close; this is who I am and how to reach me. If you want to mention ChemAI AMS (12–13 November, Amsterdam), do it here in one sentence — the card slide is not in this cut.</p>
+    <p class="say">"That's me, that's the disclosure, and that's how to find me. Start with the inventory — everything else follows from it. Enjoy lunch."</p>
+  </div>
+</section>
+
+<!-- 33 ..................................................................... -->
+<section class="slide on-light slide--srcs">
+  <div class="ref"><span class="ref-n">APP</span><span>Sources · 1 of 2</span></div>
+  <h2>Sources · the argument</h2>
+  <ul class="srcs">
+    <li><b>Microsoft France testimony</b>Anton Carniaux, French Senate inquiry into digital sovereignty, 21 July 2025 (The Register, SDxCentral) · <a href="https://lnkd.in/p/e-AtB9Jt">lnkd.in/p/e-AtB9Jt</a></li>
+    <li><b>AWS European Sovereign Cloud</b>Amazon press release, 15 January 2026; InfoQ analysis</li>
+    <li><b>Trump v. Slaughter · EDPB letter</b>US Supreme Court, 29 June 2026; EDPB to Commissioner McGrath, 31 July 2026</li>
+    <li><b>Latombe judgment</b>EU General Court, 3 September 2025 (IAPP)</li>
+    <li><b>Digital AI Omnibus</b>Provisional agreement, May 2026 (Gibson Dunn; DLA Piper)</li>
+    <li><b>AI Act</b>Reg. (EU) 2024/1689 · in force 1 Aug 2024 · Art. 5, 50, 51–56 · penalties Art. 99</li>
+    <li><b>Data Act</b>Reg. (EU) 2023/2854 · applicable 12 Sep 2025 · Art. 29 switching charges withdrawn 12 Jan 2027</li>
+    <li><b>DORA · NIS2 · CRA</b>Reg. (EU) 2022/2554 (17 Jan 2025) · Dir. (EU) 2022/2555 · Reg. (EU) 2024/2847</li>
+    <li><b>Cloud Sovereignty Framework · SEAL</b>European Commission, 17 April 2026 — €180m awarded to Post, STACKIT, Scaleway, Proximus</li>
+    <li><b>Cloud Sovereignty Framework document</b>European Commission, DG DIGIT, Luxembourg — version 1.2.1, October 2025</li>
+    <li><b>European cloud market share</b>Synergy Research Group — European providers 29% (2017) to 15% (2022), holding at 15%; press release 24 July 2025</li>
+    <li><b>Market concentration</b>Synergy Research Group — Amazon, Microsoft and Google ~70% of the European market; SAP and Deutsche Telekom 2% each</li>
+    <li><b>AI Gigafactories call</b>EuroHPC JU, 30 July 2026 — bids close 12 November 2026</li>
+    <li><b>Kubernetes AI Conformance · llm-d</b>CNCF, March 2026 · KubeCon + CloudNativeCon Europe, RAI Amsterdam, 23–26 March 2026 · Kubernetes inference adoption (66%), same survey material</li>
+    <li><b>Vendor country of origin (77%) · local vendors (59%)</b>Deloitte, State of AI in the Enterprise 2026, n=3,235, 24 countries</li>
+    <li><b>Inference repatriation</b>Broadcom Private Cloud Outlook 2026 (56%→41%); Cloudian survey, March 2026 (93%)</li>
+    <li><b>VOLT · Nebius</b>w.media, DatacenterDynamics, The Tech Capital, 2025–2026 · NVIDIA HGX B300 vendor spec sheets (8× 288 GB HBM3e, ~1,400 W per GPU)</li>
+    <li><b>H100 cost range ($0.21–$15.25)</b>Wavect break-even analysis, EU, 2026. Curve shape is fixed-cost ÷ utilisation, anchored on those endpoints.</li>
+    <li><b>Von der Leyen</b>State of the Union address, European Parliament, 10 September 2025</li>
+    <li><b>Draghi</b><i>The Future of European Competitiveness</i>, European Commission, 9 September 2024</li>
+    <li><b>Open-source maintenance</b>Log4Shell (CVE-2021-44228); Germany's Sovereign Tech Agency and EU-STF proposals on funding OSS maintenance</li>
+    <li><b>Platform chokepoints</b>GitHub access restrictions in sanctioned regions; Gitee and the OpenAtom Foundation as domestic-fork responses</li>
+    <li><b>European governance</b>Sovereign Cloud Stack · GAIA-X · Digital Commons EDIC</li>
+    <li><b>Model openness tiers</b>OpenEuroLLM; Mistral; Llama 4 and DeepSeek R1 licence and training-data terms</li>
+  </ul>
+  <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
+</section>
+
+<!-- 34 ..................................................................... -->
+<section class="slide on-light slide--srcs">
+  <div class="ref"><span class="ref-n">APP</span><span>Sources · 2 of 2</span></div>
+  <h2>Sources · the region</h2>
+  <ul class="srcs">
+    <li><b>AI Tech Summit „Filip Avramchev“ 2026</b>techsummit.ai — Main Stage, day 2, 23 Sep 2026: panel <i>Sovereign AI &amp; the Infrastructure Race</i> 11:25 (K. van den Berg, NVIDIA; A. Vozza), talk 11:45–12:15; day 1 keynote <i>From Megawatts to Intelligence: Building the AI Factory</i> (NVIDIA)</li>
+    <li><b>Vezilka AI Factory Antenna</b>Ministry of Digital Transformation press release, 14 Oct 2025 (Minister S. Andonovski, ≈€6m, FINKI lead) · launched 24 Jun 2026 · GÉANT CONNECT, 22 Jul 2026 · vezilka.ai · Karanović &amp; Partners note</li>
+    <li><b>PHAROS AI Factory</b>GRNET · Daedalus, 2,000+ NVIDIA GH200, 89 PFlops · four antennas approved 15 Oct 2025: Cyprus (Cyprus Institute), Malta (MDIA), North Macedonia (UKIM), Serbia (Institute of Physics Belgrade) — pharos-aifactory.eu, eurohpc-ju.europa.eu</li>
+    <li><b>domestic-yak</b>S. Krsteski, M. Tashkovska, B. Sazdov, H. Gjoreski, B. Gerazov, <i>Towards Open Foundation Language Model and Corpus for Macedonian</i>, SlavNLP @ ACL 2025, arXiv:2506.09560 · 8B, 40 GB / 3.5B-word corpus, 106k instructions · weights, data, code at huggingface.co/LVSTCK, github.com/LVSTCK</li>
+    <li><b>Data-centre amendments</b>Law on Urban Planning, Law on Construction — announced by Deputy PM A. Nikoloski 23 May 2026, defended by PM H. Mickoski 14 Jun 2026 · China-CEE Institute, North Macedonia monthly briefing, 15 Jul 2026 · Invest North Macedonia, data-centres page</li>
+    <li><b>Macedonian legal frame</b>Law on Personal Data Protection (2020, GDPR-aligned) · SMART/MK 2030 ICT strategy (2025) · Council of Europe Framework Convention on AI, signed 8 May 2026 (coe.int) · EPI, <i>Aligning North Macedonia's AI Policy with the EU</i></li>
+    <li><b>AI Act territorial scope</b>Reg. (EU) 2024/1689, Art. 2(1)(a) providers placing systems on the Union market, Art. 2(1)(c) third-country providers and deployers whose output is used in the Union</li>
+    <li><b>Kragujevac State Data Centre</b>Built 2020, ≈€30m, 1,080 racks, 14 MW, Tier IV; tenants incl. Oracle Cloud, IBM, Huawei · e&amp; enterprise – Office for IT and eGovernment MoU, 17 Sep 2025, up to +40 MW — eand.com, DatacenterDynamics, SeeNews</li>
+    <li><b>North Macedonia electricity</b>2024 generation 6,129 GWh, 89% of domestic need — US Commercial Guide, Energy · REK Bitola 675 MW nameplate (3 × 225 MW, 1984–88) · mix 2025 ≈ coal 24%, hydro 17%, gas 12%, remainder imported — lowcarbonpower.org · 800 MW × 8,760 h ≈ 7.0 TWh</li>
+    <li><b>Hyperscaler regions</b>AWS, Microsoft Azure and Google Cloud published region lists, September 2026 — no region in the Western Balkans (WB6)</li>
+    <li><b>Hyperscaler latency reference</b>Sofia → Athens ≈ 15 ms, Sofia → Frankfurt ≈ 18 ms (regional provider measurements) — indicative only</li>
+    <li><b>Stack references</b>Gateway API Inference Extension v1.6 (Aug 2026) · agentgateway v1.5 (Agentic AI Foundation) · llm-d v0.9 (CNCF Sandbox) · HAMi (CNCF Incubating, Jul 2026) · vLLM FP8 KV study, 22 Apr 2026 — full detail in the Groningen deck, ams0.github.io/talks/beyond-the-clouds-tech</li>
+  </ul>
+  <div class="s-notes"><p>Backup slide. The regional facts were checked on 18 September 2026. Two of them can move before the talk: the status of the data-centre amendments in parliament, and anything the ministry announces about Vezilka on stage the day before. Re-read the Macedonian press the morning of.</p></div>
+</section>
+
+</main>
+
+<div id="counter"><span id="cur">1</span> / <span id="tot">1</span></div>
+<div id="help">N notes · T timer · F fullscreen · P print</div>
+
+<div id="notes">
+  <h4><span>Speaker notes</span><span id="nslide"></span><span class="clock" id="clock">timer stopped — press T</span></h4>
+  <div id="nbody"></div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length, idx = 0;
+  var cur = document.getElementById('cur'), tot = document.getElementById('tot');
+  var prog = document.getElementById('progress');
+  var notes = document.getElementById('notes'), nbody = document.getElementById('nbody'), nslide = document.getElementById('nslide');
+  var clock = document.getElementById('clock');
+  tot.textContent = total;
+
+  // ---- summit logo: footer rule on body slides, cover mark on title/close ----
+  var LOGO_W = 'ai-tech-summit-logo.png';
+  var LOGO_D = LOGO_W;
+
+  slides.forEach(function (s, i) {
+    if (s.classList.contains('slide--full')) return;
+    var onDark = s.classList.contains('on-dark') || s.classList.contains('slide--hook');
+    var src = onDark ? LOGO_W : LOGO_D;
+
+    if (s.classList.contains('slide--title') || s.classList.contains('slide--cta')) {
+      var mark = document.createElement('img');
+      mark.className = 'cover-mark'; mark.src = src; mark.alt = 'AI Tech Summit';
+      s.appendChild(mark);
+      return;
+    }
+    var f = s.querySelector('.ref');
+    if (!f) {
+      f = document.createElement('div');
+      f.className = 'ref';
+      var num = s.querySelector('.num'), head = s.querySelector('h2');
+      var left = (s.classList.contains('slide--section') && num && head)
+        ? '<span class="ref-n">§ ' + num.textContent.trim() + '</span><span>' + head.textContent.trim() + '</span>'
+        : '<span>Beyond the Clouds · Skopje 2026</span>';
+      f.innerHTML = left;
+      s.appendChild(f);
+    }
+    var right = document.createElement('span');
+    right.className = 'ref-right';
+    right.innerHTML = '<img class="ref-logo" src="' + src + '" alt="AI Tech Summit"><span class="ref-pg">' + (i + 1) + '</span>';
+    f.appendChild(right);
+  });
+
+  var helpEl = document.getElementById('help');
+  var booted = false;
+  setTimeout(function () { helpEl.classList.add('gone'); }, 8000);
+
+  /* Step-through reveal. Any slide can opt in: give its items class="frag"
+     and they appear one click at a time before the deck moves on. */
+  var step = 0;
+  function frags(i) { return slides[i].querySelectorAll('.frag'); }
+  function applyStep() {
+    var f = frags(idx);
+    for (var i = 0; i < f.length; i++) f[i].classList.toggle('on', i < step);
+  }
+
+  function show(n, atEnd) {
+    idx = Math.max(0, Math.min(total - 1, n));
+    if (booted) helpEl.classList.add('gone');
+    for (var i = 0; i < total; i++) slides[i].classList.toggle('is-active', i === idx);
+    cur.textContent = idx + 1;
+    prog.style.width = ((idx + 1) / total * 100) + '%';
+    var s = slides[idx].querySelector('.s-notes');
+    nbody.innerHTML = s ? s.innerHTML : '<p style="color:#8e959b">No notes for this slide.</p>';
+    nslide.textContent = 'slide ' + (idx + 1) + ' of ' + total;
+    step = atEnd ? frags(idx).length : 0;
+    applyStep();
+    try { sessionStorage.setItem('btc-skopje-slide', idx); } catch (e) {}
+  }
+
+  /* Forward: reveal the next item, or move on once they are all out.
+     Backward: hide the last item, or step back into the previous slide fully revealed. */
+  function next() {
+    if (step < frags(idx).length) { step++; applyStep(); if (booted) helpEl.classList.add('gone'); return; }
+    show(idx + 1);
+  }
+  function prev() {
+    if (step > 0) { step--; applyStep(); return; }
+    show(idx - 1, true);
+  }
+
+  var start = 0, running = false;
+  function tick() {
+    if (!running) return;
+    var s = Math.floor((Date.now() - start) / 1000);
+    var m = Math.floor(s / 60);
+    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 22 ? '  ·  into lunch' : '  ·  target 22:00');
+  }
+  setInterval(tick, 1000);
+
+  function rescale() {
+    var pad = notes.classList.contains('on') ? 0.62 : 1;
+    var s = Math.min(window.innerWidth / 1920, (window.innerHeight * pad) / 1080);
+    document.documentElement.style.setProperty('--scale', s);
+    document.getElementById('deck').style.alignItems = 'center';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    switch (e.key) {
+      case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'ArrowDown': e.preventDefault(); show(idx + 1); break;
+      case 'ArrowUp': e.preventDefault(); show(idx - 1, true); break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(total - 1); break;
+      case 'n': case 'N': e.preventDefault(); notes.classList.toggle('on'); rescale(); break;
+      case 't': case 'T':
+        e.preventDefault();
+        if (!running) { start = Date.now(); running = true; tick(); }
+        else { running = false; clock.textContent = 'timer stopped — press T'; }
+        break;
+      case 'f': case 'F':
+        e.preventDefault();
+        if (!document.fullscreenElement) { if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); }
+        else document.exitFullscreen();
+        break;
+      case 'p': case 'P': e.preventDefault(); window.print(); break;
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a, button, input, textarea, #notes')) return;
+    next();
+  });
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) { if (dx < 0) next(); else prev(); }
+    tx = null;
+  });
+
+  window.addEventListener('resize', rescale);
+  rescale();
+  var saved = 0;
+  try { saved = parseInt(sessionStorage.getItem('btc-skopje-slide') || '0', 10) || 0; } catch (e) {}
+  show(saved >= 0 && saved < total ? saved : 0);
+  booted = true;
+})();
+</script>
+
+</body>
+</html>
