@@ -1,9 +1,17 @@
 # Beyond the Clouds — Skopje · delivery script
 
 AI Tech Summit „Filip Avramchev“ 2026 · National Opera & Ballet, Skopje · **Wednesday 23 September 2026**
-Main Stage · **11:45–12:15, 30 minutes, then lunch.** Preceded at 11:25 by the 20-minute panel *Sovereign AI &
-the Infrastructure Race* (Koen van den Berg, NVIDIA, and you). Day one had NVIDIA's keynote *From Megawatts to
-Intelligence: Building the AI Factory* at 12:15 — the room has already been sold the factory.
+Main Stage · **11:45–12:15, 30 minutes, then lunch.** Listed as a keynote, tagged #Sovereign AI.
+Preceded at 11:25 by the 20-minute panel *Sovereign AI & the Infrastructure Race* — **three panellists**:
+Koen van den Berg (NVIDIA), you, and Slobodan Đinović (Founder & CEO, Orion Telekom), who then has his own
+#Sovereign AI keynote at 14:15. Day one had NVIDIA's keynote *From Megawatts to Intelligence: Building the AI
+Factory* at 12:15 — the room has already been sold the factory, including its power and cooling layers.
+
+**The panel's four published questions** (deconflict with them, see below): 1. What does it take to go from the
+idea of an AI data center to a fully operational one, and where do projects get stuck? 2. As AI demands more
+electricity, how can data centers get more compute from the same power? 3. What changes for a country when it
+develops local AI infrastructure — economically, technologically, strategically? 4. Can modern data centers be
+built with minimal environmental impact?
 
 Mixed audience: founders, executives, students, public sector, some engineers. Less technical than Groningen, more
 than the ADA leadership day. Same argument as `../beyond-the-clouds/`, with the stack kept at the level of the
@@ -23,9 +31,20 @@ out the next item, then moves on; left arrow steps back. **Down/Up jump whole sl
 
 **The morning of the talk.** Two regional facts can move overnight: the status of the data-centre amendments
 in parliament, and anything the ministry says about Vezilka from the stage on day one. Read the Macedonian
-press at breakfast. The agenda also lists the session under both *Beyond the Clouds* and *Watts Matter*; this
-deck is the former, and the slides URL on 32 is where to send anyone who came for the other one. The agenda
+press at breakfast. The *Watts Matter* half of the listing has been removed — the session is now billed as
+*Beyond the Clouds* alone, so the energy material in § 04 is a supporting act, not a promise. The agenda
 prints your name as "Alessandro Stefouli-Vozza" — decide before you go on whether the title slide should match.
+
+**Deconflict with your own panel.** Questions 1 and 3 are slides 23 and 13 of this deck. Do not spend them on
+the panel: answer 1 in one sentence and park 3 with "I have a slide on exactly that in fifteen minutes". Spend
+your panel time on 2 and 4, which are operator questions you can answer better than either co-panellist, and
+which this deck barely touches.
+
+**Competing session.** AI Labs, same 11:25–11:45 slot: *Sovereign by Design — three blueprints for AI that
+can't leave the building* (Gjorgji Dimitrov, GAIA Technology Systems) — managed API, private endpoints,
+self-hosted open weights, plus a decision framework. That is slides 17 and 28 compressed. It ends as you
+begin, so some of that room walks into yours. One line early buys the goodwill: "If you were next door just
+now you saw three blueprints. I want to add the question that picks between them: which court can compel this."
 
 **What this cut dropped** (all still in `../beyond-the-clouds/` or `../beyond-the-clouds-tech/`): the Monty Python opener, the proverb,
 the concentration donut, the five-survey bars, "who decides the roadmap", the KubeCon session list, "Europe is
