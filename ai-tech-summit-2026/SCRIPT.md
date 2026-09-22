@@ -19,12 +19,12 @@ map and the request path (no YAML), and three slides rebuilt around what North M
 Quoted lines are verbatim — say those. Everything else is a cue.
 
 **Timing.** 33 slides, of which two are sources you only open if challenged. Delivered in full it runs
-**≈22 min**, which leaves a real five-minute margin for a late start, a laugh, or one question. There is **no Q&A
+**≈21 min**, which leaves a real six-minute margin for a late start, a laugh, or one question. There is **no Q&A
 block** — the provocations slide (30) stays up while you close and sends the argument to lunch. Say the lunch time
 out loud on slide 1.
 
-**Cut order if you are behind: 12 → 16 → 7 → 21 → 25.** Never cut 3, 8, 13, 18, 19, 26 or 29 — three of those
-carry a reference to another session at this summit. If you are badly behind at slide 20, jump to 22 with
+**Cut order if you are behind: 12 → 16 → 7 → 21 → 25.** Never cut 3, 8, 13, 18, 19, 26 or 29 — two of those
+carry a reference to another session at this summit; cutting 21 loses the Koen credit, so say it off slide 20 instead. If you are badly behind at slide 20, jump to 22 with
 "Koen showed you the factory yesterday; here is the one number I'd add".
 
 **Slides that build.** 10, 24, 26, 27 and 30 reveal one item per click. Right arrow (or space, or click) brings
@@ -48,8 +48,8 @@ begin, so some of that room walks into yours. **Slide 3 now credits it on the sl
 deliver the thesis.
 
 **Four slides carry an on-slide cross-reference** to another session here, in a lavender label: slide 3
-(Dimitrov, AI Labs), slide 18 (the four agent sessions), slide 21 (Koen's AI Factory keynote) and slide 31
-(the hackathon final). They are there so the room can see you watched the rest of the programme. Say each one
+(Dimitrov, AI Labs), slide 18 (four agent sessions, all before yours — Greenwood's *Augmented Team* is after
+you, so it is deliberately not named), slide 21 (Koen's AI Factory keynote) and slide 31 (the hackathon final). They are there so the room can see you watched the rest of the programme. Say each one
 out loud — a reference nobody reads aloud is decoration.
 
 **What this cut dropped** (all still in `../beyond-the-clouds/` or `../beyond-the-clouds-tech/`): the Monty Python opener, the proverb,

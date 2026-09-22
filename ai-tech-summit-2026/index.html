@@ -718,10 +718,10 @@ tr.frag { transform: none; }
     <span>National Opera &amp; Ballet, Skopje · 23 September 2026</span>
   </footer>
   <div class="s-notes">
-    <p><b>Timing target: about 22 minutes of content, then lunch at 12:15. Thirty-minute slot, hard stop — the room is hungry.</b> Main stage, day two, 11:45. This is the first slide, up as the chair introduces you. You come on straight from the twenty-minute panel with Koen van den Berg (NVIDIA), so do not re-introduce yourself at length: one line, then the argument.</p>
+    <p><b>Timing target: about 21 minutes of content, then lunch at 12:15. Thirty-minute slot, hard stop — the room is hungry.</b> Main stage, day two, 11:45, billed as a keynote. This is the first slide, up as the chair introduces you. You come on straight from the twenty-minute panel with Koen van den Berg (NVIDIA) and Slobodan Đinović (Orion Telekom), so do not re-introduce yourself at length: one line, then the argument.</p>
     <p class="say">"I build AI infrastructure for a living. For the next twenty minutes I want to argue that the most important AI decision you'll make this year isn't which model — it's whose jurisdiction you run it in. And then I want to show you what that looks like from here, not from Amsterdam."</p>
     <p>Set the contract in one breath: "Twenty minutes, then lunch. There's a slide at the end with five things I believe and you might not — argue with me in the foyer." Say the actual clock time for lunch out loud; it buys goodwill and it stops you overrunning.</p>
-    <p>The agenda lists the session under both <i>Beyond the Clouds</i> and <i>Watts Matter</i>. This deck is the former; the power argument lives in § 04 and in provocation five. If someone came for the scheduling talk, point them at the slides URL on the last slide.</p>
+    <p>Đinović has his own #Sovereign AI keynote at 14:15 — a telecom operator's view of the same question. Worth one sentence of hand-off at the close if he is in the room.</p>
   </div>
 </section>
 
@@ -754,7 +754,7 @@ tr.frag { transform: none; }
   <span class="num">01</span>
   <h2>The ground moved</h2>
   <p class="lede">Four things changed between your last AI budget cycle and this one. None of them were announced by your vendor.</p>
-  <div class="s-notes"><p>Section is ~5 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet. This room is not in the EU, so the payload of the section is slide 8: which of these rules bind you anyway, and why.</p></div>
+  <div class="s-notes"><p>Section is ~4 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet. This room is not in the EU, so the payload of the section is slide 8: which of these rules bind you anyway, and why.</p></div>
 </section>
 
 <!-- 5 ..................................................................... -->
@@ -1001,7 +1001,7 @@ tr.frag { transform: none; }
   <span class="num">03</span>
   <h2>The stack is ready — that's the news</h2>
   <p class="lede">Three years ago this argument failed on engineering grounds. It doesn't any more, and that's the part the room probably hasn't been told.</p>
-  <div class="s-notes"><p>Section ~6 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here. This cut keeps the map and the request path from the Groningen deck and drops the YAML: the room should leave knowing the two layers to own, not the field names.</p></div>
+  <div class="s-notes"><p>Section ~5 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here. This cut keeps the map and the request path from the Groningen deck and drops the YAML: the room should leave knowing the two layers to own, not the field names.</p></div>
 </section>
 
 <!-- 15 ..................................................................... -->
@@ -1012,7 +1012,7 @@ tr.frag { transform: none; }
     <li><b>66%</b><span>of organisations serving generative AI models already run inference on Kubernetes. This is the mainstream, not the fringe.</span></li>
     <li><b>31 certified platforms</b><span>under the CNCF Kubernetes AI Conformance programme as of March 2026 — up from 18 in November 2025.</span></li>
     <li><b>Portability is now testable</b><span>Conformance covers disaggregated inference, inference ingress, GPU-aware scheduling. Portable means <i>certified</i> portable.</span></li>
-    <li><b>The hard parts got donated</b><span>llm-d — Red Hat, Google, IBM, NVIDIA, CoreWeave — entered the CNCF in March 2026, v0.9 in August. Prefill/decode disaggregation, KV-cache-aware routing, wide expert parallelism: open, and on the next slides.</span></li>
+    <li><b>The hard parts got donated</b><span>llm-d — Red Hat, Google, IBM, NVIDIA, CoreWeave — entered the CNCF in March 2026, v0.9 in August. Prefill/decode disaggregation, KV-cache-aware routing, wide expert parallelism: open, documented, and yours to run.</span></li>
   </ul>
   <div class="s-notes">
     <p>Translate every term. "Disaggregated inference" = the expensive trick that makes GPUs 2–3× more efficient, which used to be proprietary and now isn't.</p>
@@ -1153,13 +1153,14 @@ tr.frag { transform: none; }
       <p class="signals">a B300 in Skopje · a rack in Athens<br>a frontier API in Virginia — the caller cannot tell</p>
     </div>
   </div>
-  <p class="xref"><b>Two days of agents</b><span>Microsoft's <em>From Applications to Agents</em>, the <em>Beyond Copilots</em> panel, <em>The One-Person AI Company</em>, <em>The Augmented Team</em> — every one of them puts an agent in front of your tools. <b>Hop two is where you decide which tools it may call, and the only place you can prove what it did.</b> None of those demos included this box.</span></p>
+  <p class="xref"><b>Two days of agents</b><span>Microsoft's <em>From Applications to Agents</em>, the <em>Beyond Copilots</em> panel, <em>The One-Person AI Company</em>, OpenAI's <em>State of AI</em> this morning — every one of them puts an agent in front of your tools. <b>Hop two is where you decide which tools it may call, and the only place you can prove what it did.</b> Nobody has shown you this box yet.</span></p>
   <div class="s-notes">
     <p><b>This is the technical spine of the talk — 90 seconds, and the most technical the deck gets.</b> The leadership version had one "gateway" box; this room can handle two, as long as you say what each one decides in plain words and never name a field.</p>
     <p class="say">"Hop two decides <i>whether</i> a request may happen and what it may touch. Hop three decides <i>where</i> it runs. Own those two and it genuinely does not matter whether hop four is a GPU in Skopje, a rack in Athens or a frontier API in Virginia — the caller cannot tell, and neither can the audit log. That is the whole trick: you don't have to leave the cloud to stop being captured by it. You have to own the two boxes in the middle."</p>
     <p>Why hop three exists, in one sentence if asked: two identical GPUs are not interchangeable once one of them is already holding your conversation, so an ordinary load balancer wastes the expensive part. The Groningen deck has the YAML for both hops; this one does not, on purpose.</p>
     <p><b>The agent line is the tie to the rest of the summit — do not skip it.</b> Agents are the single biggest theme here: five or six main-stage sessions across two days, and the room has been told for two days that agents will run their company. Nobody has shown them the control point.</p>
-    <p class="say">"You have spent two days hearing that agents will run your business. Every one of those demos has an agent calling tools — your CRM, your repository, your payment system. Hop two is where you decide which tools it may call, and it is the only place you can prove afterwards what it actually did. I have not seen that box in a single agent demo this week."</p>
+    <p class="say">"You have spent two days hearing that agents will run your business. Every one of those sessions has an agent calling tools — your CRM, your repository, your payment system. Hop two is where you decide which tools it may call, and it is the only place you can prove afterwards what it actually did. Nobody has shown you this box yet."</p>
+    <p>The four sessions named on the slide all happen <i>before</i> yours: Microsoft and the Copilots panel on day one, Zencoder on day one afternoon, OpenAI at 10:00 this morning. Alistair Greenwood's <i>The Augmented Team</i> is at 15:10 today — after you — so it is deliberately not on the slide. If you did not attend one of the four, say "every one of those sessions" rather than "every one of those demos".</p>
     <p>Then the next slide: how small the whole thing can be.</p>
   </div>
 </section>
@@ -1189,7 +1190,7 @@ tr.frag { transform: none; }
   <span class="num">04</span>
   <h2>The bottom layer is being poured</h2>
   <p class="lede">Everything on the last three slides runs on a floor somebody has to build: megawatts, a grid connection, and a queue you cannot jump. That is the half of the stack Europe is pouring right now — and the half this country is legislating for this year.</p>
-  <div class="s-notes"><p>Section ~3 min, and keep it to that. <b>The room heard NVIDIA's keynote on this yesterday</b> — Koen van den Berg, "From Megawatts to Intelligence: Building the AI Factory", day one at 12:15 — and you were just on a panel with him about the infrastructure race. Do not re-explain what an AI factory is. Say "Koen showed you the factory yesterday; here is what it costs in grid, and what the same numbers look like from here." Make the VOLT disclosure here if you have not already.</p></div>
+  <div class="s-notes"><p>Section ~2 min, and keep it to that. <b>The room heard NVIDIA's keynote on this yesterday</b> — Koen van den Berg, "From Megawatts to Intelligence: Building the AI Factory", day one at 12:15 — and you were just on a panel with him about the infrastructure race. Do not re-explain what an AI factory is. Say "Koen showed you the factory yesterday; here is what it costs in grid, and what the same numbers look like from here." Make the VOLT disclosure here if you have not already.</p></div>
 </section>
 
 <!-- 21 ..................................................................... -->
@@ -1263,7 +1264,7 @@ tr.frag { transform: none; }
   <span class="num">05</span>
   <h2>What the vendor keynote leaves out</h2>
   <p class="lede">If I only told you the good half, you'd make a bad decision and I'd deserve the blame.</p>
-  <div class="s-notes"><p>Section ~4 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land. In a summit room full of vendor keynotes, this is also the section that makes yours not one.</p></div>
+  <div class="s-notes"><p>Section ~3 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land. In a summit room full of vendor keynotes, this is also the section that makes yours not one.</p></div>
 </section>
 
 <!-- 24 ..................................................................... -->
@@ -1400,7 +1401,7 @@ tr.frag { transform: none; }
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
   <cite>Alessandro Vozza · Lovelace Engineering / VOLT Datacenters</cite>
-  <div class="s-notes"><p>Pause. Then straight into the debate slide — do not fill the silence.</p></div>
+  <div class="s-notes"><p>Pause. Do not fill the silence. Then the practice slide, then the provocations.</p></div>
 </section>
 
 <!-- 29 ..................................................................... -->
@@ -1415,11 +1416,11 @@ tr.frag { transform: none; }
   </ul>
   <p class="floor">Open source is the floor, not the ceiling.</p>
   <div class="s-notes">
-    <p>Forty seconds, and this is the last thing you say before you hand the room the microphone. Read the three middle lines slowly — they are the whole talk compressed, and each one is a test somebody in this room will fail on Monday.</p>
+    <p>Forty seconds, and this is the last argument before the close. Read the three middle lines slowly — they are the whole talk compressed, and each one is a test somebody in this room will fail on Monday.</p>
     <p class="say">"If you remember one slide, make it this one. Sovereignty is not something you buy — there is no product on the market that makes you sovereign, and anyone selling you one is doing to sovereignty what a decade of marketing did to sustainability. It's a practice. It's what you do every quarter, in procurement, in architecture, and in who you hire."</p>
     <p><b>Landlord model</b> is the line that lands hardest with this audience. Most of them have been sold EU region residency as sovereignty, and they already understand instinctively what it means to improve a property you do not own.</p>
     <p>The last line carries the open-source maintenance argument on its own in this cut: "If you adopt an open stack and fund none of it, you haven't become sovereign — you've moved your dependency somewhere with no support contract." One sentence, then stop.</p>
-    <p>Then stop. Say nothing, advance to the provocations, and let them start.</p>
+    <p>Then stop. Say nothing, advance to the provocations, and send the argument to lunch.</p>
   </div>
 </section>
 
@@ -1438,7 +1439,6 @@ tr.frag { transform: none; }
   <div class="s-notes">
     <p><b>There is no Q&amp;A block in a thirty-minute main-stage slot before lunch.</b> This slide is the substitute: leave it up while you say the closing lines, so people carry a number with them into the foyer. If the chair offers three minutes of questions, take one and point at this slide for the rest.</p>
     <p>Honest positions: I half-believe #1 — protectionism is a real risk and SEAL-4 is not achievable today; the Vezilka card on slide 13 is my answer. I do not believe #2, and the one-box slide is why. #3 is the one I most want somebody from the ministry to argue with. I strongly believe #5, and it was the subject of the panel you just left.</p>
-    <p>If a question does come and it is about Watts Matter — the agenda listed both titles — answer it from #5 and offer the other deck's URL.</p>
   </div>
 </section>
 
@@ -1507,7 +1507,7 @@ tr.frag { transform: none; }
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 2 of 2</span></div>
   <h2>Sources · the region</h2>
   <ul class="srcs">
-    <li><b>AI Tech Summit „Filip Avramchev“ 2026</b>techsummit.ai — Main Stage, day 2, 23 Sep 2026: panel <i>Sovereign AI &amp; the Infrastructure Race</i> 11:25 (K. van den Berg, NVIDIA; A. Vozza), talk 11:45–12:15; day 1 keynote <i>From Megawatts to Intelligence: Building the AI Factory</i> (NVIDIA)</li>
+    <li><b>AI Tech Summit „Filip Avramchev“ 2026</b>techsummit.ai/agenda, read 20 Sep 2026 — Main Stage, day 2: panel <i>Sovereign AI &amp; the Infrastructure Race</i> 11:25 (K. van den Berg, NVIDIA; A. Vozza; S. Đinović, Orion Telekom), keynote 11:45–12:15, hackathon final 16:30 · day 1: <i>From Megawatts to Intelligence</i> (NVIDIA) 12:15, <i>From Applications to Agents</i> (Microsoft) 09:30, <i>Beyond Copilots</i> panel 11:55, <i>The One-Person AI Company</i> (Zencoder) 14:55 · day 2: <i>State of AI</i> (OpenAI) 10:00 · AI Labs day 2: <i>Sovereign by Design</i> (G. Dimitrov, GAIA Technology Systems) 11:25</li>
     <li><b>Vezilka AI Factory Antenna</b>Ministry of Digital Transformation press release, 14 Oct 2025 (Minister S. Andonovski, ≈€6m, FINKI lead) · launched 24 Jun 2026 · GÉANT CONNECT, 22 Jul 2026 · vezilka.ai · Karanović &amp; Partners note</li>
     <li><b>PHAROS AI Factory</b>GRNET · Daedalus, 2,000+ NVIDIA GH200, 89 PFlops · four antennas approved 15 Oct 2025: Cyprus (Cyprus Institute), Malta (MDIA), North Macedonia (UKIM), Serbia (Institute of Physics Belgrade) — pharos-aifactory.eu, eurohpc-ju.europa.eu</li>
     <li><b>domestic-yak</b>S. Krsteski, M. Tashkovska, B. Sazdov, H. Gjoreski, B. Gerazov, <i>Towards Open Foundation Language Model and Corpus for Macedonian</i>, SlavNLP @ ACL 2025, arXiv:2506.09560 · 8B, 40 GB / 3.5B-word corpus, 106k instructions · weights, data, code at huggingface.co/LVSTCK, github.com/LVSTCK</li>
@@ -1520,7 +1520,7 @@ tr.frag { transform: none; }
     <li><b>Hyperscaler latency reference</b>Sofia → Athens ≈ 15 ms, Sofia → Frankfurt ≈ 18 ms (regional provider measurements) — indicative only</li>
     <li><b>Stack references</b>Gateway API Inference Extension v1.6 (Aug 2026) · agentgateway v1.5 (Agentic AI Foundation) · llm-d v0.9 (CNCF Sandbox) · HAMi (CNCF Incubating, Jul 2026) · vLLM FP8 KV study, 22 Apr 2026 — full detail in the Groningen deck, ams0.github.io/talks/beyond-the-clouds-tech</li>
   </ul>
-  <div class="s-notes"><p>Backup slide. The regional facts were checked on 18 September 2026. Two of them can move before the talk: the status of the data-centre amendments in parliament, and anything the ministry announces about Vezilka on stage the day before. Re-read the Macedonian press the morning of.</p></div>
+  <div class="s-notes"><p>Backup slide. The regional facts were checked on 18 September 2026 and the agenda on 20 September. Two of them can move before the talk: the status of the data-centre amendments in parliament, and anything the ministry announces about Vezilka on stage the day before. Re-read the Macedonian press the morning of.</p></div>
 </section>
 
 </main>
@@ -1618,7 +1618,7 @@ tr.frag { transform: none; }
     if (!running) return;
     var s = Math.floor((Date.now() - start) / 1000);
     var m = Math.floor(s / 60);
-    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 22 ? '  ·  into lunch' : '  ·  target 22:00');
+    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 21 ? '  ·  into lunch' : '  ·  target 21:00');
   }
   setInterval(tick, 1000);
 
