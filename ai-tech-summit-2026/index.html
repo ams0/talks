@@ -108,6 +108,19 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
   background-size: 10px 10px, 100% 100%;
 }
 
+/* ---------- cross-reference to another session at this summit ---------- */
+.xref { display: flex; align-items: flex-start; gap: 22px; margin-top: 26px; padding-top: 15px;
+  border-top: 1px solid var(--rule); }
+.xref > b { font-family: var(--f-mono); font-size: 17px; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700; white-space: nowrap; padding-top: 3px; }
+.xref > span { font-size: 21px; line-height: 1.38; color: var(--fg-muted); max-width: 110ch; }
+.xref em { font-style: italic; color: var(--fg-on-light); }
+.xref span b { color: var(--fg-on-light); font-weight: 600; }
+.on-dark .xref em, .on-dark .xref span b { color: var(--fg-on-dark); }
+.slide--claim .xref { margin-top: 52px; margin-left: 64px; max-width: 118ch; }
+.slide--cta .xref { margin-top: 22px; }
+.slide--cta .xref > span { font-size: 20px; }
+
 /* ---------- summit type tune ---------- */
 h1, h2, .slide--claim p, .slide--hook p, .slide--proverb blockquote, .slide--quote blockquote { letter-spacing: -0.025em; }
 .slide--metric .num, .bar .v, .col .pc, .dcenter .dn, .dlegend .p, .rules .n { letter-spacing: -0.03em; }
@@ -163,9 +176,9 @@ h1, h2, .slide--claim p, .slide--hook p, .slide--proverb blockquote, .slide--quo
 
 /* ---------- bold claim ---------- */
 .slide--claim { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; }
-.slide--claim p { font-family: var(--f-display); font-size: 75px; line-height: 1.1; font-weight: 800; max-width: 21ch;
+.slide--claim > p:not(.xref) { font-family: var(--f-display); font-size: 75px; line-height: 1.1; font-weight: 800; max-width: 21ch;
   border-left: 8px solid var(--accent); padding-left: 56px; letter-spacing: -0.01em; }
-.slide--claim p b { font-style: italic; font-weight: 400; color: var(--accent); }
+.slide--claim > p:not(.xref) b { font-style: italic; font-weight: 400; color: var(--accent); }
 .slide--claim cite { margin-top: 48px; padding-left: 64px; font-style: normal; font-family: var(--f-mono);
   font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
 
@@ -361,7 +374,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 
 /* ---------- cta ---------- */
 .slide--cta { padding: 150px 130px; display: flex; flex-direction: column; justify-content: center; gap: 46px; }
-.slide--cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(980px 600px at 18% 78%, rgba(78,124,74,0.30), transparent 66%); }
+.slide--cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(980px 600px at 18% 78%, rgba(128,38,176,0.42), transparent 66%); }
 .slide--cta > *:not(.cover-mark) { position: relative; }
 .slide--cta h2 { font-family: var(--f-display); font-size: 92px; font-weight: 800; line-height: 1.02; max-width: 20ch; }
 .slide--cta h2 em { font-style: italic; color: var(--accent-soft); }
@@ -727,8 +740,11 @@ tr.frag { transform: none; }
   <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
   <cite>The thesis of this talk</cite>
+  <p class="xref"><b>Next door, just now</b><span><em>Sovereign by Design: three blueprints for AI that can't leave the building</em> — Gjorgji Dimitrov, AI Labs, 11:25. Managed API, private endpoints, self-hosted weights: three good architectures. <b>This talk adds the question that picks between them — which court can compel this?</b></span></p>
   <div class="s-notes">
-    <p>Land this slowly. The word that does the work is <b>jurisdiction</b> — not "data", not "privacy". Leaders in this room already own jurisdiction risk in every other supplier contract.</p>
+    <p><b>Say the cross-reference first, in one breath, then the slide.</b> The AI Labs session that just finished next door covered three sovereign architectures for the same problem; some of that room is walking into this one. Crediting it costs three seconds and converts a competing session into your warm-up act.</p>
+    <p class="say">"If you were next door just now, you saw three blueprints. They are all good. I want to add the question that picks between them — and it is not a technical question."</p>
+    <p>Land the slide slowly. The word that does the work is <b>jurisdiction</b> — not "data", not "privacy". Leaders in this room already own jurisdiction risk in every other supplier contract.</p>
     <p class="say">"Nobody signed off on a foreign-policy exposure. Somebody signed off on a credit card and a rate limit. Those turned out to be the same decision."</p>
   </div>
 </section>
@@ -1109,7 +1125,7 @@ tr.frag { transform: none; }
       <p class="eg">agentgateway · Envoy AI Gateway · kgateway</p>
       <ul>
         <li>AuthN/Z on every hop: JWT, OIDC, API key, SPIFFE</li>
-        <li>Tool-level RBAC for MCP, guardrails on prompts <i>and</i> tool calls</li>
+        <li><b>Which tools an agent may call</b> — tool-level RBAC for MCP, guardrails on prompts <i>and</i> tool calls</li>
         <li>Token budgets, redaction, cost per request, OTel by default</li>
       </ul>
       <p class="signals">→ your own GPUs, by default<br>→ a frontier API, knowingly</p>
@@ -1137,10 +1153,13 @@ tr.frag { transform: none; }
       <p class="signals">a B300 in Skopje · a rack in Athens<br>a frontier API in Virginia — the caller cannot tell</p>
     </div>
   </div>
+  <p class="xref"><b>Two days of agents</b><span>Microsoft's <em>From Applications to Agents</em>, the <em>Beyond Copilots</em> panel, <em>The One-Person AI Company</em>, <em>The Augmented Team</em> — every one of them puts an agent in front of your tools. <b>Hop two is where you decide which tools it may call, and the only place you can prove what it did.</b> None of those demos included this box.</span></p>
   <div class="s-notes">
     <p><b>This is the technical spine of the talk — 90 seconds, and the most technical the deck gets.</b> The leadership version had one "gateway" box; this room can handle two, as long as you say what each one decides in plain words and never name a field.</p>
     <p class="say">"Hop two decides <i>whether</i> a request may happen and what it may touch. Hop three decides <i>where</i> it runs. Own those two and it genuinely does not matter whether hop four is a GPU in Skopje, a rack in Athens or a frontier API in Virginia — the caller cannot tell, and neither can the audit log. That is the whole trick: you don't have to leave the cloud to stop being captured by it. You have to own the two boxes in the middle."</p>
     <p>Why hop three exists, in one sentence if asked: two identical GPUs are not interchangeable once one of them is already holding your conversation, so an ordinary load balancer wastes the expensive part. The Groningen deck has the YAML for both hops; this one does not, on purpose.</p>
+    <p><b>The agent line is the tie to the rest of the summit — do not skip it.</b> Agents are the single biggest theme here: five or six main-stage sessions across two days, and the room has been told for two days that agents will run their company. Nobody has shown them the control point.</p>
+    <p class="say">"You have spent two days hearing that agents will run your business. Every one of those demos has an agent calling tools — your CRM, your repository, your payment system. Hop two is where you decide which tools it may call, and it is the only place you can prove afterwards what it actually did. I have not seen that box in a single agent demo this week."</p>
     <p>Then the next slide: how small the whole thing can be.</p>
   </div>
 </section>
@@ -1215,7 +1234,7 @@ tr.frag { transform: none; }
       </div>
     </div>
   </div>
-  <p class="foot">19 EuroHPC AI Factories and 13 antennas — one of them Vezilka, in Skopje · €180m committed by the Commission · &gt;€20bn expected across up to 7 AI Gigafactories</p>
+  <p class="xref"><b>Yesterday, 12:15</b><span>Koen van den Berg, NVIDIA — <em>From Megawatts to Intelligence: Building the AI Factory</em>. That was the five-layer factory. <b>This is what its bottom layer costs in grid, and where it is being poured.</b> 19 EuroHPC AI Factories and 13 antennas, one of them Vezilka in Skopje · €180m committed by the Commission · &gt;€20bn expected across up to 7 AI Gigafactories.</span></p>
   <div class="s-notes">
     <p><b>The visual argument is the gap between the bottom two bars and the top one.</b> Do not explain it — let them see it, then say the line below.</p>
     <p>Open with the footer line, since the "Europe is building it" slide is gone from this cut: "Nineteen AI Factories and thirteen antennas are running on EuroHPC money today, and one of the antennas is in this city. The supply side is arriving, and this country is already plugged into it." Then the bars.</p>
@@ -1227,25 +1246,6 @@ tr.frag { transform: none; }
 </section>
 
 <!-- 22 ..................................................................... -->
-<section class="slide on-light slide--content tight">
-  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
-  <h2>What it looks like when someone builds the whole stack, not just the building</h2>
-  <p class="lede">VOLT — "from power to tokens" — is doing the full-stack version in the Netherlands: grid connection, hall, GPUs and the software above them, sold as a sovereign service. Not the only one; but the model a data-centre law could ask for.</p>
-  <ul class="points two-col">
-    <li><b>Dutch AI Cloud, live October 2026</b><span>Amsterdam, with NorthC and Dell. 14 MW at Switch AMS4, 42 MW planned at AMS5.</span></li>
-    <li><b>Rotterdam AI Gigafactory</b><span>Up to 800 MW, roughly 250,000 GPUs, construction from 2027.</span></li>
-    <li><b>Target sectors</b><span>Finance, healthcare, biotech, defence, government — the workloads that cannot answer the jurisdiction question with a contract.</span></li>
-    <li><b>The question for a data-centre law</b><span>Who operates the layers above the concrete? A hall of somebody else's GPUs is an electricity export with a roof. The same hall with a locally run control plane is an AI industry.</span></li>
-  </ul>
-  <div class="s-notes">
-    <p><b>Disclose the relationship.</b> Say plainly that Lovelace Engineering consults for VOLT Datacenters — the byline already says it, so say it out loud too. Credibility in this room is worth more than the plug, and disclosing costs nothing.</p>
-    <p class="say">"Full disclosure — I work with these people. Which is also why I know the numbers are real and how hard the grid connection was. And it is why I'll say the uncomfortable thing about the fourth point: the law being written here this year decides whether the hall gets built. It does not decide whether anything Macedonian runs in it. Write that into the law, or write it into your own procurement."</p>
-    <p>Nebius is the useful contrast if asked: 310 MW in Lappeenranta, 240 MW near Lille, targeting 2.5 GW. Different model — hyperscale neocloud rather than full-stack sovereign. Kragujevac is the regional contrast: state-owned hall, foreign tenants.</p>
-    <p>Do not moralise about the amendments. The audience includes people who wrote them. The tone is "here is the one clause I would add", not "here is what you got wrong".</p>
-  </div>
-</section>
-
-<!-- 23 ..................................................................... -->
 <section class="slide on-dark slide--metric">
   <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <div class="num">800<span class="u">MW</span></div>
@@ -1258,7 +1258,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 24 ..................................................................... -->
+<!-- 23 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">05</span>
   <h2>What the vendor keynote leaves out</h2>
@@ -1266,7 +1266,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Section ~4 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land. In a summit room full of vendor keynotes, this is also the section that makes yours not one.</p></div>
 </section>
 
-<!-- 25 ..................................................................... -->
+<!-- 24 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>Four failure modes nobody demos on stage</h2>
@@ -1283,7 +1283,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 26 ..................................................................... -->
+<!-- 25 ..................................................................... -->
 <section class="slide on-light slide--curve">
   <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>One chart decides this, and it isn't a chart about sovereignty</h2>
@@ -1356,7 +1356,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 27 ..................................................................... -->
+<!-- 26 ..................................................................... -->
 <section class="slide on-light slide--table tight">
   <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>Self-host, federate, or rent — by workload class</h2>
@@ -1379,7 +1379,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 28 ..................................................................... -->
+<!-- 27 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <h2>Ninety days. Four moves. No new budget line.</h2>
@@ -1395,7 +1395,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 29 ..................................................................... -->
+<!-- 28 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
@@ -1403,7 +1403,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Pause. Then straight into the debate slide — do not fill the silence.</p></div>
 </section>
 
-<!-- 30 ..................................................................... -->
+<!-- 29 ..................................................................... -->
 <section class="slide on-dark slide--practice">
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <h2>Sovereignty is not a product. <em>It's a practice.</em></h2>
@@ -1423,7 +1423,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 31 ..................................................................... -->
+<!-- 30 ..................................................................... -->
 <section class="slide on-dark slide--debate">
   <div class="ref"><span class="ref-n">§ 07</span><span>Over lunch</span></div>
   <h2>Five things I believe. Pick one and find me at lunch.</h2>
@@ -1442,7 +1442,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 32 ..................................................................... -->
+<!-- 31 ..................................................................... -->
 <section class="slide on-dark slide--cta with-me">
   <div>
     <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
@@ -1453,6 +1453,7 @@ tr.frag { transform: none; }
       <li><span>LinkedIn</span> /in/alessandrovozza</li>
       <li><span>Happy to</span> argue about any of this over lunch, or help you size the one box</li>
     </ul>
+    <p class="xref"><b>Back here at 16:30</b><span>The three hackathon finalists present on this stage. Every one of them is built on somebody's API. <b>Whose, is the only question I have been asking for twenty minutes.</b></span></p>
   </div>
   <div class="me-col">
     <img class="portrait" src="alessandro-vozza.jpg" alt="Portrait of Alessandro Vozza.">
@@ -1462,11 +1463,13 @@ tr.frag { transform: none; }
   </div>
   <div class="s-notes">
     <p>Keep it to fifteen seconds. The debate slide is the real close; this is who I am and how to reach me. If you want to mention ChemAI AMS (12–13 November, Amsterdam), do it here in one sentence — the card slide is not in this cut.</p>
-    <p class="say">"That's me, that's the disclosure, and that's how to find me. Start with the inventory — everything else follows from it. Enjoy lunch."</p>
+    <p class="say">"That's me, that's the disclosure, and that's how to find me. Start with the inventory — everything else follows from it."</p>
+    <p><b>Then the hackathon line, and stop.</b> It is the one moment in the talk aimed at the students rather than the buyers, and the finalists are on this stage four hours later. It also lands with the organisers, who built the whole summit around that hackathon.</p>
+    <p class="say">"One last thing. At half past four, three student teams present on this stage. Every one of those projects is built on somebody's API. Whose, is the only question I have been asking for twenty minutes. Enjoy lunch."</p>
   </div>
 </section>
 
-<!-- 33 ..................................................................... -->
+<!-- 32 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 1 of 2</span></div>
   <h2>Sources · the argument</h2>
@@ -1499,7 +1502,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
 </section>
 
-<!-- 34 ..................................................................... -->
+<!-- 33 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 2 of 2</span></div>
   <h2>Sources · the region</h2>

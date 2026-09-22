@@ -18,15 +18,16 @@ than the ADA leadership day. Same argument as `../beyond-the-clouds/`, with the 
 map and the request path (no YAML), and three slides rebuilt around what North Macedonia decided this summer.
 Quoted lines are verbatim — say those. Everything else is a cue.
 
-**Timing.** 34 slides, of which two are sources you only open if challenged. Delivered in full it runs
+**Timing.** 33 slides, of which two are sources you only open if challenged. Delivered in full it runs
 **≈22 min**, which leaves a real five-minute margin for a late start, a laugh, or one question. There is **no Q&A
-block** — the provocations slide (31) stays up while you close and sends the argument to lunch. Say the lunch time
+block** — the provocations slide (30) stays up while you close and sends the argument to lunch. Say the lunch time
 out loud on slide 1.
 
-**Cut order if you are behind: 21 → 12 → 22 → 16 → 7.** Never cut 8, 13, 18, 19, 27 or 30. If you are badly
-behind at slide 20, jump to 23 with "Koen showed you the factory yesterday; here is the one number I'd add".
+**Cut order if you are behind: 12 → 16 → 7 → 21 → 25.** Never cut 3, 8, 13, 18, 19, 26 or 29 — three of those
+carry a reference to another session at this summit. If you are badly behind at slide 20, jump to 22 with
+"Koen showed you the factory yesterday; here is the one number I'd add".
 
-**Slides that build.** 10, 25, 27, 28 and 31 reveal one item per click. Right arrow (or space, or click) brings
+**Slides that build.** 10, 24, 26, 27 and 30 reveal one item per click. Right arrow (or space, or click) brings
 out the next item, then moves on; left arrow steps back. **Down/Up jump whole slides.**
 
 **The morning of the talk.** Two regional facts can move overnight: the status of the data-centre amendments
@@ -35,21 +36,28 @@ press at breakfast. The *Watts Matter* half of the listing has been removed — 
 *Beyond the Clouds* alone, so the energy material in § 04 is a supporting act, not a promise. The agenda
 prints your name as "Alessandro Stefouli-Vozza" — decide before you go on whether the title slide should match.
 
-**Deconflict with your own panel.** Questions 1 and 3 are slides 23 and 13 of this deck. Do not spend them on
-the panel: answer 1 in one sentence and park 3 with "I have a slide on exactly that in fifteen minutes". Spend
-your panel time on 2 and 4, which are operator questions you can answer better than either co-panellist, and
-which this deck barely touches.
+**Deconflict with your own panel.** Question 3 is slide 13 of this deck; question 1 is the material that used
+to be slide 22, now cut for exactly that reason. Do not spend them on the panel: answer 1 in one sentence and
+park 3 with "I have a slide on exactly that in fifteen minutes". Spend your panel time on 2 and 4, which are
+operator questions you can answer better than either co-panellist, and which this deck barely touches.
 
 **Competing session.** AI Labs, same 11:25–11:45 slot: *Sovereign by Design — three blueprints for AI that
 can't leave the building* (Gjorgji Dimitrov, GAIA Technology Systems) — managed API, private endpoints,
-self-hosted open weights, plus a decision framework. That is slides 17 and 28 compressed. It ends as you
-begin, so some of that room walks into yours. One line early buys the goodwill: "If you were next door just
-now you saw three blueprints. I want to add the question that picks between them: which court can compel this."
+self-hosted open weights, plus a decision framework. That is slides 16 and 26 compressed. It ends as you
+begin, so some of that room walks into yours. **Slide 3 now credits it on the slide** — say the line before you
+deliver the thesis.
+
+**Four slides carry an on-slide cross-reference** to another session here, in a lavender label: slide 3
+(Dimitrov, AI Labs), slide 18 (the four agent sessions), slide 21 (Koen's AI Factory keynote) and slide 31
+(the hackathon final). They are there so the room can see you watched the rest of the programme. Say each one
+out loud — a reference nobody reads aloud is decoration.
 
 **What this cut dropped** (all still in `../beyond-the-clouds/` or `../beyond-the-clouds-tech/`): the Monty Python opener, the proverb,
 the concentration donut, the five-survey bars, "who decides the roadmap", the KubeCon session list, "Europe is
-building the bottom layer", "open source is the floor", the people slide and the ChemAI card. Their one-line
-payloads moved into the speaker notes of the slides that survive.
+building the bottom layer", "open source is the floor", the people slide, the ChemAI card, and the VOLT
+full-stack slide — cut once the agenda put its content into panel question 1. Their one-line payloads moved
+into the speaker notes of the slides that survive; the data-centre-law clause now lives in move four of the
+ninety-day plan, slide 27.
 
 ---
 
@@ -66,8 +74,11 @@ days."* Wait. *"Keep them up if you've tested it."* Most hands in this room belo
 than run it, so the second question lands harder. "Anywhere else we'd call that an untested disaster recovery
 plan."
 
-**3 · Thesis.** Land **jurisdiction**. "Somebody signed off on a credit card and a rate limit. Those turned out
-to be the same decision."
+**3 · Thesis.** ★**Credit the room next door first**, in one breath: "If you were next door just now, you saw
+three blueprints. They are all good. I want to add the question that picks between them — and it is not a
+technical question." It is on the slide, so land it rather than paraphrase it. Then the thesis, slowly. The
+word that does the work is **jurisdiction**. "Somebody signed off on a credit card and a rate limit. Those
+turned out to be the same decision."
 
 ## 01 The ground moved — 4 min (slides 4–8)
 
@@ -145,6 +156,12 @@ matter whether hop four is a GPU in Skopje, a rack in Athens or a frontier API i
 tell, and neither can the audit log. You don't have to leave the cloud to stop being captured by it. You have
 to own the two boxes in the middle." If an engineer wants the YAML, the Groningen deck has it.
 
+★**Then the agent line, and do not skip it.** It is the tie to the biggest theme of this summit — five or six
+main-stage sessions across two days — and it is on the slide. "You have spent two days hearing that agents will
+run your business. Every one of those demos has an agent calling tools: your CRM, your repository, your payment
+system. Hop two is where you decide which tools it may call, and it is the only place you can prove afterwards
+what it actually did. I have not seen that box in a single agent demo this week."
+
 **19 · The smallest sovereign unit fits in one rack. ★new** Ninety seconds. "This is one server. Eight GPUs,
 two-and-a-bit terabytes of memory, fourteen kilowatts. It runs a seventy-billion-parameter open model for
 hundreds of people at once and still has room for a Macedonian model next to it. The software is an afternoon.
@@ -152,64 +169,67 @@ And the point isn't the box — once your workload runs behind a standard route 
 a European cloud, or to OpenAI, is a change in one file." Land "a receipt, not a strategy document": the room
 has heard strategy documents for two days.
 
-## 04 The bottom layer — 3 min (slides 20–23)
+## 04 The bottom layer — 2 min (slides 20–22)
 
 **Keep it to three minutes.** NVIDIA did the factory keynote yesterday and you were just on the panel. "Koen
 showed you the factory yesterday; here is what it costs in grid, and what the numbers look like from here."
 **Disclose the VOLT relationship** here if you have not already.
 
-**21 · In megawatts.** Open with the footer line: "Nineteen AI Factories and thirteen antennas are running on
-EuroHPC money today, and one of the antennas is in this city." Let them see the gap, then the fourth bar.
+**21 · In megawatts.** ★The Koen reference is **on the slide** now, so say it: "Koen showed you the five-layer
+factory yesterday. This is what its bottom layer costs in grid, and where it is being poured." Then: "Nineteen
+AI Factories and thirteen antennas run on EuroHPC money today, and one of them is in this city." Let them see
+the gap, then the fourth bar.
 "Kragujevac, three hundred kilometres from here. Serbia's state data centre — fourteen megawatts today, forty
 more promised by a Gulf telecom. That is the regional version of the same race." Tenants there are Oracle, IBM
 and Huawei: the landlord point with a Serbian address. *First slide to cut; 23 makes the point in five seconds.*
 
-**22 · The whole stack, not just the building.** Full-stack VOLT, and the clause for a data-centre law: "The
-law being written here this year decides whether the hall gets built. It does not decide whether anything
-Macedonian runs in it." Tone is "the one clause I'd add", never "what you got wrong" — the people who wrote the
-amendments may be in the room. *Cut if short.*
-
-**23 · 800 MW.** The number they repeat at lunch. "That single site, running flat out, would use more
+**22 · 800 MW.** The number they repeat at lunch. "That single site, running flat out, would use more
 electricity in a year than this whole country generated last year." Say **at full load**. If asked: 800 MW ×
 8,760 h ≈ 7 TWh; North Macedonia generated 6.1 TWh in 2024, 89% of its own demand; REK Bitola is 675 MW.
 "Every AI strategy eventually becomes an energy strategy — and a country deciding its data-centre law and its
 energy transition in the same parliament, in the same year, can decide them together."
 
-## 05 What the keynote leaves out — 3 min (slides 24–27)
+## 05 What the keynote leaves out — 3 min (slides 23–26)
 
 Credibility section. In a summit full of vendor keynotes this is what makes yours not one.
 
-**25 · Four failure modes (builds).** "I've watched two teams fight over eight GPUs for six weeks. No technology
+**24 · Four failure modes (builds).** "I've watched two teams fight over eight GPUs for six weeks. No technology
 fixed it. A quota policy and one uncomfortable meeting fixed it."
 
-**26 · The curve.** Ninety seconds, the CFO slide. Same H100, $0.21 to $15.25 per million tokens. Give explicit
+**25 · The curve.** Ninety seconds, the CFO slide. Same H100, $0.21 to $15.25 per million tokens. Give explicit
 permission not to self-host: "€4,000 a month and spiky is a hobby. Come back at €40,000 and flat." The curve
 is arithmetic anchored on two published endpoints — say so.
 
-**27 · Self-host / federate / rent (builds).** **Never cut.** Row two: "You don't have to leave the
+**26 · Self-host / federate / rent (builds).** **Never cut.** Row two: "You don't have to leave the
 hyperscalers to stop being captured by them. You have to own the layer where the decisions are made." Row
 four is Vezilka as a procurement verdict — this country already has a federated training path, paid for.
 
-## 06 Close — 3 min (slides 28–32)
+## 06 Close — 3 min (slides 27–31)
 
-**28 · Ninety days, four moves (builds).** Slow down. Inventory → gateway in front → prove portability once
+**27 · Ninety days, four moves (builds).** Slow down. Inventory → gateway in front → prove portability once
 (to a European provider, to Pharos through Vezilka, or to the one box) → SEAL in the next procurement, or
 "who operates the control plane" in the data-centre law. "None of these need a business case. The first is a
 spreadsheet, and I'd bet nobody here can produce it today."
 
-**29 · "The clouds aren't going anywhere. Your autonomy shouldn't live there."** Pause. Do not fill it.
+**28 · "The clouds aren't going anywhere. Your autonomy shouldn't live there."** Pause. Do not fill it.
 
-**30 · Sovereignty is not a product. It's a practice.** Forty seconds, the three middle lines slowly. "Landlord
+**29 · Sovereignty is not a product. It's a practice.** Forty seconds, the three middle lines slowly. "Landlord
 model" lands twice as hard in a room that has just been told about the data-centre amendments — do not point
 that out; they will. The last line carries the maintenance argument on its own: "If you adopt an open stack and
 fund none of it, you haven't become sovereign — you've moved your dependency somewhere with no support contract."
 
-**31 · Five things I believe (builds).** Leave it up while you finish. "Lunch is next door. Pick a number and
+**30 · Five things I believe (builds).** Leave it up while you finish. "Lunch is next door. Pick a number and
 find me." Honest positions: half-believe #1 (the Vezilka card on 13 is the answer); do not believe #2 (slide 19
 is why); #3 is the one you want somebody from the ministry to argue with; strongly believe #5, and it was the
 panel. If the chair offers three minutes, take one question and send the rest to the foyer.
 
-**32 · Close.** Who you are, the disclosure, the deck URL. One sentence on ChemAI AMS (12–13 November,
-Amsterdam) if you want it. "Start with the inventory. Enjoy lunch."
+**31 · Close.** Who you are, the disclosure, the deck URL. One sentence on ChemAI AMS (12–13 November,
+Amsterdam) if you want it. "Start with the inventory — everything else follows from it."
 
-**33–34 · Sources.** Backup. 33 is the argument, 34 is the region. Only open if a number is challenged.
+★**Then the hackathon line, and stop.** It is the only moment in the talk aimed at the students rather than the
+buyers; the finalists are on this stage four hours later, and the organisers built the summit around them. It
+is on the slide. "One last thing. At half past four, three student teams present on this stage. Every one of
+those projects is built on somebody's API. Whose, is the only question I have been asking for twenty minutes.
+Enjoy lunch."
+
+**32–33 · Sources.** Backup. 32 is the argument, 33 is the region. Only open if a number is challenged.
