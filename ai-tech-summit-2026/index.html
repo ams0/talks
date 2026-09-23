@@ -108,6 +108,34 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
   background-size: 10px 10px, 100% 100%;
 }
 
+/* ---------- corner icon, one per slide ---------- */
+.slidemark { position: absolute; top: 50px; right: 74px; width: 96px; height: 96px; z-index: 3; }
+/* keep wide headings clear of the corner icon */
+.slide--arch h2, .slide--curve h2, .slide--table h2, .slide--srcs h2,
+.slide--bars h2, .slide--stack h2, .slide--timeline h2 { max-width: 1690px; }
+.slidemark svg { width: 100%; height: 100%; fill: none; stroke: var(--accent);
+  stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.88; }
+.slidemark svg .solid { fill: var(--accent); stroke: none; }
+.slide--section .slidemark, .slide--hook .slidemark { opacity: 0.95; }
+
+/* ---------- the rack photograph ---------- */
+.slide--content.with-shot { display: grid; grid-template-columns: 1fr 300px; grid-template-rows: 1fr auto;
+  column-gap: 64px; row-gap: 22px; align-items: center; padding: 88px 112px 112px; }
+.slide--content.with-shot h2 { font-size: 52px; }
+.slide--content.with-shot .lede { font-size: 24px; line-height: 1.36; margin-top: 10px; }
+.slide--content.with-shot .points { margin-top: 22px; gap: 14px 52px; }
+.slide--content.with-shot .points li { font-size: 22px; line-height: 1.3; }
+.slide--content.with-shot .kq { grid-column: 1 / -1; font-size: 22px; line-height: 1.34; margin-top: 0; max-width: none; }
+.rackshot { position: relative; margin: 0; }
+.rackshot::before { content: ""; position: absolute; inset: -54px -60px;
+  background: radial-gradient(closest-side, rgba(226,135,255,0.40), rgba(128,38,176,0.20) 56%, transparent 78%); }
+.rackshot img { position: relative; display: block; width: 100%; height: auto; border-radius: 12px;
+  -webkit-mask-image: radial-gradient(118% 88% at 50% 42%, #000 54%, rgba(0,0,0,0.9) 72%, transparent 100%);
+  mask-image: radial-gradient(118% 88% at 50% 42%, #000 54%, rgba(0,0,0,0.9) 72%, transparent 100%); }
+.rackshot figcaption { position: relative; margin-top: 14px; text-align: center; white-space: nowrap;
+  font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--accent); }
+
 /* ---------- the personal beat ---------- */
 .slide--story { padding: 132px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
 .slide--story .kicker { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.18em;
@@ -251,6 +279,7 @@ h1, h2, .slide--claim p, .slide--hook p, .slide--proverb blockquote, .slide--quo
 .slide--content.tight .points { margin-top: 46px; gap: 26px 60px; }
 .slide--table.tight { padding: 120px 110px 120px; }
 .slide--table.tight h2 { font-size: 70px; }
+.slide--table.tight.slide--table h2 { font-size: 56px; }
 .slide--table.tight .lede { margin-bottom: 34px; }
 
 /* ---------- before / after ---------- */
@@ -660,7 +689,7 @@ tr.frag { transform: none; }
 
 /* ---------- split slide: argument left, code right ---------- */
 .slide--split { padding: 78px 108px 112px; display: flex; flex-direction: column; justify-content: center; }
-.slide--split h2 { font-family: var(--f-display); font-size: 51px; font-weight: 800; line-height: 1.05; max-width: 52ch; text-wrap: balance; }
+.slide--split h2 { font-family: var(--f-display); font-size: 51px; font-weight: 800; line-height: 1.05; max-width: 1690px; text-wrap: balance; }
 .slide--split .lede { font-size: 24px; color: var(--fg-muted); margin-top: 12px; max-width: 96ch; line-height: 1.4; }
 .on-dark.slide--split .lede { color: var(--fg-muted-dark); }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 26px; }
@@ -765,6 +794,7 @@ tr.frag { transform: none; }
 <section class="slide slide--hook">
   <p>Could you move your AI workloads to another provider in ninety days?</p>
   <p class="sub">Show of hands — then keep them up if you've tested it</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A raised hand."><path d="M40 64V38a7 7 0 0 1 14 0V32a7 7 0 0 1 14 0v4a7 7 0 0 1 14 0v34c0 18-13 32-31 32-12 0-20-6-26-16L22 68a8 8 0 0 1 12-10Z"/></svg></div>
   <div class="s-notes">
     <p><b>Do the show of hands. Wait for it.</b> Roughly a third go up on the first question; almost none stay up on the second. That gap is the talk. This is a summit room — students, founders, executives, a few engineers — so most hands belong to people who <i>buy</i> AI rather than run it. That makes the second question land harder, not softer.</p>
     <p class="say">"Right. So most of us believe we could. Almost none of us have proved it. In every other part of the business we'd call that an untested disaster recovery plan."</p>
@@ -782,6 +812,7 @@ tr.frag { transform: none; }
     <li><b>Why say it now</b><span>Because I am not neutral, and you deserve to know that before the evidence rather than in the small print at the end.</span></li>
   </ul>
   <p class="tail">I did not change my mind about the technology. <em>I changed my mind about who should be holding it.</em></p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A doorway with an arrow leaving it."><path d="M30 20h34v80H30"/><path d="M52 60h50M88 46l14 14-14 14"/></svg></div>
   <div class="s-notes">
     <p><b>Thirty-five seconds, and resist every temptation to make it longer.</b> This is not a bio — the bio is on the last slide with your face on it. This slide does three jobs and then gets out of the way: it says you have stood on both sides, it puts your affiliation at the front of the talk instead of halfway through, and it makes the next slide personal rather than academic.</p>
     <p><b>The slide names neither company on purpose.</b> It travels to any room, it does not read as a swipe at a former employer, and both names are already on the title byline and in the programme — so the room has them either way. <b>You decide on stage how specific to be.</b></p>
@@ -800,6 +831,7 @@ tr.frag { transform: none; }
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
   <cite>The thesis of this talk</cite>
   <p class="xref"><b>Next door, just now</b><span><em>Sovereign by Design: three blueprints for AI that can't leave the building</em> — Gjorgji Dimitrov, AI Labs, 11:25. Managed API, private endpoints, self-hosted weights: three good architectures. <b>This talk adds the question that picks between them — which court can compel this?</b></span></p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A payment card."><rect x="16" y="34" width="88" height="56" rx="9"/><path d="M16 54h88"/><path d="M32 74h22"/></svg></div>
   <div class="s-notes">
     <p><b>Say the cross-reference first, in one breath, then the slide.</b> The AI Labs session that just finished next door covered three sovereign architectures for the same problem; some of that room is walking into this one. Crediting it costs three seconds and converts a competing session into your warm-up act.</p>
     <p class="say">"If you were next door just now, you saw three blueprints. They are all good. I want to add the question that picks between them — and it is not a technical question."</p>
@@ -813,6 +845,7 @@ tr.frag { transform: none; }
   <span class="num">01</span>
   <h2>The ground moved</h2>
   <p class="lede">Four things changed between your last AI budget cycle and this one. None of them were announced by your vendor.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A ground line stepping down."><path d="M12 44h44v32h52"/><path d="M56 44v32"/><circle cx="56" cy="60" r="4" class="solid"/></svg></div>
   <div class="s-notes"><p>Section is ~6 min now that the three regulation slides sit inside it. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet. This room is not in the EU, so the payload of the section is slide 9, and the three regulation slides after it name the rules one at a time.</p></div>
 </section>
 
@@ -841,6 +874,7 @@ tr.frag { transform: none; }
   </div>
   <p class="kq"><b>The plateau is the uncomfortable part.</b> Three years of sovereignty debate, a €74bn market growing 24% a year, and the European share has not moved off 15%. Rhetoric did not shift a single point of it.</p>
   <p class="foot">Synergy Research Group, July 2025 · European cloud infrastructure services, share of the European market</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A trend arrow falling to the right."><path d="M14 32l32 32 20-20 40 40"/><path d="M106 60v24H82"/></svg></div>
   <div class="s-notes">
     <p>Forty-five seconds. This is the baseline the whole talk sits on, and it is the slide that makes the room uncomfortable in the right way. Do not editorialise — the two numbers do it.</p>
     <p class="say">"Before anything else, here is where we are. In 2017 European providers had twenty-nine percent of their own market. Today it's fifteen, and it has been fifteen for three years. The market grew sixfold in that time — the share halved."</p>
@@ -856,6 +890,7 @@ tr.frag { transform: none; }
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
   <cite><b>Anton Carniaux</b>, Director of Public &amp; Legal Affairs, Microsoft France — under oath, French Senate inquiry into digital sovereignty, 21 July 2025. Microsoft's technical director added that a <i>contractual</i> guarantee keeps EU customer data in the EU. A contract is not a jurisdiction.</cite>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A flag divided into three vertical bands."><path d="M14 18v88"/><rect x="14" y="26" width="84" height="56" rx="4"/><path d="M42 26v56M70 26v56"/><rect x="16" y="28" width="24" height="52" class="solid"/></svg></div>
   <div class="s-notes">
     <p><b>The single most useful slide in the deck for this audience.</b> It is not an activist claim — it's sworn testimony from the vendor most of this room already buys from.</p>
     <p>Be scrupulously fair: he also said it had never actually happened, and Microsoft has since strengthened its EU Data Boundary. The point is not that Microsoft is untrustworthy. The point is <b>structural</b>: no US-parented company can contract its way out of the CLOUD Act.</p>
@@ -873,6 +908,7 @@ tr.frag { transform: none; }
     <li><span class="date">29 JUN 2026</span><b>Trump v. Slaughter</b><p>US Supreme Court removes for-cause protection for FTC commissioners — the independence the adequacy decision relied on.</p></li>
     <li><span class="date">31 JUL 2026</span><b>EDPB writes to the Commission</b><p>Asks it to assess whether the FTC can still uphold Data Privacy Framework commitments. A review, not a revocation — yet.</p></li>
   </ol>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A calendar with four marked days."><rect x="16" y="28" width="88" height="74" rx="9"/><path d="M16 50h88M40 18v18M80 18v18"/><circle cx="40" cy="68" r="4.5" class="solid"/><circle cx="60" cy="68" r="4.5" class="solid"/><circle cx="80" cy="68" r="4.5" class="solid"/><circle cx="40" cy="87" r="4.5" class="solid"/></svg></div>
   <div class="s-notes">
     <p>Walk it left to right in about 90 seconds. The arc: <b>the vendor admitted it → the vendors responded to it → the legal ground under the response moved anyway.</b></p>
     <p>On AWS: this is genuinely a serious offer, and note what it concedes. €7.8bn is not a marketing budget. If sovereignty were a fringe European anxiety, they would not have built a separate legal entity for it.</p>
@@ -893,6 +929,7 @@ tr.frag { transform: none; }
     <li><b>The rest is on the accession path</b><span>SMART/MK 2030 makes AI a priority; the Council of Europe AI Convention was signed on 8 May 2026; the AI Act and the three that follow are acquis you align with before you join.</span></li>
   </ul>
   <p class="kq"><b>The practical reading:</b> a Macedonian company serving EU customers has the same deadline as a Dutch one — and, until accession, less say over the rules. An argument for owning the architecture, not for waiting.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A flag with a ring of twelve stars."><path d="M12 18v88"/><rect x="12" y="26" width="90" height="60" rx="4"/><circle cx="78.0" cy="56.0" r="3.4" class="solid"/><circle cx="75.2" cy="66.5" r="3.4" class="solid"/><circle cx="67.5" cy="74.2" r="3.4" class="solid"/><circle cx="57.0" cy="77.0" r="3.4" class="solid"/><circle cx="46.5" cy="74.2" r="3.4" class="solid"/><circle cx="38.8" cy="66.5" r="3.4" class="solid"/><circle cx="36.0" cy="56.0" r="3.4" class="solid"/><circle cx="38.8" cy="45.5" r="3.4" class="solid"/><circle cx="46.5" cy="37.8" r="3.4" class="solid"/><circle cx="57.0" cy="35.0" r="3.4" class="solid"/><circle cx="67.5" cy="37.8" r="3.4" class="solid"/><circle cx="75.2" cy="45.5" r="3.4" class="solid"/></svg></div>
   <div class="s-notes">
     <p><b>Ninety seconds. This is the slide that earns the talk its place in Skopje</b> — without it, the previous four slides are somebody else's problem. Read the first and third points; the other two are for the photograph.</p>
     <p class="say">"You might be thinking: none of this binds me, we're not in the EU. Two answers. First, the AI Act doesn't care where you are — it cares where your customer is, and for most of the software built in this country the customer is in the EU. Second, the one law in this list that <i>helps</i> you, the Data Act, helps you through your supplier: buy from a European provider and from January they cannot charge you to leave. You inherit the protections and the obligations of a market you don't yet vote in. That's an argument for owning the architecture, not for waiting."</p>
@@ -992,6 +1029,7 @@ tr.frag { transform: none; }
   <span class="num">02</span>
   <h2>Sovereignty is a dial, not a switch</h2>
   <p class="lede">The unproductive version of this debate is "cloud or on-prem". The productive version is "which level, for which workload, at what price".</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A dial with a needle."><path d="M20 86a40 40 0 1 1 80 0"/><path d="M60 86l24-30"/><circle cx="60" cy="86" r="6" class="solid"/><path d="M24 62l6 3M60 44v7M96 62l-6 3"/></svg></div>
   <div class="s-notes"><p>Section ~5 min. This is the reframe that makes the rest of the talk actionable, and it's the part most likely to change what someone does on Monday.</p></div>
 </section>
 
@@ -1033,6 +1071,7 @@ tr.frag { transform: none; }
     </div>
   </div>
   <p class="foot">April 2026 · €180m awarded to Post Telecom, STACKIT, Scaleway and Proximus — most at SEAL-3, Proximus at SEAL-2. No hyperscaler bid at SEAL-3.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="The face of a seal, with whiskers."><path d="M60 14c21 0 36 16 36 39 0 25-16 43-36 43S24 78 24 53c0-23 15-39 36-39Z"/><circle cx="45" cy="48" r="5.5" class="solid"/><circle cx="75" cy="48" r="5.5" class="solid"/><path d="M60 62c9 0 16 6 16 13s-7 12-16 12-16-5-16-12 7-13 16-13Z"/><circle cx="60" cy="66" r="4.2" class="solid"/><path d="M6 64h16M6 76h16M114 64H98M114 76H98"/></svg></div>
   <div class="s-notes">
     <p>Ninety seconds, one rung per click. Do not read all five — read <b>0, 2 and 3</b>, and let them see the bars grow. The whole slide exists so that "how sovereign are you?" becomes a number a supplier has to write down.</p>
     <p class="say">"Stop arguing about whether you're sovereign. There's a five-point scale, the Commission scores suppliers against it across eight dimensions, and it just spent a hundred and eighty million euros using it. Pick a number per workload, write it into the requirement, and make suppliers answer it. That's a procurement problem, and you already know how to run those."</p>
@@ -1053,6 +1092,7 @@ tr.frag { transform: none; }
     <li><b>Economics</b><span>At your real utilisation, not your peak slide — where does the crossover sit?</span></li>
     <li><b>Capability</b><span>If this becomes core to the business, do you want to be able to build it, or only to buy it?</span></li>
   </ul>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A question mark."><path d="M42 44c0-13 8-22 19-22 12 0 20 8 20 19 0 12-11 15-17 23-3 4-4 9-4 15"/><circle cx="60" cy="97" r="5.5" class="solid"/></svg></div>
   <div class="s-notes">
     <p>The load-bearing word is <b>per workload</b>. Your marketing copy generator and your claims-adjudication model do not deserve the same answer, and a company-wide "AI policy" that gives them the same answer is how you end up over-paying and under-protected simultaneously.</p>
     <p class="say">"Most organisations have one AI policy and forty AI workloads. That's the mistake. Sovereignty is a per-workload property, like data classification — and you already classify data."</p>
@@ -1087,6 +1127,7 @@ tr.frag { transform: none; }
       </ul>
     </div>
   </div>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A balance with two pans."><path d="M60 22v72M34 94h52"/><path d="M24 44h72"/><path d="M24 44L12 68h24Z"/><path d="M96 44L84 68h24Z"/></svg></div>
   <div class="s-notes">
     <p><b>Do not let the right column look free.</b> Read the last line of each column aloud, deliberately. That is the honest trade and the room will trust everything after it more.</p>
     <p class="say">"The right-hand column is not better. It's different, and it's yours. Anyone who tells you the right column has no cost is selling you the right column."</p>
@@ -1131,6 +1172,7 @@ tr.frag { transform: none; }
     </div>
   </div>
   <p class="kq"><b>Two make the country more sovereign. The third makes it a landlord</b> — unless the layers above the concrete are owned here too.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A signpost pointing three ways."><path d="M60 14v92"/><path d="M60 28h34l10 11-10 11H60"/><path d="M60 58H26L16 69l10 11h34"/><path d="M60 88h30l10 11"/></svg></div>
   <div class="s-notes">
     <p><b>Two minutes, and this is the slide the talk was rebuilt for.</b> Everything before it was Europe's problem; this is Skopje's. The Vezilka card is also your answer to "isn't sovereignty just protectionism?": an antenna is staying in the European commons and keeping a vote, not building a national copy. Walk left to right, and be scrupulously fair to the third card — you work for a data-centre company, and the room knows it.</p>
     <p class="say">"Three things happened here this summer. In June the Ministry and FINKI switched on Vezilka: six million euros, and it plugs this country into the Greek AI Factory — two thousand of the best chips in Europe, in Athens, without building any of them. That is 'stay in the commons and keep a vote', as a project. Second, a group of researchers released domestic-yak: an eight-billion-parameter Macedonian model where you can read the weights, the training data and the code. That is the only kind of 'open' that survives an auditor. And third, in May and June the government moved to change the planning and construction laws so large data centres can be built quickly, for investors it hasn't named yet."</p>
@@ -1145,6 +1187,7 @@ tr.frag { transform: none; }
   <span class="num">03</span>
   <h2>The stack is ready — that's the news</h2>
   <p class="lede">Three years ago this argument failed on engineering grounds. It doesn't any more, and that's the part the room probably hasn't been told.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="Three stacked layers."><path d="M60 16l46 23-46 23-46-23Z"/><path d="M14 58l46 23 46-23"/><path d="M14 78l46 23 46-23"/></svg></div>
   <div class="s-notes"><p>Section ~5 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here. This cut keeps the map and the request path from the Groningen deck and drops the YAML: the room should leave knowing the two layers to own, not the field names.</p></div>
 </section>
 
@@ -1158,6 +1201,7 @@ tr.frag { transform: none; }
     <li><b>Portability is now testable</b><span>Conformance covers disaggregated inference, inference ingress, GPU-aware scheduling. Portable means <i>certified</i> portable.</span></li>
     <li><b>The hard parts got donated</b><span>llm-d — Red Hat, Google, IBM, NVIDIA, CoreWeave — entered the CNCF in March 2026, v0.9 in August. Prefill/decode disaggregation, KV-cache-aware routing, wide expert parallelism: open, documented, and yours to run.</span></li>
   </ul>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A shipping crate."><rect x="18" y="36" width="84" height="60" rx="7"/><path d="M18 56h84M46 36v60M74 36v60"/><path d="M34 22h52"/></svg></div>
   <div class="s-notes">
     <p>Translate every term. "Disaggregated inference" = the expensive trick that makes GPUs 2–3× more efficient, which used to be proprietary and now isn't.</p>
     <p class="say">"The reason I can stand here and make this argument in 2026, when I couldn't in 2023, is that the difficult engineering has been commoditised — by the people selling the alternative. That is unusual, and it's the window."</p>
@@ -1203,6 +1247,7 @@ tr.frag { transform: none; }
     </div>
   </div>
   <p class="kq"><b>The question to ask any supplier:</b> is a model "open" if you can read the weights but cannot audit the training data, verify the alignment, or run it without GPU capacity you do not control?</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A magnifying glass over a closed box."><rect x="18" y="22" width="52" height="52" rx="7"/><circle cx="72" cy="72" r="22"/><path d="M88 88l16 16"/></svg></div>
   <div class="s-notes">
     <p>This is the honesty beat inside the good-news section. The previous slide said the stack is ready; this one says the model layer is the part that genuinely is not, and you would rather they heard that from you than from a vendor.</p>
     <p class="say">"Everybody in this room has been told they can have an open model. Read the middle card. You can download the weights, you cannot audit what went into them, and the licence still tells you what you may build. That's portable — it isn't accountable."</p>
@@ -1239,6 +1284,7 @@ tr.frag { transform: none; }
     </div>
   </div>
   <p class="cap">Eight layers, three new since 2024: the agent gateway, inference routing, fractional GPU scheduling. Next: one request through them.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="Three layer bars, the middle one filled."><rect x="16" y="26" width="88" height="17" rx="5"/><rect x="16" y="52" width="88" height="17" rx="5" class="solid"/><rect x="16" y="78" width="88" height="17" rx="5"/></svg></div>
   <div class="s-notes">
     <p><b>60 seconds — this is the map for the next two slides, not a slide to read.</b> Translate as you point: "gateway" is the front door that decides who may ask what; "inference routing" is the receptionist that decides which machine answers; "GPU scheduling" is how you share an expensive card between teams. Every italic sub-label on the slide is the plain-language version — read those, not the chips.</p>
     <p class="say">"There is nothing exotic here. Every box is open, documented, and someone else's problem to maintain. What's new since I last drew this is the three layers in the middle: an agent gateway that understands MCP, an inference router that understands the KV cache, and a scheduler that hands out fractions of a card. Each of those was a proprietary advantage eighteen months ago."</p>
@@ -1298,6 +1344,7 @@ tr.frag { transform: none; }
     </div>
   </div>
   <p class="xref"><b>Two days of agents</b><span>Microsoft's <em>From Applications to Agents</em>, the <em>Beyond Copilots</em> panel, <em>The One-Person AI Company</em>, OpenAI's <em>State of AI</em> this morning — every one of them puts an agent in front of your tools. <b>Hop two is where you decide which tools it may call, and the only place you can prove what it did.</b> Nobody has shown you this box yet.</span></p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="Four hops along a line, the middle two filled."><path d="M18 60h84"/><circle cx="18" cy="60" r="9"/><circle cx="46" cy="60" r="9" class="solid"/><circle cx="74" cy="60" r="9" class="solid"/><circle cx="102" cy="60" r="9"/></svg></div>
   <div class="s-notes">
     <p><b>This is the technical spine of the talk — 90 seconds, and the most technical the deck gets.</b> The leadership version had one "gateway" box; this room can handle two, as long as you say what each one decides in plain words and never name a field.</p>
     <p class="say">"Hop two decides <i>whether</i> a request may happen and what it may touch. Hop three decides <i>where</i> it runs. Own those two and it genuinely does not matter whether hop four is a GPU in Skopje, a rack in Athens or a frontier API in Virginia — the caller cannot tell, and neither can the audit log. That is the whole trick: you don't have to leave the cloud to stop being captured by it. You have to own the two boxes in the middle."</p>
@@ -1310,8 +1357,9 @@ tr.frag { transform: none; }
 </section>
 
 <!-- 23 ..................................................................... -->
-<section class="slide on-light slide--content tight has-kq">
+<section class="slide on-light slide--content tight has-kq with-shot">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <div>
   <h2>The smallest sovereign unit fits in one rack</h2>
   <p class="lede">You do not need a gigafactory to prove the argument. One eight-GPU server in a Skopje colocation rack runs the whole reference architecture — and moving the workload anywhere in Europe is then a configuration change.</p>
   <ul class="points two-col">
@@ -1320,11 +1368,18 @@ tr.frag { transform: none; }
     <li><b>An afternoon of well-known software</b><span>Kubernetes in its one-binary form, the NVIDIA operator, vLLM to serve the model, a gateway in front, an inference pool behind. All open, documented, maintained by someone else.</span></li>
     <li><b>The box is not the point</b><span>Once a workload runs behind a standard route here, redirecting it to a European neocloud, to Pharos, or to a frontier API is a change in one file. The users never notice.</span></li>
   </ul>
-  <p class="kq"><b>For a market of two million people this is the right first step</b> — one box, one real workload, one bank or ministry, behind one gateway. Not a strategy document. A receipt.</p>
+  </div>
+  <figure class="rackshot">
+    <img src="rack.jpeg" alt="A populated server rack: GPU nodes with green status lights, orange power leads and blue network cabling.">
+    <figcaption>A real rack, not a render</figcaption>
+  </figure>
+  <p class="kq"><b>The right first step for a market of two million</b> — one box, one real workload, one gateway. A receipt, not a strategy document.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A server rack with status lights."><rect x="26" y="14" width="68" height="92" rx="7"/><path d="M26 37h68M26 60h68M26 83h68"/><circle cx="82" cy="25" r="3.4" class="solid"/><circle cx="82" cy="48" r="3.4" class="solid"/><circle cx="82" cy="71" r="3.4" class="solid"/><circle cx="82" cy="94" r="3.4" class="solid"/></svg></div>
   <div class="s-notes">
     <p><b>Ninety seconds. This is what "the stack is ready" means for a small market</b>, and it is the slide that stops the talk being a story about Rotterdam and Athens.</p>
     <p class="say">"This is one server. Eight GPUs, two-and-a-bit terabytes of memory, fourteen kilowatts. It runs a seventy-billion-parameter open model for hundreds of people at once and still has room for a Macedonian model next to it. The software is an afternoon — all of it open, none of it exotic. And the point isn't the box. The point is that once your workload runs behind a standard route on this box, sending it to Athens, or to a European cloud, or to OpenAI, is a change in one file. That's what portability actually looks like: boring."</p>
     <p>Numbers if asked: 8 × 288 GB HBM3e = 2,304 GB; ~1,400 W per GPU so plan 14 kW and liquid cooling; a 70B model in FP8 on four cards leaves roughly 900 GB for context, which at 8k tokens is several hundred sessions. The full arithmetic is on the Groningen deck's memory slide.</p>
+    <p><b>The photograph is the argument.</b> Point at it once and say "this is not a render" — after two days of architecture diagrams, a real rack with real cable management does more work than another box-and-arrow drawing. If it is one of yours, say where it is; if the caption should name the machine or the site, change it before you present.</p>
     <p>"A receipt" is the line: this room has heard strategy documents for two days. Offer a single box with a single production workload on it as the alternative, and the ninety-day plan later will feel achievable rather than aspirational.</p>
   </div>
 </section>
@@ -1334,6 +1389,7 @@ tr.frag { transform: none; }
   <span class="num">04</span>
   <h2>The bottom layer is being poured</h2>
   <p class="lede">Everything on the last three slides runs on a floor somebody has to build: megawatts, a grid connection, and a queue you cannot jump. That is the half of the stack Europe is pouring right now — and the half this country is legislating for this year.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A brick wall."><rect x="14" y="40" width="92" height="56" rx="4"/><path d="M14 59h92M14 78h92"/><path d="M44 40v19M74 40v19M30 59v19M60 59v19M90 59v19M44 78v18M74 78v18"/></svg></div>
   <div class="s-notes"><p>Section ~2 min, and keep it to that. <b>The room heard NVIDIA's keynote on this yesterday</b> — Koen van den Berg, "From Megawatts to Intelligence: Building the AI Factory", day one at 12:15 — and you were just on a panel with him about the infrastructure race. Do not re-explain what an AI factory is. Say "Koen showed you the factory yesterday; here is what it costs in grid, and what the same numbers look like from here." You already owned the conflict on slide 3 and the byline names the company, so do not repeat it here — one honest sentence at the front beats three apologetic ones in the middle.</p></div>
 </section>
 
@@ -1341,52 +1397,54 @@ tr.frag { transform: none; }
 <section class="slide on-light slide--bars">
   <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <h2>The bottom layer, in megawatts</h2>
-  <p class="lede">Announced and under construction in Europe — including the first bar with a Balkan address. The unit that matters is not GPUs, it is grid connection, because that is the thing you cannot order faster.</p>
+  <p class="lede">Announced and under construction in Europe, smallest first. The unit that matters is not GPUs, it is grid connection, because that is the thing you cannot order faster.</p>
   <div class="bars">
-    <div class="bar">
-      <span class="v">800<span class="u">MW</span></span>
-      <div>
-        <span class="lab">Rotterdam AI Gigafactory, ~250,000 GPUs <em>— VOLT, construction from 2027</em></span>
-        <div class="track"><span class="fill" style="width:100%"></span></div>
-      </div>
-    </div>
-    <div class="bar">
-      <span class="v">310<span class="u">MW</span></span>
-      <div>
-        <span class="lab">Lappeenranta, Finland <em>— Nebius, hyperscale neocloud model</em></span>
-        <div class="track"><span class="fill soft" style="width:38.75%"></span></div>
-      </div>
-    </div>
-    <div class="bar">
-      <span class="v">240<span class="u">MW</span></span>
-      <div>
-        <span class="lab">Near Lille, France <em>— Nebius, part of a 2.5 GW target</em></span>
-        <div class="track"><span class="fill soft" style="width:30%"></span></div>
-      </div>
-    </div>
-    <div class="bar">
-      <span class="v">40<span class="u">MW</span></span>
-      <div>
-        <span class="lab">Kragujevac State Data Centre expansion, Serbia <em>— e&amp; enterprise MoU, September 2025; 14 MW Tier IV today</em></span>
-        <div class="track"><span class="fill soft" style="width:5%"></span></div>
-      </div>
-    </div>
-    <div class="bar">
+    <div class="bar frag">
       <span class="v">14<span class="u">MW</span></span>
       <div>
         <span class="lab">Amsterdam Switch AMS4 — <b>operational this month</b> <em>— VOLT Dutch AI Cloud, with NorthC and Dell</em></span>
         <div class="track"><span class="fill" style="width:1.75%"></span></div>
       </div>
     </div>
+    <div class="bar frag">
+      <span class="v">40<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Kragujevac State Data Centre expansion, Serbia <em>— e&amp; enterprise MoU, September 2025; 14 MW Tier IV today</em></span>
+        <div class="track"><span class="fill soft" style="width:5%"></span></div>
+      </div>
+    </div>
+    <div class="bar frag">
+      <span class="v">240<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Near Lille, France <em>— Nebius, part of a 2.5 GW target</em></span>
+        <div class="track"><span class="fill soft" style="width:30%"></span></div>
+      </div>
+    </div>
+    <div class="bar frag">
+      <span class="v">310<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Lappeenranta, Finland <em>— Nebius, hyperscale neocloud model</em></span>
+        <div class="track"><span class="fill soft" style="width:38.75%"></span></div>
+      </div>
+    </div>
+    <div class="bar frag">
+      <span class="v">800<span class="u">MW</span></span>
+      <div>
+        <span class="lab">Rotterdam AI Gigafactory, ~250,000 GPUs <em>— VOLT, construction from 2027</em></span>
+        <div class="track"><span class="fill" style="width:100%"></span></div>
+      </div>
+    </div>
   </div>
   <p class="xref"><b>Yesterday, 12:15</b><span>Koen van den Berg, NVIDIA — <em>From Megawatts to Intelligence: Building the AI Factory</em>. That was the five-layer factory. <b>This is what its bottom layer costs in grid, and where it is being poured.</b> 19 EuroHPC AI Factories and 13 antennas, one of them Vezilka in Skopje · €180m committed by the Commission · &gt;€20bn expected across up to 7 AI Gigafactories.</span></p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="An electricity pylon."><path d="M60 12v94"/><path d="M34 106L60 36l26 70"/><path d="M28 70h64M36 88h48M44 46h32"/></svg></div>
   <div class="s-notes">
-    <p><b>The visual argument is the gap between the bottom two bars and the top one.</b> Do not explain it — let them see it, then say the line below.</p>
-    <p>Open with the footer line, since the "Europe is building it" slide is gone from this cut: "Nineteen AI Factories and thirteen antennas are running on EuroHPC money today, and one of the antennas is in this city. The supply side is arriving, and this country is already plugged into it." Then the bars.</p>
-    <p class="say">"The bar at the bottom went live in Amsterdam this month. The bar at the top is the same company in 2027 — a fifty-seven-fold step in eighteen months, and the constraint on it is not chips or capital, it is a grid connection. And look at the fourth bar: Kragujevac, three hundred kilometres from here. Serbia's state data centre, fourteen megawatts today, forty more promised by a Gulf telecom. That is the regional version of the same race, and it is already running."</p>
+    <p><b>This slide builds, smallest to largest — one click per bar.</b> The order is deliberate: it starts at something that already exists, passes through the one with a Balkan address, and only then shows the gigafactory. Do not talk ahead of the reveal. Each bar gets a sentence; the last one gets a pause.</p>
+    <p>Open with the footer line, since the "Europe is building it" slide is gone from this cut: "Nineteen AI Factories and thirteen antennas are running on EuroHPC money today, and one of the antennas is in this city. The supply side is arriving, and this country is already plugged into it." Then start clicking.</p>
+    <p class="say">Bar one: "Fourteen megawatts. Amsterdam. Live this month." Bar two — <b>the one for this room</b> — "Forty megawatts, Kragujevac, three hundred kilometres from here. Serbia's state data centre: fourteen megawatts today, forty more promised by a Gulf telecom. That is the regional version of this race, and it is already running." Bars three and four: "France, Finland. A couple of hundred megawatts each." Then the last one, slowly: "Eight hundred. Rotterdam, 2027, the same company as the first bar. A fifty-seven-fold step in eighteen months — and the constraint is not chips and not capital. It is a grid connection."</p>
+    <p>Because the bars now climb, the visual argument is the gap between the first four and the last. <b>Let the final bar land before you speak over it.</b></p>
     <p><b>You owned the conflict on slide 3</b>, so this needs one clause at most: "the top bar is my employer, which you already know." Nebius and Kragujevac are on the chart precisely so this is not a single-vendor slide.</p>
     <p>Kragujevac facts if asked: built 2020 for about €30m, 1,080 racks, 14 MW, Tier IV; hosts Serbian e-government and, as tenants, Oracle Cloud, IBM and Huawei; the e&amp; enterprise MoU of 17 September 2025 is to add up to 40 MW. Note who the tenants are — that is the "landlord" point from § 02 with a Serbian address.</p>
-    <p><b>Cut this slide if you are short</b> — the 800 MW metric slide that follows makes the same point in five seconds.</p>
+    <p><b>Cut this slide if you are short</b> — the 800 MW metric slide that follows makes the same point in five seconds. If you keep it but are rushed, press down-arrow to jump the build and show all five bars at once.</p>
   </div>
 </section>
 
@@ -1396,6 +1454,7 @@ tr.frag { transform: none; }
   <div class="num">800<span class="u">MW</span></div>
   <p class="cap">Rotterdam, from 2027. At full load, about seven terawatt-hours a year — more than North Macedonia generated in 2024. Sovereignty is, in the end, a question about electricity.</p>
   <p class="src">VOLT AI Gigafactory · ~250,000 GPUs · construction from 2027 · North Macedonia generated 6.1 TWh in 2024, 89% of its own demand · REK Bitola 675 MW</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A lightning bolt."><path d="M68 12L32 66h26l-6 42 36-58H62Z"/></svg></div>
   <div class="s-notes">
     <p>Short beat, and the one number from this section the room will repeat at lunch. 800 MW × 8,760 hours ≈ 7.0 TWh. North Macedonia generated 6,129 GWh in 2024 — 89% of its own consumption, the rest imported — and the backbone of that is one coal plant, REK Bitola, 675 MW nameplate. So one European gigafactory at full load draws more than the country's entire generation, and more than its largest power station can produce.</p>
     <p class="say">"That single site, running flat out, would use more electricity in a year than this whole country generated last year. I'm not saying that to frighten anyone. I'm saying it because every AI strategy eventually becomes an energy strategy — and a country that is deciding its data-centre law and its energy transition in the same parliament, in the same year, is in an unusually good position to decide them together."</p>
@@ -1408,6 +1467,7 @@ tr.frag { transform: none; }
   <span class="num">05</span>
   <h2>What the vendor keynote leaves out</h2>
   <p class="lede">If I only told you the good half, you'd make a bad decision and I'd deserve the blame.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A stage microphone."><rect x="46" y="14" width="28" height="50" rx="14"/><path d="M32 56a28 28 0 0 0 56 0"/><path d="M60 84v20M42 104h36"/></svg></div>
   <div class="s-notes"><p>Section ~3 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land. In a summit room full of vendor keynotes, this is also the section that makes yours not one.</p></div>
 </section>
 
@@ -1421,6 +1481,7 @@ tr.frag { transform: none; }
     <li class="frag"><b>Capacity planning without an escape hatch</b><span>No elastic overflow. You size for peak, or you queue. Both cost money and one costs credibility.</span></li>
     <li class="frag"><b>Model lifecycle is now your job</b><span>Evals, regressions, retirement. The vendor was doing unglamorous work you never saw an invoice for.</span></li>
   </ul>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A warning triangle."><path d="M60 16l46 82H14Z"/><path d="M60 48v24"/><circle cx="60" cy="86" r="4.5" class="solid"/></svg></div>
   <div class="s-notes">
     <p>Say the quiet part: <b>the first failure is organisational.</b> GPU contention is a governance problem wearing a Kubernetes costume, and it lands on someone in this room, not on the platform team.</p>
     <p class="say">"I've watched a data science team and a product team fight over eight GPUs for six weeks. No technology fixed it. A quota policy and one uncomfortable meeting fixed it."</p>
@@ -1492,6 +1553,7 @@ tr.frag { transform: none; }
   </svg>
   </div>
   <p class="foot">Log scale. Curve is fixed cost ÷ utilisation, anchored on the two published endpoints. Your crossover is wherever your own API line cuts it.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A falling cost curve on two axes."><path d="M18 16v86h88"/><path d="M28 26c22 60 38 68 76 70"/></svg></div>
   <div class="s-notes">
     <p><b>This is the most useful slide in the deck for a CFO, and the one to slow down on.</b> Two minutes. It also gives the room permission not to self-host, which is what makes the rest of the talk credible.</p>
     <p class="say">"Same silicon. Seventy-fold difference in unit cost. Everything people argue about under the word sovereignty is, financially, an argument about where their own vertical line sits — and almost nobody in this room has measured it."</p>
@@ -1516,6 +1578,7 @@ tr.frag { transform: none; }
       <tr class="frag"><th>Frontier-model capability</th><td class="tag">Rent, knowingly</td><td>You will not match it. Route to it deliberately through your own gateway, with a documented exit.</td></tr>
     </tbody>
   </table>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="Three choices, the first one filled."><rect x="12" y="42" width="30" height="34" rx="5" class="solid"/><rect x="45" y="42" width="30" height="34" rx="5" stroke-dasharray="7 6"/><rect x="78" y="42" width="30" height="34" rx="5"/></svg></div>
   <div class="s-notes">
     <p><b>If you cut one slide for time, do not cut this one.</b> This is the "blueprint" the abstract promised, and it's what people photograph.</p>
     <p>The load-bearing insight is row two: you can rent the model and still own the control plane. Most of the sovereignty benefit at a fraction of the cost — and it is achievable in a quarter.</p>
@@ -1534,6 +1597,7 @@ tr.frag { transform: none; }
     <li class="frag"><b>Weeks 7–10 · Prove portability once</b><span>Move a single real workload to a European provider, to Pharos through Vezilka, or to the one box. Not a pilot — a production workload behind the same route. Measure what it actually cost.</span></li>
     <li class="frag"><b>Weeks 11–13 · Set the SEAL requirement</b><span>Write a sovereignty level into your next AI procurement and make suppliers answer it in writing. If you are the ministry: write "who operates the control plane" into the data-centre law.</span></li>
   </ul>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A clock."><circle cx="60" cy="60" r="44"/><path d="M60 32v28l20 13"/></svg></div>
   <div class="s-notes">
     <p>Deliver this as an executive instruction, not a suggestion. Slow down. This is the takeaway they write in the notebook.</p>
     <p class="say">"None of these four need a business case. Three of them are someone's existing job. The first one is a spreadsheet — and I'd bet nobody in this room can produce it today."</p>
@@ -1545,6 +1609,7 @@ tr.frag { transform: none; }
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
   <cite>Alessandro Vozza · Lovelace Engineering / VOLT Datacenters</cite>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A cloud."><path d="M36 88h50a21 21 0 0 0 0-42 27 27 0 0 0-51-6 19 19 0 0 0 1 48Z"/></svg></div>
   <div class="s-notes"><p>Pause. Do not fill the silence. Then the practice slide, then the provocations.</p></div>
 </section>
 
@@ -1559,6 +1624,7 @@ tr.frag { transform: none; }
     <li><b>Innovation without maintenance</b> is a liability wearing a roadmap.</li>
   </ul>
   <p class="floor">Open source is the floor, not the ceiling.</p>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="Two arrows in a repeating cycle."><path d="M26 60a34 34 0 0 1 56-25"/><path d="M94 60a34 34 0 0 1-56 25"/><path d="M68 22l16 13-16 13"/><path d="M52 98L36 85l16-13"/></svg></div>
   <div class="s-notes">
     <p>Forty seconds, and this is the last argument before the close. Read the three middle lines slowly — they are the whole talk compressed, and each one is a test somebody in this room will fail on Monday.</p>
     <p class="say">"If you remember one slide, make it this one. Sovereignty is not something you buy — there is no product on the market that makes you sovereign, and anyone selling you one is doing to sovereignty what a decade of marketing did to sustainability. It's a practice. It's what you do every quarter, in procurement, in architecture, and in who you hire."</p>
@@ -1580,6 +1646,7 @@ tr.frag { transform: none; }
     <li class="frag">Nobody in this room can hire the platform team this requires — the engineers who could run it already work for Berlin and Amsterdam, from Skopje.</li>
     <li class="frag">Grid capacity — not chips, capital or regulation — decides who gets to do AI in Southeast Europe.</li>
   </ol>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A speech bubble."><path d="M18 24h84a9 9 0 0 1 9 9v42a9 9 0 0 1-9 9H56l-22 20V84H18a9 9 0 0 1-9-9V33a9 9 0 0 1 9-9Z"/><path d="M32 46h56M32 63h38"/></svg></div>
   <div class="s-notes">
     <p><b>There is no Q&amp;A block in a thirty-minute main-stage slot before lunch.</b> This slide is the substitute: leave it up while you say the closing lines, so people carry a number with them into the foyer. If the chair offers three minutes of questions, take one and point at this slide for the rest.</p>
     <p>Honest positions: I half-believe #1 — protectionism is a real risk and SEAL-4 is not achievable today; the Vezilka card on slide 17 is my answer. I do not believe #2, and the one-box slide is why. #3 is the one I most want somebody from the ministry to argue with. I strongly believe #5, and it was the subject of the panel you just left.</p>
@@ -1645,6 +1712,7 @@ tr.frag { transform: none; }
     <li><b>European governance</b>Sovereign Cloud Stack · GAIA-X · Digital Commons EDIC</li>
     <li><b>Model openness tiers</b>OpenEuroLLM; Mistral; Llama 4 and DeepSeek R1 licence and training-data terms</li>
   </ul>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A document."><path d="M26 12h46l22 22v74H26Z"/><path d="M72 12v22h22"/><path d="M42 56h36M42 72h36M42 88h24"/></svg></div>
   <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
 </section>
 
@@ -1666,6 +1734,7 @@ tr.frag { transform: none; }
     <li><b>Hyperscaler latency reference</b>Sofia → Athens ≈ 15 ms, Sofia → Frankfurt ≈ 18 ms (regional provider measurements) — indicative only</li>
     <li><b>Stack references</b>Gateway API Inference Extension v1.6 (Aug 2026) · agentgateway v1.5 (Agentic AI Foundation) · llm-d v0.9 (CNCF Sandbox) · HAMi (CNCF Incubating, Jul 2026) · vLLM FP8 KV study, 22 Apr 2026 — full detail in the Groningen deck, ams0.github.io/talks/beyond-the-clouds-tech</li>
   </ul>
+  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A folded map."><path d="M14 30l32-12 30 14 30-12v70l-30 12-30-14-32 12Z"/><path d="M46 18v70M76 32v70"/></svg></div>
   <div class="s-notes"><p>Backup slide. The regional facts were checked on 18 September 2026 and the agenda on 20 September. Two of them can move before the talk: the status of the data-centre amendments in parliament, and anything the ministry announces about Vezilka on stage the day before. Re-read the Macedonian press the morning of.</p></div>
 </section>
 

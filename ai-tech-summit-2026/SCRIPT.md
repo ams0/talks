@@ -29,7 +29,7 @@ another session at this summit, and 3 is where you disclose. Cutting 25 loses th
 slide 24 instead. If you are badly behind at slide 24, jump to 26 with "Koen showed you the factory yesterday;
 here is the one number I'd add".
 
-**Slides that build.** 14, 28, 30, 31 and 34 reveal one item per click. Right arrow (or space, or click) brings
+**Slides that build.** 14, **25**, 28, 30, 31 and 34 reveal one item per click. Right arrow (or space, or click) brings
 out the next item, then moves on; left arrow steps back. **Down/Up jump whole slides.**
 
 **The morning of the talk.** Two regional facts can move overnight: the status of the data-centre amendments
@@ -200,7 +200,10 @@ run your business. Every one of those demos has an agent calling tools: your CRM
 system. Hop two is where you decide which tools it may call, and it is the only place you can prove afterwards
 what it actually did. I have not seen that box in a single agent demo this week."
 
-**23 · The smallest sovereign unit fits in one rack. ★new** Ninety seconds. "This is one server. Eight GPUs,
+**23 · The smallest sovereign unit fits in one rack. ★new, now with the photograph** Ninety seconds. **Point at
+the picture once** and say "this is not a render" — after two days of architecture diagrams a real rack with real
+cable management does more work than another box-and-arrow drawing. If it is one of yours, say where it is; if
+the caption should name the machine or the site, change it before you present. "This is one server. Eight GPUs,
 two-and-a-bit terabytes of memory, fourteen kilowatts. It runs a seventy-billion-parameter open model for
 hundreds of people at once and still has room for a Macedonian model next to it. The software is an afternoon.
 And the point isn't the box — once your workload runs behind a standard route on it, sending it to Athens, or to
@@ -213,13 +216,19 @@ has heard strategy documents for two days.
 showed you the factory yesterday; here is what it costs in grid, and what the numbers look like from here."
 **Disclose the VOLT relationship** here if you have not already.
 
-**25 · In megawatts.** ★The Koen reference is **on the slide** now, so say it: "Koen showed you the five-layer
-factory yesterday. This is what its bottom layer costs in grid, and where it is being poured." Then: "Nineteen
-AI Factories and thirteen antennas run on EuroHPC money today, and one of them is in this city." Let them see
-the gap, then the fourth bar.
-"Kragujevac, three hundred kilometres from here. Serbia's state data centre — fourteen megawatts today, forty
-more promised by a Gulf telecom. That is the regional version of the same race." Tenants there are Oracle, IBM
-and Huawei: the landlord point with a Serbian address. *First slide to cut; 23 makes the point in five seconds.*
+**25 · In megawatts. ★builds, smallest first — one click per bar.** The Koen reference is **on the slide**, so
+say it: "Koen showed you the five-layer factory yesterday. This is what its bottom layer costs in grid, and
+where it is being poured." Then: "Nineteen AI Factories and thirteen antennas run on EuroHPC money today, and
+one of them is in this city." Then start clicking, one sentence per bar.
+Bar 1 — "Fourteen megawatts. Amsterdam. Live this month." Bar 2, **the one for this room** — "Forty megawatts,
+Kragujevac, three hundred kilometres from here. Serbia's state data centre: fourteen today, forty more promised
+by a Gulf telecom. The regional version of this race, already running." Tenants there are Oracle, IBM and
+Huawei: the landlord point with a Serbian address. Bars 3 and 4 — "France, Finland, a couple of hundred each."
+Bar 5, slowly, **then stop talking** — "Eight hundred. Rotterdam, 2027, the same company as the first bar. A
+fifty-seven-fold step in eighteen months, and the constraint is not chips and not capital. It is a grid
+connection."
+The climb is the argument: four bars you could imagine building, then one you could not. *First slide to cut; 26
+makes the point in five seconds. If you keep it but are rushed, press down-arrow to show all five at once.*
 
 **26 · 800 MW.** The number they repeat at lunch. "That single site, running flat out, would use more
 electricity in a year than this whole country generated last year." Say **at full load**. If asked: 800 MW ×
