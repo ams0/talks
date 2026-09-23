@@ -364,6 +364,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 .srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 42px; font-size: 18px; line-height: 1.28; }
 .srcs li { padding-left: 22px; border-left: 3px solid var(--accent); color: var(--fg-muted); }
 .srcs li b { display: block; color: var(--fg-on-light); font-weight: 600; }
+.srcs a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(43,78,43,0.35); }
 
 /* ---------- horizontal bar chart ---------- */
 .slide--bars { padding: 150px 130px 148px; display: flex; flex-direction: column; justify-content: center; }
@@ -664,6 +665,18 @@ tr.frag { transform: none; }
 <main id="deck">
 
 <!-- 1 ..................................................................... -->
+<section class="slide slide--full">
+  <img src="and-now-for-something-completely-different.jpg"
+       alt="Title card from Monty Python's And Now for Something Completely Different: a man in a dinner jacket sits at a wooden desk on a pebble beach with a vintage microphone and telephone, waves breaking behind him.">
+  <div class="s-notes">
+    <p><b>This is up as the room comes in and sits down.</b> Do not advance past it until you actually start. It earns a laugh from about half the room and quietly tells the other half that the next forty minutes are not a vendor keynote.</p>
+    <p class="say">"Right — and now for something completely different."</p>
+    <p>Then advance straight to the title. Do not explain the joke, and do not add a second one. The whole value of this slide is that it costs three seconds and changes the temperature of the room before you have said anything substantive.</p>
+    <p>If the audience skews younger than the reference, it still works — a man at an office desk on a beach is funny without the footnote, and it is a decent visual for a talk about infrastructure in the wrong place.</p>
+  </div>
+</section>
+
+<!-- 2 ..................................................................... -->
 <section class="slide on-dark slide--title">
   <p class="eyebrow">Cloud Native Groningen · September 2026</p>
   <h1>Beyond the Clouds</h1>
@@ -681,7 +694,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 2 ..................................................................... -->
+<!-- 3 ..................................................................... -->
 <section class="slide on-light slide--rules">
   <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
   <div>
@@ -706,7 +719,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 3 ..................................................................... -->
+<!-- 4 ..................................................................... -->
 <section class="slide slide--hook">
   <p>Could you move your AI workloads to another provider in ninety days?</p>
   <p class="sub">Show of hands — then keep them up if you've tested it</p>
@@ -716,7 +729,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 4 ..................................................................... -->
+<!-- 5 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
@@ -727,7 +740,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 5 ..................................................................... -->
+<!-- 6 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">01</span>
   <h2>The ground moved</h2>
@@ -735,7 +748,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Section is ~5 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet.</p></div>
 </section>
 
-<!-- 6 ..................................................................... -->
+<!-- 7 ..................................................................... -->
 <section class="slide on-light slide--stack">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>Start with where you actually are</h2>
@@ -768,7 +781,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 7 ..................................................................... -->
+<!-- 8 ..................................................................... -->
 <section class="slide on-light slide--donut">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <div>
@@ -800,7 +813,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 8 ..................................................................... -->
+<!-- 9 ..................................................................... -->
 <section class="slide on-light slide--quote">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent.”</blockquote>
@@ -812,7 +825,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 9 ..................................................................... -->
+<!-- 10 ..................................................................... -->
 <section class="slide on-light slide--timeline">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>Four dates that changed the calculus</h2>
@@ -830,7 +843,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 10 ..................................................................... -->
+<!-- 11 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>And the AI Act deadline you were braced for — moved</h2>
@@ -848,7 +861,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 11 ..................................................................... -->
+<!-- 12 ..................................................................... -->
 <section class="slide on-light slide--gantt">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>The rulebook is already written — and it doesn't move at headline speed</h2>
@@ -885,7 +898,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 12 ..................................................................... -->
+<!-- 13 ..................................................................... -->
 <section class="slide on-dark slide--metric">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <div class="num">77<span class="u">%</span></div>
@@ -898,7 +911,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 13 ..................................................................... -->
+<!-- 14 ..................................................................... -->
 <section class="slide on-light slide--bars">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>This is no longer a minority position</h2>
@@ -948,7 +961,7 @@ tr.frag { transform: none; }
     <p>If challenged on survey quality — fair challenge, take it seriously: these are vendor-adjacent surveys with self-selected samples. Answer honestly: "Every one of these has a house bias. That's exactly why I'm showing you five from five different houses that all point the same direction."</p>
   </div>
 </section>
-<!-- 14 ..................................................................... -->
+<!-- 15 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">02</span>
   <h2>Sovereignty is a dial, not a switch</h2>
@@ -956,7 +969,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Section ~5 min. This is the reframe that makes the rest of the talk actionable, and it's the part most likely to change what someone does on Monday.</p></div>
 </section>
 
-<!-- 15 ..................................................................... -->
+<!-- 16 ..................................................................... -->
 <section class="slide on-light slide--seal">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>The scale itself: SEAL 0 to 4</h2>
@@ -997,13 +1010,13 @@ tr.frag { transform: none; }
   <div class="s-notes">
     <p>Ninety seconds, one rung per click. Do not read all five — read <b>0, 2 and 3</b>, and let them see the bars grow. The whole slide exists so that "how sovereign are you?" becomes a number a supplier has to write down.</p>
     <p class="say">"Stop arguing about whether you're sovereign. There's a five-point scale, the Commission scores suppliers against it across eight dimensions, and it just spent a hundred and eighty million euros using it. Pick a number per workload, write it into the requirement, and make suppliers answer it. That's a procurement problem, and you already know how to run those."</p>
-    <p><b>The gap between 2 and 3 is the whole talk.</b> SEAL-2 is what a contract can buy you — it fails the moment a foreign court instructs the parent company. SEAL-3 is what an architecture buys you. That is the same distinction as the Microsoft testimony on slide 10, expressed as a procurement level.</p>
+    <p><b>The gap between 2 and 3 is the whole talk.</b> SEAL-2 is what a contract can buy you — it fails the moment a foreign court instructs the parent company. SEAL-3 is what an architecture buys you. That is the same distinction as the Microsoft testimony on slide 9, expressed as a procurement level.</p>
     <p>If someone challenges SEAL-4 as unachievable: agree immediately, without hedging. Nothing operates there at scale, and that is precisely why the EU is funding gigafactories. Conceding it costs you nothing and buys you the rest of the argument.</p>
     <p>Worth saying out loud: <b>no hyperscaler bid at SEAL-3.</b> They bid, and they landed lower. That is not an accusation, it is the structure of the thing.</p>
   </div>
 </section>
 
-<!-- 16 ..................................................................... -->
+<!-- 17 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Four questions, asked per workload — not per company</h2>
@@ -1019,7 +1032,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 17 ..................................................................... -->
+<!-- 18 ..................................................................... -->
 <section class="slide on-light slide--ba">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>What actually changes when you own the control plane</h2>
@@ -1053,7 +1066,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 18 ..................................................................... -->
+<!-- 19 ..................................................................... -->
 <section class="slide on-light slide--trio">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Three answers to "who decides the roadmap?"</h2>
@@ -1099,7 +1112,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 19 ..................................................................... -->
+<!-- 20 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">03</span>
   <h2>The stack is ready — that's the news</h2>
@@ -1107,7 +1120,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Section ~5 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here.</p></div>
 </section>
 
-<!-- 20 ..................................................................... -->
+<!-- 21 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>AI infrastructure became boring. Boring is the achievement.</h2>
@@ -1124,7 +1137,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 21 ..................................................................... -->
+<!-- 22 ..................................................................... -->
 <section class="slide on-light slide--trio">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>"Open weights" is not the same thing as an open model</h2>
@@ -1170,7 +1183,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 22 ..................................................................... -->
+<!-- 23 ..................................................................... -->
 <section class="slide on-dark slide--talks">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>Don't take my word for it — take theirs</h2>
@@ -1204,7 +1217,7 @@ tr.frag { transform: none; }
     <li>
       <b><a href="https://colocatedeventseu2026.sched.com/event/2H5UN/eu-cloud-sovereignty-framework-explained-emiel-brok-suse-dosba">EU Cloud Sovereignty Framework Explained</a></b>
       <span>Emiel Brok, <b>SUSE</b> — the SEAL levels, in practice.</span>
-      <i>Co-located event · the framework from slide 10, unpacked</i>
+      <i>Co-located event · the framework from slide 16, unpacked</i>
     </li>
     <li>
       <b><a href="https://colocatedeventseu2026.sched.com/event/2HEOl/running-sovereign-cloud-stack-cluster-for-international-telecommunication-union-lessons-learned-martin-pilka-dnation-karsten-samaschke-vanillacore-gmbh">Running a Sovereign Cloud Stack Cluster for the ITU: Lessons Learned</a></b>
@@ -1219,7 +1232,7 @@ tr.frag { transform: none; }
     <p>Every title is a live link in the shared deck. Offer that — several people will want to send one to a colleague.</p>
   </div>
 </section>
-<!-- 23 ..................................................................... -->
+<!-- 24 ..................................................................... -->
 <section class="slide on-light slide--arch eight">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>The reference architecture — every layer open, every layer replaceable</h2>
@@ -1254,7 +1267,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 24 ..................................................................... -->
+<!-- 25 ..................................................................... -->
 <section class="slide on-light slide--split">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>One request, four hops — and you own the middle two</h2>
@@ -1312,7 +1325,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 25 ..................................................................... -->
+<!-- 26 ..................................................................... -->
 <section class="slide on-light slide--split">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>Gateway API Inference Extension: a Service that can see the KV cache</h2>
@@ -1357,7 +1370,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 26 ..................................................................... -->
+<!-- 27 ..................................................................... -->
 <section class="slide on-dark slide--split">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>agentgateway: the policy hop, once agents start calling tools</h2>
@@ -1403,16 +1416,16 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 27 ..................................................................... -->
+<!-- 28 ..................................................................... -->
 <section class="slide on-light slide--content tight">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>llm-d: the serving layer, as three well-lit paths</h2>
   <p class="lede">Founded by Red Hat, Google Cloud, IBM Research, CoreWeave and NVIDIA; AMD, Cisco, Hugging Face, Intel, Lambda and Mistral AI joined. CNCF Sandbox since March 2026, v0.9 in August. Not a new engine — vLLM, plus the pieces that turn one engine into a fleet.</p>
   <ul class="points two-col compact">
-    <li><b>Path 1 · Intelligent inference scheduling</b><span>The Inference Extension EPP with prefix-cache-aware and load-aware scoring, plus a latency predictor. Reported: 3× output throughput and 2× faster TTFT versus round-robin; 40% lower TTFT/ITL from predicted-latency scheduling.</span></li>
-    <li><b>Path 2 · Prefill/decode disaggregation</b><span>Prefill is compute-bound, decode is memory-bound; sharing a GPU wastes one of the two. Separate pools, KV blocks moved over NIXL. Reported: up to 70% more tokens per second.</span></li>
-    <li><b>Path 3 · Wide expert parallelism</b><span>MoE models like DeepSeek spread experts across many GPUs, so each holds fewer weights and more KV cache. Reported: 50k tokens/s cluster-wide on B200.</span></li>
-    <li><b>Under all three · KV-cache management</b><span>LMCache tiers blocks to CPU and NVMe; a global indexer tells the scheduler where every prefix lives. Cache hits survive a pod restart, and routing becomes cache-aware instead of hopeful.</span></li>
+    <li class="frag"><b>Path 1 · Intelligent inference scheduling</b><span>The Inference Extension EPP with prefix-cache-aware and load-aware scoring, plus a latency predictor. Reported: 3× output throughput and 2× faster TTFT versus round-robin; 40% lower TTFT/ITL from predicted-latency scheduling.</span></li>
+    <li class="frag"><b>Path 2 · Prefill/decode disaggregation</b><span>Prefill is compute-bound, decode is memory-bound; sharing a GPU wastes one of the two. Separate pools, KV blocks moved over NIXL. Reported: up to 70% more tokens per second.</span></li>
+    <li class="frag"><b>Path 3 · Wide expert parallelism</b><span>MoE models like DeepSeek spread experts across many GPUs, so each holds fewer weights and more KV cache. Reported: 50k tokens/s cluster-wide on B200.</span></li>
+    <li class="frag"><b>Under all three · KV-cache management</b><span>LMCache tiers blocks to CPU and NVMe; a global indexer tells the scheduler where every prefix lives. Cache hits survive a pod restart, and routing becomes cache-aware instead of hopeful.</span></li>
   </ul>
   <div class="s-notes">
     <p><b>Two minutes.</b> The slide before showed the routing hop; this is hop four. The framing that works for engineers is "vLLM plus the fleet problems": scheduling, disaggregation, cache.</p>
@@ -1422,25 +1435,25 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 28 ..................................................................... -->
+<!-- 29 ..................................................................... -->
 <section class="slide on-light slide--split">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>HBM is the budget. Weights are rent; the KV cache is what you actually sell.</h2>
   <p class="lede">One B300 has 288 GB of HBM3e. vLLM keeps 10% back by default, the model takes a fixed slice, and every remaining byte is KV cache — which is your concurrency. Shrinking the weights buys tokens in flight, not just a smaller download.</p>
   <div class="mem">
-    <div class="mrow">
+    <div class="mrow frag">
       <div class="ml"><b>Llama 3.3 70B · BF16 weights</b><span>KV/token ≈ 320 KB (80 layers · 8 KV heads · 128 dims · 2 B)</span></div>
       <div class="mbar"><div class="w" style="width:49%">141 GB weights</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:38.2%">≈110 GB KV · ≈340k tokens</div></div>
     </div>
-    <div class="mrow">
+    <div class="mrow frag">
       <div class="ml"><b>Same model · FP8 weights</b><span>--quantization fp8 · same KV dtype</span></div>
       <div class="mbar"><div class="w" style="width:24.6%">71 GB</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:62.6%">≈180 GB KV · ≈550k tokens</div></div>
     </div>
-    <div class="mrow">
+    <div class="mrow frag">
       <div class="ml"><b>FP8 weights + FP8 KV cache</b><span>--kv-cache-dtype fp8 · KV/token ≈ 160 KB</span></div>
       <div class="mbar"><div class="w" style="width:24.6%">71 GB</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:62.6%">≈180 GB KV · ≈1.1M tokens</div></div>
     </div>
-    <div class="mrow node">
+    <div class="mrow node frag">
       <div class="ml"><b>Whole node · DeepSeek-V3.2, native FP8</b><span>8 × B300 = 2,304 GB · TP 8 · MLA KV/token ≈ 70 KB</span></div>
       <div class="mbar"><div class="w" style="width:29.7%">685 GB weights</div><div class="ov" style="width:12.8%">reserve</div><div class="kv" style="width:57.5%">≈1.3 TB KV · ≈19M tokens · ≈150 sessions at 128k</div></div>
     </div>
@@ -1449,18 +1462,66 @@ tr.frag { transform: none; }
     <span><i style="background:var(--ink)"></i>weights</span>
     <span><i style="background:#7a9a76"></i>vLLM headroom + activations</span>
     <span><i style="background:var(--accent)"></i>KV cache = concurrency</span>
-    <span class="kq"><b>Same GPU, same model:</b> 340k → 1.1M tokens in flight, from two flags.</span>
+    <span class="kq frag"><b>Same GPU, same model:</b> 340k → 1.1M tokens in flight, from two flags.</span>
   </div>
   <div class="s-notes">
     <p><b>Two minutes, and this is the slide engineers photograph.</b> The bars are arithmetic, not benchmarks: <code>--gpu-memory-utilization 0.9</code> gives 259 GB; the reserve band is that 10% plus roughly 8 GB of activation/workspace that vLLM profiles at start-up; everything left is KV blocks in 16-token pages.</p>
     <p class="say">"Weights are rent — you pay it once per replica whether anyone is talking to the model or not. The KV cache is the inventory you actually sell: every token in flight lives there. So the interesting effect of quantisation isn't that the model is smaller, it's that the same card now holds three times as many conversations."</p>
     <p>Worked numbers: Llama 70B is 163,840 KV values per token (2 × 80 layers × 8 KV heads × 128), so 320 KB in BF16 and 160 KB in FP8. At 8k context that is 40 sessions per B300 in the top row and roughly 140 in the third. At 128k it is 2–3 versus 8. That is the "how many users" answer for this room.</p>
     <p>The whole-node row: DeepSeek-V3.2 ships FP8-native at about 685 GB on disk including the MTP head. Its multi-head latent attention compresses KV to about 70 KB per token — 61 layers × 576 latent dims × 2 bytes — which is why a 671B model has a <i>smaller</i> per-token cache than a 70B dense one. One 8×B300 box holds the weights with 1.3 TB left over. NVIDIA's NVFP4 checkpoint fits on two GPUs, so the same box runs four independent replicas if you would rather have blast-radius than context.</p>
-    <p>If challenged on FP8 KV quality: the vLLM team's April 2026 study measured at most 1–2 points on reasoning tasks and 97–98% recovery on long-context retrieval. Say the number, then say "measure it on your evals" — which is what slide 34 is for.</p>
+    <p>If challenged on FP8 KV quality: the vLLM team's April 2026 study measured at most 1–2 points on reasoning tasks and 97–98% recovery on long-context retrieval. Say the number, then say "measure it on your evals" — which is what § 05 is for.</p>
   </div>
 </section>
 
-<!-- 29 ..................................................................... -->
+<!-- 30 ..................................................................... -->
+<section class="slide on-dark slide--split">
+  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <h2>The smallest sovereign unit: one 8×B300 box, K3s</h2>
+  <p class="lede">You do not need a cluster to prove the argument. One HGX B300 node is 2.3 TB of HBM; K3s makes it a Kubernetes API with one binary and no etcd. The whole reference architecture fits on it, in an afternoon.</p>
+  <div class="split wide-code">
+    <ul class="points compact">
+      <li><b>The box</b><span>8× B300 SXM, 288 GB HBM3e each, NVLink 5 + NVSwitch, 8× ConnectX-8. About 1,400 W per GPU: plan on 14 kW and liquid cooling. Local NVMe for weights — you will pull them more than once.</span></li>
+      <li><b>The host</b><span>Ubuntu 24.04, NVIDIA driver 580+ (CUDA 13; llm-d images need it since v0.7), <code>nvidia-container-toolkit</code>. K3s detects the toolkit at start-up and writes the <code>nvidia</code> runtime and RuntimeClass into its embedded containerd.</span></li>
+      <li><b>What you skip</b><span>The operator's driver and toolkit containers (host-installed), Traefik (you bring a gateway), a load balancer (ServiceLB is fine for one node). Keep the device plugin, DCGM exporter and GPU feature discovery.</span></li>
+      <li><b>What you do not get</b><span>Any HA. The box, its SQLite datastore and its grid connection are each the failure domain. Fine for proving a workload moves; not a production posture. The second box is where the megawatt slide starts to matter.</span></li>
+    </ul>
+    <pre class="code tight"><span class="c"># 1 · one node, nvidia as default runtime, no Traefik</span>
+curl -sfL https://get.k3s.io | sh -s - server \
+  <span class="k">--disable</span> traefik <span class="k">--default-runtime</span> nvidia
+
+<span class="c"># 2 · operator for plugin + DCGM + GFD; driver, toolkit stay on host</span>
+helm install gpu-operator nvidia/gpu-operator -n gpu-operator \
+  --create-namespace <span class="k">--set</span> driver.enabled=false \
+  <span class="k">--set</span> toolkit.enabled=false        <span class="c"># CDI is default since v25.10</span>
+
+<span class="c"># 3 · sharing policy (HAMi), or the long-run API (NVIDIA DRA driver)</span>
+helm install hami hami-charts/hami -n kube-system
+
+<span class="c"># 4 · one model server, four cards, FP8 everything</span>
+vllm serve meta-llama/Llama-3.3-70B-Instruct \
+  <span class="k">--tensor-parallel-size</span> 4 <span class="k">--quantization</span> fp8 <span class="k">--kv-cache-dtype</span> fp8 \
+  <span class="k">--max-model-len</span> 131072 <span class="k">--gpu-memory-utilization</span> 0.9   <span class="c"># limits: nvidia.com/gpu: 4</span>
+
+<span class="c"># 5 · gateways: kgateway + agentgateway, InferencePool over the pods</span>
+helm install kgateway oci://cr.kgateway.dev/kgateway-dev/charts/kgateway \
+  -n kgateway-system <span class="k">--set</span> agentgateway.enabled=true
+kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
+
+<span class="c"># other four cards: DeepSeek-V3.2-NVFP4 at -tp 2, twice. Or an eval fleet.</span></pre>
+  </div>
+  <p class="foot">docs.k3s.io/advanced · NVIDIA GPU Operator v26.7 · project-hami.io · kgateway.dev · vllm.ai — verify chart names and flags against the versions you install</p>
+  <div class="s-notes">
+    <p><b>Two minutes, and slow down on step four.</b> This is the slide that makes the talk concrete for an engineer: not "Europe is building gigafactories" but "here is the afternoon".</p>
+    <p class="say">"K3s is the right tool here for the same reason it's the wrong tool for a datacentre: one binary, SQLite instead of etcd, containerd embedded. On one box that is exactly the amount of Kubernetes you need. The point isn't the box. The point is that once the workload runs behind a Gateway API route on this box, moving it to a European neocloud is a kubeconfig change."</p>
+    <p>Step 1: with the toolkit installed on the host, K3s picks it up and creates the <code>nvidia</code> RuntimeClass itself; <code>--default-runtime nvidia</code> means you never have to set <code>runtimeClassName</code>. With the operator on CDI (default since v25.10) you would not have to anyway — belt and braces.</p>
+    <p>Step 2: the operator's own docs cover RKE2 explicitly and K3s by the same pattern; if you let the operator manage the toolkit instead, point it at <code>/run/k3s/containerd/containerd.sock</code> and the K3s containerd config template. Host-installed is simpler and survives K3s upgrades.</p>
+    <p>Step 4 arithmetic is the memory slide: 70B FP8 at TP 4 leaves about 900 GB of KV across the four cards — roughly 5.5 million tokens in flight at FP8 KV. Nobody in this room needs more than that from one model on one box; if they think they do, they need a gateway and a second pool, not a bigger box. Prefix caching is on by default; chunked prefill too.</p>
+    <p>The last line is the punchline: half the node is spare. Two NVFP4 DeepSeek replicas, or an evaluation fleet that runs your regression suite every night — which is the failure mode ("model lifecycle is now your job") turned into a schedule.</p>
+    <p>If asked about power: 14 kW is one box. Four boxes is a 56 kW rack. That is why the section after this one is about megawatts and grid connections — nothing on this slide fits in an office.</p>
+  </div>
+</section>
+
+<!-- 31 ..................................................................... -->
 <section class="slide on-light slide--table dense tech">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>The knobs, in the order you should turn them</h2>
@@ -1468,13 +1529,13 @@ tr.frag { transform: none; }
   <table class="cmp">
     <thead><tr><th>Knob</th><th>How</th><th>Runs on</th><th>What you get · what it costs</th></tr></thead>
     <tbody>
-      <tr class="hi"><th>Free defaults<em>turn on nothing</em></th><td>Prefix caching, chunked prefill, PagedAttention in 16-token blocks. Set <code>--max-model-len</code> honestly and <code>--max-num-seqs</code> to what the cache can hold.</td><td class="tag">any GPU</td><td>Most "we need more GPUs" tickets close here. Costs nothing but a look at the metrics.</td></tr>
-      <tr><th>FP8 weights<em>W8A8</em></th><td><code>--quantization fp8</code>, or a pre-quantised checkpoint. Native tensor-core path.</td><td class="tag">Hopper, Blackwell</td><td>Half the HBM, near-lossless. Should be the default for anything above 8B.</td></tr>
-      <tr><th>FP8 KV cache</th><td><code>--kv-cache-dtype fp8</code>; skip sliding-window layers with <code>--kv-cache-dtype-skip-layers</code>.</td><td class="tag">FA3 on Hopper · FlashInfer on Blackwell</td><td>Per-token KV cost down to 54% of BF16; +14.9% throughput on Llama-3.1-8B; ≤1–2 pts on reasoning evals. Break-even ~4k tokens on B200.</td></tr>
-      <tr><th>NVFP4 / MXFP4 weights</th><td>NVIDIA <code>*-NVFP4</code> checkpoints (ModelOpt); MXFP4 as shipped by gpt-oss. <code>VLLM_USE_FLASHINFER_MOE_FP4=1</code> for MoE.</td><td class="tag">Blackwell only</td><td>Quarter the HBM. DeepSeek-V3.2 on two GB300s at 7,360 prefill tokens/GPU/s — 8× an H200. Calibrate before you trust it.</td></tr>
-      <tr><th>INT4 weight-only<em>AWQ · GPTQ · compressed-tensors</em></th><td>Quantise yourself with LLM Compressor; load with <code>--quantization compressed-tensors</code>.</td><td class="tag">any GPU</td><td>Wins when decode-bound and memory-poor. Loses accuracy faster than FP8; run your evals, not the model card's.</td></tr>
-      <tr><th>Speculative decoding</th><td>EAGLE-3 draft heads; DeepSeek's MTP head via <code>--speculative-config</code>.</td><td class="tag">any GPU</td><td>Faster decode at low concurrency. Fades as the batch fills — an interactive-workload tool, not a throughput tool.</td></tr>
-      <tr><th>Across the fleet<em>llm-d</em></th><td>P/D disaggregation over NIXL; KV tiering to CPU and NVMe with LMCache; cache-aware EPP routing.</td><td class="tag">multi-node</td><td>The 3× / 2× / 70% numbers from the previous slide. Complexity you should earn, not start with.</td></tr>
+      <tr class="hi frag"><th>Free defaults<em>turn on nothing</em></th><td>Prefix caching, chunked prefill, PagedAttention in 16-token blocks. Set <code>--max-model-len</code> honestly and <code>--max-num-seqs</code> to what the cache can hold.</td><td class="tag">any GPU</td><td>Most "we need more GPUs" tickets close here. Costs nothing but a look at the metrics.</td></tr>
+      <tr class="frag"><th>FP8 weights<em>W8A8</em></th><td><code>--quantization fp8</code>, or a pre-quantised checkpoint. Native tensor-core path.</td><td class="tag">Hopper, Blackwell</td><td>Half the HBM, near-lossless. Should be the default for anything above 8B.</td></tr>
+      <tr class="frag"><th>FP8 KV cache</th><td><code>--kv-cache-dtype fp8</code>; skip sliding-window layers with <code>--kv-cache-dtype-skip-layers</code>.</td><td class="tag">FA3 on Hopper · FlashInfer on Blackwell</td><td>Per-token KV cost down to 54% of BF16; +14.9% throughput on Llama-3.1-8B; ≤1–2 pts on reasoning evals. Break-even ~4k tokens on B200.</td></tr>
+      <tr class="frag"><th>NVFP4 / MXFP4 weights</th><td>NVIDIA <code>*-NVFP4</code> checkpoints (ModelOpt); MXFP4 as shipped by gpt-oss. <code>VLLM_USE_FLASHINFER_MOE_FP4=1</code> for MoE.</td><td class="tag">Blackwell only</td><td>Quarter the HBM. DeepSeek-V3.2 on two GB300s at 7,360 prefill tokens/GPU/s — 8× an H200. Calibrate before you trust it.</td></tr>
+      <tr class="frag"><th>INT4 weight-only<em>AWQ · GPTQ · compressed-tensors</em></th><td>Quantise yourself with LLM Compressor; load with <code>--quantization compressed-tensors</code>.</td><td class="tag">any GPU</td><td>Wins when decode-bound and memory-poor. Loses accuracy faster than FP8; run your evals, not the model card's.</td></tr>
+      <tr class="frag"><th>Speculative decoding</th><td>EAGLE-3 draft heads; DeepSeek's MTP head via <code>--speculative-config</code>.</td><td class="tag">any GPU</td><td>Faster decode at low concurrency. Fades as the batch fills — an interactive-workload tool, not a throughput tool.</td></tr>
+      <tr class="frag"><th>Across the fleet<em>llm-d</em></th><td>P/D disaggregation over NIXL; KV tiering to CPU and NVMe with LMCache; cache-aware EPP routing.</td><td class="tag">multi-node</td><td>The 3× / 2× / 70% numbers from the llm-d slide. Complexity you should earn, not start with.</td></tr>
     </tbody>
   </table>
   <div class="s-notes">
@@ -1485,9 +1546,17 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 30 ..................................................................... -->
+<!-- 32 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">04</span>
+  <h2>The bottom layer is being poured</h2>
+  <p class="lede">Every flag on the last three slides runs on a floor somebody has to build: megawatts, a grid connection, and a queue you cannot jump. That is the half of the stack Europe is pouring right now.</p>
+  <div class="s-notes"><p>Section ~3 min. Register change, and the reason this divider exists: you have just spent ten minutes in HBM budgets and Helm charts. Slow down, drop the numbers, and zoom out to the physical layer. Make the VOLT disclosure here if you have not already.</p></div>
+</section>
+
+<!-- 33 ..................................................................... -->
 <section class="slide on-light slide--content">
-  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <h2>And Europe is building the bottom layer right now</h2>
   <ul class="points two-col">
     <li><b>19 AI Factories, 13 antennas</b><span>Operational across the EU today, EuroHPC-funded, accessible to industry and SMEs.</span></li>
@@ -1501,9 +1570,9 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 31 ..................................................................... -->
+<!-- 34 ..................................................................... -->
 <section class="slide on-light slide--bars">
-  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <h2>The bottom layer, in megawatts</h2>
   <p class="lede">Announced and under construction in Europe. The unit that matters is not GPUs — it is grid connection, because that is the thing you cannot order faster.</p>
   <div class="bars">
@@ -1547,14 +1616,14 @@ tr.frag { transform: none; }
   <div class="s-notes">
     <p><b>The visual argument is the gap between the bottom two bars and the top one.</b> Do not explain it — let them see it, then say the line below.</p>
     <p class="say">"The bar at the bottom is live this month, twenty kilometres from this room. The bar at the top is the same company in 2027. That is a fifty-seven-fold step change in about eighteen months, and the constraint on it is not chips or capital. It is a grid connection."</p>
-    <p><b>Disclose again if you have not already:</b> Lovelace Engineering consults for VOLT Datacenters, and it is in the byline on slide 1. Nebius is on the chart precisely so this is not a single-vendor slide.</p>
+    <p><b>Disclose again if you have not already:</b> Lovelace Engineering consults for VOLT Datacenters, and it is in the byline on slide 2. Nebius is on the chart precisely so this is not a single-vendor slide.</p>
     <p>The number to have ready if anyone asks what 800 MW means: roughly the draw of a small city, and roughly a fifth of the total contracted datacentre load in the Netherlands today. Grid congestion is why this is hard, and why the queue matters more than the cheque.</p>
     <p><b>Cut this slide if you are short</b> — the 800 MW metric slide that follows makes the same point in five seconds.</p>
   </div>
 </section>
-<!-- 32 ..................................................................... -->
+<!-- 35 ..................................................................... -->
 <section class="slide on-light slide--content tight">
-  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <h2>What it looks like when someone actually builds it here</h2>
   <p class="lede">VOLT — "from power to tokens" — is doing the full-stack version in the Netherlands. Worth knowing because it's twenty kilometres from this room, not because it's the only one.</p>
   <ul class="points two-col">
@@ -1570,9 +1639,9 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 33 ..................................................................... -->
+<!-- 36 ..................................................................... -->
 <section class="slide on-dark slide--metric">
-  <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
+  <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <div class="num">800<span class="u">MW</span></div>
   <p class="cap">Rotterdam, from 2027. Sovereignty is, in the end, a question about electricity.</p>
   <p class="src">VOLT AI Gigafactory · ~250,000 GPUs · construction begins 2027</p>
@@ -1582,17 +1651,17 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 34 ..................................................................... -->
+<!-- 37 ..................................................................... -->
 <section class="slide on-dark slide--section">
-  <span class="num">04</span>
+  <span class="num">05</span>
   <h2>What the vendor keynote leaves out</h2>
   <p class="lede">If I only told you the good half, you'd make a bad decision and I'd deserve the blame.</p>
   <div class="s-notes"><p>Section ~4 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land.</p></div>
 </section>
 
-<!-- 35 ..................................................................... -->
+<!-- 38 ..................................................................... -->
 <section class="slide on-light slide--content">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>Four failure modes nobody demos on stage</h2>
   <ul class="points two-col">
     <li class="frag"><b>GPU scheduling contention</b><span>One team's training job starves everyone's inference. Fixable — quotas, gang scheduling, fair-share — but it is a political problem before it is a technical one. The technical half is the next slide.</span></li>
@@ -1607,9 +1676,9 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 36 ..................................................................... -->
+<!-- 39 ..................................................................... -->
 <section class="slide on-light slide--split">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>GPU contention, the technical half: slice the card</h2>
   <p class="lede">The quota policy fixes the politics. HAMi fixes the arithmetic: a pod asks for a fraction of a GPU by memory and by compute, and the runtime enforces it. CNCF Incubating since 15 July 2026.</p>
   <div class="split">
@@ -1650,9 +1719,9 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 37 ..................................................................... -->
+<!-- 40 ..................................................................... -->
 <section class="slide on-light slide--ba tight">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>Open source is the floor, not the ceiling</h2>
   <div class="ba-grid">
     <div class="ba-col old">
@@ -1684,9 +1753,9 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 38 ..................................................................... -->
+<!-- 41 ..................................................................... -->
 <section class="slide on-light slide--content tight">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>The economics: this is a utilisation question, not an ideology question</h2>
   <p class="lede">A single H100 delivers anywhere from $0.21 to $15.25 per million output tokens. Same hardware. The variable is you.</p>
   <ul class="points two-col">
@@ -1702,9 +1771,9 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 39 ..................................................................... -->
+<!-- 42 ..................................................................... -->
 <section class="slide on-light slide--curve">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>One chart decides this, and it isn't a chart about sovereignty</h2>
   <p class="lede">The same H100 costs between <b>$0.21 and $15.25</b> per million output tokens. Nothing about the hardware changes. The only variable is how busy you keep it.</p>
   <div class="chart">
@@ -1774,61 +1843,13 @@ tr.frag { transform: none; }
     <p>The takeaway to state explicitly: <b>you cannot get this from a slide, you get it from a month of measurement.</b> That is move three in the ninety-day plan.</p>
   </div>
 </section>
-<!-- 40 ..................................................................... -->
-<section class="slide on-dark slide--split">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
-  <h2>The smallest sovereign unit: one 8×B300 box, K3s</h2>
-  <p class="lede">You do not need a cluster to prove the argument. One HGX B300 node is 2.3 TB of HBM; K3s makes it a Kubernetes API with one binary and no etcd. The whole reference architecture fits on it, in an afternoon.</p>
-  <div class="split wide-code">
-    <ul class="points compact">
-      <li><b>The box</b><span>8× B300 SXM, 288 GB HBM3e each, NVLink 5 + NVSwitch, 8× ConnectX-8. About 1,400 W per GPU: plan on 14 kW and liquid cooling. Local NVMe for weights — you will pull them more than once.</span></li>
-      <li><b>The host</b><span>Ubuntu 24.04, NVIDIA driver 580+ (CUDA 13; llm-d images need it since v0.7), <code>nvidia-container-toolkit</code>. K3s detects the toolkit at start-up and writes the <code>nvidia</code> runtime and RuntimeClass into its embedded containerd.</span></li>
-      <li><b>What you skip</b><span>The operator's driver and toolkit containers (host-installed), Traefik (you bring a gateway), a load balancer (ServiceLB is fine for one node). Keep the device plugin, DCGM exporter and GPU feature discovery.</span></li>
-      <li><b>What you do not get</b><span>Any HA. The box, its SQLite datastore and its grid connection are each the failure domain. Fine for proving a workload moves; not a production posture. The second box is where the megawatt slide starts to matter.</span></li>
-    </ul>
-    <pre class="code tight"><span class="c"># 1 · one node, nvidia as default runtime, no Traefik</span>
-curl -sfL https://get.k3s.io | sh -s - server \
-  <span class="k">--disable</span> traefik <span class="k">--default-runtime</span> nvidia
-
-<span class="c"># 2 · operator for plugin + DCGM + GFD; driver, toolkit stay on host</span>
-helm install gpu-operator nvidia/gpu-operator -n gpu-operator \
-  --create-namespace <span class="k">--set</span> driver.enabled=false \
-  <span class="k">--set</span> toolkit.enabled=false        <span class="c"># CDI is default since v25.10</span>
-
-<span class="c"># 3 · sharing policy (HAMi), or the long-run API (NVIDIA DRA driver)</span>
-helm install hami hami-charts/hami -n kube-system
-
-<span class="c"># 4 · one model server, four cards, FP8 everything</span>
-vllm serve meta-llama/Llama-3.3-70B-Instruct \
-  <span class="k">--tensor-parallel-size</span> 4 <span class="k">--quantization</span> fp8 <span class="k">--kv-cache-dtype</span> fp8 \
-  <span class="k">--max-model-len</span> 131072 <span class="k">--gpu-memory-utilization</span> 0.9   <span class="c"># limits: nvidia.com/gpu: 4</span>
-
-<span class="c"># 5 · gateways: kgateway + agentgateway, InferencePool over the pods</span>
-helm install kgateway oci://cr.kgateway.dev/kgateway-dev/charts/kgateway \
-  -n kgateway-system <span class="k">--set</span> agentgateway.enabled=true
-kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
-
-<span class="c"># other four cards: DeepSeek-V3.2-NVFP4 at -tp 2, twice. Or an eval fleet.</span></pre>
-  </div>
-  <p class="foot">docs.k3s.io/advanced · NVIDIA GPU Operator v26.7 · project-hami.io · kgateway.dev · vllm.ai — verify chart names and flags against the versions you install</p>
-  <div class="s-notes">
-    <p><b>Two minutes, and slow down on step four.</b> This is the slide that makes the talk concrete for an engineer: not "Europe is building gigafactories" but "here is the afternoon".</p>
-    <p class="say">"K3s is the right tool here for the same reason it's the wrong tool for a datacentre: one binary, SQLite instead of etcd, containerd embedded. On one box that is exactly the amount of Kubernetes you need. The point isn't the box. The point is that once the workload runs behind a Gateway API route on this box, moving it to a European neocloud is a kubeconfig change."</p>
-    <p>Step 1: with the toolkit installed on the host, K3s picks it up and creates the <code>nvidia</code> RuntimeClass itself; <code>--default-runtime nvidia</code> means you never have to set <code>runtimeClassName</code>. With the operator on CDI (default since v25.10) you would not have to anyway — belt and braces.</p>
-    <p>Step 2: the operator's own docs cover RKE2 explicitly and K3s by the same pattern; if you let the operator manage the toolkit instead, point it at <code>/run/k3s/containerd/containerd.sock</code> and the K3s containerd config template. Host-installed is simpler and survives K3s upgrades.</p>
-    <p>Step 4 arithmetic is the memory slide: 70B FP8 at TP 4 leaves about 900 GB of KV across the four cards — roughly 5.5 million tokens in flight at FP8 KV. Nobody in this room needs more than that from one model on one box; if they think they do, they need a gateway and a second pool, not a bigger box. Prefix caching is on by default; chunked prefill too.</p>
-    <p>The last line is the punchline: half the node is spare. Two NVFP4 DeepSeek replicas, or an evaluation fleet that runs your regression suite every night — which is the failure mode ("model lifecycle is now your job") turned into a schedule.</p>
-    <p>If asked about power: 14 kW is one box. Four boxes is a 56 kW rack. That is why the previous section was about megawatts and grid connections — nothing on this slide fits in an office.</p>
-  </div>
-</section>
-
-<!-- 41 ..................................................................... -->
+<!-- 43 ..................................................................... -->
 <section class="slide on-light slide--table tight">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>Self-host, federate, or rent — by workload class</h2>
   <p class="lede">This is the blueprint, compressed. You do not need one answer; you need this table filled in for your own portfolio.</p>
   <table class="cmp">
-    <thead><tr class="frag"><th>Workload</th><th>Verdict</th><th>Why</th></tr></thead>
+    <thead><tr><th>Workload</th><th>Verdict</th><th>Why</th></tr></thead>
     <tbody>
       <tr class="hi frag"><th>Data &amp; retrieval layer</th><td class="tag"><span class="mark">Self-host, always</span></td><td>It is your proprietary corpus. Renting it is the one decision with no upside.</td></tr>
       <tr class="hi frag"><th>Inference gateway &amp; policy</th><td class="tag"><span class="mark">Self-host, always</span></td><td>Control, redaction, routing and the audit trail all live here. This is the cheapest sovereignty you can buy.</td></tr>
@@ -1844,9 +1865,9 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   </div>
 </section>
 
-<!-- 42 ..................................................................... -->
+<!-- 44 ..................................................................... -->
 <section class="slide on-light slide--content">
-  <div class="ref"><span class="ref-n">§ 04</span><span>What the keynote leaves out</span></div>
+  <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>The capability is the point — and it is a people decision</h2>
   <ul class="points two-col">
     <li class="frag"><b>You are buying optionality, not servers</b><span>The asset is a team that can move a workload. The infrastructure is the by-product.</span></li>
@@ -1860,9 +1881,9 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   </div>
 </section>
 
-<!-- 43 ..................................................................... -->
+<!-- 45 ..................................................................... -->
 <section class="slide on-light slide--content">
-  <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
+  <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <h2>Ninety days. Four moves. No new budget line.</h2>
   <ul class="points two-col">
     <li class="frag"><b>Weeks 1–2 · Inventory</b><span>List every AI workload, its jurisdiction, and its exit cost in weeks. Most organisations have never written this down.</span></li>
@@ -1876,17 +1897,17 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   </div>
 </section>
 
-<!-- 44 ..................................................................... -->
+<!-- 46 ..................................................................... -->
 <section class="slide on-light slide--claim">
-  <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
+  <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
   <cite>Alessandro Vozza · Lovelace Engineering / VOLT Datacenters</cite>
   <div class="s-notes"><p>Pause. Then straight into the debate slide — do not fill the silence.</p></div>
 </section>
 
-<!-- 45 ..................................................................... -->
+<!-- 47 ..................................................................... -->
 <section class="slide on-dark slide--practice">
-  <div class="ref"><span class="ref-n">§ 05</span><span>Close</span></div>
+  <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <h2>Sovereignty is not a product. <em>It's a practice.</em></h2>
   <p class="top">Sovereignty washing is the new greenwashing.</p>
   <ul>
@@ -1904,9 +1925,9 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   </div>
 </section>
 
-<!-- 46 ..................................................................... -->
+<!-- 48 ..................................................................... -->
 <section class="slide on-dark slide--debate">
-  <div class="ref"><span class="ref-n">§ 06</span><span>Argue with me</span></div>
+  <div class="ref"><span class="ref-n">§ 07</span><span>Argue with me</span></div>
   <h2>Five things I believe. Pick one and take it apart.</h2>
   <p class="lede">Twenty-five minutes. Call a number.</p>
   <ol class="provs">
@@ -1923,7 +1944,7 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   </div>
 </section>
 
-<!-- 47 ..................................................................... -->
+<!-- 49 ..................................................................... -->
 <section class="slide slide--full">
   <img src="chemai-ams-2026.jpg"
        alt="ChemAI AMS 2026 — AI Technology for Molecules and Materials. 12–13 November 2026, Amsterdam (NL).">
@@ -1934,7 +1955,7 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   </div>
 </section>
 
-<!-- 48 ..................................................................... -->
+<!-- 50 ..................................................................... -->
 <section class="slide on-dark slide--cta with-me">
   <div>
     <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
@@ -1958,12 +1979,12 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   </div>
 </section>
 
-<!-- 49 ..................................................................... -->
+<!-- 51 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 1 of 2</span></div>
   <h2>Sources · the argument</h2>
   <ul class="srcs">
-    <li><b>Microsoft France testimony</b>French Senate inquiry into digital sovereignty, 21 July 2025 (The Register, SDxCentral)</li>
+    <li><b>Microsoft France testimony</b>Anton Carniaux, French Senate inquiry into digital sovereignty, 21 July 2025 (The Register, SDxCentral) · <a href="https://lnkd.in/p/e-AtB9Jt">lnkd.in/p/e-AtB9Jt</a></li>
     <li><b>AWS European Sovereign Cloud</b>Amazon press release, 15 January 2026; InfoQ analysis</li>
     <li><b>Trump v. Slaughter · EDPB letter</b>US Supreme Court, 29 June 2026; EDPB to Commissioner McGrath, 31 July 2026</li>
     <li><b>Latombe judgment</b>EU General Court, 3 September 2025 (IAPP)</li>
@@ -1991,7 +2012,7 @@ kubectl apply -f inferencepool.yaml -f httproute.yaml -f agentgateway.yaml
   <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
 </section>
 
-<!-- 50 ..................................................................... -->
+<!-- 52 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 2 of 2</span></div>
   <h2>Sources · the stack</h2>

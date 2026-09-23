@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Turning AI Into Your Advantage — a 40-minute hands-on workshop for business operators. Alessandro Vozza.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23102338'/%3E%3Crect x='6' y='13' width='20' height='7' rx='1' fill='%23ffd23f'/%3E%3C/svg%3E">
+<title>Turning AI Into Your Advantage</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+
+<style>
+/* ============================================================
+   TURNING AI INTO YOUR ADVANTAGE — 40-minute operator workshop
+   Idea:   a workshop whiteboard. Blueprint-navy ground, cool paper,
+           and one highlighter-yellow marker stroke that only ever
+           lands on the sentence the room should write down.
+   Signal: three verdict colours used everywhere the framework
+           appears — green automate, amber assist, coral keep human.
+   Type:   Bricolage Grotesque (display) + Atkinson Hyperlegible
+           (body — built for legibility at the back of a room).
+   Engine: same as the other decks in this repo, plus an exercise
+           countdown: X starts/pauses, R resets.
+   ============================================================ */
+:root {
+  --ink:            #102338;   /* blueprint navy */
+  --ink-2:          #17304a;
+  --paper:          #f6f7f5;
+  --paper-2:        #eceee9;
+  --surface-muted:  #e2e6e3;
+  --fg-on-light:    #102338;
+  --fg-on-dark:     #ffffff;
+  --fg-muted:       #56657a;
+  --fg-muted-dark:  #a7b6c8;
+  --accent:         #1f5fbf;   /* marker blue on light */
+  --accent-soft:    #ffd23f;   /* highlighter on dark */
+  --marker:         #ffd23f;
+  --auto:           #2f8f5b;   /* verdict: automate */
+  --assist:         #c98a00;   /* verdict: assist */
+  --human:          #c2412d;   /* verdict: keep human */
+  --rule:           #d3d9dd;
+  --rule-dark:      #2c4560;
+
+  --f-display: 'Bricolage Grotesque', 'Avenir Next', 'Segoe UI', sans-serif;
+  --f-body:    'Atkinson Hyperlegible', Verdana, Arial, sans-serif;
+  --f-code:    ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+.on-dark { --accent: var(--accent-soft); --fg-muted: var(--fg-muted-dark); --rule: var(--rule-dark); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--ink); font-family: var(--f-body); color: var(--fg-on-dark); }
+#deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--ink); }
+
+.slide {
+  position: absolute; top: 50%; left: 50%;
+  width: 1920px; height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  transform-origin: center center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 140ms ease;
+  overflow: hidden;
+}
+.slide.is-active { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+
+/* grounds: a faint whiteboard grid, not a dot texture */
+.on-light {
+  background-color: var(--paper); color: var(--fg-on-light);
+  background-image:
+    linear-gradient(rgba(16,35,56,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,35,56,0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.on-dark {
+  background-color: var(--ink); color: var(--fg-on-dark);
+  background-image:
+    linear-gradient(rgba(167,182,200,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167,182,200,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* the one memorable device: a marker stroke behind a whole phrase */
+.mark { background: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 92%, transparent 92%);
+  padding: 0 0.12em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.on-dark .mark { color: var(--ink); background: var(--marker); padding: 0 0.16em; }
+
+/* footer rule */
+.ref {
+  position: absolute; bottom: 44px; left: 96px; right: 96px;
+  display: flex; align-items: center; gap: 24px;
+  border-top: 1px solid var(--rule); padding-top: 16px;
+  font-size: 20px;
+}
+.ref .ref-n { color: var(--accent); font-weight: 700; }
+.ref .ref-right { margin-left: auto; }
+.ref .ref-pg { font-family: var(--f-display); font-size: 24px; font-weight: 600; }
+.on-light .ref { color: var(--fg-muted); }
+.on-dark  .ref { color: var(--fg-muted-dark); }
+
+h2 { font-family: var(--f-display); font-weight: 600; letter-spacing: -0.02em; line-height: 1.04; }
+.lede { font-size: 29px; color: var(--fg-muted); margin-top: 20px; max-width: 70ch; line-height: 1.42; }
+
+/* ---------- title ---------- */
+.slide--title { padding: 120px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--title .kind { font-size: 28px; color: var(--fg-muted-dark); margin-bottom: 36px; }
+.slide--title .kind b { color: var(--marker); font-weight: 700; }
+.slide--title h1 { font-family: var(--f-display); font-size: 160px; line-height: 0.96; font-weight: 800; letter-spacing: -0.035em; max-width: 15ch; }
+.slide--title h1 .mark { font-weight: 800;
+  /* the stroke hugs the word: cap-height to just past the descender, not the whole line box */
+  background: linear-gradient(transparent 15%, var(--marker) 15%, var(--marker) 96%, transparent 96%);
+  padding: 0 0.08em; }
+.slide--title .sub { font-size: 36px; line-height: 1.35; color: var(--fg-muted-dark); margin-top: 40px; max-width: 44ch; }
+.slide--title .meta { position: absolute; bottom: 80px; left: 110px; right: 110px; display: flex; gap: 40px; align-items: baseline;
+  font-size: 23px; color: var(--fg-muted-dark); border-top: 1px solid var(--rule-dark); padding-top: 26px; }
+.slide--title .meta .who { color: var(--fg-on-dark); font-weight: 700; }
+.slide--title .meta .spacer { flex: 1; }
+
+/* ---------- claim ---------- */
+.slide--claim { padding: 150px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--claim p { font-family: var(--f-display); font-size: 104px; line-height: 1.1; font-weight: 600; max-width: 20ch; letter-spacing: -0.025em; }
+.slide--claim .after { font-family: var(--f-body); font-size: 32px; line-height: 1.4; font-weight: 400; color: var(--fg-muted); margin-top: 48px; max-width: 58ch; letter-spacing: 0; }
+
+/* ---------- show of hands (who is in the room) ---------- */
+.slide--poll { padding: 120px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--poll .kicker { font-family: var(--f-display); font-size: 34px; font-weight: 800; color: var(--marker); }
+.slide--poll h2 { font-size: 88px; font-weight: 800; margin-top: 12px; max-width: 18ch; }
+.poll { list-style: none; counter-reset: q; display: grid; gap: 26px; margin-top: 54px; }
+.poll li { counter-increment: q; display: grid; grid-template-columns: 72px 1fr; column-gap: 28px; row-gap: 6px; align-items: start; }
+.poll li::before { content: counter(q); font-family: var(--f-display); font-weight: 800; font-size: 34px; width: 60px; height: 60px; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(255,210,63,0.16); color: var(--marker); margin-top: 2px; }
+.poll b { grid-column: 2; font-family: var(--f-display); font-weight: 700; font-size: 42px; line-height: 1.1; letter-spacing: -0.02em; }
+.poll em { grid-column: 2; font-style: normal; color: var(--fg-muted-dark); font-size: 26px; line-height: 1.35; }
+.slide--poll .after { margin-top: 48px; font-size: 30px; line-height: 1.4; color: var(--fg-muted-dark); max-width: 60ch; }
+.slide--poll .after b { color: var(--fg-on-dark); }
+
+/* ---------- goals + agenda (the setup, right after the claim) ---------- */
+.slide--agenda { padding: 130px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--agenda h2 { font-size: 84px; }
+.agenda { display: flex; gap: 14px; margin-top: 64px; }
+.agenda > div { flex: 1 1 0; min-width: 215px; border-radius: 18px; padding: 30px 30px 34px; background: var(--paper-2); border: 1px solid var(--rule); display: flex; flex-direction: column; }
+.agenda .min { font-family: var(--f-display); font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+.agenda .min small { font-size: 26px; font-weight: 600; color: var(--fg-muted); margin-left: 6px; letter-spacing: 0; }
+.agenda .what { font-family: var(--f-display); font-weight: 600; font-size: 32px; line-height: 1.1; margin-top: 18px; }
+.agenda .how { font-size: 24px; line-height: 1.35; color: var(--fg-muted); margin-top: 10px; }
+.agenda .now { background: var(--ink); color: var(--fg-on-dark); border-color: var(--ink); }
+.agenda .now .how, .agenda .now .min small { color: var(--fg-muted-dark); }
+.agenda .do { background: var(--marker); border-color: var(--marker); }
+.agenda .do .how, .agenda .do .min small { color: rgba(16,35,56,0.72); }
+.agenda .do .sub { display: flex; gap: 10px; margin-top: auto; padding-top: 24px; }
+.agenda .do .sub span { flex: 1; background: rgba(16,35,56,0.12); border-radius: 10px; padding: 10px 12px; font-size: 22px; font-weight: 700; line-height: 1.25; }
+.slide--agenda .prep { margin-top: 52px; font-size: 30px; line-height: 1.45; color: var(--fg-muted); max-width: 60ch; }
+.slide--agenda .prep b { color: var(--fg-on-light); }
+
+/* ---------- section ---------- */
+.slide--section { padding: 130px 140px 170px; display: flex; flex-direction: column; justify-content: flex-end; }
+.slide--section .num { font-family: var(--f-display); font-size: 260px; font-weight: 800; line-height: 0.82; color: var(--marker); letter-spacing: -0.05em; }
+.slide--section h2 { font-size: 136px; font-weight: 800; margin-top: 24px; max-width: 18ch; }
+.slide--section .lede { color: var(--fg-muted-dark); font-size: 34px; }
+.slide--section .clock { font-family: var(--f-display); font-size: 28px; color: var(--fg-muted-dark); margin-top: 26px; }
+
+/* ---------- bars (evidence) ---------- */
+.slide--bars { padding: 130px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--bars h2 { font-size: 80px; max-width: 26ch; }
+.bars { display: grid; gap: 30px; margin-top: 56px; }
+.bar { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: center; }
+.bar .v { font-family: var(--f-display); font-size: 84px; font-weight: 800; line-height: 1; text-align: right; letter-spacing: -0.03em; }
+.bar .lab { font-size: 28px; line-height: 1.3; margin-bottom: 12px; display: block; }
+.bar .track { position: relative; height: 26px; background: var(--surface-muted); border-radius: 13px; overflow: hidden; }
+.bar .fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--ink); border-radius: 13px; }
+.bar.drop .v { color: var(--human); }
+.bar.drop .fill { background: var(--human); }
+.foot { font-size: 21px; color: var(--fg-muted); margin-top: 40px; }
+
+/* ---------- duo / before-after ---------- */
+.slide--duo { padding: 140px 130px; display: flex; flex-direction: column; justify-content: center; }
+.slide--duo h2 { font-size: 82px; max-width: 24ch; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 56px; }
+.duo .card { padding: 50px 48px; border-radius: 22px; background: var(--surface-muted); display: flex; flex-direction: column; gap: 18px; }
+.duo .card.dark { background: var(--ink); color: var(--fg-on-dark); border-radius: 22px 22px 22px 4px; }
+.duo .lbl { font-size: 24px; color: var(--fg-muted); font-weight: 700; }
+.duo .card.dark .lbl { color: var(--marker); }
+.duo h3 { font-family: var(--f-display); font-size: 58px; font-weight: 600; line-height: 1.04; letter-spacing: -0.015em; }
+.duo p { font-size: 28px; line-height: 1.4; color: var(--fg-muted); }
+.duo .card.dark p { color: #c9d4e1; }
+
+/* ---------- three calls ---------- */
+.slide--calls { padding: 130px 110px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--calls h2 { font-size: 84px; }
+.calls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 64px; border-top: 3px solid var(--ink); }
+.call { padding: 40px 44px 0 0; }
+.call + .call { padding-left: 44px; border-left: 1px solid var(--rule); }
+.call .q { font-family: var(--f-display); font-size: 30px; font-weight: 600; color: var(--accent); }
+.call h3 { font-family: var(--f-display); font-size: 62px; font-weight: 800; line-height: 1.0; letter-spacing: -0.025em; margin-top: 16px; }
+.call p { font-size: 28px; line-height: 1.42; color: var(--fg-muted); margin-top: 22px; }
+
+/* ---------- verdict colours ---------- */
+.v-auto { color: var(--auto); } .v-assist { color: var(--assist); } .v-human { color: var(--human); }
+
+/* ---------- human list (levers) ---------- */
+.slide--levers { padding: 120px 120px 136px; display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
+.slide--levers h2 { font-size: 88px; }
+.slide--levers .lede { font-size: 30px; }
+.levers { list-style: none; display: grid; gap: 34px; }
+.levers li { padding-left: 34px; border-left: 6px solid var(--human); }
+.levers b { display: block; font-family: var(--f-display); font-size: 44px; font-weight: 600; line-height: 1.1; }
+.levers span { display: block; font-size: 26px; line-height: 1.38; color: var(--fg-muted); margin-top: 8px; }
+
+/* ---------- loop (change your mind) ---------- */
+.slide--loop { padding: 130px 110px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--loop h2 { font-size: 82px; }
+.loop { display: grid; grid-template-columns: 1fr 90px 1fr 90px 1fr; align-items: stretch; margin-top: 60px; }
+.loop .arw { font-family: var(--f-display); font-size: 56px; color: var(--accent); align-self: center; text-align: center; }
+.loop .cell { padding: 42px 38px; border-radius: 22px; background: #fff; border: 1px solid var(--rule); }
+.loop .cell.win { background: var(--ink); color: var(--fg-on-dark); border-color: var(--ink); }
+.loop .cl { font-size: 24px; font-weight: 700; color: var(--fg-muted); }
+.loop .cell.win .cl { color: var(--marker); }
+.loop .cv { font-family: var(--f-display); font-size: 58px; font-weight: 800; line-height: 1.02; margin-top: 14px; letter-spacing: -0.02em; }
+.loop .cs { font-size: 26px; line-height: 1.4; color: var(--fg-muted); margin-top: 16px; }
+.loop .cell.win .cs { color: #c9d4e1; }
+.outs { display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+.outs span { font-size: 24px; font-weight: 700; padding: 6px 18px; border-radius: 99px; background: rgba(255,255,255,0.1); }
+
+/* ---------- Luca story ---------- */
+.slide--story { padding: 130px 110px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--story h2 { font-size: 80px; }
+.story { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; margin-top: 64px; position: relative; }
+.story::before { content: ""; position: absolute; top: 15px; left: 0; right: 0; height: 3px; background: var(--rule); }
+.story li { position: relative; padding-top: 60px; }
+.story li::before { content: ""; position: absolute; top: 0; left: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); }
+.story li.hl::before { background: var(--marker); box-shadow: 0 0 0 3px var(--ink); }
+.story .when { font-size: 24px; font-weight: 700; color: var(--accent); }
+.story b { display: block; font-family: var(--f-display); font-size: 38px; font-weight: 600; line-height: 1.08; margin-top: 10px; }
+.todo { display: block; margin-top: 16px; font-size: 24px; line-height: 1.38; color: var(--fg-muted);
+  border: 2px dashed #b9c3cc; border-radius: 12px; padding: 14px 16px; background: rgba(255,255,255,0.7); }
+.illus { position: absolute; top: 60px; right: 96px; font-size: 22px; font-weight: 700; color: var(--human);
+  border: 2px solid var(--human); border-radius: 99px; padding: 6px 20px; }
+
+/* ---------- flow with control point ---------- */
+.slide--flow { padding: 130px 100px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--flow h2 { font-size: 80px; }
+.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 34px; margin-top: 64px; }
+.flow .step { position: relative; padding: 36px 30px; border-radius: 20px; background: #fff; border: 1px solid var(--rule); border-top: 10px solid var(--auto); }
+.flow .step.assist { border-top-color: var(--assist); }
+.flow .step.human { border-top-color: var(--human); background: #fff6f3; }
+.flow .step:not(:last-child)::after { content: "→"; position: absolute; right: -30px; top: 50%; transform: translateY(-50%);
+  font-family: var(--f-display); font-size: 36px; color: var(--fg-muted); }
+.flow .who { font-size: 22px; font-weight: 700; }
+.flow h3 { font-family: var(--f-display); font-size: 40px; font-weight: 600; line-height: 1.06; margin-top: 12px; }
+.flow p { font-size: 24px; line-height: 1.38; color: var(--fg-muted); margin-top: 12px; }
+.kq { font-size: 30px; line-height: 1.4; margin-top: 50px; max-width: 70ch; }
+
+/* ---------- exercise ---------- */
+.slide--exercise { padding: 110px 110px 130px; display: grid; grid-template-columns: 1fr 560px; gap: 90px; align-items: center; }
+.slide--exercise .tag { font-family: var(--f-display); font-size: 34px; font-weight: 800; color: var(--marker); }
+.slide--exercise h2 { font-size: 104px; font-weight: 800; margin-top: 12px; }
+.slide--exercise .lede { color: var(--fg-muted-dark); font-size: 31px; }
+.steps { list-style: none; counter-reset: s; display: grid; gap: 26px; margin-top: 48px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 70px 1fr; gap: 20px; font-size: 30px; line-height: 1.38; }
+.steps li::before { content: counter(s); font-family: var(--f-display); font-weight: 800; font-size: 36px; width: 56px; height: 56px; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(255,210,63,0.16); color: var(--marker); }
+.steps li em { font-style: normal; color: var(--fg-muted-dark); display: block; font-size: 25px; margin-top: 4px; }
+.tpanel { border: 2px solid var(--rule-dark); border-radius: 28px; padding: 50px 46px; text-align: center; background: var(--ink-2); }
+.tpanel .tl { font-size: 26px; color: var(--fg-muted-dark); }
+.xtimer { font-family: var(--f-display); font-size: 200px; font-weight: 800; line-height: 1; letter-spacing: -0.04em; margin: 18px 0 8px;
+  font-variant-numeric: tabular-nums; cursor: pointer; color: var(--fg-on-dark); }
+.xtimer.running { color: var(--marker); }
+.xtimer.done { color: #ff7a63; }
+.tpanel .keys { font-size: 22px; color: var(--fg-muted-dark); }
+.tpanel .split { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--rule-dark); font-size: 25px; line-height: 1.5; color: #c9d4e1; text-align: left; }
+.tpanel .split b { color: var(--fg-on-dark); }
+.warn { margin-top: 36px; font-size: 26px; line-height: 1.4; padding: 18px 24px; border-radius: 14px; background: rgba(194,65,45,0.22); border: 1px solid rgba(255,122,99,0.55); }
+
+/* ---------- X-ray worksheet preview ---------- */
+.slide--sheet { padding: 110px 110px 130px; display: flex; flex-direction: column; justify-content: center; }
+.slide--sheet h2 { font-size: 76px; }
+table.xray { width: 100%; border-collapse: collapse; margin-top: 44px; font-size: 27px; background: #fff; border-radius: 16px; overflow: hidden; }
+.xray th { text-align: left; font-weight: 700; padding: 20px 26px; background: var(--ink); color: #fff; font-size: 24px; }
+.xray td { padding: 20px 26px; border-top: 1px solid var(--rule); }
+.xray td.n { text-align: center; font-family: var(--f-display); font-weight: 600; font-size: 32px; }
+.xray td.v { font-family: var(--f-display); font-weight: 800; font-size: 30px; }
+
+/* ---------- the a-ha: one email, two briefs ---------- */
+.slide--aha { padding: 96px 110px 130px; display: flex; flex-direction: column; justify-content: center; }
+.slide--aha h2 { font-size: 72px; }
+.inbound { margin-top: 30px; background: #fff; border-left: 8px solid var(--ink); border-radius: 0 16px 16px 0; padding: 20px 32px;
+  font-family: var(--f-display); font-weight: 600; font-size: 34px; line-height: 1.3; letter-spacing: -0.01em; }
+.inbound .from { display: block; font-family: var(--f-body); font-weight: 400; font-size: 21px; color: var(--fg-muted); margin-bottom: 6px; letter-spacing: 0; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+.side { background: #fff; border: 1px solid var(--rule); border-top: 8px solid; border-radius: 20px; padding: 30px 34px 32px; }
+.side.bad { border-top-color: var(--human); }
+.side.good { border-top-color: var(--auto); }
+.side .brief { font-family: var(--f-code); font-size: 23px; line-height: 1.45; background: var(--paper-2); border-radius: 10px; padding: 16px 20px; }
+.side .brief .lbl { display: block; font-family: var(--f-body); font-size: 20px; color: var(--fg-muted); margin-bottom: 6px; }
+.side .brief b { background: var(--marker); font-weight: 700; padding: 0 0.15em; }
+.side .out { margin-top: 24px; font-size: 28px; line-height: 1.4; }
+.side .out mark { background: rgba(194,65,45,0.16); color: var(--human); font-weight: 700; padding: 0 0.12em; }
+.side.good .out b { color: var(--auto); }
+.side .verdict { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 24px; line-height: 1.35; color: var(--fg-muted); }
+.side.bad .verdict { color: var(--human); font-weight: 700; }
+.side.good .verdict b { color: var(--fg-on-light); }
+
+/* ---------- prompt template ---------- */
+.slide--code { padding: 96px 100px 120px; display: grid; grid-template-columns: 1fr 1020px; gap: 64px; align-items: center; }
+.slide--code h2 { font-size: 80px; }
+.slide--code .lede { font-size: 28px; }
+.codewrap { background: var(--ink); border-radius: 22px; padding: 38px 44px; }
+.codewrap pre { font-family: var(--f-code); font-size: 25px; line-height: 1.5; color: #dde6ef; white-space: pre-wrap; }
+.codewrap .k { color: var(--marker); font-weight: 700; }
+.codewrap .f { color: #9cc3ff; }
+.codewrap .hl { display: block; background: rgba(194,65,45,0.28); margin: 0 -44px; padding: 0 44px; }
+.anat { list-style: none; display: grid; gap: 22px; margin-top: 40px; }
+.anat li { font-size: 27px; line-height: 1.38; padding-left: 26px; border-left: 5px solid var(--accent); }
+.anat b { display: block; }
+
+/* ---------- kill switch card ---------- */
+.card-slip { background: #fff; color: var(--ink); border-radius: 22px; padding: 40px 44px; border-top: 12px solid var(--human); }
+.card-slip h3 { font-family: var(--f-display); font-size: 42px; font-weight: 800; }
+.card-slip dl { display: grid; grid-template-columns: 250px 1fr; gap: 16px 20px; margin-top: 24px; font-size: 25px; }
+.card-slip dt { font-weight: 700; }
+.card-slip dd { border-bottom: 2px dotted #b9c3cc; color: var(--fg-muted); min-height: 34px; }
+
+/* ---------- takeaways ---------- */
+.slide--take { padding: 130px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--take h2 { font-size: 84px; }
+.take { list-style: none; display: grid; gap: 34px; margin-top: 60px; }
+.take li { display: grid; grid-template-columns: 520px 1fr; gap: 50px; align-items: baseline; padding-top: 30px; border-top: 1px solid var(--rule); }
+.take b { font-family: var(--f-display); font-size: 50px; font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; }
+.take span { font-size: 30px; line-height: 1.4; color: var(--fg-muted); }
+
+/* ---------- cta ---------- */
+.slide--cta { padding: 130px 130px; display: grid; grid-template-columns: 1fr 400px; gap: 100px; align-items: center; }
+.slide--cta h2 { font-size: 92px; font-weight: 800; max-width: 17ch; }
+.commit { margin-top: 44px; background: var(--paper); color: var(--ink); border-radius: 22px; padding: 38px 44px; font-size: 36px; line-height: 1.6; max-width: 1040px; }
+.commit u { text-decoration: none; border-bottom: 3px dotted #8b98a6; padding: 0 70px; }
+.slide--cta .links { list-style: none; display: grid; gap: 12px; margin-top: 40px; font-size: 26px; color: var(--fg-muted-dark); }
+.slide--cta .links a { color: var(--fg-on-dark); text-decoration: none; border-bottom: 2px solid var(--marker); }
+.me-col { display: flex; flex-direction: column; gap: 18px; }
+.me-col .portrait { width: 300px; height: 300px; border-radius: 50%; object-fit: cover; border: 8px solid var(--marker); }
+.me-col .who { font-family: var(--f-display); font-size: 48px; font-weight: 800; line-height: 1.02; }
+.me-col .role { font-size: 24px; line-height: 1.45; color: var(--fg-muted-dark); }
+
+/* ---------- sources ---------- */
+.slide--srcs { padding: 90px 100px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--srcs h2 { font-size: 60px; margin-bottom: 36px; }
+.srcs { list-style: none; display: grid; gap: 22px; font-size: 25px; line-height: 1.38; max-width: 1500px; }
+.srcs li { padding-left: 24px; border-left: 4px solid var(--accent); color: var(--fg-muted); }
+.srcs b { display: block; color: var(--fg-on-light); }
+
+/* ---------- chrome ---------- */
+#progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--marker); z-index: 200; transition: width 180ms ease; }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; z-index: 300; background: #0b1a2b; border-top: 3px solid var(--marker);
+  padding: 20px 28px 22px; max-height: 42vh; overflow-y: auto; display: none; font-size: 15px; line-height: 1.55; color: #d3dbe4; }
+#notes.on { display: block; }
+#notes h4 { font-size: 13px; letter-spacing: 0.08em; color: var(--marker); margin-bottom: 10px; display: flex; gap: 18px; align-items: baseline; }
+#notes h4 .clock { margin-left: auto; color: #94a6b8; }
+#notes p { margin-bottom: 8px; max-width: 112ch; }
+#notes b { color: #fff; }
+#notes .say { border-left: 3px solid var(--marker); padding-left: 12px; font-style: italic; color: #f1f4f7; }
+.s-notes { display: none; }
+#help { position: fixed; bottom: 14px; left: 20px; font-size: 13px; color: #7a8ea3; z-index: 200; transition: opacity 400ms ease; pointer-events: none; }
+#help.gone { opacity: 0; }
+.frag { opacity: 0; transition: opacity 300ms ease, transform 300ms ease; transform: translateY(10px); }
+.frag.on { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .frag { transition: none; transform: none; } }
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { overflow: visible; }
+  #deck { width: auto; height: auto; }
+  #progress, #notes, #help { display: none !important; }
+  .frag { opacity: 1 !important; transform: none !important; }
+  .slide { position: relative; top: auto; left: auto; transform: none; opacity: 1 !important; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<main id="deck">
+
+<!-- 1 ..................................................................... -->
+<section class="slide on-dark slide--title">
+  <p class="kind"><b>Workshop</b> for business operators — 40 minutes, phones out</p>
+  <h1>Turning AI into your <span class="mark">advantage</span></h1>
+  <p class="sub">Everyone has the same models. What you build on top, what you keep, and how fast you change your mind is the difference.</p>
+  <footer class="meta">
+    <span class="who">Alessandro Vozza</span>
+    <span>Lovelace Engineering, Amsterdam</span>
+    <span class="spacer"></span>
+    <span>ams0.github.io/talks/ai-advantage</span>
+  </footer>
+  <div class="s-notes">
+    <p><b>Before you start: add the event name and date to this slide.</b> The meta line has no date on purpose until you confirm it.</p>
+    <p><b>Open with the show of hands on the next two slides, not with your bio.</b> The host has read the bio already. Your first line is a question.</p>
+    <p>Bio correction: you are no longer at Microsoft (ended 31 Aug 2026). If the host reads "today he partners with enterprises at Microsoft", correct it lightly: "formerly — these days I do this independently."</p>
+  </div>
+</section>
+
+<!-- 2 ..................................................................... -->
+<section class="slide on-dark slide--poll">
+  <p class="kicker">Show of hands</p>
+  <h2>Who's in the room?</h2>
+  <ul class="poll">
+    <li><b>You own the business, or the P&amp;L is yours</b><em>Owners, founders, managing directors.</em></li>
+    <li class="frag"><b>You run a team inside someone else's business</b><em>Operations, sales, finance, support, delivery.</em></li>
+    <li class="frag"><b>You are the whole team</b><em>Freelancers and solo founders. Your first hire may be the one you build today.</em></li>
+    <li class="frag"><b>More than twenty people work where you work</b><em>Keep it up if it's more than a hundred.</em></li>
+  </ul>
+  <div class="s-notes">
+    <p>Builds one per click. Count roughly, say the count back to the room. This is where you pick your examples for the next forty minutes.</p>
+    <p><b>Mostly owners:</b> talk euros and hours. <b>Mostly team leads:</b> the "keep human" list on the worksheet is something they agree with their boss; say so at Call 2. <b>Mostly solo:</b> the teammate they build in Exercise 2 is literally their first hire.</p>
+  </div>
+</section>
+
+<!-- 3 ..................................................................... -->
+<section class="slide on-dark slide--poll">
+  <p class="kicker">Keep them up</p>
+  <h2>Where are you with AI?</h2>
+  <ul class="poll">
+    <li><b>You used an AI tool this week</b><em>Any tool, any task. Nearly every hand.</em></li>
+    <li class="frag"><b>Something AI does in your business every week without you touching it</b><em>Not "I ask it things" — it runs.</em></li>
+    <li class="frag"><b>You can name the euros it earned or saved you last month</b><em>A number, not a feeling.</em></li>
+  </ul>
+  <p class="after frag"><b>That drop between the first hand and the last</b> is what we close in the next forty minutes.</p>
+  <div class="s-notes">
+    <p>Three questions, hands stay up, so the room watches the hands go down. Wait a full two seconds after each.</p>
+    <p class="say">"Hands up if you used an AI tool this week." (Nearly all.) "Keep it up if something AI does in your business every week without you touching it." (A third.) "Keep it up if you can tell me the euros it earned or saved you last month." (Two or three.) "That drop is what we close in the next forty minutes."</p>
+    <p>If more hands than expected survive the last question, name them — they are your Luca if Luca isn't in the room.</p>
+  </div>
+</section>
+
+<!-- 4 ..................................................................... -->
+<section class="slide on-light slide--duo">
+  <h2>Every restaurant on the street buys from the same supplier</h2>
+  <div class="duo">
+    <div class="card">
+      <span class="lbl">What everyone gets</span>
+      <h3>The same ingredients</h3>
+      <p>Same models, same chat apps, same copilots in the same office suite. Same price list.</p>
+    </div>
+    <div class="card dark frag">
+      <span class="lbl">What makes the queue</span>
+      <h3>The recipe and the kitchen</h3>
+      <p>Which dishes you cook, who tastes before it leaves the pass, and how quickly you change the menu.</p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>The anchor analogy. Come back to "the kitchen" in every section.</b></p>
+    <p class="say">"Two restaurants, same street, same supplier. Same tomatoes, same flour. One has a queue out the door. The ingredients don't explain that. The kitchen does."</p>
+    <p>Click once to reveal the right card.</p>
+  </div>
+</section>
+
+<!-- 3 ..................................................................... -->
+<section class="slide on-light slide--bars">
+  <h2>Nearly everyone has the ingredients. Few are feeding the queue.</h2>
+  <div class="bars">
+    <div class="bar"><span class="v">88%</span><div><span class="lab">use AI in at least one business function</span><div class="track"><div class="fill" style="width:88%"></div></div></div></div>
+    <div class="bar frag"><span class="v">~33%</span><div><span class="lab">have started scaling AI across the organisation</span><div class="track"><div class="fill" style="width:33%"></div></div></div></div>
+    <div class="bar drop frag"><span class="v">39%</span><div><span class="lab">report any profit (EBIT) impact at all — most of them under 5%</span><div class="track"><div class="fill" style="width:39%"></div></div></div></div>
+    <div class="bar drop frag"><span class="v">~6%</span><div><span class="lab">are "high performers": 5%+ of EBIT from AI and significant value</span><div class="track"><div class="fill" style="width:6%"></div></div></div></div>
+  </div>
+  <p class="foot">McKinsey, The State of AI in 2025: Agents, innovation, and transformation (November 2025).</p>
+  <div class="s-notes">
+    <p><b>Builds one bar per click. Say each number once, then let the drop speak.</b></p>
+    <p class="say">"Almost nine in ten use it. Fewer than four in ten can see it in profit. About six in a hundred get serious value. Today is about what those six do differently."</p>
+    <p>If challenged: the 39% is "any level of EBIT impact", self-reported. The ~6% is McKinsey's own high-performer definition. Both are on the sources slide.</p>
+  </div>
+</section>
+
+<!-- 4 ..................................................................... -->
+<section class="slide on-dark slide--claim">
+  <p>Access isn't the advantage. <span class="mark">Decisions are.</span></p>
+  <p class="after">Three decisions, specifically. We'll name them, see them in a real business, and then you'll make them for your own.</p>
+  <div class="s-notes">
+    <p><b>Pause after the first sentence. Two full seconds.</b></p>
+    <p>The next two slides do the setup: what they leave with, then how the time runs. Don't pre-empt them here.</p>
+  </div>
+</section>
+
+<!-- 5 ..................................................................... -->
+<section class="slide on-light slide--take">
+  <h2>What you leave with</h2>
+  <ul class="take">
+    <li><b>One process in your week, X-rayed</b><span>Split into steps, each one marked automate, assist or keep human. On paper, in your handwriting.</span></li>
+    <li class="frag"><b>A working AI teammate you built</b><span>Briefed like a new hire, attacked by a partner, with a "NEEDS HUMAN" exit for the cases it shouldn't touch.</span></li>
+    <li class="frag"><b>A review date in your calendar</b><span>With an owner, one number that means success, and the signal that switches it off.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p>Builds one per click. Point at the worksheet on the table: every one of these is a box on it.</p>
+    <p class="say">"Not a tour of tools. Not a list of prompts. Three things you can photograph on your way out."</p>
+  </div>
+</section>
+
+<!-- 6 ..................................................................... -->
+<section class="slide on-light slide--agenda">
+  <h2>How the next forty minutes run</h2>
+  <div class="agenda">
+    <div class="now"><div class="min">5<small>min</small></div><div class="what">Why</div><div class="how">Same ingredients, different queue. The gap in the numbers.</div></div>
+    <div><div class="min">6<small>min</small></div><div class="what">The three calls</div><div class="how">Build on top. Keep. Change your mind on a schedule.</div></div>
+    <div><div class="min">6<small>min</small></div><div class="what">Luca's kitchen</div><div class="how">One real business: automated to the extreme, still in control.</div></div>
+    <div class="do" style="flex-grow: 2.6"><div class="min">20<small>min</small></div><div class="what">Your turn</div><div class="how">Three exercises on the worksheet, in pairs.</div>
+      <div class="sub"><span>X-ray<br>8:00</span><span>Build<br>8:00</span><span>Kill switch<br>4:00</span></div></div>
+    <div><div class="min">3<small>min</small></div><div class="what">Close</div><div class="how">Three takeaways and one sentence you photograph.</div></div>
+  </div>
+  <p class="prep"><b>Phones out</b> — you'll build on whatever assistant is on it. <b>Pens ready</b> — the worksheet is on your table. <b>Pair up</b> with someone you don't work with.</p>
+  <div class="s-notes">
+    <p><b>Thirty seconds.</b> The point of this slide is the yellow block: half the session is them working, not you talking.</p>
+    <p class="say">"I talk for seventeen minutes. You work for twenty. Find your partner now."</p>
+  </div>
+</section>
+
+<!-- 7 ..................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">1</span>
+  <h2>The three calls</h2>
+  <p class="lede">What to build on top. What to keep. How fast to change your mind.</p>
+  <p class="clock">Minutes 5–11</p>
+  <div class="s-notes"><p>Keep moving. This section is six minutes; the exercises need the time more than the theory does.</p></div>
+</section>
+
+<!-- 6 ..................................................................... -->
+<section class="slide on-light slide--calls">
+  <h2>Three calls separate the kitchen from the supplier</h2>
+  <div class="calls">
+    <div class="call">
+      <span class="q">Call 1</span>
+      <h3>Build on top, not beside</h3>
+      <p>Put AI inside a workflow you already run every week.</p>
+    </div>
+    <div class="call frag">
+      <span class="q">Call 2</span>
+      <h3>Know what you refuse to hand over</h3>
+      <p>AI drafts. A human decides where money, trust or your name is at stake.</p>
+    </div>
+    <div class="call frag">
+      <span class="q">Call 3</span>
+      <h3>Change your mind on a schedule</h3>
+      <p>Every automation gets an owner, a metric, and a review date.</p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>Builds one call per click.</b> One sentence each — the next three slides unpack them.</p>
+    <p class="say">"Automate to the extreme. Decide like an owner. Review like a scientist."</p>
+  </div>
+</section>
+
+<!-- 7 ..................................................................... -->
+<section class="slide on-light slide--duo">
+  <h2>Call 1 — a dishwasher in the garage saves nobody any time</h2>
+  <div class="duo">
+    <div class="card">
+      <span class="lbl">AI beside the work</span>
+      <h3>"Ask the chatbot when you remember"</h3>
+      <p>Copy, paste, copy back. Depends on who's curious. Nobody can say what it saved.</p>
+    </div>
+    <div class="card dark frag">
+      <span class="lbl">AI inside the work</span>
+      <h3>"Every inbound request gets a draft by 9:00"</h3>
+      <p>Same step, same input, same format, every time. You can count it, so you can improve it.</p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>The high-performer finding lives here.</b> McKinsey's high performers report redesigning workflows, not just adding tools.</p>
+    <p class="say">"A dishwasher in the garage is technically a dishwasher. It saves time only once it's plumbed into the kitchen."</p>
+    <p>Growth, not only efficiency: companies seeing the most value often set growth or innovation as goals too. Ask: "What could you now offer that you couldn't staff before?"</p>
+  </div>
+</section>
+
+<!-- 8 ..................................................................... -->
+<section class="slide on-light slide--levers">
+  <div>
+    <h2>Call 2 — autopilot flies the plane. The pilot owns the landing.</h2>
+    <p class="lede">Decide in advance where the human stays. Write it down, so nobody has to guess under pressure.</p>
+  </div>
+  <ul class="levers">
+    <li class="frag"><b>Decisions about money</b><span>Prices, refunds, discounts, credit, payroll.</span></li>
+    <li class="frag"><b>Relationships</b><span>The unhappy client, the key supplier, the hire.</span></li>
+    <li class="frag"><b>Your voice</b><span>Anything that carries your name to the outside world.</span></li>
+    <li class="frag"><b>Anything you can't undo</b><span>Sent, signed, paid, published, deleted.</span></li>
+  </ul>
+  <div class="s-notes">
+    <p><b>Builds four items.</b> Ask the room which one they'd add — you'll often hear "hiring" or "legal".</p>
+    <p>Key nuance: "keep human" doesn't mean "no AI". AI can prepare the refund decision; a person approves it. That's the Assist verdict in Exercise 1.</p>
+  </div>
+</section>
+
+<!-- 9 ..................................................................... -->
+<section class="slide on-light slide--loop">
+  <h2>Call 3 — treat every automation as an experiment</h2>
+  <div class="loop">
+    <div class="cell">
+      <span class="cl">Hypothesis</span>
+      <div class="cv">"This saves 3 hours a week"</div>
+      <p class="cs">Written down before you start, with one number.</p>
+    </div>
+    <span class="arw">→</span>
+    <div class="cell frag">
+      <span class="cl">Two-week test</span>
+      <div class="cv">One owner. One metric.</div>
+      <p class="cs">Small enough to fail cheaply. Real enough to learn from.</p>
+    </div>
+    <span class="arw frag">→</span>
+    <div class="cell win frag">
+      <span class="cl">Review date</span>
+      <div class="cv">Decide, on purpose</div>
+      <div class="outs"><span class="v-auto" style="color:#7fd6a6">Keep</span><span style="color:#ffd23f">Fix</span><span style="color:#ff9a86">Kill</span></div>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>Your research-chemist line goes here.</b></p>
+    <p class="say">"I started as a chemist. You never fall in love with the hypothesis. You run the experiment, read the result, and change your mind without drama."</p>
+    <p>The failure mode to name: automations that nobody owns keep running for a year after they stopped being useful.</p>
+  </div>
+</section>
+
+<!-- 10 .................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">2</span>
+  <h2>Luca's kitchen</h2>
+  <p class="lede">A real business from our community: automated to the extreme, still in control.</p>
+  <p class="clock">Minutes 11–17</p>
+  <div class="s-notes">
+    <p><b>If Luca is in the room, bring him up here</b> and interview him for 90 seconds using the five beats on the next slide. A live answer beats any slide.</p>
+  </div>
+</section>
+
+<!-- 11 .................................................................... -->
+<section class="slide on-light slide--story">
+  <span class="illus">Fill in before presenting</span>
+  <h2>Luca's story, told through the three calls</h2>
+  <ol class="story">
+    <li><span class="when">Before</span><b>The weekly pain</b><span class="todo">[Business, team size, and one number: hours a week, reply time, or missed leads]</span></li>
+    <li class="frag"><span class="when">Call 1</span><b>What he built in</b><span class="todo">[The workflow he automated, step by step]</span></li>
+    <li class="frag"><span class="when">Call 2</span><b>What he kept</b><span class="todo">[The step that stays human, and his reason]</span></li>
+    <li class="frag"><span class="when">Call 3</span><b>What he dropped</b><span class="todo">[Something he tried, measured, and changed or killed]</span></li>
+    <li class="frag hl"><span class="when">After</span><b>The result</b><span class="todo">[One number, plus what he does with the time now]</span></li>
+  </ol>
+  <div class="s-notes">
+    <p><b>Every dashed box is a placeholder. Replace them all and delete the red "Fill in" badge.</b></p>
+    <p>Interview questions if Luca is live: "What ate your week?" · "What did you hand to AI first?" · "What would you never hand over?" · "What did you switch off?" · "What changed in the numbers?"</p>
+  </div>
+</section>
+
+<!-- 12 .................................................................... -->
+<section class="slide on-light slide--flow">
+  <span class="illus">Illustrative — replace with Luca's flow</span>
+  <h2>Automated to the extreme, with one deliberate checkpoint</h2>
+  <div class="flow">
+    <div class="step"><span class="who v-auto">AI</span><h3>Request arrives</h3><p>Email, form, or chat — collected in one place.</p></div>
+    <div class="step frag"><span class="who v-auto">AI</span><h3>Sort and enrich</h3><p>Type, urgency, customer history attached.</p></div>
+    <div class="step assist frag"><span class="who v-assist">AI drafts</span><h3>Draft the reply</h3><p>In house tone, with a confidence flag.</p></div>
+    <div class="step human frag"><span class="who v-human">Human</span><h3>Approve or edit</h3><p>Ten seconds when it's right. Full attention when it's flagged.</p></div>
+    <div class="step frag"><span class="who v-auto">AI</span><h3>Send and log</h3><p>Tracked, so the review date has data.</p></div>
+  </div>
+  <p class="kq frag">Four steps run themselves. <span class="mark">The one that carries his name doesn't.</span></p>
+  <div class="s-notes">
+    <p><b>This is a generic reference pattern, clearly labelled.</b> Swap the step names for Luca's real ones, keep the colour coding.</p>
+    <p>Point at the coral step: "This is Call 2 made concrete. That box is why he sleeps at night."</p>
+  </div>
+</section>
+
+<!-- 13 .................................................................... -->
+<section class="slide on-dark slide--section">
+  <span class="num">3</span>
+  <h2>Your turn</h2>
+  <p class="lede">Three exercises, twenty minutes. You leave with a working helper and a date to review it.</p>
+  <p class="clock">Minutes 17–37</p>
+  <div class="s-notes">
+    <p><b>Worksheets are already on the tables</b> (handout.html, printed double-sided) and pairs were formed at slide 8. Check nobody is sitting alone, then press X on the next slide.</p>
+  </div>
+</section>
+
+<!-- 14 .................................................................... -->
+<section class="slide on-dark slide--exercise" data-timer="480">
+  <div>
+    <span class="tag">Exercise 1 of 3</span>
+    <h2>Workflow X-ray</h2>
+    <p class="lede">Find one real candidate in your own week.</p>
+    <ol class="steps">
+      <li><span>Pick a process you run <b>every week</b>. Keep it small.<em>"Follow-up after a sales call", not "sales".</em></span></li>
+      <li><span>Write it as 5–8 steps on the worksheet.</span></li>
+      <li><span>Score each step 1–3: repetitive, needs judgment, cost of a mistake.</span></li>
+      <li><span>Swap sheets. Your partner challenges one verdict.</span></li>
+    </ol>
+  </div>
+  <div class="tpanel">
+    <span class="tl">Time left</span>
+    <div class="xtimer">8:00</div>
+    <span class="keys">X start / pause · R reset</span>
+    <p class="split"><b>0:00–3:00</b> solo<br><b>3:00–7:00</b> pairs<br><b>7:00–8:00</b> two shares</p>
+  </div>
+  <div class="s-notes">
+    <p><b>Press X to start the countdown.</b> Walk the room. You'll see two failure modes:</p>
+    <p>1) Process too big ("marketing"). Push to one repeating task. 2) Everything marked "needs judgment". Ask: "Would a sharp intern with a checklist get this 80% right?"</p>
+    <p>At 7:00, ask two people to read out their top Automate step. Write them on a flipchart — you'll reuse them in Exercise 2.</p>
+  </div>
+</section>
+
+<!-- 15 .................................................................... -->
+<section class="slide on-light slide--sheet">
+  <h2>How the scores turn into a verdict</h2>
+  <table class="xray">
+    <thead><tr><th>Step (example: after a sales call)</th><th>Repetitive</th><th>Needs judgment</th><th>Cost of a mistake</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Write up the call notes</td><td class="n">3</td><td class="n">1</td><td class="n">1</td><td class="v v-auto">Automate</td></tr>
+      <tr class="frag"><td>Draft the follow-up email</td><td class="n">3</td><td class="n">2</td><td class="n">2</td><td class="v v-assist">Assist</td></tr>
+      <tr class="frag"><td>Update the CRM record</td><td class="n">3</td><td class="n">1</td><td class="n">1</td><td class="v v-auto">Automate</td></tr>
+      <tr class="frag"><td>Decide the discount to offer</td><td class="n">2</td><td class="n">3</td><td class="n">3</td><td class="v v-human">Keep human</td></tr>
+    </tbody>
+  </table>
+  <p class="foot">Rule of thumb: high repetition and low judgment → automate. High repetition, real judgment → AI drafts, you decide. High cost of a mistake or a relationship on the line → keep human.</p>
+  <div class="s-notes">
+    <p><b>Show this slide before starting the timer if the room looks unsure</b>, or after as the debrief. It's the same content as the worksheet's rule box.</p>
+  </div>
+</section>
+
+<!-- 16 .................................................................... -->
+<section class="slide on-light slide--aha">
+  <h2>One customer email. Two briefs.</h2>
+  <blockquote class="inbound"><span class="from">Inbound, Tuesday 08:57</span>"Third time my order is late. I want a full refund and I'm posting a review tonight."</blockquote>
+  <div class="two">
+    <div class="side bad">
+      <div class="brief"><span class="lbl">The brief</span>Reply to customer emails. Be helpful and friendly.</div>
+      <p class="out">Hi Mark, I'm so sorry — you're completely right. I've issued a <mark>full refund</mark> and added a <mark>20% code</mark> for your next order. Thanks for your patience!</p>
+      <p class="verdict">Sent 09:02. Nobody read it. A refund and a discount nobody approved.</p>
+    </div>
+    <div class="side good frag">
+      <div class="brief"><span class="lbl">The brief</span>Reply to customer emails. Be helpful and friendly. <b>If unsure, reply "NEEDS HUMAN" and say why.</b></div>
+      <p class="out"><b>NEEDS HUMAN.</b> The customer is asking for a refund and threatening a public review. That's a decision for you, not for me.</p>
+      <p class="verdict">Nothing left the building. <b>It landed in your inbox at 09:02 instead.</b></p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>The a-ha.</b> Read the email aloud. Show the left card and let it sit — someone will wince at "full refund". Then one click for the right card. Don't explain it yet; the next slide does.</p>
+    <p class="say">"Same model. Same email. Read the two briefs again. Find the difference."</p>
+    <p><b>Before the event:</b> run both briefs on your own assistant with this email and screenshot the results. If your outputs differ from the slide, put your real ones on it — "I ran this last night" is worth more than a tidy example.</p>
+  </div>
+</section>
+
+<section class="slide on-dark slide--claim">
+  <p>Same model. Same email. <span class="mark">One line</span> you wrote.</p>
+  <p class="after frag">That's the whole trick. Automate harder than feels comfortable — and write down, in the brief, where it has to stop and come back to you.</p>
+  <div class="s-notes">
+    <p>Pause on the first line. Then click. This is where the room understands that "keep human" is not a brake, it's the thing that lets them press the accelerator.</p>
+    <p>The template on the next slide shows where that line lives in the brief. Slide 24 returns to it after they've made it fire on their own phone.</p>
+  </div>
+</section>
+
+<section class="slide on-light slide--code">
+  <div>
+    <h2>Exercise 2 — brief it like a new hire, not a search box</h2>
+    <ul class="anat">
+      <li class="frag"><b>Role and task</b>Who it is and what it produces, every single time.</li>
+      <li class="frag"><b>Rules</b>Tone, must-dos, never-dos. Your Call 2 list goes here.</li>
+      <li class="frag"><b>The exit</b>The highlighted line. It's how you automate hard and stay in control.</li>
+    </ul>
+  </div>
+  <div class="codewrap"><pre><span class="k">ROLE</span>
+You are the <span class="f">[job title]</span> for <span class="f">[company]</span>,
+a <span class="f">[one-line description]</span>.
+
+<span class="k">TASK</span>
+Each time I give you <span class="f">[a customer email]</span>,
+produce <span class="f">[a reply draft]</span>.
+
+<span class="k">RULES</span>
+- Tone: <span class="f">[warm, direct, no jargon]</span>
+- Always: <span class="f">[give a delivery time]</span>
+- Never: <span class="f">[promise refunds or quote prices]</span>
+<span class="hl">- If unsure, reply "NEEDS HUMAN" and say why.</span>
+
+<span class="k">FORMAT</span>
+<span class="f">[Subject line, then at most 120 words]</span>
+
+<span class="k">EXAMPLE OF A GOOD ANSWER</span>
+<span class="f">[paste one you'd happily send]</span></pre></div>
+  <div class="s-notes">
+    <p><b>The template is on page 2 of the handout</b>, so nobody has to copy it from the screen.</p>
+    <p class="say">"You wouldn't hand a new hire a sticky note that says 'do emails'. Don't do it to the AI either."</p>
+  </div>
+</section>
+
+<!-- 17 .................................................................... -->
+<section class="slide on-dark slide--exercise" data-timer="480">
+  <div>
+    <span class="tag">Exercise 2 of 3</span>
+    <h2>Build a teammate, live</h2>
+    <p class="lede">Take your top Automate or Assist step. Use whatever assistant is on your phone.</p>
+    <ol class="steps">
+      <li><span>Fill in the template for that one step.</span></li>
+      <li><span>Run it on a real example.</span></li>
+      <li><span>Your partner attacks it: angry customer, missing detail, a request that breaks a rule. Does it say <b>NEEDS HUMAN</b>?</span></li>
+      <li><span>Fix one rule. Run it again.</span></li>
+    </ol>
+    <p class="warn">Remove names, emails, amounts and anything confidential before you paste. Invent the details if you need to.</p>
+  </div>
+  <div class="tpanel">
+    <span class="tl">Time left</span>
+    <div class="xtimer">8:00</div>
+    <span class="keys">X start / pause · R reset</span>
+    <p class="split"><b>0:00–3:00</b> write the brief<br><b>3:00–5:00</b> first run<br><b>5:00–7:00</b> partner attacks<br><b>7:00–8:00</b> show of hands</p>
+  </div>
+  <div class="s-notes">
+    <p><b>Say the data warning out loud before you press X.</b> Consumer chat apps may keep what's pasted into them.</p>
+    <p><b>Have your own backup run ready on your laptop</b> (an invented customer complaint, before and after). If the Wi-Fi fails, run it on screen and let pairs critique it instead.</p>
+    <p>At 7:00: "Hands up if you'd send the output with light edits." Then: "Hands up if yours said NEEDS HUMAN at least once." Celebrate the second group — that's the control working.</p>
+  </div>
+</section>
+
+<!-- 18 .................................................................... -->
+<section class="slide on-light slide--claim">
+  <p>"NEEDS HUMAN" is <span class="mark">your control point, in one line of text.</span></p>
+  <p class="after">It lets you automate far more than feels comfortable, because the risky cases come back to you instead of going out the door.</p>
+  <div class="s-notes">
+    <p><b>This is the thesis of the workshop. Say it slowly.</b></p>
+    <p>Link back to Luca's coral box on slide 16.</p>
+  </div>
+</section>
+
+<!-- 19 .................................................................... -->
+<section class="slide on-dark slide--exercise" data-timer="240">
+  <div>
+    <span class="tag">Exercise 3 of 3</span>
+    <h2>Install the kill switch</h2>
+    <p class="lede">Decide now how you'll decide later.</p>
+    <div class="card-slip" style="margin-top:44px">
+      <h3>Kill switch card</h3>
+      <dl>
+        <dt>Owner</dt><dd>who checks it every week</dd>
+        <dt>Success looks like</dt><dd>e.g. 7 in 10 drafts sent with light edits</dd>
+        <dt>Stop signal</dt><dd>e.g. one wrong promise reaches a customer</dd>
+        <dt>Review date</dt><dd>no more than two weeks from today</dd>
+        <dt>If it fails</dt><dd>fix the rules · downgrade to Assist · switch off</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="tpanel">
+    <span class="tl">Time left</span>
+    <div class="xtimer">4:00</div>
+    <span class="keys">X start / pause · R reset</span>
+    <p class="split">Solo. Put the review date in your calendar <b>before</b> the timer ends.</p>
+  </div>
+  <div class="s-notes">
+    <p><b>Four minutes, solo.</b> The calendar entry is the real output — ask people to show you their phone as you walk past.</p>
+    <p>If you're behind schedule, cut this to two minutes: owner and review date only.</p>
+  </div>
+</section>
+
+<!-- 20 .................................................................... -->
+<section class="slide on-light slide--take">
+  <h2>What to take back to your kitchen</h2>
+  <ul class="take">
+    <li><b>Same ingredients, different recipe</b><span>The advantage comes from the workflow you build around AI, not the tool you picked.</span></li>
+    <li class="frag"><b>Automate the repetitive, keep the judgment</b><span>Every helper needs a "NEEDS HUMAN" exit.</span></li>
+    <li class="frag"><b>Review in two weeks, not two quarters</b><span>A fast "no" is worth more than a slow "maybe".</span></li>
+  </ul>
+  <div class="s-notes"><p><b>Minute 37.</b> One line per takeaway. Don't re-teach.</p></div>
+</section>
+
+<!-- 21 .................................................................... -->
+<section class="slide on-dark slide--cta">
+  <div>
+    <h2>Don't ask which AI they use. Ask what they refused to hand over.</h2>
+    <div class="commit">In the next 30 days I will put <u></u> into <u></u>, and review it on <u></u>.</div>
+    <ul class="links">
+      <li>Slides and worksheet: <a href="https://ams0.github.io/talks/ai-advantage/">ams0.github.io/talks/ai-advantage</a></li>
+      <li>Printable handout: <a href="handout.html">ai-advantage/handout.html</a></li>
+    </ul>
+  </div>
+  <div class="me-col">
+    <img class="portrait" src="alessandro-vozza.jpg" alt="Alessandro Vozza">
+    <span class="who">Alessandro Vozza</span>
+    <span class="role">Lovelace Engineering<br>Golden Kubestronaut<br>Amsterdam · @ams0</span>
+  </div>
+  <div class="s-notes">
+    <p><b>Ask everyone to fill in the commitment sentence (bottom of the handout) and photograph it.</b></p>
+    <p class="say">"Next time you look at a competitor, don't ask which AI they use. Ask what they refused to hand over — and how fast they change their mind."</p>
+    <p>Leave this slide up for Q&amp;A. Replace the links with a QR code before the event.</p>
+  </div>
+</section>
+
+<!-- 22 .................................................................... -->
+<section class="slide on-light slide--srcs">
+  <div class="ref"><span class="ref-n">Backup</span><span>Sources</span></div>
+  <h2>Sources</h2>
+  <ul class="srcs">
+    <li><b>McKinsey &amp; Company, The State of AI in 2025: Agents, innovation, and transformation (November 2025)</b>88% of organisations use AI in at least one business function (78% the year before). Nearly two-thirds have not yet begun scaling AI across the enterprise. 39% attribute any level of EBIT impact to AI, most of them under 5%.</li>
+    <li><b>Same report — high performers</b>About 6% of respondents: 5%+ of EBIT attributable to AI plus "significant" value. They report redesigning workflows, scaling faster and investing more, and often set growth or innovation as objectives alongside efficiency.</li>
+    <li><b>Same report — agents</b>62% of organisations are at least experimenting with AI agents.</li>
+    <li><b>Luca case study</b>Community member. Figures supplied by Luca — confirm permission to name him before presenting.</li>
+  </ul>
+  <div class="s-notes">
+    <p><b>Backup slide — press End if someone asks where a number came from.</b> Every figure spoken in the session is here. If you add one, add its source in the same commit.</p>
+  </div>
+</section>
+
+</main>
+
+<div id="help">N notes · T timer · X exercise countdown · F fullscreen · P print</div>
+
+<div id="notes">
+  <h4><span>Speaker notes</span><span id="nslide"></span><span class="clock" id="clock">timer stopped — press T</span></h4>
+  <div id="nbody"></div>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length, idx = 0;
+  var prog = document.getElementById('progress');
+  var notes = document.getElementById('notes'), nbody = document.getElementById('nbody'), nslide = document.getElementById('nslide');
+  var clock = document.getElementById('clock');
+  var helpEl = document.getElementById('help');
+  var booted = false;
+
+  /* Footer rule with the page number added at runtime, so numbers never drift. */
+  slides.forEach(function (s, i) {
+    if (s.classList.contains('slide--title') || s.classList.contains('slide--cta')) return;
+    var f = s.querySelector('.ref');
+    if (!f) {
+      f = document.createElement('div');
+      f.className = 'ref';
+      var num = s.querySelector('.num'), head = s.querySelector('h2');
+      f.innerHTML = (s.classList.contains('slide--section') && num && head)
+        ? '<span class="ref-n">Part ' + num.textContent.trim() + '</span><span>' + head.textContent.trim() + '</span>'
+        : '<span>Turning AI into your advantage</span>';
+      s.appendChild(f);
+    }
+    var right = document.createElement('span');
+    right.className = 'ref-right';
+    right.innerHTML = '<span class="ref-pg">' + (i + 1) + '</span>';
+    f.appendChild(right);
+  });
+
+  setTimeout(function () { helpEl.classList.add('gone'); }, 8000);
+
+  /* Step-through reveal: items with class="frag" appear one click at a time. */
+  var step = 0;
+  function frags(i) { return slides[i].querySelectorAll('.frag'); }
+  function applyStep() {
+    var f = frags(idx);
+    for (var i = 0; i < f.length; i++) f[i].classList.toggle('on', i < step);
+  }
+
+  /* Exercise countdown. Each slide with data-timer keeps its own state,
+     so leaving an exercise slide mid-countdown doesn't reset it. */
+  var timers = {};
+  function fmt(s) { var m = Math.floor(s / 60); return m + ':' + String(s % 60).padStart(2, '0'); }
+  function tstate(i) {
+    var s = slides[i], secs = parseInt(s.getAttribute('data-timer') || '0', 10);
+    if (!secs) return null;
+    if (!timers[i]) timers[i] = { total: secs, left: secs, running: false, last: 0, el: s.querySelector('.xtimer') };
+    return timers[i];
+  }
+  function paint(t) {
+    if (!t || !t.el) return;
+    t.el.textContent = fmt(Math.max(0, Math.ceil(t.left)));
+    t.el.classList.toggle('running', t.running);
+    t.el.classList.toggle('done', t.left <= 0);
+  }
+  function toggleTimer() {
+    var t = tstate(idx); if (!t) return;
+    if (t.left <= 0) return;
+    t.running = !t.running; t.last = Date.now(); paint(t);
+  }
+  function resetTimer() {
+    var t = tstate(idx); if (!t) return;
+    t.running = false; t.left = t.total; paint(t);
+  }
+  setInterval(function () {
+    var now = Date.now();
+    Object.keys(timers).forEach(function (k) {
+      var t = timers[k];
+      if (!t.running) return;
+      t.left -= (now - t.last) / 1000; t.last = now;
+      if (t.left <= 0) { t.left = 0; t.running = false; }
+      paint(t);
+    });
+  }, 250);
+  document.querySelectorAll('.xtimer').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.stopPropagation(); toggleTimer(); });
+  });
+
+  function show(n, atEnd) {
+    idx = Math.max(0, Math.min(total - 1, n));
+    if (booted) helpEl.classList.add('gone');
+    for (var i = 0; i < total; i++) slides[i].classList.toggle('is-active', i === idx);
+    prog.style.width = ((idx + 1) / total * 100) + '%';
+    var s = slides[idx].querySelector('.s-notes');
+    nbody.innerHTML = s ? s.innerHTML : '<p style="color:#8e9aa6">No notes for this slide.</p>';
+    nslide.textContent = 'slide ' + (idx + 1) + ' of ' + total;
+    step = atEnd ? frags(idx).length : 0;
+    applyStep();
+    paint(tstate(idx));
+    try { sessionStorage.setItem('aa-slide', idx); } catch (e) {}
+  }
+  function next() {
+    if (step < frags(idx).length) { step++; applyStep(); if (booted) helpEl.classList.add('gone'); return; }
+    show(idx + 1);
+  }
+  function prev() {
+    if (step > 0) { step--; applyStep(); return; }
+    show(idx - 1, true);
+  }
+
+  /* Presenter clock: 40-minute session. */
+  var start = 0, running = false;
+  function tick() {
+    if (!running) return;
+    var s = Math.floor((Date.now() - start) / 1000), m = Math.floor(s / 60);
+    clock.textContent = 'elapsed ' + fmt(s) + (m >= 40 ? '  ·  over time' : m >= 37 ? '  ·  closing now' : '  ·  target 40:00');
+  }
+  setInterval(tick, 1000);
+
+  function rescale() {
+    var pad = notes.classList.contains('on') ? 0.62 : 1;
+    var sc = Math.min(window.innerWidth / 1920, (window.innerHeight * pad) / 1080);
+    document.documentElement.style.setProperty('--scale', sc);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    switch (e.key) {
+      case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'ArrowDown': e.preventDefault(); show(idx + 1); break;
+      case 'ArrowUp': e.preventDefault(); show(idx - 1, true); break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(total - 1); break;
+      case 'n': case 'N': e.preventDefault(); notes.classList.toggle('on'); rescale(); break;
+      case 'x': case 'X': e.preventDefault(); toggleTimer(); break;
+      case 'r': case 'R': e.preventDefault(); resetTimer(); break;
+      case 't': case 'T':
+        e.preventDefault();
+        if (!running) { start = Date.now(); running = true; tick(); }
+        else { running = false; clock.textContent = 'timer stopped — press T'; }
+        break;
+      case 'f': case 'F':
+        e.preventDefault();
+        if (!document.fullscreenElement) { if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); }
+        else document.exitFullscreen();
+        break;
+      case 'p': case 'P': e.preventDefault(); window.print(); break;
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a, button, input, textarea, #notes, .xtimer')) return;
+    next();
+  });
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) { if (dx < 0) next(); else prev(); }
+    tx = null;
+  });
+
+  window.addEventListener('resize', rescale);
+  rescale();
+  var saved = 0;
+  try { saved = parseInt(sessionStorage.getItem('aa-slide') || '0', 10) || 0; } catch (e) {}
+  show(saved >= 0 && saved < total ? saved : 0);
+  booted = true;
+})();
+</script>
+
+</body>
+</html>
