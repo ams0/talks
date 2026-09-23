@@ -76,15 +76,18 @@ days."* Wait. *"Keep them up if you've tested it."* Most hands in this room belo
 than run it, so the second question lands harder. "Anywhere else we'd call that an untested disaster recovery
 plan."
 
-**3 · I quit Microsoft to build this in Europe. ★new** Thirty-five seconds, and resist making it longer. **This
-is not a bio** — the bio is on the last slide with your face on it. It does three jobs: you have stood on both
-sides, the VOLT disclosure happens at the front instead of halfway through, and the thesis that follows becomes
-personal rather than academic.
-"One thing about me before I show you a single number, because it changes how you should listen to the rest. I
-spent years at Microsoft, selling the thing I am about to spend twenty minutes taking apart. And I left, and I
-came to VOLT, to build AI infrastructure in Europe — because I think this continent should be able to run its
-own, and because I would rather build that than sell around it. So I am not a neutral analyst, and you should
-not listen to me as if I were."
+**3 · I quit a big American hyperscaler to build Europe's own. ★new** Thirty-five seconds, and resist making it
+longer. **This is not a bio** — the bio is on the last slide with your face on it. It does three jobs: you have
+stood on both sides, your affiliation lands at the front instead of halfway through, and the thesis that follows
+becomes personal rather than academic.
+**The slide names neither company on purpose**, so it travels to any room and does not read as a swipe at a
+former employer. Both names are on the title byline and in the programme anyway, so the room has them either
+way. Decide on stage how specific to be:
+"I spent years inside one of the big American hyperscalers, selling the thing I am about to spend twenty minutes
+taking apart. Then I left, to go and build sovereign AI gigafactories here instead — because I think this
+continent should be able to run its own, and because I would rather build that than sell around it. So I am not
+a neutral analyst, and you should not listen to me as if I were."
+Swap in "at Microsoft" and "and I came to VOLT" if the room is right for it.
 Then the tail line, which hands off to the thesis: **"I did not change my mind about the technology. I changed
 my mind about who should be holding it."** Say the number of years out loud; the slide deliberately does not, so
 it survives being given again. No titles, no products, no customer names — the moment it becomes a CV it stops
