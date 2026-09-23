@@ -109,7 +109,9 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
 }
 
 /* ---------- corner icon, one per slide ---------- */
-.slidemark { position: absolute; top: 50px; right: 74px; width: 96px; height: 96px; z-index: 3; }
+.slidemark { position: absolute; top: 46px; right: 70px; width: 128px; height: 128px; z-index: 3; }
+.slidemark--xl { top: 38px; right: 58px; width: 208px; height: 208px; }
+.slidemark--inline { position: static; width: 104px; height: 104px; flex: none; }
 /* keep wide headings clear of the corner icon */
 .slide--arch h2, .slide--curve h2, .slide--table h2, .slide--srcs h2,
 .slide--bars h2, .slide--stack h2, .slide--timeline h2 { max-width: 1690px; }
@@ -219,7 +221,8 @@ h1, h2, .slide--claim p, .slide--hook p, .slide--proverb blockquote, .slide--quo
   display: grid; place-items: center; padding: 140px 120px 190px; text-align: center;
 }
 .slide--hook p { font-family: var(--f-display); font-size: 89px; line-height: 1.06; font-weight: 800; max-width: 20ch; letter-spacing: -0.01em; }
-.slide--hook .sub { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.78; margin-top: 54px; white-space: nowrap; }
+.slide--hook .sub { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.78; white-space: nowrap; max-width: none; }
+.slide--hook .subrow { display: flex; align-items: center; justify-content: center; gap: 34px; margin-top: 50px; }
 
 /* ---------- session rules / housekeeping ---------- */
 .slide--rules { padding: 140px 130px 136px; display: grid; grid-template-columns: 1fr 460px; gap: 92px; align-items: center; }
@@ -284,7 +287,7 @@ h1, h2, .slide--claim p, .slide--hook p, .slide--proverb blockquote, .slide--quo
 
 /* ---------- before / after ---------- */
 .slide--ba { padding: 160px 130px 150px; display: flex; flex-direction: column; justify-content: center; }
-.slide--ba h2 { font-family: var(--f-display); font-size: 64px; font-weight: 800; margin-bottom: 56px; }
+.slide--ba h2 { font-family: var(--f-display); font-size: 58px; font-weight: 800; margin-bottom: 52px; }
 .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 .ba-col { padding: 48px 46px; border-radius: 4px; }
 .ba-col.old { background: var(--surface-muted); }
@@ -793,8 +796,10 @@ tr.frag { transform: none; }
 <!-- 2 ..................................................................... -->
 <section class="slide slide--hook">
   <p>Could you move your AI workloads to another provider in ninety days?</p>
-  <p class="sub">Show of hands — then keep them up if you've tested it</p>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A raised hand."><path d="M40 64V38a7 7 0 0 1 14 0V32a7 7 0 0 1 14 0v4a7 7 0 0 1 14 0v34c0 18-13 32-31 32-12 0-20-6-26-16L22 68a8 8 0 0 1 12-10Z"/></svg></div>
+  <div class="subrow">
+    <p class="sub">Show of hands — then keep them up if you've tested it</p>
+    <div class="slidemark slidemark--inline"><svg viewBox="0 0 120 120" role="img" aria-label="A raised hand."><path d="M40 64V38a7 7 0 0 1 14 0V32a7 7 0 0 1 14 0v4a7 7 0 0 1 14 0v34c0 18-13 32-31 32-12 0-20-6-26-16L22 68a8 8 0 0 1 12-10Z"/></svg></div>
+  </div>
   <div class="s-notes">
     <p><b>Do the show of hands. Wait for it.</b> Roughly a third go up on the first question; almost none stay up on the second. That gap is the talk. This is a summit room — students, founders, executives, a few engineers — so most hands belong to people who <i>buy</i> AI rather than run it. That makes the second question land harder, not softer.</p>
     <p class="say">"Right. So most of us believe we could. Almost none of us have proved it. In every other part of the business we'd call that an untested disaster recovery plan."</p>
@@ -812,7 +817,7 @@ tr.frag { transform: none; }
     <li><b>Why say it now</b><span>Because I am not neutral, and you deserve to know that before the evidence rather than in the small print at the end.</span></li>
   </ul>
   <p class="tail">I did not change my mind about the technology. <em>I changed my mind about who should be holding it.</em></p>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A doorway with an arrow leaving it."><path d="M30 20h34v80H30"/><path d="M52 60h50M88 46l14 14-14 14"/></svg></div>
+  <div class="slidemark slidemark--xl"><svg viewBox="0 0 120 120" role="img" aria-label="A doorway with an arrow leaving it."><path d="M30 20h34v80H30"/><path d="M52 60h50M88 46l14 14-14 14"/></svg></div>
   <div class="s-notes">
     <p><b>Thirty-five seconds, and resist every temptation to make it longer.</b> This is not a bio — the bio is on the last slide with your face on it. This slide does three jobs and then gets out of the way: it says you have stood on both sides, it puts your affiliation at the front of the talk instead of halfway through, and it makes the next slide personal rather than academic.</p>
     <p><b>The slide names neither company on purpose.</b> It travels to any room, it does not read as a swipe at a former employer, and both names are already on the title byline and in the programme — so the room has them either way. <b>You decide on stage how specific to be.</b></p>
@@ -831,7 +836,7 @@ tr.frag { transform: none; }
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
   <cite>The thesis of this talk</cite>
   <p class="xref"><b>Next door, just now</b><span><em>Sovereign by Design: three blueprints for AI that can't leave the building</em> — Gjorgji Dimitrov, AI Labs, 11:25. Managed API, private endpoints, self-hosted weights: three good architectures. <b>This talk adds the question that picks between them — which court can compel this?</b></span></p>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A payment card."><rect x="16" y="34" width="88" height="56" rx="9"/><path d="M16 54h88"/><path d="M32 74h22"/></svg></div>
+  <div class="slidemark slidemark--xl"><svg viewBox="0 0 120 120" role="img" aria-label="A payment card."><rect x="16" y="34" width="88" height="56" rx="9"/><path d="M16 54h88"/><path d="M32 74h22"/></svg></div>
   <div class="s-notes">
     <p><b>Say the cross-reference first, in one breath, then the slide.</b> The AI Labs session that just finished next door covered three sovereign architectures for the same problem; some of that room is walking into this one. Crediting it costs three seconds and converts a competing session into your warm-up act.</p>
     <p class="say">"If you were next door just now, you saw three blueprints. They are all good. I want to add the question that picks between them — and it is not a technical question."</p>
@@ -845,7 +850,7 @@ tr.frag { transform: none; }
   <span class="num">01</span>
   <h2>The ground moved</h2>
   <p class="lede">Four things changed between your last AI budget cycle and this one. None of them were announced by your vendor.</p>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A ground line stepping down."><path d="M12 44h44v32h52"/><path d="M56 44v32"/><circle cx="56" cy="60" r="4" class="solid"/></svg></div>
+  <div class="slidemark slidemark--xl"><svg viewBox="0 0 120 120" role="img" aria-label="A ground line stepping down."><path d="M12 44h44v32h52"/><path d="M56 44v32"/><circle cx="56" cy="60" r="4" class="solid"/></svg></div>
   <div class="s-notes"><p>Section is ~6 min now that the three regulation slides sit inside it. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet. This room is not in the EU, so the payload of the section is slide 9, and the three regulation slides after it name the rules one at a time.</p></div>
 </section>
 
@@ -874,7 +879,7 @@ tr.frag { transform: none; }
   </div>
   <p class="kq"><b>The plateau is the uncomfortable part.</b> Three years of sovereignty debate, a €74bn market growing 24% a year, and the European share has not moved off 15%. Rhetoric did not shift a single point of it.</p>
   <p class="foot">Synergy Research Group, July 2025 · European cloud infrastructure services, share of the European market</p>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A trend arrow falling to the right."><path d="M14 32l32 32 20-20 40 40"/><path d="M106 60v24H82"/></svg></div>
+  <div class="slidemark slidemark--xl"><svg viewBox="0 0 120 120" role="img" aria-label="A trend arrow falling to the right."><path d="M14 32l32 32 20-20 40 40"/><path d="M106 60v24H82"/></svg></div>
   <div class="s-notes">
     <p>Forty-five seconds. This is the baseline the whole talk sits on, and it is the slide that makes the room uncomfortable in the right way. Do not editorialise — the two numbers do it.</p>
     <p class="say">"Before anything else, here is where we are. In 2017 European providers had twenty-nine percent of their own market. Today it's fifteen, and it has been fifteen for three years. The market grew sixfold in that time — the share halved."</p>
@@ -890,7 +895,7 @@ tr.frag { transform: none; }
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
   <cite><b>Anton Carniaux</b>, Director of Public &amp; Legal Affairs, Microsoft France — under oath, French Senate inquiry into digital sovereignty, 21 July 2025. Microsoft's technical director added that a <i>contractual</i> guarantee keeps EU customer data in the EU. A contract is not a jurisdiction.</cite>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A flag divided into three vertical bands."><path d="M14 18v88"/><rect x="14" y="26" width="84" height="56" rx="4"/><path d="M42 26v56M70 26v56"/><rect x="16" y="28" width="24" height="52" class="solid"/></svg></div>
+  <div class="slidemark slidemark--xl"><svg viewBox="0 0 120 120" role="img" aria-label="A flag divided into three vertical bands."><path d="M14 18v88"/><rect x="14" y="26" width="84" height="56" rx="4"/><path d="M42 26v56M70 26v56"/><rect x="16" y="28" width="24" height="52" class="solid"/></svg></div>
   <div class="s-notes">
     <p><b>The single most useful slide in the deck for this audience.</b> It is not an activist claim — it's sworn testimony from the vendor most of this room already buys from.</p>
     <p>Be scrupulously fair: he also said it had never actually happened, and Microsoft has since strengthened its EU Data Boundary. The point is not that Microsoft is untrustworthy. The point is <b>structural</b>: no US-parented company can contract its way out of the CLOUD Act.</p>
@@ -908,7 +913,7 @@ tr.frag { transform: none; }
     <li><span class="date">29 JUN 2026</span><b>Trump v. Slaughter</b><p>US Supreme Court removes for-cause protection for FTC commissioners — the independence the adequacy decision relied on.</p></li>
     <li><span class="date">31 JUL 2026</span><b>EDPB writes to the Commission</b><p>Asks it to assess whether the FTC can still uphold Data Privacy Framework commitments. A review, not a revocation — yet.</p></li>
   </ol>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A calendar with four marked days."><rect x="16" y="28" width="88" height="74" rx="9"/><path d="M16 50h88M40 18v18M80 18v18"/><circle cx="40" cy="68" r="4.5" class="solid"/><circle cx="60" cy="68" r="4.5" class="solid"/><circle cx="80" cy="68" r="4.5" class="solid"/><circle cx="40" cy="87" r="4.5" class="solid"/></svg></div>
+  <div class="slidemark slidemark--xl"><svg viewBox="0 0 120 120" role="img" aria-label="A calendar with four marked days."><rect x="16" y="28" width="88" height="74" rx="9"/><path d="M16 50h88M40 18v18M80 18v18"/><circle cx="40" cy="68" r="4.5" class="solid"/><circle cx="60" cy="68" r="4.5" class="solid"/><circle cx="80" cy="68" r="4.5" class="solid"/><circle cx="40" cy="87" r="4.5" class="solid"/></svg></div>
   <div class="s-notes">
     <p>Walk it left to right in about 90 seconds. The arc: <b>the vendor admitted it → the vendors responded to it → the legal ground under the response moved anyway.</b></p>
     <p>On AWS: this is genuinely a serious offer, and note what it concedes. €7.8bn is not a marketing budget. If sovereignty were a fringe European anxiety, they would not have built a separate legal entity for it.</p>
@@ -929,7 +934,7 @@ tr.frag { transform: none; }
     <li><b>The rest is on the accession path</b><span>SMART/MK 2030 makes AI a priority; the Council of Europe AI Convention was signed on 8 May 2026; the AI Act and the three that follow are acquis you align with before you join.</span></li>
   </ul>
   <p class="kq"><b>The practical reading:</b> a Macedonian company serving EU customers has the same deadline as a Dutch one — and, until accession, less say over the rules. An argument for owning the architecture, not for waiting.</p>
-  <div class="slidemark"><svg viewBox="0 0 120 120" role="img" aria-label="A flag with a ring of twelve stars."><path d="M12 18v88"/><rect x="12" y="26" width="90" height="60" rx="4"/><circle cx="78.0" cy="56.0" r="3.4" class="solid"/><circle cx="75.2" cy="66.5" r="3.4" class="solid"/><circle cx="67.5" cy="74.2" r="3.4" class="solid"/><circle cx="57.0" cy="77.0" r="3.4" class="solid"/><circle cx="46.5" cy="74.2" r="3.4" class="solid"/><circle cx="38.8" cy="66.5" r="3.4" class="solid"/><circle cx="36.0" cy="56.0" r="3.4" class="solid"/><circle cx="38.8" cy="45.5" r="3.4" class="solid"/><circle cx="46.5" cy="37.8" r="3.4" class="solid"/><circle cx="57.0" cy="35.0" r="3.4" class="solid"/><circle cx="67.5" cy="37.8" r="3.4" class="solid"/><circle cx="75.2" cy="45.5" r="3.4" class="solid"/></svg></div>
+  <div class="slidemark slidemark--xl"><svg viewBox="0 0 120 120" role="img" aria-label="A flag with a ring of twelve stars."><path d="M12 18v88"/><rect x="12" y="26" width="90" height="60" rx="4"/><circle cx="78.0" cy="56.0" r="3.4" class="solid"/><circle cx="75.2" cy="66.5" r="3.4" class="solid"/><circle cx="67.5" cy="74.2" r="3.4" class="solid"/><circle cx="57.0" cy="77.0" r="3.4" class="solid"/><circle cx="46.5" cy="74.2" r="3.4" class="solid"/><circle cx="38.8" cy="66.5" r="3.4" class="solid"/><circle cx="36.0" cy="56.0" r="3.4" class="solid"/><circle cx="38.8" cy="45.5" r="3.4" class="solid"/><circle cx="46.5" cy="37.8" r="3.4" class="solid"/><circle cx="57.0" cy="35.0" r="3.4" class="solid"/><circle cx="67.5" cy="37.8" r="3.4" class="solid"/><circle cx="75.2" cy="45.5" r="3.4" class="solid"/></svg></div>
   <div class="s-notes">
     <p><b>Ninety seconds. This is the slide that earns the talk its place in Skopje</b> — without it, the previous four slides are somebody else's problem. Read the first and third points; the other two are for the photograph.</p>
     <p class="say">"You might be thinking: none of this binds me, we're not in the EU. Two answers. First, the AI Act doesn't care where you are — it cares where your customer is, and for most of the software built in this country the customer is in the EU. Second, the one law in this list that <i>helps</i> you, the Data Act, helps you through your supplier: buy from a European provider and from January they cannot charge you to leave. You inherit the protections and the obligations of a market you don't yet vote in. That's an argument for owning the architecture, not for waiting."</p>
