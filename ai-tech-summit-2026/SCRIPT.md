@@ -273,9 +273,9 @@ panel. If the chair offers three minutes, take one question and send the rest to
 **35 · The party is at Garçon. ★new** Fifteen seconds, and the last thing on screen before your contact card.
 It follows the provocations on purpose: you have just told the room to argue with you, and this is where the
 arguing can actually happen.
-"One more thing, and then I am done. There is a party at Garçon afterwards — the handle is on the screen. Same
-argument, better music. Come and tell me which of those five I have wrong."
-**The slide does not state a time** — add one under the handle before you present, or say it out loud. If that
+"One more thing, and then I am done. There is a party at Garçon tonight, nine o'clock, and the handle is on
+the screen. Same argument, better music. Come and tell me which of those five I have wrong."
+**Say the time out loud even though it is on the slide** — half the room is on its phone by this point. If that
 is you behind the decks in the photograph, say so; it is the only slide in the deck where you are not being
 serious.
 

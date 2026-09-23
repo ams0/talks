@@ -123,11 +123,12 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
 /* ---------- the party card ---------- */
 .slide--party { padding: 0 0 0 132px; display: flex; flex-direction: column; justify-content: center;
   position: relative; overflow: hidden; }
-.slide--party > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  object-position: 62% 42%; z-index: 0; }
+.slide--party > img { position: absolute; top: 0; right: 0; height: 100%; width: auto; z-index: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 20%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 20%); }
 .slide--party::after { content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(97deg, rgba(1,0,40,0.95) 0%, rgba(1,0,40,0.88) 26%, rgba(1,0,40,0.46) 47%, rgba(1,0,40,0.06) 70%, rgba(1,0,40,0.28) 100%),
-              linear-gradient(to bottom, transparent 60%, rgba(1,0,40,0.9) 100%); }
+  background: linear-gradient(97deg, rgba(1,0,40,0.92) 0%, rgba(1,0,40,0.82) 24%, rgba(1,0,40,0.44) 44%, rgba(1,0,40,0.04) 66%, rgba(1,0,40,0.22) 100%),
+              linear-gradient(to bottom, transparent 86%, rgba(1,0,40,0.82) 100%); }
 .slide--party > *:not(img):not(.ref) { position: relative; z-index: 2; }
 .slide--party .ref { z-index: 2; }
 .slide--party .kicker { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.2em;
@@ -137,7 +138,9 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
 .slide--party h2 em { font-style: italic; color: var(--accent); }
 .slide--party .handle { font-family: var(--f-display); font-size: 52px; font-weight: 800; color: var(--accent);
   letter-spacing: -0.02em; margin-top: 34px; }
-.slide--party .line { font-size: 30px; line-height: 1.4; color: var(--fg-muted-dark); margin-top: 20px; max-width: 30ch; }
+.slide--party .when { font-family: var(--f-display); font-size: 44px; font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.02em; color: var(--fg-on-dark); margin-top: 16px; }
+.slide--party .line { font-size: 30px; line-height: 1.4; color: var(--fg-muted-dark); margin-top: 22px; max-width: 30ch; }
 .slide--party .ref { border-top-color: rgba(255,255,255,0.22); }
 
 /* ---------- the rack photograph ---------- */
@@ -1685,11 +1688,12 @@ tr.frag { transform: none; }
   <p class="kicker">And afterwards</p>
   <h2>The party is at <em>Garçon</em>.</h2>
   <p class="handle">@garconbar</p>
+  <p class="when">Tonight, from 21:00</p>
   <p class="line">Same argument, better music. Come and carry on the disagreement there.</p>
   <div class="s-notes">
     <p><b>Fifteen seconds, and it is the last thing on the screen before your contact card.</b> It follows the five provocations on purpose: you have just told the room to argue with you, and this is where the arguing can actually happen.</p>
     <p class="say">"One more thing, and then I am done. There is a party at Garçon afterwards — the handle is on the screen. Same argument, better music. Come and tell me which of those five I have wrong."</p>
-    <p><b>The slide does not state a time, because I did not have one.</b> Say it out loud, or add it to the slide before you present — there is room under the handle.</p>
+    <p><b>Nine o'clock is on the slide</b>, under the handle. Say it out loud anyway — a time nobody repeats is a time nobody remembers, and half the room will be looking at their phone by this point.</p>
     <p>If that is you behind the decks, say so; it earns a laugh and it is the only slide in the deck where you are not being serious. If it is not, do not draw attention to the photograph at all.</p>
   </div>
 </section>
