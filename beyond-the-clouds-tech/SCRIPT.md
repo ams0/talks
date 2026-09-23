@@ -68,7 +68,8 @@ alternative. Which is why this talk is about control planes, not migrations."
 fair. "He's describing the structure more honestly than most of our risk registers do."
 
 **10 · Four dates.** Left to right, 60 seconds. The arc: admitted → responded → the ground moved
-anyway. "Three times in ten years. If your architecture assumes it survives a fourth, that's a bet."
+anyway. "Twice in ten years — Safe Harbour, Privacy Shield. If your architecture assumes it survives a
+third, that's a bet."
 
 **11 · AI Act deadline moved.** "Deferred is not cancelled. Paperwork got eighteen months. The
 architecture got nothing, because the architecture takes longer."
