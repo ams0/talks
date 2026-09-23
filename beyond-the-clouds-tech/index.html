@@ -722,7 +722,7 @@ tr.frag { transform: none; }
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
   <cite>The thesis of this talk</cite>
   <div class="s-notes">
-    <p>Land this slowly. The word that does the work is <b>jurisdiction</b> — not "data", not "privacy". Leaders in this room already own jurisdiction risk in every other supplier contract.</p>
+    <p>Land this slowly. The word that does the work is <b>jurisdiction</b> — not "data", not "privacy". Everyone in this room already owns an untested failover somewhere — this is that, with a legal system attached.</p>
     <p class="say">"Nobody signed off on a foreign-policy exposure. Somebody signed off on a credit card and a rate limit. Those turned out to be the same decision."</p>
   </div>
 </section>
@@ -773,13 +773,13 @@ tr.frag { transform: none; }
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <div>
     <h2>Three companies, seventy percent</h2>
-    <p class="lede">Amazon, Microsoft and Google together hold roughly 70% of the European cloud market. The largest European provider holds two.</p>
+    <p class="lede">Amazon, Microsoft and Google together hold roughly 70% of the European cloud market. No European provider holds more than two.</p>
     <div class="dlegend">
       <div><span class="p">70%</span><span class="t">Amazon, Microsoft and Google<em>Three companies, one jurisdiction</em></span></div>
       <div><span class="p mut">15%</span><span class="t">Other non-European providers<em>Oracle, IBM, Salesforce and the rest</em></span></div>
       <div><span class="p mut">15%</span><span class="t">All European providers combined<em>SAP 2% · Deutsche Telekom 2% · then OVHcloud, TIM, Orange</em></span></div>
     </div>
-    <p class="foot">Synergy Research Group, 2025 · European cloud infrastructure services</p>
+    <p class="foot">Synergy Research Group, July 2025 · European cloud infrastructure services</p>
   </div>
   <div class="dwrap">
     <svg viewBox="0 0 220 220" role="img" aria-label="Donut chart: Amazon, Microsoft and Google 70 percent of the European cloud market; other non-European providers 15 percent; all European providers 15 percent.">
@@ -794,7 +794,7 @@ tr.frag { transform: none; }
   <p class="kq"><b>There is no European hyperscaler waiting to take the workload.</b> That is the real problem with "just move to a European provider" — and it is exactly why the rest of this talk is about owning a control plane rather than running a migration.</p>
   <div class="s-notes">
     <p>Twenty seconds, and only one line. The previous slide gave them the trend; this one gives them the concentration. Point at the 2%.</p>
-    <p class="say">"Seventy percent of the European cloud market is three American companies. The largest European provider is two percent. When people say 'just move to a European alternative', that is the alternative they are talking about."</p>
+    <p class="say">"Seventy percent of the European cloud market is three American companies. No European provider is above two percent. When people say 'just move to a European alternative', that is the alternative they are talking about."</p>
     <p>This is the slide that makes the jurisdiction argument concrete rather than theoretical. It also pre-empts the naive version of the answer — there is no European hyperscaler waiting to take the workload, which is exactly why the talk is about control planes and per-workload decisions rather than a single migration.</p>
     <p>Cut this one before the previous one if you need to lose a slide. The trend carries more weight than the split.</p>
   </div>
@@ -803,7 +803,7 @@ tr.frag { transform: none; }
 <!-- 8 ..................................................................... -->
 <section class="slide on-light slide--quote">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
-  <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
+  <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent.”</blockquote>
   <cite><b>Anton Carniaux</b>, Director of Public &amp; Legal Affairs, Microsoft France — under oath, French Senate inquiry into digital sovereignty, 21 July 2025. Microsoft's technical director added that a <i>contractual</i> guarantee keeps EU customer data in the EU. A contract is not a jurisdiction.</cite>
   <div class="s-notes">
     <p><b>The single most useful slide in the deck for this audience.</b> It is not an activist claim — it's sworn testimony from the vendor most of this room already buys from.</p>
@@ -826,7 +826,7 @@ tr.frag { transform: none; }
     <p>Walk it left to right in about 90 seconds. The arc: <b>the vendor admitted it → the vendors responded to it → the legal ground under the response moved anyway.</b></p>
     <p>On AWS: this is genuinely a serious offer, and note what it concedes. €7.8bn is not a marketing budget. If sovereignty were a fringe European anxiety, they would not have built a separate legal entity for it.</p>
     <p>On Slaughter/EDPB: the General Court <i>upheld</i> the Data Privacy Framework in September 2025 (the Latombe case). Transfers are lawful today. But the adequacy decision explicitly leaned on FTC independence, and that premise is now contested. <b>Schrems III is a question of when, not whether.</b></p>
-    <p class="say">"Three times in ten years, the legal basis for transatlantic data transfer has been struck down. If your AI architecture assumes it survives a fourth challenge, that's a bet, not a plan."</p>
+    <p class="say">"Twice in ten years, the legal basis for transatlantic data transfer has been struck down — Safe Harbour in 2015, Privacy Shield in 2020. If your AI architecture assumes it survives a third challenge, that's a bet, not a plan."</p>
   </div>
 </section>
 
