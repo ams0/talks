@@ -108,12 +108,48 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
   background-size: 10px 10px, 100% 100%;
 }
 
+/* ---------- the personal beat ---------- */
+.slide--story { padding: 132px 130px 140px; display: flex; flex-direction: column; justify-content: center; }
+.slide--story .kicker { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); }
+.slide--story h2 { font-family: var(--f-display); font-size: 78px; font-weight: 800; line-height: 1.05;
+  letter-spacing: -0.03em; margin-top: 22px; max-width: 20ch; }
+.beats { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 46px; margin-top: 56px; }
+.beats li { padding-left: 24px; border-left: 4px solid var(--accent); }
+.beats b { display: block; font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 9px; }
+.beats span { display: block; font-size: 24px; line-height: 1.38; color: var(--fg-muted-dark); }
+.slide--story .tail { font-family: var(--f-display); font-size: 38px; font-weight: 800; line-height: 1.26;
+  letter-spacing: -0.02em; margin-top: 56px; max-width: 58ch; }
+.slide--story .tail em { font-style: italic; color: var(--accent); }
+
+/* ---------- one regulation, one icon ---------- */
+.slide--law { padding: 104px 130px 126px; display: grid; grid-template-columns: 286px 1fr; gap: 74px; align-items: center; }
+.lawicon { display: grid; place-items: center; }
+.lawicon svg { width: 238px; height: 238px; fill: none; stroke: var(--accent);
+  stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.lawicon svg .solid { fill: var(--accent); stroke: none; }
+.lawicon svg .dim { stroke: var(--fg-muted); }
+.law-kicker { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.slide--law h2 { font-family: var(--f-display); font-size: 60px; font-weight: 800; line-height: 1.04;
+  letter-spacing: -0.025em; margin-top: 12px; max-width: 21ch; }
+.slide--law .lede { font-size: 25px; line-height: 1.4; color: var(--fg-muted); margin-top: 18px; max-width: 74ch; }
+.slide--law .lede b { color: var(--fg-on-light); font-weight: 700; }
+.law-pts { list-style: none; display: grid; gap: 18px; margin-top: 32px; }
+.law-pts li { padding-left: 24px; border-left: 4px solid var(--accent); }
+.law-pts b { display: block; font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+.law-pts span { display: block; font-size: 23px; line-height: 1.36; color: var(--fg-muted); }
+.law-pts span i { font-style: normal; color: var(--fg-on-light); font-weight: 600; }
+
 /* ---------- cross-reference to another session at this summit ---------- */
-.xref { display: flex; align-items: flex-start; gap: 22px; margin-top: 26px; padding-top: 15px;
+.xref, .reach { display: flex; align-items: flex-start; gap: 22px; margin-top: 26px; padding-top: 15px;
   border-top: 1px solid var(--rule); }
-.xref > b { font-family: var(--f-mono); font-size: 17px; letter-spacing: 0.13em; text-transform: uppercase;
+.xref > b, .reach > b { font-family: var(--f-mono); font-size: 17px; letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--accent); font-weight: 700; white-space: nowrap; padding-top: 3px; }
-.xref > span { font-size: 21px; line-height: 1.38; color: var(--fg-muted); max-width: 110ch; }
+.xref > span, .reach > span { font-size: 21px; line-height: 1.38; color: var(--fg-muted); max-width: 110ch; }
+.reach span b { color: var(--fg-on-light); font-weight: 600; }
+.slide--law .reach { margin-top: 30px; }
 .xref em { font-style: italic; color: var(--fg-on-light); }
 .xref span b { color: var(--fg-on-light); font-weight: 600; }
 .on-dark .xref em, .on-dark .xref span b { color: var(--fg-on-dark); }
@@ -403,7 +439,7 @@ table.cmp .mark { color: var(--accent); font-weight: 600; }
 /* ---------- appendix / sources ---------- */
 .slide--srcs { padding: 74px 88px 78px; display: flex; flex-direction: column; justify-content: center; }
 .slide--srcs h2 { font-family: var(--f-display); font-size: 48px; font-weight: 800; margin-bottom: 30px; }
-.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 7px 42px; font-size: 17px; line-height: 1.26; }
+.srcs { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 38px; font-size: 16px; line-height: 1.24; }
 .srcs li { padding-left: 22px; border-left: 3px solid var(--accent); color: var(--fg-muted); }
 .srcs li b { display: block; color: var(--fg-on-light); font-weight: 600; }
 .srcs a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(226,135,255,0.45); }
@@ -718,7 +754,7 @@ tr.frag { transform: none; }
     <span>National Opera &amp; Ballet, Skopje · 23 September 2026</span>
   </footer>
   <div class="s-notes">
-    <p><b>Timing target: about 21 minutes of content, then lunch at 12:15. Thirty-minute slot, hard stop — the room is hungry.</b> Main stage, day two, 11:45, billed as a keynote. This is the first slide, up as the chair introduces you. You come on straight from the twenty-minute panel with Koen van den Berg (NVIDIA) and Slobodan Đinović (Orion Telekom), so do not re-introduce yourself at length: one line, then the argument.</p>
+    <p><b>Timing target: about 24 minutes of content, then lunch at 12:15. Thirty-minute slot, hard stop — the room is hungry.</b> Main stage, day two, 11:45, billed as a keynote. This is the first slide, up as the chair introduces you. You come on straight from the twenty-minute panel with Koen van den Berg (NVIDIA) and Slobodan Đinović (Orion Telekom), so do not re-introduce yourself at length: one line, then the argument.</p>
     <p class="say">"I build AI infrastructure for a living. For the next twenty minutes I want to argue that the most important AI decision you'll make this year isn't which model — it's whose jurisdiction you run it in. And then I want to show you what that looks like from here, not from Amsterdam."</p>
     <p>Set the contract in one breath: "Twenty minutes, then lunch. There's a slide at the end with five things I believe and you might not — argue with me in the foyer." Say the actual clock time for lunch out loud; it buys goodwill and it stops you overrunning.</p>
     <p>Đinović has his own #Sovereign AI keynote at 14:15 — a telecom operator's view of the same question. Worth one sentence of hand-off at the close if he is in the room.</p>
@@ -736,6 +772,27 @@ tr.frag { transform: none; }
 </section>
 
 <!-- 3 ..................................................................... -->
+<section class="slide on-dark slide--story">
+  <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
+  <p class="kicker">Before I show you any evidence</p>
+  <h2>I quit Microsoft to go and build this in Europe.</h2>
+  <ul class="beats">
+    <li><b>Where I stood</b><span>Years at Microsoft, on the side of the argument I am about to take apart. It works. It is genuinely good. That is exactly what makes this hard.</span></li>
+    <li><b>Where I stand now</b><span>AI Lead at VOLT: grid connections, halls, GPUs, and the software layers above them. Built here, run here, by people who live here.</span></li>
+    <li><b>Why say it now</b><span>Because I am not neutral, and you deserve to know that before the evidence rather than in the small print at the end.</span></li>
+  </ul>
+  <p class="tail">I did not change my mind about the technology. <em>I changed my mind about who should be holding it.</em></p>
+  <div class="s-notes">
+    <p><b>Thirty-five seconds, and resist every temptation to make it longer.</b> This is not a bio — the bio is on the last slide with your face on it. This slide does three jobs and then gets out of the way: it says you have stood on both sides, it puts the VOLT disclosure at the front of the talk instead of halfway through, and it makes the next slide personal rather than academic.</p>
+    <p class="say">"One thing about me before I show you a single number, because it changes how you should listen to the rest. I spent years at Microsoft, selling the thing I am about to spend twenty minutes taking apart. And I left, and I came to VOLT, to build AI infrastructure in Europe — because I think this continent should be able to run its own, and because I would rather build that than sell around it."</p>
+    <p class="say">"So I am not a neutral analyst and you should not listen to me as if I were. I did not change my mind about the technology. I changed my mind about who should be holding it."</p>
+    <p><b>Say the number of years out loud</b> — the slide deliberately does not, so it stays true whenever you give this talk. Do not list titles, products or customers; the moment this becomes a CV it stops working.</p>
+    <p>The tail line is the hand-off to the thesis on the next slide. It is the same argument in personal form: the technology is not the problem, the jurisdiction is. Land it, pause, advance.</p>
+    <p><b>Because the disclosure now happens here</b>, the cues on the megawatt slide and the § 04 divider have been softened to "you already disclosed on slide 4". If you skip this slide for any reason, put the disclosure back in § 04.</p>
+  </div>
+</section>
+
+<!-- 4 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 00</span><span>Opening</span></div>
   <p>"Just use the API" was never an architecture decision. It was a <b>procurement decision</b> that quietly outsourced your jurisdiction.</p>
@@ -749,15 +806,15 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 4 ..................................................................... -->
+<!-- 5 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">01</span>
   <h2>The ground moved</h2>
   <p class="lede">Four things changed between your last AI budget cycle and this one. None of them were announced by your vendor.</p>
-  <div class="s-notes"><p>Section is ~4 min. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet. This room is not in the EU, so the payload of the section is slide 8: which of these rules bind you anyway, and why.</p></div>
+  <div class="s-notes"><p>Section is ~6 min now that the three regulation slides sit inside it. Purpose: establish that this is not a philosophical debate about sovereignty, it's a live risk register update. Facts only, no advocacy yet. This room is not in the EU, so the payload of the section is slide 9, and the three regulation slides after it name the rules one at a time.</p></div>
 </section>
 
-<!-- 5 ..................................................................... -->
+<!-- 6 ..................................................................... -->
 <section class="slide on-light slide--stack">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>Start with where you actually are</h2>
@@ -792,7 +849,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 6 ..................................................................... -->
+<!-- 7 ..................................................................... -->
 <section class="slide on-light slide--quote">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <blockquote>We cannot guarantee that French citizens' data will not be handed to US authorities without their consent."</blockquote>
@@ -804,7 +861,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 7 ..................................................................... -->
+<!-- 8 ..................................................................... -->
 <section class="slide on-light slide--timeline">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>Four dates that changed the calculus</h2>
@@ -822,7 +879,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 8 ..................................................................... -->
+<!-- 9 ..................................................................... -->
 <section class="slide on-light slide--content tight has-kq">
   <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
   <h2>You are not in the EU. Most of its rulebook binds you anyway.</h2>
@@ -831,7 +888,7 @@ tr.frag { transform: none; }
     <li><b>The AI Act reaches across the border</b><span>Article 2: anyone placing an AI system on the EU market, and providers and deployers <i>anywhere</i> whose output is used inside the EU. Where you run it does not matter.</span></li>
     <li><b>Personal data already mirrors GDPR</b><span>The 2020 Law on Personal Data Protection is a GDPR transposition, transfer chapter included. The sovereignty clause is already national law.</span></li>
     <li><b>Your exit rights come with the invoice</b><span>The Data Act binds every EU cloud provider you buy from: from 12 January 2027 they may not charge you to leave. Buy European and you inherit the exit clause.</span></li>
-    <li><b>The rest is on the accession path</b><span>SMART/MK 2030 makes AI a priority; the Council of Europe AI Convention was signed on 8 May 2026; NIS2 and the AI Act are acquis you align with before you join.</span></li>
+    <li><b>The rest is on the accession path</b><span>SMART/MK 2030 makes AI a priority; the Council of Europe AI Convention was signed on 8 May 2026; the AI Act and the three that follow are acquis you align with before you join.</span></li>
   </ul>
   <p class="kq"><b>The practical reading:</b> a Macedonian company serving EU customers has the same deadline as a Dutch one — and, until accession, less say over the rules. An argument for owning the architecture, not for waiting.</p>
   <div class="s-notes">
@@ -843,7 +900,92 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 9 ..................................................................... -->
+<!-- 10 ..................................................................... -->
+<section class="slide on-light slide--law">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <div class="lawicon"><svg viewBox="0 0 120 120" role="img" aria-label="A shield with a heartbeat line through it.">
+      <path d="M60 11 L101 27 V59 C101 83 83 101 60 110 C37 101 19 83 19 59 V27 Z"/>
+      <path d="M31 62 H46 L54 43 L65 79 L73 62 H89"/>
+    </svg></div>
+  <div>
+    <p class="law-kicker">Regulation (EU) 2022/2554 · in force since 17 January 2025</p>
+    <h2>Digital Operational Resilience Act</h2>
+    <p class="lede">Everyone shortens it to <b>DORA</b>. It takes the question this talk is built on and makes it auditable for every bank, insurer and investment firm in the Union.</p>
+    <ul class="law-pts">
+      <li><b>Who it binds</b><span>Twenty-one categories of EU financial entity — and, through them, every technology supplier those entities depend on.</span></li>
+      <li><b>What it asks</b><span>Register your critical technology providers, and keep <i>a documented, tested exit plan</i> for every service supporting a critical function. Not a clause. A rehearsal.</span></li>
+      <li><b>The sovereignty clause nobody quotes</b><span>A provider designated critical and based outside the Union must establish a subsidiary inside it within twelve months. Nineteen were designated in November 2025.</span></li>
+    </ul>
+    <p class="reach"><b>Reaches you here</b><span>Sell software to an EU bank and you are a technology third party. <b>Their exit obligation arrives in your contract</b>, and "we have never tested it" is now an audit finding rather than an awkward answer.</span></p>
+  </div>
+  <div class="s-notes">
+    <p><b>Forty seconds. Do not read the slide.</b> Say the name in full once — most of the room has only ever seen the acronym — then deliver the second point and the reach line. The icon does the rest.</p>
+    <p class="say">"The Digital Operational Resilience Act. It has applied to every bank and insurer in Europe since January last year, and it contains the single most useful sentence in European law for this argument: if a service supports a critical function, you need a documented, <i>tested</i> exit plan. Not a clause in a contract. A rehearsal. Somebody in a European bank has to actually prove they could leave."</p>
+    <p>The third point is the one that surprises people and it is worth the extra ten seconds: a critical provider headquartered outside the EU has to open a subsidiary inside it. That is sovereignty written into financial regulation, and it was written before anyone in Brussels started using the word.</p>
+    <p>If someone from a bank challenges you on detail: the exit requirement is Article 28(8); the designation list came from the three European supervisory authorities on 18 November 2025. Say it once and move on — you are not the DORA expert in that room and you do not need to be.</p>
+    <p><b>Cut this slide first of the three</b> if you are behind. The CRA slide is the one this room cannot afford to miss.</p>
+  </div>
+</section>
+
+<!-- 11 ..................................................................... -->
+<section class="slide on-light slide--law">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <div class="lawicon"><svg viewBox="0 0 120 120" role="img" aria-label="Four linked nodes, one of them filled, standing for a supply chain.">
+      <path d="M60 47 V30 M50 68 L33 78 M70 68 L87 78"/>
+      <circle cx="60" cy="60" r="14"/>
+      <circle cx="60" cy="21" r="10"/>
+      <circle cx="25" cy="84" r="10"/>
+      <circle cx="95" cy="84" r="10" class="solid"/>
+    </svg></div>
+  <div>
+    <p class="law-kicker">Directive (EU) 2022/2555 · national law across the Union since October 2024</p>
+    <h2>Network and Information Security Directive 2</h2>
+    <p class="lede">The second version of Europe's baseline security law, and everyone shortens it to <b>NIS2</b>. What changed in version two is not the controls. It is who is personally answerable for them.</p>
+    <ul class="law-pts">
+      <li><b>Who it binds</b><span>Essential and important entities across eighteen sectors: energy, transport, health, water, banking, public administration, digital infrastructure and managed service providers.</span></li>
+      <li><b>What it asks</b><span>Own the security of your <i>supply chain</i>, not only your own perimeter. Management bodies approve the measures, and can be held personally liable for failing to.</span></li>
+      <li><b>Why it behaves differently</b><span>It is a directive, not a regulation, so each of the twenty-seven transposed it into its own national law. The duty is common; the detail is not.</span></li>
+    </ul>
+    <p class="reach"><b>Reaches you here</b><span>Your European customer cannot delegate this duty away, so they will push it down to you in writing. <b>Expect the security questionnaire long before you expect the law.</b></span></p>
+  </div>
+  <div class="s-notes">
+    <p><b>Thirty seconds, and the second point is the whole slide.</b> This room contains people who sell to European utilities, hospitals and banks. They have all filled in the questionnaire; most of them do not know which law produced it.</p>
+    <p class="say">"Network and Information Security, version two. The controls are not the interesting part. The interesting part is that a board has to approve them and can be held personally liable — so the duty cannot be delegated to a supplier. Which means it lands on you instead, as a questionnaire. If you have been wondering why your German customer suddenly wants to know who maintains your dependencies, this is why."</p>
+    <p>The directive-versus-regulation point matters for anyone planning to comply once and sell everywhere: they cannot. Twenty-seven transpositions, twenty-seven sets of detail. It is also the honest reason this slide is thinner than the other two.</p>
+    <p><b>Cut second of the three.</b></p>
+  </div>
+</section>
+
+<!-- 12 ..................................................................... -->
+<section class="slide on-light slide--law">
+  <div class="ref"><span class="ref-n">§ 01</span><span>The ground moved</span></div>
+  <div class="lawicon"><svg viewBox="0 0 120 120" role="img" aria-label="A microchip with pins, standing for a product with digital elements.">
+      <rect x="33" y="33" width="54" height="54" rx="7"/>
+      <rect x="52" y="52" width="16" height="16" rx="3" class="solid"/>
+      <path d="M46 33 V17 M60 33 V17 M74 33 V17 M46 87 V103 M60 87 V103 M74 87 V103
+               M33 46 H17 M33 60 H17 M33 74 H17 M87 46 H103 M87 60 H103 M87 74 H103"/>
+    </svg></div>
+  <div>
+    <p class="law-kicker">Regulation (EU) 2024/2847 · reporting live since 11 September 2026</p>
+    <h2>Cyber Resilience Act</h2>
+    <p class="lede">Of the three, this is the one that reaches a country of software exporters most directly. It does not care who your customer is. <b>It cares that your product is on the European market.</b></p>
+    <ul class="law-pts">
+      <li><b>Who it binds</b><span>Any manufacturer placing a product with digital elements on the EU market. Hardware and software, finished products and components sold separately — <i>wherever the manufacturer sits</i>.</span></li>
+      <li><b>Live now</b><span>Report actively exploited vulnerabilities and severe incidents to ENISA and a national response team, through a single reporting platform. This applies to products already on the market.</span></li>
+      <li><b>Lands December 2027</b><span>Security by design, vulnerability handling across the whole support period, a software bill of materials, technical documentation and CE marking.</span></li>
+    </ul>
+    <p class="reach"><b>Reaches you here</b><span>Not through a customer's contract. <b>Directly.</b> If you ship software into the Union you are a manufacturer under this regulation, and the reporting clock started before this summit did.</span></p>
+  </div>
+  <div class="s-notes">
+    <p><b>Fifty seconds, and of the three regulation slides this is the one to protect.</b> It is the only European law in the deck that binds a Macedonian company on its own terms rather than through somebody else's contract — and the first obligation went live twelve days ago.</p>
+    <p class="say">"The Cyber Resilience Act. Read the first point carefully, because it is the one that is actually about this room. It does not bind European companies. It binds anyone who places a product with digital elements on the European market, wherever they are. If you export software to the EU — and this country exports a great deal of it — you are a manufacturer under this regulation. And the reporting obligation did not start in 2027. It started on the eleventh of this month, twelve days ago, for products that are already out there."</p>
+    <p>Say "twelve days ago" only while it is true — it is the sharpest thing on the slide today and it will need rewording if you give this talk again. The kicker carries the date, so you can simply drop the aside.</p>
+    <p>The practical ask, if someone wants one: a software bill of materials is the artefact that satisfies the 2027 half, and it is also the first half of the open-source maintenance argument on the closing slide. Generating one is an afternoon; knowing what is in it is the hard part.</p>
+    <p>Do not attempt the open-source stewardship carve-out from the stage. It exists, it is narrow, and it will eat five minutes you do not have.</p>
+  </div>
+</section>
+
+<!-- 13 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">02</span>
   <h2>Sovereignty is a dial, not a switch</h2>
@@ -851,7 +993,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Section ~5 min. This is the reframe that makes the rest of the talk actionable, and it's the part most likely to change what someone does on Monday.</p></div>
 </section>
 
-<!-- 10 ..................................................................... -->
+<!-- 14 ..................................................................... -->
 <section class="slide on-light slide--seal">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>The scale itself: SEAL 0 to 4</h2>
@@ -892,14 +1034,14 @@ tr.frag { transform: none; }
   <div class="s-notes">
     <p>Ninety seconds, one rung per click. Do not read all five — read <b>0, 2 and 3</b>, and let them see the bars grow. The whole slide exists so that "how sovereign are you?" becomes a number a supplier has to write down.</p>
     <p class="say">"Stop arguing about whether you're sovereign. There's a five-point scale, the Commission scores suppliers against it across eight dimensions, and it just spent a hundred and eighty million euros using it. Pick a number per workload, write it into the requirement, and make suppliers answer it. That's a procurement problem, and you already know how to run those."</p>
-    <p><b>The gap between 2 and 3 is the whole talk.</b> SEAL-2 is what a contract can buy you — it fails the moment a foreign court instructs the parent company. SEAL-3 is what an architecture buys you. That is the same distinction as the Microsoft testimony on slide 6, expressed as a procurement level.</p>
+    <p><b>The gap between 2 and 3 is the whole talk.</b> SEAL-2 is what a contract can buy you — it fails the moment a foreign court instructs the parent company. SEAL-3 is what an architecture buys you. That is the same distinction as the Microsoft testimony on slide 7, expressed as a procurement level.</p>
     <p>If someone challenges SEAL-4 as unachievable: agree immediately, without hedging. Nothing operates there at scale, and that is precisely why the EU is funding gigafactories. Conceding it costs you nothing and buys you the rest of the argument.</p>
     <p>Worth saying out loud: <b>no hyperscaler bid at SEAL-3.</b> They bid, and they landed lower. That is not an accusation, it is the structure of the thing.</p>
     <p>For this room: SEAL is an EU procurement instrument, but nothing stops a Macedonian ministry, bank or hospital writing "SEAL-3 or a written explanation of why not" into a tender tomorrow. The framework is public. Use it before you are obliged to.</p>
   </div>
 </section>
 
-<!-- 11 ..................................................................... -->
+<!-- 15 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Four questions, asked per workload — not per company</h2>
@@ -915,7 +1057,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 12 ..................................................................... -->
+<!-- 16 ..................................................................... -->
 <section class="slide on-light slide--ba">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>What actually changes when you own the control plane</h2>
@@ -949,7 +1091,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 13 ..................................................................... -->
+<!-- 17 ..................................................................... -->
 <section class="slide on-light slide--trio">
   <div class="ref"><span class="ref-n">§ 02</span><span>Sovereignty is a dial</span></div>
   <h2>Three decisions, one country, one summer</h2>
@@ -996,7 +1138,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 14 ..................................................................... -->
+<!-- 18 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">03</span>
   <h2>The stack is ready — that's the news</h2>
@@ -1004,7 +1146,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Section ~5 min. Energy shift: sections 1–2 were risk, this is opportunity. Change your voice here. This cut keeps the map and the request path from the Groningen deck and drops the YAML: the room should leave knowing the two layers to own, not the field names.</p></div>
 </section>
 
-<!-- 15 ..................................................................... -->
+<!-- 19 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>AI infrastructure became boring. Boring is the achievement.</h2>
@@ -1021,7 +1163,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 16 ..................................................................... -->
+<!-- 20 ..................................................................... -->
 <section class="slide on-light slide--trio">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>"Open weights" is not the same thing as an open model</h2>
@@ -1068,7 +1210,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 17 ..................................................................... -->
+<!-- 21 ..................................................................... -->
 <section class="slide on-light slide--arch eight">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>Every layer open, every layer replaceable</h2>
@@ -1103,7 +1245,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 18 ..................................................................... -->
+<!-- 22 ..................................................................... -->
 <section class="slide on-light slide--split">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>One request, four hops — and you own the middle two</h2>
@@ -1165,7 +1307,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 19 ..................................................................... -->
+<!-- 23 ..................................................................... -->
 <section class="slide on-light slide--content tight has-kq">
   <div class="ref"><span class="ref-n">§ 03</span><span>The stack is ready</span></div>
   <h2>The smallest sovereign unit fits in one rack</h2>
@@ -1185,15 +1327,15 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 20 ..................................................................... -->
+<!-- 24 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">04</span>
   <h2>The bottom layer is being poured</h2>
   <p class="lede">Everything on the last three slides runs on a floor somebody has to build: megawatts, a grid connection, and a queue you cannot jump. That is the half of the stack Europe is pouring right now — and the half this country is legislating for this year.</p>
-  <div class="s-notes"><p>Section ~2 min, and keep it to that. <b>The room heard NVIDIA's keynote on this yesterday</b> — Koen van den Berg, "From Megawatts to Intelligence: Building the AI Factory", day one at 12:15 — and you were just on a panel with him about the infrastructure race. Do not re-explain what an AI factory is. Say "Koen showed you the factory yesterday; here is what it costs in grid, and what the same numbers look like from here." Make the VOLT disclosure here if you have not already.</p></div>
+  <div class="s-notes"><p>Section ~2 min, and keep it to that. <b>The room heard NVIDIA's keynote on this yesterday</b> — Koen van den Berg, "From Megawatts to Intelligence: Building the AI Factory", day one at 12:15 — and you were just on a panel with him about the infrastructure race. Do not re-explain what an AI factory is. Say "Koen showed you the factory yesterday; here is what it costs in grid, and what the same numbers look like from here." The VOLT disclosure already happened on slide 3, so do not repeat it here — one honest sentence at the front beats three apologetic ones in the middle.</p></div>
 </section>
 
-<!-- 21 ..................................................................... -->
+<!-- 25 ..................................................................... -->
 <section class="slide on-light slide--bars">
   <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <h2>The bottom layer, in megawatts</h2>
@@ -1240,13 +1382,13 @@ tr.frag { transform: none; }
     <p><b>The visual argument is the gap between the bottom two bars and the top one.</b> Do not explain it — let them see it, then say the line below.</p>
     <p>Open with the footer line, since the "Europe is building it" slide is gone from this cut: "Nineteen AI Factories and thirteen antennas are running on EuroHPC money today, and one of the antennas is in this city. The supply side is arriving, and this country is already plugged into it." Then the bars.</p>
     <p class="say">"The bar at the bottom went live in Amsterdam this month. The bar at the top is the same company in 2027 — a fifty-seven-fold step in eighteen months, and the constraint on it is not chips or capital, it is a grid connection. And look at the fourth bar: Kragujevac, three hundred kilometres from here. Serbia's state data centre, fourteen megawatts today, forty more promised by a Gulf telecom. That is the regional version of the same race, and it is already running."</p>
-    <p><b>Disclose again if you have not already:</b> Lovelace Engineering consults for VOLT Datacenters, and it is in the byline on slide 1. Nebius and Kragujevac are on the chart precisely so this is not a single-vendor slide.</p>
+    <p><b>You disclosed on slide 3</b>, so this needs one clause at most: "the top bar is my employer, which you already know." Nebius and Kragujevac are on the chart precisely so this is not a single-vendor slide.</p>
     <p>Kragujevac facts if asked: built 2020 for about €30m, 1,080 racks, 14 MW, Tier IV; hosts Serbian e-government and, as tenants, Oracle Cloud, IBM and Huawei; the e&amp; enterprise MoU of 17 September 2025 is to add up to 40 MW. Note who the tenants are — that is the "landlord" point from § 02 with a Serbian address.</p>
     <p><b>Cut this slide if you are short</b> — the 800 MW metric slide that follows makes the same point in five seconds.</p>
   </div>
 </section>
 
-<!-- 22 ..................................................................... -->
+<!-- 26 ..................................................................... -->
 <section class="slide on-dark slide--metric">
   <div class="ref"><span class="ref-n">§ 04</span><span>The bottom layer</span></div>
   <div class="num">800<span class="u">MW</span></div>
@@ -1259,7 +1401,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 23 ..................................................................... -->
+<!-- 27 ..................................................................... -->
 <section class="slide on-dark slide--section">
   <span class="num">05</span>
   <h2>What the vendor keynote leaves out</h2>
@@ -1267,7 +1409,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Section ~3 min. This is the credibility section. Do not rush it, and do not soften it — the honesty is what makes the recommendation land. In a summit room full of vendor keynotes, this is also the section that makes yours not one.</p></div>
 </section>
 
-<!-- 24 ..................................................................... -->
+<!-- 28 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>Four failure modes nobody demos on stage</h2>
@@ -1284,7 +1426,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 25 ..................................................................... -->
+<!-- 29 ..................................................................... -->
 <section class="slide on-light slide--curve">
   <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>One chart decides this, and it isn't a chart about sovereignty</h2>
@@ -1357,7 +1499,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 26 ..................................................................... -->
+<!-- 30 ..................................................................... -->
 <section class="slide on-light slide--table tight">
   <div class="ref"><span class="ref-n">§ 05</span><span>What the keynote leaves out</span></div>
   <h2>Self-host, federate, or rent — by workload class</h2>
@@ -1380,7 +1522,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 27 ..................................................................... -->
+<!-- 31 ..................................................................... -->
 <section class="slide on-light slide--content">
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <h2>Ninety days. Four moves. No new budget line.</h2>
@@ -1396,7 +1538,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 28 ..................................................................... -->
+<!-- 32 ..................................................................... -->
 <section class="slide on-light slide--claim">
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <p>The clouds aren't going anywhere. <b>Your autonomy shouldn't live there.</b></p>
@@ -1404,7 +1546,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Pause. Do not fill the silence. Then the practice slide, then the provocations.</p></div>
 </section>
 
-<!-- 29 ..................................................................... -->
+<!-- 33 ..................................................................... -->
 <section class="slide on-dark slide--practice">
   <div class="ref"><span class="ref-n">§ 06</span><span>Close</span></div>
   <h2>Sovereignty is not a product. <em>It's a practice.</em></h2>
@@ -1424,7 +1566,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 30 ..................................................................... -->
+<!-- 34 ..................................................................... -->
 <section class="slide on-dark slide--debate">
   <div class="ref"><span class="ref-n">§ 07</span><span>Over lunch</span></div>
   <h2>Five things I believe. Pick one and find me at lunch.</h2>
@@ -1438,11 +1580,11 @@ tr.frag { transform: none; }
   </ol>
   <div class="s-notes">
     <p><b>There is no Q&amp;A block in a thirty-minute main-stage slot before lunch.</b> This slide is the substitute: leave it up while you say the closing lines, so people carry a number with them into the foyer. If the chair offers three minutes of questions, take one and point at this slide for the rest.</p>
-    <p>Honest positions: I half-believe #1 — protectionism is a real risk and SEAL-4 is not achievable today; the Vezilka card on slide 13 is my answer. I do not believe #2, and the one-box slide is why. #3 is the one I most want somebody from the ministry to argue with. I strongly believe #5, and it was the subject of the panel you just left.</p>
+    <p>Honest positions: I half-believe #1 — protectionism is a real risk and SEAL-4 is not achievable today; the Vezilka card on slide 17 is my answer. I do not believe #2, and the one-box slide is why. #3 is the one I most want somebody from the ministry to argue with. I strongly believe #5, and it was the subject of the panel you just left.</p>
   </div>
 </section>
 
-<!-- 31 ..................................................................... -->
+<!-- 35 ..................................................................... -->
 <section class="slide on-dark slide--cta with-me">
   <div>
     <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
@@ -1469,7 +1611,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 32 ..................................................................... -->
+<!-- 36 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 1 of 2</span></div>
   <h2>Sources · the argument</h2>
@@ -1481,7 +1623,9 @@ tr.frag { transform: none; }
     <li><b>Digital AI Omnibus</b>Provisional agreement, May 2026 (Gibson Dunn; DLA Piper)</li>
     <li><b>AI Act</b>Reg. (EU) 2024/1689 · in force 1 Aug 2024 · Art. 5, 50, 51–56 · penalties Art. 99</li>
     <li><b>Data Act</b>Reg. (EU) 2023/2854 · applicable 12 Sep 2025 · Art. 29 switching charges withdrawn 12 Jan 2027</li>
-    <li><b>DORA · NIS2 · CRA</b>Reg. (EU) 2022/2554 (17 Jan 2025) · Dir. (EU) 2022/2555 · Reg. (EU) 2024/2847</li>
+    <li><b>DORA</b>Reg. (EU) 2022/2554 · applies 17 Jan 2025 · Art. 28(8) documented and tested exit plans · first 19 critical ICT third-party providers designated by the EBA, EIOPA and ESMA, 18 Nov 2025 · non-EU designated providers must establish a Union subsidiary within 12 months</li>
+    <li><b>NIS2</b>Dir. (EU) 2022/2555 · transposition deadline 17 Oct 2024 · essential and important entities across 18 sectors · Art. 20 management-body approval and liability · Art. 21 supply-chain security</li>
+    <li><b>Cyber Resilience Act</b>Reg. (EU) 2024/2847 · in force 10 Dec 2024 · reporting of actively exploited vulnerabilities and severe incidents to ENISA and national CSIRTs from 11 Sep 2026 · remaining obligations, incl. SBOM and CE marking, from 11 Dec 2027</li>
     <li><b>Cloud Sovereignty Framework · SEAL</b>European Commission, 17 April 2026 — €180m awarded to Post, STACKIT, Scaleway, Proximus</li>
     <li><b>Cloud Sovereignty Framework document</b>European Commission, DG DIGIT, Luxembourg — version 1.2.1, October 2025</li>
     <li><b>European cloud market share</b>Synergy Research Group — European providers 29% (2017) to 15% (2022), holding at 15%; press release 24 July 2025</li>
@@ -1502,7 +1646,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
 </section>
 
-<!-- 33 ..................................................................... -->
+<!-- 37 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 2 of 2</span></div>
   <h2>Sources · the region</h2>
@@ -1618,7 +1762,7 @@ tr.frag { transform: none; }
     if (!running) return;
     var s = Math.floor((Date.now() - start) / 1000);
     var m = Math.floor(s / 60);
-    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 21 ? '  ·  into lunch' : '  ·  target 21:00');
+    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 24 ? '  ·  into lunch' : '  ·  target 24:00');
   }
   setInterval(tick, 1000);
 
