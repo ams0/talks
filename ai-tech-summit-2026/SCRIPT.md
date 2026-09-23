@@ -18,8 +18,8 @@ than the ADA leadership day. Same argument as `../beyond-the-clouds/`, with the 
 map and the request path (no YAML), and three slides rebuilt around what North Macedonia decided this summer.
 Quoted lines are verbatim — say those. Everything else is a cue.
 
-**Timing.** 37 slides, of which two are sources you only open if challenged. Delivered in full it runs
-**≈24 min**, which leaves a real four-minute margin for a late start, a laugh, or one question. There is **no Q&A
+**Timing.** 38 slides, of which two are sources you only open if challenged. Delivered in full it runs
+**≈25 min**, which leaves a real four-minute margin for a late start, a laugh, or one question. There is **no Q&A
 block** — the provocations slide (34) stays up while you close and sends the argument to lunch. Say the lunch time
 out loud on slide 1.
 
@@ -51,7 +51,7 @@ deliver the thesis.
 
 **Four slides carry an on-slide cross-reference** to another session here, in a lavender label: slide 4
 (Dimitrov, AI Labs), slide 22 (four agent sessions, all before yours — Greenwood's *Augmented Team* is after
-you, so it is deliberately not named), slide 25 (Koen's AI Factory keynote) and slide 35 (the hackathon final). They are there so the room can see you watched the rest of the programme. Say each one
+you, so it is deliberately not named), slide 25 (Koen's AI Factory keynote) and slide 36 (the hackathon final). They are there so the room can see you watched the rest of the programme. Say each one
 out loud — a reference nobody reads aloud is decoration.
 
 **What this cut dropped** (all still in `../beyond-the-clouds/` or `../beyond-the-clouds-tech/`): the Monty Python opener, the proverb,
@@ -251,7 +251,7 @@ is arithmetic anchored on two published endpoints — say so.
 hyperscalers to stop being captured by them. You have to own the layer where the decisions are made." Row
 four is Vezilka as a procurement verdict — this country already has a federated training path, paid for.
 
-## 06 Close — 3 min (slides 31–35)
+## 06 Close — 4 min (slides 31–36)
 
 **31 · Ninety days, four moves (builds).** Slow down. Inventory → gateway in front → prove portability once
 (to a European provider, to Pharos through Vezilka, or to the one box) → SEAL in the next procurement, or
@@ -270,7 +270,16 @@ find me." Honest positions: half-believe #1 (the Vezilka card on 13 is the answe
 is why); #3 is the one you want somebody from the ministry to argue with; strongly believe #5, and it was the
 panel. If the chair offers three minutes, take one question and send the rest to the foyer.
 
-**35 · Close.** Who you are, the disclosure, the deck URL. One sentence on ChemAI AMS (12–13 November,
+**35 · The party is at Garçon. ★new** Fifteen seconds, and the last thing on screen before your contact card.
+It follows the provocations on purpose: you have just told the room to argue with you, and this is where the
+arguing can actually happen.
+"One more thing, and then I am done. There is a party at Garçon afterwards — the handle is on the screen. Same
+argument, better music. Come and tell me which of those five I have wrong."
+**The slide does not state a time** — add one under the handle before you present, or say it out loud. If that
+is you behind the decks in the photograph, say so; it is the only slide in the deck where you are not being
+serious.
+
+**36 · Close.** Who you are, the disclosure, the deck URL. One sentence on ChemAI AMS (12–13 November,
 Amsterdam) if you want it. "Start with the inventory — everything else follows from it."
 
 ★**Then the hackathon line, and stop.** It is the only moment in the talk aimed at the students rather than the
@@ -279,4 +288,4 @@ is on the slide. "One last thing. At half past four, three student teams present
 those projects is built on somebody's API. Whose, is the only question I have been asking for twenty minutes.
 Enjoy lunch."
 
-**36–37 · Sources.** Backup. 36 is the argument, 37 is the region. Only open if a number is challenged.
+**37–38 · Sources.** Backup. 37 is the argument, 38 is the region. Only open if a number is challenged.

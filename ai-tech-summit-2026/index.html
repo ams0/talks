@@ -120,6 +120,26 @@ html, body { height: 100%; overflow: hidden; background: var(--ink); font-family
 .slidemark svg .solid { fill: var(--accent); stroke: none; }
 .slide--section .slidemark, .slide--hook .slidemark { opacity: 0.95; }
 
+/* ---------- the party card ---------- */
+.slide--party { padding: 0 0 0 132px; display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden; }
+.slide--party > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  object-position: 62% 42%; z-index: 0; }
+.slide--party::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(97deg, rgba(1,0,40,0.95) 0%, rgba(1,0,40,0.88) 26%, rgba(1,0,40,0.46) 47%, rgba(1,0,40,0.06) 70%, rgba(1,0,40,0.28) 100%),
+              linear-gradient(to bottom, transparent 60%, rgba(1,0,40,0.9) 100%); }
+.slide--party > *:not(img):not(.ref) { position: relative; z-index: 2; }
+.slide--party .ref { z-index: 2; }
+.slide--party .kicker { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent); }
+.slide--party h2 { font-family: var(--f-display); font-size: 92px; font-weight: 800; line-height: 1.0;
+  letter-spacing: -0.035em; margin-top: 22px; max-width: 12ch; }
+.slide--party h2 em { font-style: italic; color: var(--accent); }
+.slide--party .handle { font-family: var(--f-display); font-size: 52px; font-weight: 800; color: var(--accent);
+  letter-spacing: -0.02em; margin-top: 34px; }
+.slide--party .line { font-size: 30px; line-height: 1.4; color: var(--fg-muted-dark); margin-top: 20px; max-width: 30ch; }
+.slide--party .ref { border-top-color: rgba(255,255,255,0.22); }
+
 /* ---------- the rack photograph ---------- */
 .slide--content.with-shot { display: grid; grid-template-columns: 1fr 300px; grid-template-rows: 1fr auto;
   column-gap: 64px; row-gap: 22px; align-items: center; padding: 88px 112px 112px; }
@@ -786,7 +806,7 @@ tr.frag { transform: none; }
     <span>National Opera &amp; Ballet, Skopje · 23 September 2026</span>
   </footer>
   <div class="s-notes">
-    <p><b>Timing target: about 24 minutes of content, then lunch at 12:15. Thirty-minute slot, hard stop — the room is hungry.</b> Main stage, day two, 11:45, billed as a keynote. This is the first slide, up as the chair introduces you. You come on straight from the twenty-minute panel with Koen van den Berg (NVIDIA) and Slobodan Đinović (Orion Telekom), so do not re-introduce yourself at length: one line, then the argument.</p>
+    <p><b>Timing target: about 25 minutes of content, then lunch at 12:15. Thirty-minute slot, hard stop — the room is hungry.</b> Main stage, day two, 11:45, billed as a keynote. This is the first slide, up as the chair introduces you. You come on straight from the twenty-minute panel with Koen van den Berg (NVIDIA) and Slobodan Đinović (Orion Telekom), so do not re-introduce yourself at length: one line, then the argument.</p>
     <p class="say">"I build AI infrastructure for a living. For the next twenty minutes I want to argue that the most important AI decision you'll make this year isn't which model — it's whose jurisdiction you run it in. And then I want to show you what that looks like from here, not from Amsterdam."</p>
     <p>Set the contract in one breath: "Twenty minutes, then lunch. There's a slide at the end with five things I believe and you might not — argue with me in the foyer." Say the actual clock time for lunch out loud; it buys goodwill and it stops you overrunning.</p>
     <p>Đinović has his own #Sovereign AI keynote at 14:15 — a telecom operator's view of the same question. Worth one sentence of hand-off at the close if he is in the room.</p>
@@ -1659,6 +1679,22 @@ tr.frag { transform: none; }
 </section>
 
 <!-- 35 ..................................................................... -->
+<section class="slide on-dark slide--party">
+  <img src="garcon.jpg" alt="A DJ behind Pioneer decks in a dark club, lit green, with people dancing behind him.">
+  <div class="ref"><span class="ref-n">§ 07</span><span>Over lunch</span></div>
+  <p class="kicker">And afterwards</p>
+  <h2>The party is at <em>Garçon</em>.</h2>
+  <p class="handle">@garconbar</p>
+  <p class="line">Same argument, better music. Come and carry on the disagreement there.</p>
+  <div class="s-notes">
+    <p><b>Fifteen seconds, and it is the last thing on the screen before your contact card.</b> It follows the five provocations on purpose: you have just told the room to argue with you, and this is where the arguing can actually happen.</p>
+    <p class="say">"One more thing, and then I am done. There is a party at Garçon afterwards — the handle is on the screen. Same argument, better music. Come and tell me which of those five I have wrong."</p>
+    <p><b>The slide does not state a time, because I did not have one.</b> Say it out loud, or add it to the slide before you present — there is room under the handle.</p>
+    <p>If that is you behind the decks, say so; it earns a laugh and it is the only slide in the deck where you are not being serious. If it is not, do not draw attention to the photograph at all.</p>
+  </div>
+</section>
+
+<!-- 36 ..................................................................... -->
 <section class="slide on-dark slide--cta with-me">
   <div>
     <h2>Start with the <em>inventory</em>. Everything else follows from it.</h2>
@@ -1685,7 +1721,7 @@ tr.frag { transform: none; }
   </div>
 </section>
 
-<!-- 36 ..................................................................... -->
+<!-- 37 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 1 of 2</span></div>
   <h2>Sources · the argument</h2>
@@ -1721,7 +1757,7 @@ tr.frag { transform: none; }
   <div class="s-notes"><p>Backup slide. Only show if challenged on a number — then find the line and read it. Having this ready is worth more than using it.</p></div>
 </section>
 
-<!-- 37 ..................................................................... -->
+<!-- 38 ..................................................................... -->
 <section class="slide on-light slide--srcs">
   <div class="ref"><span class="ref-n">APP</span><span>Sources · 2 of 2</span></div>
   <h2>Sources · the region</h2>
@@ -1838,7 +1874,7 @@ tr.frag { transform: none; }
     if (!running) return;
     var s = Math.floor((Date.now() - start) / 1000);
     var m = Math.floor(s / 60);
-    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 24 ? '  ·  into lunch' : '  ·  target 24:00');
+    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') + (m >= 25 ? '  ·  into lunch' : '  ·  target 25:00');
   }
   setInterval(tick, 1000);
 
