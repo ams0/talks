@@ -10,244 +10,366 @@
 
 <style>
 /* ============================================================
-   LIFE OF A TOKEN — Game of Codes 2026, Niš (10 October)
-   Visual cut: the slides carry pictures, the voice carries the words.
-   Palette from gameofcodes.rs · Inter + JetBrains Mono, their families.
-   Amber = the request going down. Teal = the answer coming home.
+   LIFE OF A TOKEN — Game of Codes 2026, Niš
+   ------------------------------------------------------------
+   LAYOUT  A fixed 1920×1080 stage with four horizontal rails.
+           Title, figure and caption sit at the same y on every
+           slide, so paging through reads as one system rather
+           than a sequence of separately-centred compositions.
+   TYPE    JetBrains Mono is the DISPLAY face, not the code face.
+           A talk whose subject is tokens, byte sequences and
+           integers sets its headlines in the typeface those
+           things are written in. Inter supports; it never leads.
+           One scale, 1.25, from 20px. No size off the scale.
+   COLOUR  Amber is the request travelling down. Teal is the
+           answer coming home. Red is the failure case. Nothing
+           is amber for decoration — it marks position or cost.
    ============================================================ */
 :root {
-  --bg:        #121212;
-  --bg-2:      #0b0b0b;
-  --fg:        #f5f5f5;
-  --muted:     #a1a1a1;
-  --dim:       #6b7080;
-  --surface:   #1b1f29;
-  --border:    #232d47;
-  --deep:      #07005e;
-  --deep-2:    #1a1282;
-  --amber:     #f8a823;
-  --amber-2:   #c9851c;
-  --amber-3:   #8a5f16;
-  --red:       #f94144;
-  --teal:      #35d0ba;
-  --teal-2:    #1f8a7c;
+  /* neutrals, biased toward the brand indigo so they read warm-cool
+     rather than flat grey */
+  --ground:   #0d0e13;
+  --surface:  #161a24;
+  --surface-2:#1e2331;
+  --line:     #2a3144;
+  --ink:      #f2f3f6;
+  --ink-2:    #99a0b2;
+  --ink-3:    #7d8498;
 
-  --f-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  --f-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* accents, semantic */
+  --request:  #f8a823;
+  --request-2:#c0821c;
+  --request-3:#7d5614;
+  --return:   #35d0ba;
+  --return-2: #1d7d70;
+  --warn:     #f94144;
+  --deep:     #120c6b;
+  --deep-2:   #241a9e;
+
+  /* type scale — 1.25 from 20px, nothing off it */
+  --t1:  20px; --t2:  25px; --t3:  31px; --t4:  39px; --t5:  49px;
+  --t6:  61px; --t7:  76px; --t8:  95px; --t9: 119px; --t10:149px;
+
+  /* space scale — 8px base */
+  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 40px; --s5: 64px; --s6: 104px;
+
+  /* the grid */
+  --margin:  112px;
+  --r-strip: 44px;    /* route strip        */
+  --r-kick:  152px;   /* eyebrow baseline   */
+  --r-head:  196px;   /* title block top    */
+  --r-fig:   388px;   /* figure zone top    */
+  --r-cap:   900px;   /* caption rail       */
+  --r-foot:  44px;    /* footer rule bottom */
+  --fig-h:   476px;   /* figure zone height */
+
+  --f-display: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --f-text:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; overflow: hidden; background: var(--bg-2); font-family: var(--f-sans); color: var(--fg); }
-#deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--bg-2); }
+html, body { height: 100%; overflow: hidden; background: var(--ground); font-family: var(--f-text); color: var(--ink); }
+#deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #08090c; }
 
 .slide {
   position: absolute; top: 50%; left: 50%;
   width: 1920px; height: 1080px;
   transform: translate(-50%, -50%) scale(var(--scale, 1));
   transform-origin: center center;
-  opacity: 0; pointer-events: none; transition: opacity 140ms ease;
-  overflow: hidden; background-color: var(--bg); color: var(--fg);
+  opacity: 0; pointer-events: none; transition: opacity 120ms linear;
+  overflow: hidden; background-color: var(--ground); color: var(--ink);
 }
 .slide.is-active { opacity: 1; pointer-events: auto; }
 @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+.wide { --margin: 72px; }
 
-.on-dark {
-  background-image:
-    linear-gradient(rgba(35,45,71,0.34) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35,45,71,0.34) 1px, transparent 1px),
-    radial-gradient(1200px 760px at 80% 24%, rgba(248,168,35,0.06), transparent 68%);
-  background-size: 64px 64px, 64px 64px, 100% 100%;
-}
+/* Flat ground. The old 64px grid texture was decoration; the route
+   strip already tells you where you are. */
 .on-deep { background-color: var(--deep); }
-.on-deep::before { content: ""; position: absolute; inset: 0;
-  background: radial-gradient(1250px 780px at 70% 40%, rgba(26,18,130,0.95), transparent 72%); }
-.on-deep > * { position: relative; }
 
-/* ---------- route strip: eight stops, the token's position lit ---------- */
+/* ---------------- the four rails ---------------- */
+.slide > .kick {
+  position: absolute; left: var(--margin); right: var(--margin); top: var(--r-kick);
+  font-family: var(--f-display); font-size: var(--t1); font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--request);
+}
+.slide > h2 {
+  position: absolute; left: var(--margin); right: var(--margin); top: var(--r-head);
+  font-family: var(--f-display); font-size: var(--t6); font-weight: 700;
+  line-height: 1.12; letter-spacing: -0.045em; text-wrap: balance;
+}
+.slide > h2 em { font-style: normal; color: var(--request); }
+.slide > h2 b  { font-weight: 700; color: var(--return); }
+.slide > .fig  { position: absolute; left: var(--margin); right: var(--margin); top: var(--r-fig);
+  height: var(--fig-h); display: flex; flex-direction: column; justify-content: center; }
+.slide > .fig svg { width: 100%; height: auto; display: block; }
+.slide > .cap {
+  position: absolute; left: var(--margin); right: var(--margin); top: var(--r-cap);
+  font-family: var(--f-text); font-size: var(--t2); font-weight: 400;
+  color: var(--ink-2); line-height: 1.36;
+}
+.slide > .cap b { color: var(--ink); font-weight: 600; }
+
+/* ---------------- route strip ---------------- */
 .strip {
-  position: absolute; top: 44px; left: 100px; right: 100px;
-  display: flex; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.06em;
+  position: absolute; top: var(--r-strip); left: var(--margin); right: var(--margin);
+  display: flex; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  font-family: var(--f-display); font-size: var(--t1); letter-spacing: 0.04em;
 }
-.strip .st { flex: 1; padding: 12px 4px 11px; text-align: center; color: #4b5162; text-transform: lowercase; position: relative; }
-.strip .st + .st::before { content: ""; position: absolute; left: 0; top: 26%; bottom: 26%; width: 1px; background: var(--border); }
-.strip .st.done { color: #7a8192; }
-.strip .st.here { color: #121212; background: var(--amber); font-weight: 700; }
-.strip .st.back.here { background: var(--teal); }
+.strip .st { flex: 1; padding: 11px 4px 10px; text-align: center; color: #6b7285; text-transform: lowercase; position: relative; }
+.strip .st + .st::before { content: ""; position: absolute; left: 0; top: 24%; bottom: 24%; width: 1px; background: var(--line); }
+.strip .st.done { color: var(--ink-2); }
+.strip .st.here { color: var(--ground); background: var(--request); font-weight: 700; }
+.strip .st.back.here { background: var(--return); }
 
-/* ---------- footer ---------- */
+/* ---------------- footer ---------------- */
 .ref {
-  position: absolute; bottom: 42px; left: 100px; right: 100px;
-  display: flex; align-items: center; gap: 24px;
-  border-top: 1px solid var(--border); padding-top: 14px;
-  font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
+  position: absolute; bottom: var(--r-foot); left: var(--margin); right: var(--margin);
+  display: flex; align-items: center; gap: var(--s3);
+  border-top: 1px solid var(--line); padding-top: 13px;
+  font-family: var(--f-display); font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
 }
-.ref .ref-n { color: var(--amber); font-weight: 700; }
-.ref .ref-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
-.ref .ref-logo { height: 28px; width: auto; display: block; }
-.ref .ref-pg { font-size: 20px; font-weight: 700; letter-spacing: 0; color: var(--fg); }
-.cover-mark { position: absolute; height: 96px; width: auto; }
-.slide--title .cover-mark { top: 86px; right: 104px; }
-.slide--cta   .cover-mark { bottom: 90px; right: 110px; }
+.ref .ref-n { color: var(--request); font-weight: 700; }
+.ref .ref-right { margin-left: auto; display: flex; align-items: center; gap: var(--s3); }
+.ref .ref-logo { height: 26px; width: auto; display: block; }
+.ref .ref-pg { font-size: var(--t1); font-weight: 700; letter-spacing: 0; color: var(--ink-2); }
+.cover-mark { position: absolute; height: 88px; width: auto; }
+.slide--title .cover-mark { top: 88px; right: var(--margin); }
+.slide--cta   .cover-mark { bottom: 96px; right: var(--margin); }
 
-/* ---------- title ---------- */
-.slide--title { padding: 150px 110px; display: flex; flex-direction: column; justify-content: center; }
-.slide--title::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(900px 560px at 18% 76%, rgba(248,168,35,0.17), transparent 66%),
-              radial-gradient(780px 540px at 88% 18%, rgba(7,0,94,0.9), transparent 68%); }
-.slide--title > *:not(.cover-mark) { position: relative; z-index: 1; }
+/* ---------------- title ---------------- */
+.slide--title { padding: 0; }
+.slide--title::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(760px 520px at 12% 88%, rgba(248,168,35,0.13), transparent 64%);
+}
+.slide--title > *:not(.cover-mark) { position: absolute; z-index: 1; }
 .slide--title .cover-mark { z-index: 2; }
-.slide--title .eyebrow { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber); margin-bottom: 36px; }
-.slide--title h1 { font-size: 150px; line-height: 0.94; font-weight: 900; letter-spacing: -0.04em; }
-.slide--title h1 em { font-style: normal; color: var(--amber); }
-.slide--title .sub { font-size: 32px; line-height: 1.3; color: var(--muted); margin-top: 38px; max-width: 46ch; font-weight: 300; }
-.slide--title .meta { position: absolute; bottom: 86px; left: 110px; right: 110px; display: flex; gap: 26px; align-items: baseline;
-  font-family: var(--f-mono); font-size: 20px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 24px; z-index: 1; }
-.slide--title .meta .who { color: var(--fg); font-weight: 500; }
+.slide--title .eyebrow {
+  left: var(--margin); top: 452px;
+  font-family: var(--f-display); font-size: var(--t2); font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--request);
+}
+.slide--title h1 {
+  left: var(--margin); right: var(--margin); top: 524px;
+  font-family: var(--f-display); font-size: var(--t10); font-weight: 700;
+  line-height: 0.98; letter-spacing: -0.06em;
+}
+.slide--title h1 em { font-style: normal; color: var(--request); }
+.slide--title .sub {
+  left: var(--margin); top: 772px;
+  font-family: var(--f-text); font-size: var(--t3); font-weight: 300; line-height: 1.3; color: var(--ink-2);
+}
+.slide--title .meta {
+  left: var(--margin); right: var(--margin); bottom: 112px;
+  display: flex; gap: var(--s3); align-items: baseline;
+  font-family: var(--f-display); font-size: var(--t1); color: var(--ink-3);
+  border-top: 1px solid var(--line); padding-top: var(--s3);
+}
+.slide--title .meta .who { color: var(--ink); font-weight: 500; }
 .slide--title .meta .spacer { flex: 1; }
 
-/* ---------- big: one statement, nothing else ---------- */
-.slide--big { display: grid; place-items: center; padding: 150px 130px; text-align: center; }
-.slide--big h2 { font-size: 118px; line-height: 1.02; font-weight: 900; letter-spacing: -0.04em; max-width: 19ch; }
-.slide--big h2 em { font-style: normal; color: var(--amber); }
-.slide--big h2 b { font-weight: 900; color: var(--teal); }
-.slide--big .cap { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 48px; }
+/* ---------------- punctuation: one statement ---------------- */
+.slide--big { display: grid; place-items: center; padding: 0 var(--margin); text-align: center; }
+.slide--big h2 {
+  position: static; font-family: var(--f-display); font-size: var(--t8); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.05em; max-width: 22ch;
+}
+.slide--big h2 em { font-style: normal; color: var(--request); }
+.slide--big h2 b  { font-weight: 700; color: var(--return); }
+.slide--big .cap {
+  position: static; margin-top: var(--s4); font-family: var(--f-display);
+  font-size: var(--t2); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
 
-/* ---------- number: one enormous figure ---------- */
-.slide--num { display: grid; place-items: center; padding: 140px 130px; text-align: center; }
-.slide--num .n { font-family: var(--f-mono); font-size: 300px; font-weight: 700; line-height: 0.84; color: var(--amber); letter-spacing: -0.05em; }
-.slide--num .n .u { font-size: 0.3em; color: var(--fg); letter-spacing: 0; margin-left: 0.07em; }
-.slide--num .n.cool { color: var(--teal); }
-.slide--num .lab { font-size: 46px; font-weight: 700; letter-spacing: -0.02em; margin-top: 42px; max-width: 24ch; line-height: 1.16; }
-.slide--num .sub { font-family: var(--f-mono); font-size: 22px; color: var(--muted); margin-top: 24px; letter-spacing: 0.04em; }
+/* ---------------- punctuation: one number ---------------- */
+.slide--num { display: grid; place-items: center; padding: 0 var(--margin); text-align: center; }
+.slide--num .n {
+  font-family: var(--f-display); font-size: 268px; font-weight: 700;
+  line-height: 0.84; color: var(--request); letter-spacing: -0.06em;
+}
+.slide--num .n .u { font-size: 0.3em; color: var(--ink); letter-spacing: -0.02em; margin-left: 0.06em; }
+.slide--num .lab {
+  font-family: var(--f-display); font-size: var(--t5); font-weight: 700;
+  letter-spacing: -0.03em; margin-top: var(--s4); max-width: 24ch; line-height: 1.14;
+}
+.slide--num .sub { font-family: var(--f-text); font-size: var(--t2); color: var(--ink-3); margin-top: var(--s3); font-weight: 400; }
 
-/* ---------- section divider ---------- */
-.slide--section { padding: 130px 120px 170px; display: flex; flex-direction: column; justify-content: flex-end; }
-.slide--section .num { font-family: var(--f-mono); font-size: 170px; font-weight: 700; line-height: 0.88; color: var(--amber); letter-spacing: -0.05em; }
-.slide--section h2 { font-size: 96px; font-weight: 900; margin-top: 14px; max-width: 22ch; line-height: 1.02; letter-spacing: -0.035em; }
-.slide--section .stops { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-top: 28px; }
+/* ---------------- section divider ---------------- */
+.slide--section { padding: 0; }
+.slide--section > * { position: absolute; left: var(--margin); right: var(--margin); }
+.slide--section .num {
+  top: 540px; font-family: var(--f-display); font-size: var(--t9); font-weight: 700;
+  line-height: 1; color: var(--request); letter-spacing: -0.06em;
+}
+.slide--section h2 {
+  position: absolute; top: 672px; font-family: var(--f-display); font-size: var(--t7);
+  font-weight: 700; line-height: 1.08; letter-spacing: -0.05em; max-width: 22ch;
+}
+.slide--section .stops {
+  top: 836px; font-family: var(--f-display); font-size: var(--t1);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
 
-/* ---------- viz: a title and a picture ---------- */
-.slide--viz { padding: 128px 110px 120px; display: flex; flex-direction: column; justify-content: center; }
-.slide--viz h2 { font-size: 60px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; max-width: 30ch; }
-.slide--viz .kick { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
-.slide--viz .fig { margin-top: 34px; }
-.slide--viz .fig svg { width: 100%; height: auto; display: block; }
-.slide--viz .cap { font-family: var(--f-mono); font-size: 21px; color: var(--muted); margin-top: 28px; letter-spacing: 0.02em; line-height: 1.4; }
-.slide--viz .cap b { color: var(--fg); font-weight: 700; }
-.slide--viz.wide { padding: 120px 70px 112px; }
-
-/* ---------- duo: two things, side by side ---------- */
-.slide--duo { padding: 128px 110px 120px; display: flex; flex-direction: column; justify-content: center; }
-.slide--duo h2 { font-size: 60px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
-.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 46px; margin-top: 40px; }
-.duo .pane { border: 1px solid var(--border); border-radius: 5px; padding: 36px 34px 34px; background: var(--surface); display: flex; flex-direction: column; }
+/* ---------------- figure zone: duo ---------------- */
+.duo {
+  position: absolute; left: var(--margin); right: var(--margin); top: var(--r-fig);
+  height: var(--fig-h); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4);
+}
+.duo .pane {
+  border: 1px solid var(--line); background: var(--surface);
+  padding: var(--s4) var(--s4) var(--s3); display: flex; flex-direction: column; min-width: 0;
+}
 .duo .pane.good { background: var(--deep); border-color: var(--deep-2); }
-.duo .pane .t { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.duo .pane.good .t { color: var(--amber); }
-.duo .pane h3 { font-size: 42px; font-weight: 800; letter-spacing: -0.025em; margin-top: 10px; line-height: 1.08; }
-.duo .pane .fig { margin-top: 26px; }
+.duo .pane .t {
+  font-family: var(--f-display); font-size: var(--t1); font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3);
+}
+.duo .pane.good .t { color: var(--request); }
+.duo .pane h3 {
+  font-family: var(--f-display); font-size: var(--t4); font-weight: 700;
+  letter-spacing: -0.04em; margin-top: var(--s1); line-height: 1.12;
+}
+.duo .pane .fig { margin-top: var(--s3); }
 .duo .pane .fig svg { width: 100%; height: auto; display: block; }
-.duo .pane .note { font-family: var(--f-mono); font-size: 20px; color: var(--muted); margin-top: auto; padding-top: 24px; line-height: 1.4; }
-.duo .pane.good .note { color: #b9bcf0; }
-.duo .pane .note b { color: var(--fg); font-weight: 700; }
+.duo .pane .note {
+  font-family: var(--f-text); font-size: var(--t2); color: var(--ink-2);
+  margin-top: auto; padding-top: var(--s3); line-height: 1.32; font-weight: 400;
+}
+.duo .pane.good .note { color: #a9adf0; }
+.duo .pane .note b { color: var(--ink); font-weight: 600; }
 
-/* ---------- terminal mock ---------- */
-.term { font-family: var(--f-mono); background: #08080a; border: 1px solid var(--border); border-radius: 6px;
-  padding: 44px 48px; font-size: 32px; line-height: 1.6; color: #d7dbe3; }
-.term .p { color: var(--amber); }
-.term .d { color: var(--dim); }
-.term .cur { display: inline-block; width: 18px; height: 34px; background: var(--amber); vertical-align: -6px; margin-left: 4px; }
-.term.small { font-size: 23px; padding: 30px 34px; line-height: 1.55; }
+/* ---------------- figure zone: trio ---------------- */
+.trio {
+  position: absolute; left: var(--margin); right: var(--margin); top: var(--r-fig);
+  height: var(--fig-h); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4);
+}
+.trio .c {
+  border: 1px solid var(--line); background: var(--surface);
+  padding: var(--s4) var(--s4) var(--s3); display: flex; flex-direction: column; gap: var(--s2); min-width: 0;
+}
+.trio .c .ico svg { width: 56px; height: 56px; display: block; }
+.trio .c h3 { font-family: var(--f-display); font-size: var(--t4); font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; }
+.trio .c p { font-family: var(--f-text); font-size: var(--t2); line-height: 1.32; color: var(--ink-2); }
+.trio .c .m { font-family: var(--f-display); font-size: var(--t1); color: var(--request); margin-top: auto; padding-top: var(--s2); }
+.trio .c.cool .m { color: var(--return); }
 
-/* ---------- code ---------- */
-pre.code { font-family: var(--f-mono); font-size: 21px; line-height: 1.5; background: #08080a;
-  border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 4px;
-  padding: 28px 30px; color: #d7dbe3; white-space: pre; overflow: hidden; }
-pre.code.sm { font-size: 18px; line-height: 1.46; padding: 24px 26px; }
-pre.code .c { color: var(--dim); font-style: italic; }
-pre.code .k { color: var(--amber); }
-pre.code .v { color: var(--teal); }
+/* ---------------- terminal ---------------- */
+.term {
+  font-family: var(--f-display); background: #08090c; border: 1px solid var(--line);
+  padding: var(--s5) var(--s5); font-size: var(--t5); line-height: 1.5; color: var(--ink);
+}
+.term .p { color: var(--request); }
+.term .d { color: var(--ink-3); font-size: var(--t2); }
+.term .cur { display: inline-block; width: 20px; height: 44px; background: var(--request); vertical-align: -7px; margin-left: 6px; }
+
+/* ---------------- code ---------------- */
+pre.code {
+  font-family: var(--f-display); font-size: var(--t2); line-height: 1.5; background: #08090c;
+  border: 1px solid var(--line); border-left: 2px solid var(--request);
+  padding: var(--s4); color: #cfd4e0; white-space: pre; overflow: hidden;
+}
+pre.code .c { color: var(--ink-3); }
+pre.code .k { color: var(--request); }
+pre.code .v { color: var(--return); }
 pre.code .s { color: #9fd2a0; }
-pre.code .r { color: var(--red); }
+pre.code .r { color: var(--warn); }
 
-/* ---------- three cards, minimal ---------- */
-.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 44px; }
-.trio .c { border: 1px solid var(--border); border-top: 4px solid var(--amber); border-radius: 4px;
-  background: var(--surface); padding: 34px 30px; display: flex; flex-direction: column; gap: 16px; }
-.trio .c.cool { border-top-color: var(--teal); }
-.trio .c .ico svg { width: 72px; height: 72px; display: block; }
-.trio .c h3 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
-.trio .c p { font-size: 23px; line-height: 1.38; color: var(--muted); font-weight: 300; }
-.trio .c .m { font-family: var(--f-mono); font-size: 20px; color: var(--amber); margin-top: auto; padding-top: 12px; }
-.trio .c.cool .m { color: var(--teal); }
+/* ---------------- tokenisation strip ---------------- */
+.toks { display: grid; gap: var(--s3); }
+.tokrow { display: grid; grid-template-columns: 300px 1fr 104px; gap: var(--s4); align-items: center; }
+.tokrow .lang { font-family: var(--f-display); font-size: var(--t2); font-weight: 700; letter-spacing: -0.03em; }
+.tokrow .pieces { display: flex; flex-wrap: wrap; gap: 5px; }
+.tokrow .pieces span {
+  font-family: var(--f-display); font-size: var(--t2); padding: 7px 10px;
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); white-space: pre;
+}
+.tokrow.hot .pieces span { background: rgba(248,168,35,0.12); border-color: var(--request-3); color: #ffd98a; }
+.tokrow .count { font-family: var(--f-display); font-size: var(--t6); font-weight: 700; text-align: right; letter-spacing: -0.05em; color: var(--ink-3); }
+.tokrow.hot .count { color: var(--request); }
 
-/* ---------- closing ---------- */
-.slide--cta { padding: 150px 120px; display: flex; flex-direction: column; justify-content: center; }
+/* ---------------- HBM budget bars ---------------- */
+.mem { display: grid; gap: var(--s3); }
+.mrow { display: grid; grid-template-columns: 264px 1fr 120px; gap: var(--s4); align-items: center; }
+.mrow .ml { font-family: var(--f-display); font-size: var(--t2); font-weight: 700; letter-spacing: -0.03em; }
+.mbar { display: flex; height: 80px; border: 1px solid var(--line); font-family: var(--f-display); font-size: var(--t1); font-weight: 500; }
+.mbar > div { display: grid; place-items: center; text-align: center; padding: 0 var(--s1); }
+.mbar .w  { background: var(--deep); color: #b6bbf5; }
+.mbar .ov { background: var(--surface-2); }
+.mbar .kv { background: var(--request); color: var(--ground); }
+.mrow .mv { font-family: var(--f-display); font-size: var(--t6); font-weight: 700; text-align: right; letter-spacing: -0.05em; color: var(--ink-3); }
+.mrow .mv.hot { color: var(--request); }
+
+/* ---------------- closing ---------------- */
+.slide--cta { padding: 0; }
 .slide--cta::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(900px 560px at 16% 78%, rgba(248,168,35,0.15), transparent 66%); }
-.slide--cta > *:not(.cover-mark) { position: relative; z-index: 1; }
+  background: radial-gradient(760px 520px at 12% 86%, rgba(248,168,35,0.12), transparent 64%); }
+.slide--cta > *:not(.cover-mark) { position: absolute; z-index: 1; }
 .slide--cta .cover-mark { z-index: 2; }
-.slide--cta h2 { font-size: 92px; font-weight: 900; line-height: 1.04; letter-spacing: -0.035em; max-width: 20ch; }
-.slide--cta h2 em { font-style: normal; color: var(--amber); }
-.slide--cta .me { display: flex; gap: 32px; align-items: center; margin-top: 70px; }
-.slide--cta .me img { width: 142px; height: 142px; border-radius: 50%; object-fit: cover; border: 3px solid var(--amber); }
-.slide--cta .me .who b { font-size: 36px; font-weight: 700; display: block; }
-.slide--cta .me .who span { font-size: 24px; color: var(--muted); display: block; margin-top: 6px; font-weight: 300; }
-.slide--cta .me .who .links { font-family: var(--f-mono); font-size: 22px; color: var(--amber); margin-top: 12px; }
+.slide--cta h2 {
+  left: var(--margin); right: var(--margin); top: 300px;
+  font-family: var(--f-display); font-size: var(--t8); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.05em; max-width: 21ch;
+}
+.slide--cta h2 em { font-style: normal; color: var(--request); }
+.slide--cta .me { left: var(--margin); bottom: 180px; display: flex; gap: var(--s4); align-items: center; }
+.slide--cta .me img { width: 128px; height: 128px; border-radius: 50%; object-fit: cover; border: 2px solid var(--request); }
+.slide--cta .me .who b { font-family: var(--f-display); font-size: var(--t4); font-weight: 700; display: block; letter-spacing: -0.04em; }
+.slide--cta .me .who span { font-family: var(--f-text); font-size: var(--t2); color: var(--ink-2); display: block; margin-top: var(--s1); }
+.slide--cta .me .who .links { font-family: var(--f-display); font-size: var(--t2); color: var(--request); margin-top: 12px; }
 
-/* ---------- sources ---------- */
-.slide--srcs { padding: 120px 110px; display: flex; flex-direction: column; justify-content: center; }
-.slide--srcs h2 { font-size: 54px; font-weight: 800; letter-spacing: -0.025em; }
-.srcs { columns: 2; column-gap: 64px; margin-top: 32px; font-size: 20px; line-height: 1.42; font-weight: 300; }
-.srcs p { break-inside: avoid; margin-bottom: 16px; color: var(--muted); }
-.srcs p b { color: var(--fg); font-weight: 600; display: block; font-family: var(--f-mono); font-size: 18px; }
+/* ---------------- sources ---------------- */
+.slide--srcs { padding: 0; }
+.slide--srcs h2 { top: var(--r-head); font-size: var(--t6); }
+.srcs {
+  position: absolute; left: var(--margin); right: var(--margin); top: 332px;
+  columns: 2; column-gap: var(--s6); font-family: var(--f-text);
+  font-size: var(--t1); line-height: 1.42; font-weight: 400;
+}
+.srcs p { break-inside: avoid; margin-bottom: var(--s2); color: var(--ink-2); }
+.srcs p b { color: var(--ink); font-weight: 600; display: block; font-family: var(--f-display); font-size: 18px; letter-spacing: 0.02em; }
 
-/* ---------- tokenisation strip ---------- */
-.toks { display: grid; gap: 30px; }
-.tokrow { display: grid; grid-template-columns: 330px 1fr 120px; gap: 32px; align-items: center; }
-.tokrow .lang { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
-.tokrow .pieces { display: flex; flex-wrap: wrap; gap: 6px; }
-.tokrow .pieces span { font-family: var(--f-mono); font-size: 25px; padding: 9px 11px; border-radius: 3px;
-  background: var(--surface); border: 1px solid var(--border); color: #d7dbe3; white-space: pre; }
-.tokrow.hot .pieces span { background: rgba(248,168,35,0.15); border-color: var(--amber-3); color: #ffd98a; }
-.tokrow .count { font-family: var(--f-mono); font-size: 62px; font-weight: 700; text-align: right; letter-spacing: -0.03em; }
-.tokrow.hot .count { color: var(--amber); }
+/* ---------------- token anatomy (prologue) ---------------- */
+.tokline { display: flex; flex-wrap: wrap; gap: var(--s1); }
+.tokline span {
+  font-family: var(--f-display); font-size: var(--t4); font-weight: 500; padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); white-space: pre;
+}
+.tokline span.hot { background: rgba(248,168,35,0.13); border-color: var(--request-3); color: var(--request); }
+.counts { display: flex; gap: var(--s6); margin-top: var(--s5); }
+.counts div { display: flex; align-items: baseline; gap: var(--s2); }
+.counts b { font-family: var(--f-display); font-size: var(--t7); font-weight: 700; letter-spacing: -0.05em; color: var(--ink-3); }
+.counts span { font-family: var(--f-text); font-size: var(--t2); color: var(--ink-3); }
+.counts .hot b, .counts .hot span { color: var(--request); }
 
-/* ---------- HBM budget bars ---------- */
-.mem { display: grid; gap: 26px; }
-.mrow { display: grid; grid-template-columns: 300px 1fr 150px; gap: 32px; align-items: center; }
-.mrow .ml { font-size: 29px; font-weight: 700; letter-spacing: -0.02em; }
-.mbar { display: flex; height: 86px; border-radius: 4px; overflow: hidden; border: 1px solid var(--border);
-  font-family: var(--f-mono); font-size: 22px; font-weight: 600; }
-.mbar > div { display: grid; place-items: center; text-align: center; padding: 0 8px; }
-.mbar .w  { background: var(--deep); color: #cfd3ff; }
-.mbar .ov { background: #3a3f52; }
-.mbar .kv { background: var(--amber); color: #121212; }
-.mrow .mv { font-family: var(--f-mono); font-size: 58px; font-weight: 700; text-align: right; letter-spacing: -0.03em; color: var(--muted); }
-.mrow .mv.hot { color: var(--amber); }
+.wordrows { display: grid; gap: var(--s3); }
+.wr { display: flex; align-items: center; gap: var(--s2); }
+.wr .w { font-family: var(--f-display); font-size: var(--t4); font-weight: 700; width: 420px; letter-spacing: -0.04em; }
+.wr .t {
+  font-family: var(--f-display); font-size: var(--t3); padding: 10px 14px;
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); white-space: pre;
+}
+.wr .t.hot { background: rgba(248,168,35,0.13); border-color: var(--request-3); color: var(--request); }
+.wr .n { margin-left: auto; font-family: var(--f-display); font-size: var(--t4); font-weight: 700; color: var(--ink-3); letter-spacing: -0.04em; }
 
-.slide--duo .kick { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
-
-/* ---------- reveal ---------- */
-.frag { opacity: 0.12; transition: opacity 180ms ease; }
+/* ---------------- reveal ---------------- */
+.frag { opacity: 0.1; transition: opacity 160ms ease; }
 .frag.on { opacity: 1; }
 
-/* ---------- chrome ---------- */
-#progress { position: fixed; left: 0; top: 0; height: 3px; background: var(--amber); width: 0; z-index: 60; transition: width 160ms ease; }
-#pager { position: fixed; right: 18px; bottom: 13px; font-family: var(--f-mono); font-size: 13px; color: #43485a; z-index: 60; }
-#clock { position: fixed; left: 18px; bottom: 13px; font-family: var(--f-mono); font-size: 13px; color: #43485a; z-index: 60; }
-#help { position: fixed; left: 50%; bottom: 13px; transform: translateX(-50%); font-family: var(--f-mono); font-size: 13px; color: #43485a; z-index: 60; transition: opacity 400ms ease; }
+/* ---------------- chrome ---------------- */
+#progress { position: fixed; left: 0; top: 0; height: 2px; background: var(--request); width: 0; z-index: 60; transition: width 140ms linear; }
+#pager, #clock, #help { position: fixed; bottom: 12px; font-family: var(--f-display); font-size: 12px; color: #343949; z-index: 60; }
+#pager { right: 16px; } #clock { left: 16px; }
+#help { left: 50%; transform: translateX(-50%); transition: opacity 400ms ease; }
 #help.gone { opacity: 0; }
-#notes { position: fixed; left: 0; right: 0; bottom: 0; height: 38vh; background: #08080a; border-top: 2px solid var(--amber);
-  color: #c9cdd6; padding: 20px 30px 28px; overflow-y: auto; transform: translateY(100%); transition: transform 200ms ease; z-index: 70; }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; height: 38vh; background: #08090c; border-top: 2px solid var(--request);
+  color: #c3c8d4; padding: 20px 28px 26px; overflow-y: auto; transform: translateY(100%); transition: transform 180ms ease; z-index: 70; }
 #notes.on { transform: translateY(0); }
-#notes h4 { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); margin-bottom: 11px; }
-#nbody { font-size: 16px; line-height: 1.5; max-width: 150ch; }
+#notes h4 { font-family: var(--f-display); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--request); margin-bottom: 10px; }
+#nbody { font-family: var(--f-text); font-size: 16px; line-height: 1.5; max-width: 150ch; }
 #nbody p { margin-bottom: 10px; }
 #nbody b { color: #fff; }
-#nbody code { font-family: var(--f-mono); color: var(--amber); font-size: 0.92em; }
-#nbody .say { border-left: 3px solid var(--amber); padding-left: 14px; color: #f0f2f5; font-style: italic; }
+#nbody code { font-family: var(--f-display); color: var(--request); font-size: 0.92em; }
+#nbody .say { border-left: 2px solid var(--request); padding-left: 14px; color: #eef0f4; font-style: italic; }
 .s-notes { display: none; }
 
 @media print {
@@ -281,7 +403,7 @@ pre.code .r { color: var(--red); }
 <section class="slide on-dark slide--viz">
   <p class="kick">It starts here</p>
   <h2>You type seven words.</h2>
-  <div class="fig" style="margin-top:56px">
+  <div class="fig">
     <div class="term">
       <span class="d">~/repos/etl</span><br>
       <span class="p">&gt;</span> why did the nightly ETL job fail?<span class="cur"></span>
@@ -296,10 +418,145 @@ pre.code .r { color: var(--red); }
 </section>
 
 <!-- 3 ...................................................................... -->
+<section class="slide on-dark slide--big">
+  <div>
+    <h2>First — what <em>is</em> a token?</h2>
+    <p class="cap">the unit everything after this is priced in</p>
+  </div>
+  <div class="s-notes">
+    <p><b>15 seconds.</b> A beat. The title of the talk promises a token; the room deserves to know what one is before we follow it.</p>
+    <p class="say">"The whole talk is called Life of a token. So before we follow one anywhere — four slides on what the thing actually is. This is the unit your bill is denominated in, and most people have never looked at it."</p>
+  </div>
+</section>
+
+<!-- 4 ...................................................................... -->
+<section class="slide on-dark slide--viz wide">
+  <p class="kick">the model's answer to your question</p>
+  <h2>Not a word. Not a letter.</h2>
+  <div class="fig">
+    <div class="tokline">
+      <span>The</span><span> nightly</span><span class="hot"> ET</span><span class="hot">L</span><span> job</span><span> failed</span><span> on</span><span> a</span><span class="hot"> des</span><span class="hot">erialization</span><span> error</span><span>.</span>
+    </div>
+    <div class="counts">
+      <div><b>54</b><span>characters</span></div>
+      <div><b>9</b><span>words</span></div>
+      <div class="hot"><b>12</b><span>tokens</span></div>
+    </div>
+  </div>
+  <p class="cap">Common words survive whole. <b>ETL</b> splits. <b>deserialization</b> splits. A token is a byte sequence the tokenizer saw often enough to keep.</p>
+  <div class="s-notes">
+    <p><b>60 seconds. Walk the amber chips.</b></p>
+    <p class="say">"This is the answer the model is going to give you, taken apart. Fifty-four characters. Nine words. Twelve tokens — so it is neither. Look at the amber ones: E-T-L is two tokens, because the tokenizer has never seen enough ETL to keep it whole. Deserialization is two. But 'failed' and 'nightly' survive intact, because they are common. A token is just a byte sequence that showed up often enough in the training corpus to be worth an entry."</p>
+    <p>Real splits from <code>tiktoken</code>, <code>o200k_base</code>. Say that — people assume these diagrams are drawn by hand.</p>
+    <p>If someone asks why there's a leading space on most chips: the space is part of the token. That is why "ETL" mid-sentence and "ETL" at the start are different tokens.</p>
+  </div>
+</section>
+
+<!-- 5 ...................................................................... -->
+<section class="slide on-dark slide--viz wide">
+  <h2>Because the two obvious answers are worse.</h2>
+  <div class="fig">
+  <svg viewBox="0 0 1780 440" role="img" aria-label="Letters give a tiny vocabulary but very long sequences; words give short sequences but an unbounded vocabulary; subwords sit between them.">
+    <g font-family="JetBrains Mono" font-size="20" fill="#5e6578">
+      <text x="0" y="22">VOCABULARY</text><text x="0" y="238">SEQUENCE</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="31" font-weight="700" fill="#f2f3f6">
+      <text x="0"    y="86">letters</text>
+      <text x="610"  y="86">words</text>
+      <text x="1220" y="86">subwords</text>
+    </g>
+    <g>
+      <rect x="0"    y="110" width="212"  height="40" fill="#2a3144"/>
+      <rect x="610"  y="110" width="530"  height="40" fill="#2a3144"/>
+      <rect x="1220" y="110" width="466"  height="40" fill="#f8a823"/>
+    </g>
+    <g font-family="JetBrains Mono" font-size="25" fill="#99a0b2">
+      <text x="0"    y="186">256</text>
+      <text x="610"  y="186">unbounded</text>
+      <text x="1220" y="186" fill="#f8a823">200,019</text>
+    </g>
+    <g>
+      <rect x="0"    y="262" width="530" height="40" fill="#2a3144"/>
+      <rect x="610"  y="262" width="88"  height="40" fill="#2a3144"/>
+      <rect x="1220" y="262" width="118" height="40" fill="#f8a823"/>
+    </g>
+    <g font-family="JetBrains Mono" font-size="25" fill="#99a0b2">
+      <text x="0"    y="338">54 for that sentence</text>
+      <text x="610"  y="338">9</text>
+      <text x="1220" y="338" fill="#f8a823">12</text>
+    </g>
+    <g font-family="Inter" font-size="25" fill="#5e6578">
+      <text x="0"    y="414">everything to process</text>
+      <text x="610"  y="414">breaks on every new word</text>
+      <text x="1220" y="414" fill="#99a0b2">the compromise everyone shipped</text>
+    </g>
+  </svg>
+  </div>
+  <p class="cap">Letters: nothing to learn, enormous sequences. Words: short sequences, and <b>agentgateway</b> isn't in the dictionary. Subwords are the trade.</p>
+  <div class="s-notes">
+    <p><b>55 seconds. Left, right, middle — in that order.</b></p>
+    <p class="say">"Why not just use letters? Because your vocabulary is two hundred and fifty-six and every sentence becomes enormous — and attention cost grows with the square of sequence length, so that is ruinous. Why not whole words? Because the vocabulary is unbounded. New words arrive every day — agentgateway, llm-d, your internal service names — and a word-level model simply cannot represent them. Subwords are the compromise: a fixed vocabulary that can still spell anything it has never seen."</p>
+    <p>If challenged on "256": byte-level, so 256 is exactly right — not an alphabet, the byte range. That is also why these models can handle any script on earth without a special case.</p>
+  </div>
+</section>
+
+<!-- 6 ...................................................................... -->
+<section class="slide on-dark slide--viz wide">
+  <p class="kick">byte-pair encoding</p>
+  <h2>The vocabulary is learned, not written.</h2>
+  <div class="fig">
+    <div class="wordrows">
+      <div class="wr"><span class="w">GPU</span><span class="t hot">GPU</span><span class="n">1</span></div>
+      <div class="wr"><span class="w">agentgateway</span><span class="t">agent</span><span class="t">gateway</span><span class="n">2</span></div>
+      <div class="wr"><span class="w">Kubernetes</span><span class="t">K</span><span class="t">ubernetes</span><span class="n">2</span></div>
+      <div class="wr"><span class="w">vLLM</span><span class="t">v</span><span class="t">LL</span><span class="t">M</span><span class="n">3</span></div>
+    </div>
+  </div>
+  <p class="cap">Start from bytes. Merge the most frequent pair. Repeat 200,019 times. <b>GPU earned its own entry; Kubernetes did not.</b></p>
+  <div class="s-notes">
+    <p><b>65 seconds. The last line is the one that lands.</b></p>
+    <p class="say">"Nobody sat down and wrote this vocabulary. You start from raw bytes, you count which pair occurs together most often, you merge it into a new symbol, and you do that two hundred thousand times. What falls out is a frequency ranking of the internet. GPU appears often enough to earn a single entry. Kubernetes — the thing we are all running — does not; it costs you a K and then everything else. And agentgateway is free, but only because 'agent' and 'gateway' were already common separately."</p>
+    <p>Then land it: <b>nothing in this vocabulary understands anything.</b> It is compression, fitted to a corpus. Every semantic thing the model does happens after this point, in the weights — not here.</p>
+    <p>This is also the honest setup for the next slide: if the corpus was mostly English, the compression is tuned for English.</p>
+  </div>
+</section>
+
+<!-- 7 ...................................................................... -->
+<section class="slide on-dark slide--viz">
+  <h2>And your alphabet sets the price.</h2>
+  <div class="fig">
+    <div class="toks">
+      <div class="tokrow">
+        <div class="lang">English</div>
+        <div class="pieces"><span>Every</span><span> agent</span><span> call</span><span> ends</span><span> up</span><span> as</span><span> tokens</span><span> on</span><span> a</span><span> GPU</span><span> somewhere</span><span>.</span></div>
+        <div class="count">12</div>
+      </div>
+      <div class="tokrow">
+        <div class="lang">Srpski · latinica</div>
+        <div class="pieces"><span>Sv</span><span>aki</span><span> poz</span><span>iv</span><span> ag</span><span>enta</span><span> završ</span><span>ava</span><span> kao</span><span> token</span><span>i</span><span> na</span><span> ne</span><span>kom</span><span> GPU</span><span>-u</span><span>.</span></div>
+        <div class="count">17</div>
+      </div>
+      <div class="tokrow hot">
+        <div class="lang">Српски · ћирилица</div>
+        <div class="pieces"><span>С</span><span>ва</span><span>ки</span><span> поз</span><span>ив</span><span> аген</span><span>та</span><span> зав</span><span>р</span><span>ша</span><span>ва</span><span> као</span><span> ток</span><span>ени</span><span> на</span><span> не</span><span>ком</span><span> GPU</span><span>-</span><span>у</span><span>.</span></div>
+        <div class="count">21</div>
+      </div>
+    </div>
+  </div>
+  <p class="cap">Same sentence · same 54 characters · measured with <b>tiktoken</b>, <b>o200k_base</b></p>
+  <div class="s-notes">
+    <p><b>65 seconds. Let them read the third row. These are the real splits.</b></p>
+    <p class="say">"Identical sentence. Identical fifty-four characters. Twelve tokens in English. Twenty-one in Cyrillic. That is a seventy-five percent surcharge — on compute, on cache, on your context window, and on every per-token price list in the industry — for writing in your own alphabet. Nobody decided this. It fell out of a training corpus."</p>
+    <p>Three consequences, fast: your 128k context is really 73k in Cyrillic; your latency budget is 1.75× tighter; and if you benchmarked in English you sized your cluster wrong. Then move.</p>
+    <p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
+  </div>
+</section>
+
+<!-- 3 ...................................................................... -->
 <section class="slide on-dark slide--viz wide">
   <p class="kick">The whole talk</p>
   <h2>Eight stops, down and back.</h2>
-  <div class="fig" style="margin-top:50px">
+  <div class="fig">
   <svg viewBox="0 0 1780 440" role="img" aria-label="The route: harness, context, gateway, route, prefill, decode, then stream and loop back to the harness.">
     <defs>
       <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#35d0ba"/></marker>
@@ -358,8 +615,8 @@ pre.code .r { color: var(--red); }
 
 <!-- 5 ...................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="1">
-  <h2>Your question is the smallest thing in the request.</h2>
-  <div class="fig" style="margin-top:28px">
+  <h2>You are the smallest thing in it.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 360" role="img" aria-label="A proportional bar of the request: tool schemas, file reads and conversation history dominate; the user's question is a 19-token sliver at the end.">
     <path d="M1757 108 L1757 70 L1360 70" stroke="#f94144" stroke-width="2.5" fill="none"/>
     <circle cx="1757" cy="108" r="5" fill="#f94144"/>
@@ -408,48 +665,7 @@ pre.code .r { color: var(--red); }
   </div>
 </section>
 
-<!-- 7 ...................................................................... -->
-<section class="slide on-dark slide--viz" data-stop="2">
-  <h2>Then it becomes integers — and your alphabet sets the price.</h2>
-  <div class="fig">
-    <div class="toks">
-      <div class="tokrow">
-        <div class="lang">English</div>
-        <div class="pieces"><span>Every</span><span> agent</span><span> call</span><span> ends</span><span> up</span><span> as</span><span> tokens</span><span> on</span><span> a</span><span> GPU</span><span> somewhere</span><span>.</span></div>
-        <div class="count">12</div>
-      </div>
-      <div class="tokrow">
-        <div class="lang">Srpski · latinica</div>
-        <div class="pieces"><span>Sv</span><span>aki</span><span> poz</span><span>iv</span><span> ag</span><span>enta</span><span> završ</span><span>ava</span><span> kao</span><span> token</span><span>i</span><span> na</span><span> ne</span><span>kom</span><span> GPU</span><span>-u</span><span>.</span></div>
-        <div class="count">17</div>
-      </div>
-      <div class="tokrow hot">
-        <div class="lang">Српски · ћирилица</div>
-        <div class="pieces"><span>С</span><span>ва</span><span>ки</span><span> поз</span><span>ив</span><span> аген</span><span>та</span><span> зав</span><span>р</span><span>ша</span><span>ва</span><span> као</span><span> ток</span><span>ени</span><span> на</span><span> не</span><span>ком</span><span> GPU</span><span>-</span><span>у</span><span>.</span></div>
-        <div class="count">21</div>
-      </div>
-    </div>
-  </div>
-  <p class="cap">Same sentence · same 54 characters · measured with <b>tiktoken</b>, <b>o200k_base</b></p>
-  <div class="s-notes">
-    <p><b>65 seconds. Let them read the third row. These are the real splits.</b></p>
-    <p class="say">"Identical sentence. Identical fifty-four characters. Twelve tokens in English. Twenty-one in Cyrillic. That is a seventy-five percent surcharge — on compute, on cache, on your context window, and on every per-token price list in the industry — for writing in your own alphabet. Nobody decided this. It fell out of a training corpus."</p>
-    <p>Three consequences, fast: your 128k context is really 73k in Cyrillic; your latency budget is 1.75× tighter; and if you benchmarked in English you sized your cluster wrong. Then move.</p>
-    <p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
-  </div>
-</section>
 
-<!-- 8 ...................................................................... -->
-<section class="slide on-dark slide--big" data-stop="2">
-  <div>
-    <h2>From here down, nothing knows what a <em>tool</em> is.</h2>
-    <p class="cap">a flat array of integers, and a sampler config</p>
-  </div>
-  <div class="s-notes">
-    <p><b>30 seconds.</b></p>
-    <p class="say">"Everything structured your harness just built — the roles, the tool schemas, the careful JSON — gets flattened by a chat template into one list of integers. The GPU has no idea what a tool is. It is doing sequence prediction on numbers. Every abstraction above this line is a convention we agreed on."</p>
-  </div>
-</section>
 
 <!-- 9 ...................................................................... -->
 <section class="slide on-deep slide--section">
@@ -461,8 +677,8 @@ pre.code .r { color: var(--red); }
 
 <!-- 10 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="3">
-  <h2>An agent speaks three languages. Only one is about tokens.</h2>
-  <div class="fig" style="margin-top:44px">
+  <h2>Three languages. One is about tokens.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 440" role="img" aria-label="Three protocols — LLM chat completions, MCP tool calls, and A2A agent-to-agent — all converge on one gateway.">
     <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5c6475"/></marker></defs>
     <g>
@@ -517,8 +733,8 @@ pre.code .r { color: var(--red); }
 <!-- 11 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="3">
   <p class="kick">agentgateway · the control that did not exist a year ago</p>
-  <h2>Authorisation per tool, not per service.</h2>
-  <div class="fig" style="margin-top:40px">
+  <h2>Per tool. Not per service.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 390" role="img" aria-label="A grid of MCP tools, most allowed, two denied by policy.">
     <g font-family="JetBrains Mono" font-size="23">
       <g>
@@ -563,8 +779,8 @@ pre.code .r { color: var(--red); }
 <!-- 12 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="3">
   <p class="kick">agentgateway · identity</p>
-  <h2>The agent acts <em>as somebody</em> — all the way down.</h2>
-  <div class="fig" style="margin-top:48px">
+  <h2>It acts <em>as somebody</em>.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 330" role="img" aria-label="Identity propagates from the human through the agent, the gateway and the tool call.">
     <defs><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#f8a823"/></marker></defs>
     <g stroke="#f8a823" stroke-width="3" fill="none" marker-end="url(#a3)">
@@ -599,7 +815,7 @@ pre.code .r { color: var(--red); }
 
 <!-- 13 ..................................................................... -->
 <section class="slide on-dark slide--duo" data-stop="3">
-  <h2>Two more things the gateway is for.</h2>
+  <h2>Two more jobs for the gateway.</h2>
   <div class="duo">
     <div class="pane">
       <p class="t">Budget</p>
@@ -648,8 +864,8 @@ pre.code .r { color: var(--red); }
 
 <!-- 15 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="4">
-  <h2>Your replicas are identical. They are not interchangeable.</h2>
-  <div class="fig" style="margin-top:38px">
+  <h2>Identical. Not interchangeable.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 420" role="img" aria-label="Three identical vLLM replicas; one already holds the request's prefix in its KV cache. Round-robin picks a cold one; an inference-aware picker picks the warm one.">
     <defs>
       <marker id="ar" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#f94144"/></marker>
@@ -692,6 +908,7 @@ pre.code .r { color: var(--red); }
     <text x="1175" y="400" font-family="JetBrains Mono" font-size="21" fill="#35d0ba" text-anchor="middle">queue depth · KV usage · prefix overlap · LoRA resident</text>
   </svg>
   </div>
+  <p class="cap">The fix is an <b>InferencePool</b> where the <b>Service</b> was. Your application team changes nothing.</p>
   <div class="s-notes">
     <p><b>85 seconds. The biggest money slide of the first half.</b></p>
     <p class="say">"Three replicas. Same image, same weights, same answer. And one of them already has thirty thousand of your thirty-one thousand tokens sitting in its KV cache, because this is turn seven of a conversation. That replica is seventy times cheaper for this specific request. A Service cannot know that. It round-robins, you land on a cold replica, and you pay for the same prefill twice. No error. No 503. The dashboard is green."</p>
@@ -700,22 +917,6 @@ pre.code .r { color: var(--red); }
   </div>
 </section>
 
-<!-- 16 ..................................................................... -->
-<section class="slide on-dark slide--viz" data-stop="4">
-  <p class="kick">the entire migration</p>
-  <h2>Two lines of YAML.</h2>
-  <div class="fig" style="margin-top:46px">
-    <pre class="code">  <span class="k">backendRefs:</span>
-  - <span class="k">group:</span> inference.networking.k8s.io
-    <span class="k">kind:</span>  <span class="v">InferencePool</span>        <span class="c"># was: Service</span>
-    <span class="k">name:</span>  llama-70b</pre>
-  </div>
-  <p class="cap">Your application team changes <b>nothing at all</b>.</p>
-  <div class="s-notes">
-    <p><b>30 seconds. Deliberately anticlimactic after the last slide.</b></p>
-    <p class="say">"And here is what it costs to fix. An HTTPRoute whose backend is a pool instead of a Service. That is the whole migration. Two or three times your time-to-first-token, for a four-line diff that your application team never even sees."</p>
-  </div>
-</section>
 
 <!-- 17 ..................................................................... -->
 <section class="slide on-deep slide--section">
@@ -727,7 +928,7 @@ pre.code .r { color: var(--red); }
 
 <!-- 18 ..................................................................... -->
 <section class="slide on-dark slide--duo" data-stop="5">
-  <h2>Same model. Same card. Milliseconds apart.</h2>
+  <h2>Same card. Milliseconds apart.</h2>
   <div class="duo">
     <div class="pane">
       <p class="t">Stop 05 · prefill</p>
@@ -797,8 +998,8 @@ pre.code .r { color: var(--red); }
 <!-- 21 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">llm-d · prefill/decode disaggregation</p>
-  <h2>If the two halves fight, stop making them share.</h2>
-  <div class="fig" style="margin-top:40px">
+  <h2>Stop making them share.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 400" role="img" aria-label="A router sends prefill to a compute-shaped pool and decode to a bandwidth-shaped pool; KV blocks move between them over NIXL on RDMA.">
     <defs><marker id="a4" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#f8a823"/></marker></defs>
     <rect x="40" y="150" width="230" height="100" rx="6" fill="#0f2422" stroke="#35d0ba"/>
@@ -837,7 +1038,7 @@ pre.code .r { color: var(--red); }
 <!-- 22 ..................................................................... -->
 <section class="slide on-dark slide--viz" data-stop="6">
   <p class="kick">llm-d</p>
-  <h2>vLLM, plus the problems that only appear at fleet scale.</h2>
+  <h2>vLLM, plus the fleet problems.</h2>
   <div class="trio">
     <div class="c">
       <div class="ico"><svg viewBox="0 0 72 72" fill="none" stroke="#f8a823" stroke-width="4"><circle cx="18" cy="18" r="10"/><circle cx="54" cy="18" r="10"/><circle cx="36" cy="54" r="10"/><path d="M26 24 L46 48 M46 24 L26 48"/></svg></div>
@@ -877,8 +1078,8 @@ pre.code .r { color: var(--red); }
 <!-- 24 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">continuous batching</p>
-  <h2>There is no queue. There is a scheduler.</h2>
-  <div class="fig" style="margin-top:36px">
+  <h2>No queue. A scheduler.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 330" role="img" aria-label="Static batching wastes GPU time padding to the longest sequence; continuous batching refills each slot on the next forward pass.">
     <defs>
       <pattern id="waste" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
@@ -915,7 +1116,7 @@ pre.code .r { color: var(--red); }
 
 <!-- 25 ..................................................................... -->
 <section class="slide on-dark slide--duo" data-stop="6">
-  <h2>The KV cache is virtual memory. Finally.</h2>
+  <h2>The KV cache gets a page table.</h2>
   <div class="duo">
     <div class="pane">
       <p class="t">Before</p>
@@ -947,8 +1148,8 @@ pre.code .r { color: var(--red); }
 <!-- 26 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">prefix caching · on by default</p>
-  <h2>Turn seven: you pay for one block.</h2>
-  <div class="fig" style="margin-top:34px">
+  <h2>Turn seven. You pay for one block.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 300" role="img" aria-label="Of the prompt's sixteen-token blocks, all but one are already cached.">
     <rect x="40" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="40" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="40" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="40" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="104" width="24" height="24" rx="2" fill="#f8a823"/>
     <rect x="1012" y="104" width="24" height="24" rx="2" fill="#f94144"/>
@@ -982,8 +1183,8 @@ pre.code .r { color: var(--red); }
 <!-- 28 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">288 GB of HBM, and how you spend it</p>
-  <h2>Weights are rent. KV cache is what you sell.</h2>
-  <div class="fig" style="margin-top:38px">
+  <h2>Weights are rent. KV is stock.</h2>
+  <div class="fig">
     <div class="mem">
       <div class="mrow frag">
         <div class="ml">BF16</div>
@@ -1013,12 +1214,12 @@ pre.code .r { color: var(--red); }
 
 <!-- 29 ..................................................................... -->
 <section class="slide on-dark slide--duo" data-stop="6">
-  <h2>And then someone asked: why read all of it?</h2>
+  <h2>Why read all of it?</h2>
   <div class="duo">
     <div class="pane">
       <p class="t">Dense</p>
       <h3>Every parameter, every token.</h3>
-      <div class="fig" style="display:flex;justify-content:center">
+      <div class="fig">
         <svg viewBox="0 0 504 504" style="width:290px;height:290px" role="img" aria-label="A dense model: every block of parameters is read for every token."><rect x="0" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="448" width="56" height="56" rx="2" fill="#f8a823"/></svg>
       </div>
       <p class="note" style="text-align:center"><b>64 of 64 read</b><br><span style="color:#6b7080">71 GB off the bus, 800 times, for one answer</span></p>
@@ -1026,7 +1227,7 @@ pre.code .r { color: var(--red); }
     <div class="pane good">
       <p class="t">Mixture of experts</p>
       <h3>A router picks a handful.</h3>
-      <div class="fig" style="display:flex;justify-content:center">
+      <div class="fig">
         <svg viewBox="0 0 506 506" style="width:290px;height:290px" role="img" aria-label="A mixture-of-experts model: only a few experts are active per token."><rect x="0" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="32" width="26" height="26" rx="2" fill="#f8a823"/><rect x="128" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="64" width="26" height="26" rx="2" fill="#f8a823"/><rect x="480" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="160" width="26" height="26" rx="2" fill="#f8a823"/><rect x="288" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="192" width="26" height="26" rx="2" fill="#f8a823"/><rect x="256" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="288" width="26" height="26" rx="2" fill="#f8a823"/><rect x="448" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="352" width="26" height="26" rx="2" fill="#f8a823"/><rect x="160" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="416" width="26" height="26" rx="2" fill="#f8a823"/><rect x="128" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="448" width="26" height="26" rx="2" fill="#f8a823"/><rect x="0" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="480" width="26" height="26" rx="2" fill="#232d47"/></svg>
       </div>
       <p class="note" style="text-align:center"><b style="color:#35d0ba">8 of 256 read</b><br><span>far more parameters on disk — far fewer bytes per token</span></p>
@@ -1051,8 +1252,8 @@ pre.code .r { color: var(--red); }
 <!-- 31 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="7">
   <p class="kick">the forward pass does not output a token</p>
-  <h2>It outputs 128,256 numbers. One of them wins.</h2>
-  <div class="fig" style="margin-top:44px">
+  <h2>128,256 numbers. One wins.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 320" role="img" aria-label="A logit distribution over the vocabulary, from which the sampler draws one token.">
     <g>
       <rect x="60"   y="44"  width="120" height="196" rx="4" fill="#f8a823"/>
@@ -1086,7 +1287,7 @@ pre.code .r { color: var(--red); }
 <section class="slide on-dark slide--viz" data-stop="7">
   <p class="kick">and then it has to become text</p>
   <h2>Your logo is a buffering problem.</h2>
-  <div class="fig" style="margin-top:40px">
+  <div class="fig">
   <svg viewBox="0 0 1700 310" role="img" aria-label="The die emoji is four UTF-8 bytes split across two tokens, neither of which is valid on its own, so the detokenizer must buffer.">
     <text x="30" y="80" font-family="Inter" font-size="92" fill="#f5f5f5">🎲</text>
     <text x="150" y="60" font-family="JetBrains Mono" font-size="27" fill="#a1a1a1">U+1F3B2</text>
@@ -1119,8 +1320,8 @@ pre.code .r { color: var(--red); }
 <!-- 33 ..................................................................... -->
 <section class="slide on-dark slide--viz wide" data-stop="8">
   <p class="kick">stop 08 · and round again</p>
-  <h2>The answer was a tool call. So we go again.</h2>
-  <div class="fig" style="margin-top:40px">
+  <h2>It was a tool call. Go again.</h2>
+  <div class="fig">
   <svg viewBox="0 0 1780 400" role="img" aria-label="Across successive agent turns the context grows, so each turn costs more than the last.">
     <defs><marker id="a5" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#35d0ba"/></marker></defs>
     <g font-family="JetBrains Mono" font-size="22" fill="#6b7080">
