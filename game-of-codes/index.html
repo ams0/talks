@@ -1,0 +1,1338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Life of a token: from agents to silicon and back. What happens between a keystroke in an agent harness and the GPU. Alessandro Vozza, Game of Codes 2026, Niš.">
+<link rel="icon" href="data:image/png;base64,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">
+<title>Life of a token — Game of Codes 2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+/* ============================================================
+   LIFE OF A TOKEN — Game of Codes 2026, Niš (10 October)
+   Visual cut: the slides carry pictures, the voice carries the words.
+   Palette from gameofcodes.rs · Inter + JetBrains Mono, their families.
+   Amber = the request going down. Teal = the answer coming home.
+   ============================================================ */
+:root {
+  --bg:        #121212;
+  --bg-2:      #0b0b0b;
+  --fg:        #f5f5f5;
+  --muted:     #a1a1a1;
+  --dim:       #6b7080;
+  --surface:   #1b1f29;
+  --border:    #232d47;
+  --deep:      #07005e;
+  --deep-2:    #1a1282;
+  --amber:     #f8a823;
+  --amber-2:   #c9851c;
+  --amber-3:   #8a5f16;
+  --red:       #f94144;
+  --teal:      #35d0ba;
+  --teal-2:    #1f8a7c;
+
+  --f-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--bg-2); font-family: var(--f-sans); color: var(--fg); }
+#deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: var(--bg-2); }
+
+.slide {
+  position: absolute; top: 50%; left: 50%;
+  width: 1920px; height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  transform-origin: center center;
+  opacity: 0; pointer-events: none; transition: opacity 140ms ease;
+  overflow: hidden; background-color: var(--bg); color: var(--fg);
+}
+.slide.is-active { opacity: 1; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+
+.on-dark {
+  background-image:
+    linear-gradient(rgba(35,45,71,0.34) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35,45,71,0.34) 1px, transparent 1px),
+    radial-gradient(1200px 760px at 80% 24%, rgba(248,168,35,0.06), transparent 68%);
+  background-size: 64px 64px, 64px 64px, 100% 100%;
+}
+.on-deep { background-color: var(--deep); }
+.on-deep::before { content: ""; position: absolute; inset: 0;
+  background: radial-gradient(1250px 780px at 70% 40%, rgba(26,18,130,0.95), transparent 72%); }
+.on-deep > * { position: relative; }
+
+/* ---------- route strip: eight stops, the token's position lit ---------- */
+.strip {
+  position: absolute; top: 44px; left: 100px; right: 100px;
+  display: flex; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  font-family: var(--f-mono); font-size: 18px; letter-spacing: 0.06em;
+}
+.strip .st { flex: 1; padding: 12px 4px 11px; text-align: center; color: #4b5162; text-transform: lowercase; position: relative; }
+.strip .st + .st::before { content: ""; position: absolute; left: 0; top: 26%; bottom: 26%; width: 1px; background: var(--border); }
+.strip .st.done { color: #7a8192; }
+.strip .st.here { color: #121212; background: var(--amber); font-weight: 700; }
+.strip .st.back.here { background: var(--teal); }
+
+/* ---------- footer ---------- */
+.ref {
+  position: absolute; bottom: 42px; left: 100px; right: 100px;
+  display: flex; align-items: center; gap: 24px;
+  border-top: 1px solid var(--border); padding-top: 14px;
+  font-family: var(--f-mono); font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
+}
+.ref .ref-n { color: var(--amber); font-weight: 700; }
+.ref .ref-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+.ref .ref-logo { height: 28px; width: auto; display: block; }
+.ref .ref-pg { font-size: 20px; font-weight: 700; letter-spacing: 0; color: var(--fg); }
+.cover-mark { position: absolute; height: 96px; width: auto; }
+.slide--title .cover-mark { top: 86px; right: 104px; }
+.slide--cta   .cover-mark { bottom: 90px; right: 110px; }
+
+/* ---------- title ---------- */
+.slide--title { padding: 150px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--title::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(900px 560px at 18% 76%, rgba(248,168,35,0.17), transparent 66%),
+              radial-gradient(780px 540px at 88% 18%, rgba(7,0,94,0.9), transparent 68%); }
+.slide--title > *:not(.cover-mark) { position: relative; z-index: 1; }
+.slide--title .cover-mark { z-index: 2; }
+.slide--title .eyebrow { font-family: var(--f-mono); font-size: 22px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--amber); margin-bottom: 36px; }
+.slide--title h1 { font-size: 150px; line-height: 0.94; font-weight: 900; letter-spacing: -0.04em; }
+.slide--title h1 em { font-style: normal; color: var(--amber); }
+.slide--title .sub { font-size: 32px; line-height: 1.3; color: var(--muted); margin-top: 38px; max-width: 46ch; font-weight: 300; }
+.slide--title .meta { position: absolute; bottom: 86px; left: 110px; right: 110px; display: flex; gap: 26px; align-items: baseline;
+  font-family: var(--f-mono); font-size: 20px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 24px; z-index: 1; }
+.slide--title .meta .who { color: var(--fg); font-weight: 500; }
+.slide--title .meta .spacer { flex: 1; }
+
+/* ---------- big: one statement, nothing else ---------- */
+.slide--big { display: grid; place-items: center; padding: 150px 130px; text-align: center; }
+.slide--big h2 { font-size: 118px; line-height: 1.02; font-weight: 900; letter-spacing: -0.04em; max-width: 19ch; }
+.slide--big h2 em { font-style: normal; color: var(--amber); }
+.slide--big h2 b { font-weight: 900; color: var(--teal); }
+.slide--big .cap { font-family: var(--f-mono); font-size: 26px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 48px; }
+
+/* ---------- number: one enormous figure ---------- */
+.slide--num { display: grid; place-items: center; padding: 140px 130px; text-align: center; }
+.slide--num .n { font-family: var(--f-mono); font-size: 300px; font-weight: 700; line-height: 0.84; color: var(--amber); letter-spacing: -0.05em; }
+.slide--num .n .u { font-size: 0.3em; color: var(--fg); letter-spacing: 0; margin-left: 0.07em; }
+.slide--num .n.cool { color: var(--teal); }
+.slide--num .lab { font-size: 46px; font-weight: 700; letter-spacing: -0.02em; margin-top: 42px; max-width: 24ch; line-height: 1.16; }
+.slide--num .sub { font-family: var(--f-mono); font-size: 22px; color: var(--muted); margin-top: 24px; letter-spacing: 0.04em; }
+
+/* ---------- section divider ---------- */
+.slide--section { padding: 130px 120px 170px; display: flex; flex-direction: column; justify-content: flex-end; }
+.slide--section .num { font-family: var(--f-mono); font-size: 170px; font-weight: 700; line-height: 0.88; color: var(--amber); letter-spacing: -0.05em; }
+.slide--section h2 { font-size: 96px; font-weight: 900; margin-top: 14px; max-width: 22ch; line-height: 1.02; letter-spacing: -0.035em; }
+.slide--section .stops { font-family: var(--f-mono); font-size: 21px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-top: 28px; }
+
+/* ---------- viz: a title and a picture ---------- */
+.slide--viz { padding: 128px 110px 120px; display: flex; flex-direction: column; justify-content: center; }
+.slide--viz h2 { font-size: 60px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; max-width: 30ch; }
+.slide--viz .kick { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
+.slide--viz .fig { margin-top: 34px; }
+.slide--viz .fig svg { width: 100%; height: auto; display: block; }
+.slide--viz .cap { font-family: var(--f-mono); font-size: 21px; color: var(--muted); margin-top: 28px; letter-spacing: 0.02em; line-height: 1.4; }
+.slide--viz .cap b { color: var(--fg); font-weight: 700; }
+.slide--viz.wide { padding: 120px 70px 112px; }
+
+/* ---------- duo: two things, side by side ---------- */
+.slide--duo { padding: 128px 110px 120px; display: flex; flex-direction: column; justify-content: center; }
+.slide--duo h2 { font-size: 60px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 46px; margin-top: 40px; }
+.duo .pane { border: 1px solid var(--border); border-radius: 5px; padding: 36px 34px 34px; background: var(--surface); display: flex; flex-direction: column; }
+.duo .pane.good { background: var(--deep); border-color: var(--deep-2); }
+.duo .pane .t { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.duo .pane.good .t { color: var(--amber); }
+.duo .pane h3 { font-size: 42px; font-weight: 800; letter-spacing: -0.025em; margin-top: 10px; line-height: 1.08; }
+.duo .pane .fig { margin-top: 26px; }
+.duo .pane .fig svg { width: 100%; height: auto; display: block; }
+.duo .pane .note { font-family: var(--f-mono); font-size: 20px; color: var(--muted); margin-top: auto; padding-top: 24px; line-height: 1.4; }
+.duo .pane.good .note { color: #b9bcf0; }
+.duo .pane .note b { color: var(--fg); font-weight: 700; }
+
+/* ---------- terminal mock ---------- */
+.term { font-family: var(--f-mono); background: #08080a; border: 1px solid var(--border); border-radius: 6px;
+  padding: 44px 48px; font-size: 32px; line-height: 1.6; color: #d7dbe3; }
+.term .p { color: var(--amber); }
+.term .d { color: var(--dim); }
+.term .cur { display: inline-block; width: 18px; height: 34px; background: var(--amber); vertical-align: -6px; margin-left: 4px; }
+.term.small { font-size: 23px; padding: 30px 34px; line-height: 1.55; }
+
+/* ---------- code ---------- */
+pre.code { font-family: var(--f-mono); font-size: 21px; line-height: 1.5; background: #08080a;
+  border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 4px;
+  padding: 28px 30px; color: #d7dbe3; white-space: pre; overflow: hidden; }
+pre.code.sm { font-size: 18px; line-height: 1.46; padding: 24px 26px; }
+pre.code .c { color: var(--dim); font-style: italic; }
+pre.code .k { color: var(--amber); }
+pre.code .v { color: var(--teal); }
+pre.code .s { color: #9fd2a0; }
+pre.code .r { color: var(--red); }
+
+/* ---------- three cards, minimal ---------- */
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 44px; }
+.trio .c { border: 1px solid var(--border); border-top: 4px solid var(--amber); border-radius: 4px;
+  background: var(--surface); padding: 34px 30px; display: flex; flex-direction: column; gap: 16px; }
+.trio .c.cool { border-top-color: var(--teal); }
+.trio .c .ico svg { width: 72px; height: 72px; display: block; }
+.trio .c h3 { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.trio .c p { font-size: 23px; line-height: 1.38; color: var(--muted); font-weight: 300; }
+.trio .c .m { font-family: var(--f-mono); font-size: 20px; color: var(--amber); margin-top: auto; padding-top: 12px; }
+.trio .c.cool .m { color: var(--teal); }
+
+/* ---------- closing ---------- */
+.slide--cta { padding: 150px 120px; display: flex; flex-direction: column; justify-content: center; }
+.slide--cta::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(900px 560px at 16% 78%, rgba(248,168,35,0.15), transparent 66%); }
+.slide--cta > *:not(.cover-mark) { position: relative; z-index: 1; }
+.slide--cta .cover-mark { z-index: 2; }
+.slide--cta h2 { font-size: 92px; font-weight: 900; line-height: 1.04; letter-spacing: -0.035em; max-width: 20ch; }
+.slide--cta h2 em { font-style: normal; color: var(--amber); }
+.slide--cta .me { display: flex; gap: 32px; align-items: center; margin-top: 70px; }
+.slide--cta .me img { width: 142px; height: 142px; border-radius: 50%; object-fit: cover; border: 3px solid var(--amber); }
+.slide--cta .me .who b { font-size: 36px; font-weight: 700; display: block; }
+.slide--cta .me .who span { font-size: 24px; color: var(--muted); display: block; margin-top: 6px; font-weight: 300; }
+.slide--cta .me .who .links { font-family: var(--f-mono); font-size: 22px; color: var(--amber); margin-top: 12px; }
+
+/* ---------- sources ---------- */
+.slide--srcs { padding: 120px 110px; display: flex; flex-direction: column; justify-content: center; }
+.slide--srcs h2 { font-size: 54px; font-weight: 800; letter-spacing: -0.025em; }
+.srcs { columns: 2; column-gap: 64px; margin-top: 32px; font-size: 20px; line-height: 1.42; font-weight: 300; }
+.srcs p { break-inside: avoid; margin-bottom: 16px; color: var(--muted); }
+.srcs p b { color: var(--fg); font-weight: 600; display: block; font-family: var(--f-mono); font-size: 18px; }
+
+/* ---------- tokenisation strip ---------- */
+.toks { display: grid; gap: 30px; }
+.tokrow { display: grid; grid-template-columns: 330px 1fr 120px; gap: 32px; align-items: center; }
+.tokrow .lang { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.tokrow .pieces { display: flex; flex-wrap: wrap; gap: 6px; }
+.tokrow .pieces span { font-family: var(--f-mono); font-size: 25px; padding: 9px 11px; border-radius: 3px;
+  background: var(--surface); border: 1px solid var(--border); color: #d7dbe3; white-space: pre; }
+.tokrow.hot .pieces span { background: rgba(248,168,35,0.15); border-color: var(--amber-3); color: #ffd98a; }
+.tokrow .count { font-family: var(--f-mono); font-size: 62px; font-weight: 700; text-align: right; letter-spacing: -0.03em; }
+.tokrow.hot .count { color: var(--amber); }
+
+/* ---------- HBM budget bars ---------- */
+.mem { display: grid; gap: 26px; }
+.mrow { display: grid; grid-template-columns: 300px 1fr 150px; gap: 32px; align-items: center; }
+.mrow .ml { font-size: 29px; font-weight: 700; letter-spacing: -0.02em; }
+.mbar { display: flex; height: 86px; border-radius: 4px; overflow: hidden; border: 1px solid var(--border);
+  font-family: var(--f-mono); font-size: 22px; font-weight: 600; }
+.mbar > div { display: grid; place-items: center; text-align: center; padding: 0 8px; }
+.mbar .w  { background: var(--deep); color: #cfd3ff; }
+.mbar .ov { background: #3a3f52; }
+.mbar .kv { background: var(--amber); color: #121212; }
+.mrow .mv { font-family: var(--f-mono); font-size: 58px; font-weight: 700; text-align: right; letter-spacing: -0.03em; color: var(--muted); }
+.mrow .mv.hot { color: var(--amber); }
+
+.slide--duo .kick { font-family: var(--f-mono); font-size: 20px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+
+/* ---------- reveal ---------- */
+.frag { opacity: 0.12; transition: opacity 180ms ease; }
+.frag.on { opacity: 1; }
+
+/* ---------- chrome ---------- */
+#progress { position: fixed; left: 0; top: 0; height: 3px; background: var(--amber); width: 0; z-index: 60; transition: width 160ms ease; }
+#pager { position: fixed; right: 18px; bottom: 13px; font-family: var(--f-mono); font-size: 13px; color: #43485a; z-index: 60; }
+#clock { position: fixed; left: 18px; bottom: 13px; font-family: var(--f-mono); font-size: 13px; color: #43485a; z-index: 60; }
+#help { position: fixed; left: 50%; bottom: 13px; transform: translateX(-50%); font-family: var(--f-mono); font-size: 13px; color: #43485a; z-index: 60; transition: opacity 400ms ease; }
+#help.gone { opacity: 0; }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; height: 38vh; background: #08080a; border-top: 2px solid var(--amber);
+  color: #c9cdd6; padding: 20px 30px 28px; overflow-y: auto; transform: translateY(100%); transition: transform 200ms ease; z-index: 70; }
+#notes.on { transform: translateY(0); }
+#notes h4 { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); margin-bottom: 11px; }
+#nbody { font-size: 16px; line-height: 1.5; max-width: 150ch; }
+#nbody p { margin-bottom: 10px; }
+#nbody b { color: #fff; }
+#nbody code { font-family: var(--f-mono); color: var(--amber); font-size: 0.92em; }
+#nbody .say { border-left: 3px solid var(--amber); padding-left: 14px; color: #f0f2f5; font-style: italic; }
+.s-notes { display: none; }
+
+@media print {
+  html, body, #deck { height: auto; overflow: visible; }
+  .slide { position: relative; opacity: 1 !important; page-break-after: always; transform: none; top: auto; left: auto; margin: 0 auto; }
+  .frag { opacity: 1 !important; }
+  #progress, #pager, #help, #clock, #notes { display: none; }
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="deck">
+
+<!-- 1 ...................................................................... -->
+<section class="slide on-dark slide--title">
+  <p class="eyebrow">Game of Codes 2026 · Niš</p>
+  <h1>Life of a <em>token</em></h1>
+  <p class="sub">From a keystroke in your agent, down to the silicon, and back.</p>
+  <div class="meta">
+    <span class="who">Alessandro Vozza</span><span>VOLT Datacenters</span>
+    <span class="spacer"></span><span>Saturday 10 October 2026</span>
+  </div>
+  <div class="s-notes">
+    <p><b>30 seconds.</b> Press <code>T</code> now. Target 26:00.</p>
+    <p class="say">"Everyone here called a model this week. Most of you have an agent running right now. Almost nobody has looked at what happens in the half-second after you press enter. Today we look. One request, all the way down, all the way back — in a stack you can run yourself."</p>
+  </div>
+</section>
+
+<!-- 2 ...................................................................... -->
+<section class="slide on-dark slide--viz">
+  <p class="kick">It starts here</p>
+  <h2>You type seven words.</h2>
+  <div class="fig" style="margin-top:56px">
+    <div class="term">
+      <span class="d">~/repos/etl</span><br>
+      <span class="p">&gt;</span> why did the nightly ETL job fail?<span class="cur"></span>
+    </div>
+  </div>
+  <p class="cap">Seven words · <b>19 tokens</b> · and then the harness goes to work.</p>
+  <div class="s-notes">
+    <p><b>40 seconds. This is the hook — stay on it.</b></p>
+    <p class="say">"Here is the entire user interface of modern AI. Seven words. Nineteen tokens. Now: everything I am going to show you for the next twenty-five minutes happens between this keystroke and the first character of the answer coming back. And almost none of it was written by you."</p>
+    <p>If the room is a Claude Code / Cursor / Copilot room, ask for hands — "who has one of these open right now?" — and then say "good, you are all running the thing I am about to take apart."</p>
+  </div>
+</section>
+
+<!-- 3 ...................................................................... -->
+<section class="slide on-dark slide--viz wide">
+  <p class="kick">The whole talk</p>
+  <h2>Eight stops, down and back.</h2>
+  <div class="fig" style="margin-top:50px">
+  <svg viewBox="0 0 1780 440" role="img" aria-label="The route: harness, context, gateway, route, prefill, decode, then stream and loop back to the harness.">
+    <defs>
+      <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#35d0ba"/></marker>
+    </defs>
+    <path d="M1640 182 C 1700 40, 1500 24, 900 24 C 300 24, 120 44, 100 176"
+          stroke="#35d0ba" stroke-width="3" fill="none" stroke-dasharray="10 7" marker-end="url(#ah)"/>
+    <text x="890" y="14" fill="#35d0ba" font-family="JetBrains Mono" font-size="21" text-anchor="middle">the answer comes home — and the agent goes round again</text>
+    <line x1="100" y1="222" x2="1640" y2="222" stroke="#232d47" stroke-width="3"/>
+    <g font-family="Inter" font-size="27" font-weight="700" fill="#f5f5f5" text-anchor="middle">
+      <text x="100"  y="320">harness</text>
+      <text x="320"  y="320">context</text>
+      <text x="540"  y="320">gateway</text>
+      <text x="760"  y="320">route</text>
+      <text x="980"  y="320">prefill</text>
+      <text x="1200" y="320">decode</text>
+      <text x="1420" y="320">stream</text>
+      <text x="1640" y="320">loop</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="19" fill="#7a8192" text-anchor="middle">
+      <text x="100"  y="356">your keystroke</text>
+      <text x="320"  y="356">31,219 tokens</text>
+      <text x="540"  y="356">who may do what</text>
+      <text x="760"  y="356">which GPU</text>
+      <text x="980"  y="356">compute-bound</text>
+      <text x="1200" y="356">bandwidth-bound</text>
+      <text x="1420" y="356">tokens home</text>
+      <text x="1640" y="356">tool call → again</text>
+    </g>
+    <g>
+      <circle cx="100"  cy="222" r="40" fill="#f8a823"/><circle cx="320"  cy="222" r="40" fill="#f8a823"/>
+      <circle cx="540"  cy="222" r="40" fill="#f8a823"/><circle cx="760"  cy="222" r="40" fill="#f8a823"/>
+      <circle cx="980"  cy="222" r="40" fill="#f8a823"/><circle cx="1200" cy="222" r="40" fill="#f8a823"/>
+      <circle cx="1420" cy="222" r="40" fill="#35d0ba"/><circle cx="1640" cy="222" r="40" fill="#35d0ba"/>
+    </g>
+    <g font-family="JetBrains Mono" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">
+      <text x="100" y="223">01</text><text x="320" y="223">02</text><text x="540" y="223">03</text><text x="760" y="223">04</text>
+      <text x="980" y="223">05</text><text x="1200" y="223">06</text><text x="1420" y="223">07</text><text x="1640" y="223">08</text>
+    </g>
+  </svg>
+  </div>
+  <p class="cap">The strip at the top of every slide from here says where we are.</p>
+  <div class="s-notes">
+    <p><b>40 seconds. Point, do not narrate all eight.</b></p>
+    <p class="say">"Eight stops. Amber on the way down, teal on the way home. And notice the dashed line at the top — that is the bit people forget. An agent is not one request. The answer comes back, the harness runs a tool, and the whole thing goes round again, longer each time."</p>
+    <p>Say which stops you will spend time on: three (the gateway), five and six (the two halves of inference). Then move.</p>
+  </div>
+</section>
+
+<!-- 4 ...................................................................... -->
+<section class="slide on-deep slide--section">
+  <p class="num">01</p>
+  <h2>The prompt you never wrote</h2>
+  <p class="stops">stops 01–02 · harness → context</p>
+  <div class="s-notes"><p><b>8 seconds.</b> Breath, not content.</p></div>
+</section>
+
+<!-- 5 ...................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="1">
+  <h2>Your question is the smallest thing in the request.</h2>
+  <div class="fig" style="margin-top:28px">
+  <svg viewBox="0 0 1780 360" role="img" aria-label="A proportional bar of the request: tool schemas, file reads and conversation history dominate; the user's question is a 19-token sliver at the end.">
+    <path d="M1757 108 L1757 70 L1360 70" stroke="#f94144" stroke-width="2.5" fill="none"/>
+    <circle cx="1757" cy="108" r="5" fill="#f94144"/>
+    <text x="1344" y="62" font-family="Inter" font-size="38" font-weight="800" fill="#f94144" text-anchor="end">19 — your question</text>
+    <text x="1344" y="98" font-family="JetBrains Mono" font-size="22" fill="#f94144" text-anchor="end">0.06% of the request</text>
+    <g>
+      <rect x="20"   y="118" width="568" height="160" rx="4" fill="#f8a823"/>
+      <rect x="588"  y="118" width="535" height="160" fill="#c9851c"/>
+      <rect x="1123" y="118" width="468" height="160" fill="#8a5f16"/>
+      <rect x="1591" y="118" width="100" height="160" fill="#3a4560"/>
+      <rect x="1691" y="118" width="64"  height="160" fill="#2b3345"/>
+      <rect x="1755" y="118" width="5"   height="160" fill="#f94144"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="304"  y="190" font-family="JetBrains Mono" font-size="42" font-weight="700" fill="#121212">10,200</text>
+      <text x="304"  y="232" font-family="Inter" font-size="27" font-weight="600" fill="#1b1407">tool schemas</text>
+      <text x="855"  y="190" font-family="JetBrains Mono" font-size="42" font-weight="700" fill="#121212">9,600</text>
+      <text x="855"  y="232" font-family="Inter" font-size="27" font-weight="600" fill="#1b1407">files it read for you</text>
+      <text x="1357" y="190" font-family="JetBrains Mono" font-size="42" font-weight="700" fill="#f5f5f5">8,400</text>
+      <text x="1357" y="232" font-family="Inter" font-size="27" font-weight="600" fill="#f0e2cb">conversation so far</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="24" fill="#a1a1a1">
+      <text x="20" y="330">1,800 project instructions   ·   1,200 system prompt   ·   none of it written by you</text>
+    </g>
+  </svg>
+  </div>
+  <p class="cap">Every one of these is resent, in full, on every turn. The model has no memory — <b>the illusion of memory is retransmission.</b></p>
+  <div class="s-notes">
+    <p><b>75 seconds. The most useful slide in act one. Point at the red sliver.</b></p>
+    <p class="say">"Your harness just did all of this. It loaded a system prompt. It read your project instructions. It serialised every tool it has — and tool definitions as JSON Schema are enormous, this is ten thousand tokens of descriptions and parameter docs. It pasted in the files it decided were relevant. It replayed the entire conversation from the beginning, because the model has no memory — the illusion of memory is retransmission. And then, right at the end, your nineteen tokens."</p>
+    <p>Hands up: "who has ever counted the tokens in their tool definitions?" Nobody. That is the point.</p>
+    <p>Illustrative but correctly shaped: MCP/tool schemas really do run 400–900 tokens each; six turns of real work really is 8–10k. Count your own with <code>tiktoken</code>.</p>
+  </div>
+</section>
+
+<!-- 6 ...................................................................... -->
+<section class="slide on-dark slide--num" data-stop="2">
+  <div>
+    <p class="n">1,643<span class="u">×</span></p>
+    <p class="lab">more tokens than you typed</p>
+    <p class="sub">19 → 31,219 · and the next turn is bigger</p>
+  </div>
+  <div class="s-notes">
+    <p><b>25 seconds. Say the number, pause, click.</b></p>
+    <p class="say">"Sixteen hundred times. And every single one of those tokens gets multiplied by seventy billion parameters at stop five. This number is why the rest of the talk matters."</p>
+  </div>
+</section>
+
+<!-- 7 ...................................................................... -->
+<section class="slide on-dark slide--viz" data-stop="2">
+  <h2>Then it becomes integers — and your alphabet sets the price.</h2>
+  <div class="fig">
+    <div class="toks">
+      <div class="tokrow">
+        <div class="lang">English</div>
+        <div class="pieces"><span>Every</span><span> agent</span><span> call</span><span> ends</span><span> up</span><span> as</span><span> tokens</span><span> on</span><span> a</span><span> GPU</span><span> somewhere</span><span>.</span></div>
+        <div class="count">12</div>
+      </div>
+      <div class="tokrow">
+        <div class="lang">Srpski · latinica</div>
+        <div class="pieces"><span>Sv</span><span>aki</span><span> poz</span><span>iv</span><span> ag</span><span>enta</span><span> završ</span><span>ava</span><span> kao</span><span> token</span><span>i</span><span> na</span><span> ne</span><span>kom</span><span> GPU</span><span>-u</span><span>.</span></div>
+        <div class="count">17</div>
+      </div>
+      <div class="tokrow hot">
+        <div class="lang">Српски · ћирилица</div>
+        <div class="pieces"><span>С</span><span>ва</span><span>ки</span><span> поз</span><span>ив</span><span> аген</span><span>та</span><span> зав</span><span>р</span><span>ша</span><span>ва</span><span> као</span><span> ток</span><span>ени</span><span> на</span><span> не</span><span>ком</span><span> GPU</span><span>-</span><span>у</span><span>.</span></div>
+        <div class="count">21</div>
+      </div>
+    </div>
+  </div>
+  <p class="cap">Same sentence · same 54 characters · measured with <b>tiktoken</b>, <b>o200k_base</b></p>
+  <div class="s-notes">
+    <p><b>65 seconds. Let them read the third row. These are the real splits.</b></p>
+    <p class="say">"Identical sentence. Identical fifty-four characters. Twelve tokens in English. Twenty-one in Cyrillic. That is a seventy-five percent surcharge — on compute, on cache, on your context window, and on every per-token price list in the industry — for writing in your own alphabet. Nobody decided this. It fell out of a training corpus."</p>
+    <p>Three consequences, fast: your 128k context is really 73k in Cyrillic; your latency budget is 1.75× tighter; and if you benchmarked in English you sized your cluster wrong. Then move.</p>
+    <p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
+  </div>
+</section>
+
+<!-- 8 ...................................................................... -->
+<section class="slide on-dark slide--big" data-stop="2">
+  <div>
+    <h2>From here down, nothing knows what a <em>tool</em> is.</h2>
+    <p class="cap">a flat array of integers, and a sampler config</p>
+  </div>
+  <div class="s-notes">
+    <p><b>30 seconds.</b></p>
+    <p class="say">"Everything structured your harness just built — the roles, the tool schemas, the careful JSON — gets flattened by a chat template into one list of integers. The GPU has no idea what a tool is. It is doing sequence prediction on numbers. Every abstraction above this line is a convention we agreed on."</p>
+  </div>
+</section>
+
+<!-- 9 ...................................................................... -->
+<section class="slide on-deep slide--section">
+  <p class="num">02</p>
+  <h2>Where the agent stops being trusted</h2>
+  <p class="stops">stop 03 · the gateway</p>
+  <div class="s-notes"><p><b>8 seconds.</b> This is the act you said you'd spend time on — signal it.</p></div>
+</section>
+
+<!-- 10 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="3">
+  <h2>An agent speaks three languages. Only one is about tokens.</h2>
+  <div class="fig" style="margin-top:44px">
+  <svg viewBox="0 0 1780 440" role="img" aria-label="Three protocols — LLM chat completions, MCP tool calls, and A2A agent-to-agent — all converge on one gateway.">
+    <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5c6475"/></marker></defs>
+    <g>
+      <rect x="40" y="46"  width="430" height="96" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+      <rect x="40" y="172" width="430" height="96" rx="6" fill="#1b1f29" stroke="#8a5f16"/>
+      <rect x="40" y="298" width="430" height="96" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+    </g>
+    <g font-family="Inter" font-size="33" font-weight="700" fill="#f5f5f5">
+      <text x="72" y="88">LLM</text><text x="72" y="214">MCP</text><text x="72" y="340">A2A</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="21" fill="#a1a1a1">
+      <text x="72" y="122">"write me some tokens"</text>
+      <text x="72" y="248">"run this tool"</text>
+      <text x="72" y="374">"ask that other agent"</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="20" fill="#f94144"><text x="330" y="248">← the dangerous one</text></g>
+    <g stroke="#5c6475" stroke-width="2.5" fill="none" marker-end="url(#a2)">
+      <path d="M480 94  C 580 94, 580 220, 690 220"/>
+      <path d="M480 220 L 690 220"/>
+      <path d="M480 346 C 580 346, 580 220, 690 220"/>
+    </g>
+    <rect x="700" y="130" width="330" height="180" rx="8" fill="#07005e" stroke="#1a1282" stroke-width="2"/>
+    <text x="865" y="208" font-family="Inter" font-size="36" font-weight="800" fill="#f8a823" text-anchor="middle">agentgateway</text>
+    <text x="865" y="248" font-family="JetBrains Mono" font-size="20" fill="#9ea3e8" text-anchor="middle">one binary · one audit log</text>
+    <g stroke="#5c6475" stroke-width="2.5" fill="none" marker-end="url(#a2)">
+      <path d="M1040 220 C 1130 220, 1130 94,  1250 94"/>
+      <path d="M1040 220 L 1250 220"/>
+      <path d="M1040 220 C 1130 220, 1130 346, 1250 346"/>
+    </g>
+    <g>
+      <rect x="1260" y="46"  width="470" height="96" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+      <rect x="1260" y="172" width="470" height="96" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+      <rect x="1260" y="298" width="470" height="96" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+    </g>
+    <g font-family="Inter" font-size="29" font-weight="600" fill="#f5f5f5">
+      <text x="1292" y="86">your GPUs</text><text x="1292" y="212">your tools</text><text x="1292" y="338">other agents</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="20" fill="#a1a1a1">
+      <text x="1292" y="118">InferencePool · stop 04</text>
+      <text x="1292" y="244">CRM · docs · prod database</text>
+      <text x="1292" y="370">inside and outside the org</text>
+    </g>
+  </svg>
+  </div>
+  <div class="s-notes">
+    <p><b>70 seconds. Start of the gateway act. Slow down.</b></p>
+    <p class="say">"Here is the thing most LLM gateways get wrong. They sit in front of chat completions and call it done. But an agent does not mostly talk to a model — it talks to tools, over MCP, and to other agents, over A2A. And a completion writes you a bad paragraph. A tool call drops a table. The dangerous traffic is the middle lane, and almost nobody has a policy enforcement point in front of it."</p>
+    <p>agentgateway handles all three in one data plane: Rust, one binary, donated by Solo.io to the Linux Foundation's Agentic AI Foundation. Envoy AI Gateway and kgateway are fine alternatives — the argument is the shape, not the vendor.</p>
+  </div>
+</section>
+
+<!-- 11 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="3">
+  <p class="kick">agentgateway · the control that did not exist a year ago</p>
+  <h2>Authorisation per tool, not per service.</h2>
+  <div class="fig" style="margin-top:40px">
+  <svg viewBox="0 0 1780 390" role="img" aria-label="A grid of MCP tools, most allowed, two denied by policy.">
+    <g font-family="JetBrains Mono" font-size="23">
+      <g>
+        <rect x="40"   y="20" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="72" y="66" fill="#8fd4a8">search_docs</text>
+        <rect x="326"  y="20" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="358" y="66" fill="#8fd4a8">list_tickets</text>
+        <rect x="612"  y="20" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="644" y="66" fill="#8fd4a8">read_logs</text>
+        <rect x="898"  y="20" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="930" y="66" fill="#8fd4a8">get_customer</text>
+        <rect x="1184" y="20" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="1216" y="66" fill="#8fd4a8">query_metrics</text>
+        <rect x="1470" y="20" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="1502" y="66" fill="#8fd4a8">run_notebook</text>
+      </g>
+      <g>
+        <rect x="40"   y="112" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="72" y="158" fill="#8fd4a8">open_pr</text>
+        <rect x="326"  y="112" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="358" y="158" fill="#8fd4a8">post_message</text>
+        <rect x="612"  y="112" width="266" height="76" rx="5" fill="#2a0f12" stroke="#f94144" stroke-width="2"/><text x="644" y="158" fill="#f94144">delete_customer</text>
+        <rect x="898"  y="112" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="930" y="158" fill="#8fd4a8">create_ticket</text>
+        <rect x="1184" y="112" width="266" height="76" rx="5" fill="#2a0f12" stroke="#f94144" stroke-width="2"/><text x="1216" y="158" fill="#f94144">rotate_secrets</text>
+        <rect x="1470" y="112" width="266" height="76" rx="5" fill="#0f2017" stroke="#2f6b46"/><text x="1502" y="158" fill="#8fd4a8">send_email</text>
+      </g>
+    </g>
+    <g font-family="JetBrains Mono" font-size="20">
+      <text x="1664" y="66"  fill="#8fd4a8" text-anchor="end">✓</text>
+      <text x="828"  y="158" fill="#f94144" text-anchor="end">✕</text>
+    </g>
+    <rect x="40" y="226" width="1696" height="138" rx="6" fill="#08080a" stroke="#232d47"/>
+    <g font-family="JetBrains Mono" font-size="25">
+      <text x="76" y="272" fill="#6b7080"># not "may this agent use MCP" — but:</text>
+      <text x="76" y="316" fill="#f8a823">- tool:</text><text x="190" y="316" fill="#35d0ba">search_docs</text>
+      <text x="470" y="316" fill="#f8a823">when:</text><text x="570" y="316" fill="#9fd2a0">"jwt.groups.contains('sre') &amp;&amp; req.env != 'prod'"</text>
+      <text x="76" y="348" fill="#f8a823">- tool:</text><text x="190" y="348" fill="#f94144">delete_customer</text>
+      <text x="470" y="348" fill="#f8a823">when:</text><text x="570" y="348" fill="#9fd2a0">"false"</text>
+      <text x="730" y="348" fill="#6b7080"># today, anyway</text>
+    </g>
+  </svg>
+  </div>
+  <div class="s-notes">
+    <p><b>75 seconds. This is the slide the gateway act exists for.</b></p>
+    <p class="say">"This is the control that did not exist a year ago. Not 'may this agent use MCP' — but 'may this agent call delete_customer, given these claims, in this environment'. Written in CEL, evaluated in the data plane, on every single call. Your agent is a program that writes its own next action. You would not give a junior engineer unrestricted production credentials on day one, and you should not give it to something that hallucinates."</p>
+    <p>If asked how tools get discovered: the gateway can federate several MCP servers behind one endpoint and filter the tool list it advertises — so the agent never even learns that <code>delete_customer</code> exists. That is better than denying it at call time.</p>
+  </div>
+</section>
+
+<!-- 12 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="3">
+  <p class="kick">agentgateway · identity</p>
+  <h2>The agent acts <em>as somebody</em> — all the way down.</h2>
+  <div class="fig" style="margin-top:48px">
+  <svg viewBox="0 0 1780 330" role="img" aria-label="Identity propagates from the human through the agent, the gateway and the tool call.">
+    <defs><marker id="a3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#f8a823"/></marker></defs>
+    <g stroke="#f8a823" stroke-width="3" fill="none" marker-end="url(#a3)">
+      <path d="M352 112 L 452 112"/><path d="M764 112 L 864 112"/><path d="M1176 112 L 1276 112"/>
+    </g>
+    <g>
+      <rect x="40"   y="52" width="312" height="120" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+      <rect x="452"  y="52" width="312" height="120" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+      <rect x="864"  y="52" width="312" height="120" rx="6" fill="#07005e" stroke="#1a1282" stroke-width="2"/>
+      <rect x="1276" y="52" width="312" height="120" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+    </g>
+    <g font-family="Inter" font-size="31" font-weight="700" fill="#f5f5f5" text-anchor="middle">
+      <text x="196" y="106">you</text><text x="608" y="106">the agent</text>
+      <text x="1020" y="106" fill="#f8a823">the gateway</text><text x="1432" y="106">the tool</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="20" fill="#a1a1a1" text-anchor="middle">
+      <text x="196" y="144">OIDC login</text><text x="608" y="144">bearer token, not an env var</text>
+      <text x="1020" y="144" fill="#9ea3e8">verify · exchange · attenuate</text><text x="1432" y="144">sees a person, not a robot</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="22" fill="#f8a823" text-anchor="middle">
+      <text x="402" y="228">JWT</text><text x="814" y="228">JWT</text><text x="1226" y="228">SPIFFE / exchanged token</text>
+    </g>
+    <text x="890" y="300" font-family="Inter" font-size="29" fill="#a1a1a1" text-anchor="middle">The audit log answers <tspan fill="#f5f5f5" font-weight="700">who</tspan>, not just <tspan fill="#f5f5f5" font-weight="700">what</tspan>.</text>
+  </svg>
+  </div>
+  <div class="s-notes">
+    <p><b>55 seconds.</b></p>
+    <p class="say">"The single most common thing I see in production agent stacks is a long-lived API key in an environment variable, shared by every user of the agent. Which means your audit log says 'the agent did it'. Useless. What you want is the human's identity carried through the agent, verified at the gateway, exchanged into a short-lived credential, and presented to the tool — so the log says who, not just what."</p>
+    <p>JWT, OIDC, OAuth token exchange, SPIFFE workload identities. All standard, all boring, none of it specific to AI — which is the reassuring part.</p>
+  </div>
+</section>
+
+<!-- 13 ..................................................................... -->
+<section class="slide on-dark slide--duo" data-stop="3">
+  <h2>Two more things the gateway is for.</h2>
+  <div class="duo">
+    <div class="pane">
+      <p class="t">Budget</p>
+      <h3>A runaway loop is a cost incident before it is an outage.</h3>
+      <div class="fig">
+        <svg viewBox="0 0 700 190" role="img" aria-label="A token budget gauge, nearly full.">
+          <rect x="10" y="40" width="680" height="62" rx="6" fill="#1b1f29" stroke="#2f3851"/>
+          <rect x="12" y="42" width="560" height="58" rx="5" fill="#f8a823"/>
+          <rect x="572" y="42" width="60" height="58" fill="#f94144"/>
+          <text x="40" y="82" font-family="JetBrains Mono" font-size="27" fill="#121212" font-weight="700">4.6M / 5M today</text>
+          <text x="10" y="152" font-family="JetBrains Mono" font-size="23" fill="#a1a1a1">tokens are the only backpressure an agent respects</text>
+        </svg>
+      </div>
+      <p class="note">Per key, per team, per route. Realised cost on every request.</p>
+    </div>
+    <div class="pane good">
+      <p class="t">Choice</p>
+      <h3>Two backends, one audit log.</h3>
+      <div class="fig">
+        <svg viewBox="0 0 700 190" role="img" aria-label="The gateway routes by default to the self-hosted pool, and to a frontier API only by explicit route.">
+          <circle cx="60" cy="95" r="22" fill="#f8a823"/>
+          <path d="M82 95 C 200 95, 220 46, 340 46" stroke="#f8a823" stroke-width="5" fill="none"/>
+          <path d="M82 95 C 200 95, 220 146, 340 146" stroke="#3a4560" stroke-width="3" fill="none" stroke-dasharray="8 6"/>
+          <rect x="350" y="14" width="340" height="64" rx="5" fill="#f8a823"/>
+          <text x="374" y="54" font-family="JetBrains Mono" font-size="23" fill="#121212" font-weight="700">your GPUs — default</text>
+          <rect x="350" y="114" width="340" height="64" rx="5" fill="#1b1f29" stroke="#3a4560"/>
+          <text x="374" y="154" font-family="JetBrains Mono" font-size="23" fill="#a1a1a1">frontier API — weight: 0</text>
+        </svg>
+      </div>
+      <p class="note">"Rent, knowingly" as a line of YAML in your repo — <b>not a decision in a vendor console.</b></p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>60 seconds for both panes.</b></p>
+    <p class="say">"Two quick ones. Left: token budgets. An agent in a retry loop will happily spend your quarterly inference budget before anyone notices, because nothing errors — it just gets expensive. Tokens are the only backpressure an agent actually respects. Right: the frontier model is configured, reachable, at weight zero. Every call to it lands in the same audit log as your own GPUs. That is what it looks like to rent knowingly rather than by accident."</p>
+  </div>
+</section>
+
+<!-- 14 ..................................................................... -->
+<section class="slide on-deep slide--section">
+  <p class="num">03</p>
+  <h2>Which GPU answers</h2>
+  <p class="stops">stop 04 · route</p>
+  <div class="s-notes"><p><b>8 seconds.</b></p></div>
+</section>
+
+<!-- 15 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="4">
+  <h2>Your replicas are identical. They are not interchangeable.</h2>
+  <div class="fig" style="margin-top:38px">
+  <svg viewBox="0 0 1780 420" role="img" aria-label="Three identical vLLM replicas; one already holds the request's prefix in its KV cache. Round-robin picks a cold one; an inference-aware picker picks the warm one.">
+    <defs>
+      <marker id="ar" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#f94144"/></marker>
+      <marker id="ag" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#35d0ba"/></marker>
+      <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <g>
+      <rect x="640"  y="130" width="330" height="200" rx="7" fill="#1b1f29" stroke="#2f3851"/>
+      <rect x="1010" y="130" width="330" height="200" rx="7" fill="#1b1f29" stroke="#f8a823" stroke-width="3" filter="url(#glow)"/>
+      <rect x="1380" y="130" width="330" height="200" rx="7" fill="#1b1f29" stroke="#2f3851"/>
+    </g>
+    <g font-family="JetBrains Mono" font-size="23" fill="#f5f5f5">
+      <text x="672" y="172">vllm-0</text><text x="1042" y="172">vllm-1</text><text x="1412" y="172">vllm-2</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="21">
+      <text x="672"  y="214" fill="#6b7080">KV: cold</text>
+      <text x="1042" y="214" fill="#f8a823">KV: your 31k prefix</text>
+      <text x="1412" y="214" fill="#6b7080">KV: another session</text>
+    </g>
+    <g>
+      <rect x="672" y="238" width="266" height="22" rx="3" fill="#232d47"/><rect x="672" y="238" width="30" height="22" rx="3" fill="#3a4560"/>
+      <rect x="1042" y="238" width="266" height="22" rx="3" fill="#232d47"/><rect x="1042" y="238" width="250" height="22" rx="3" fill="#f8a823"/>
+      <rect x="1412" y="238" width="266" height="22" rx="3" fill="#232d47"/><rect x="1412" y="238" width="140" height="22" rx="3" fill="#3a4560"/>
+    </g>
+    <g font-family="Inter" font-size="27" font-weight="700">
+      <text x="672"  y="302" fill="#f94144">≈ 900 ms prefill</text>
+      <text x="1042" y="302" fill="#35d0ba">≈ 12 ms prefill</text>
+      <text x="1412" y="302" fill="#f94144">≈ 900 ms prefill</text>
+    </g>
+    <rect x="40" y="130" width="300" height="86" rx="6" fill="#2a0f12" stroke="#f94144"/>
+    <text x="190" y="166" font-family="Inter" font-size="27" font-weight="700" fill="#f94144" text-anchor="middle">Service</text>
+    <text x="190" y="198" font-family="JetBrains Mono" font-size="20" fill="#f94144" text-anchor="middle">round-robin</text>
+    <rect x="40" y="252" width="300" height="86" rx="6" fill="#0f2422" stroke="#35d0ba"/>
+    <text x="190" y="288" font-family="Inter" font-size="27" font-weight="700" fill="#35d0ba" text-anchor="middle">InferencePool</text>
+    <text x="190" y="320" font-family="JetBrains Mono" font-size="20" fill="#35d0ba" text-anchor="middle">endpoint picker</text>
+    <path d="M348 170 C 480 170, 500 180, 632 190" stroke="#f94144" stroke-width="3" fill="none" marker-end="url(#ar)" stroke-dasharray="9 6"/>
+    <path d="M348 294 C 620 294, 820 384, 1175 340" stroke="#35d0ba" stroke-width="3" fill="none" marker-end="url(#ag)"/>
+    <text x="1175" y="400" font-family="JetBrains Mono" font-size="21" fill="#35d0ba" text-anchor="middle">queue depth · KV usage · prefix overlap · LoRA resident</text>
+  </svg>
+  </div>
+  <div class="s-notes">
+    <p><b>85 seconds. The biggest money slide of the first half.</b></p>
+    <p class="say">"Three replicas. Same image, same weights, same answer. And one of them already has thirty thousand of your thirty-one thousand tokens sitting in its KV cache, because this is turn seven of a conversation. That replica is seventy times cheaper for this specific request. A Service cannot know that. It round-robins, you land on a cold replica, and you pay for the same prefill twice. No error. No 503. The dashboard is green."</p>
+    <p>A <code>Service</code> balances connections. An <code>InferencePool</code> balances <i>requests</i>. The signals are vLLM's own Prometheus metrics — nothing proprietary. Gateway API Inference Extension, v1.6, five gateways implement it.</p>
+    <p>If challenged: yes, this is also why connection-count load balancing fails — one streaming SSE connection can hold for ninety seconds using a sliver of a GPU while another saturates it.</p>
+  </div>
+</section>
+
+<!-- 16 ..................................................................... -->
+<section class="slide on-dark slide--viz" data-stop="4">
+  <p class="kick">the entire migration</p>
+  <h2>Two lines of YAML.</h2>
+  <div class="fig" style="margin-top:46px">
+    <pre class="code">  <span class="k">backendRefs:</span>
+  - <span class="k">group:</span> inference.networking.k8s.io
+    <span class="k">kind:</span>  <span class="v">InferencePool</span>        <span class="c"># was: Service</span>
+    <span class="k">name:</span>  llama-70b</pre>
+  </div>
+  <p class="cap">Your application team changes <b>nothing at all</b>.</p>
+  <div class="s-notes">
+    <p><b>30 seconds. Deliberately anticlimactic after the last slide.</b></p>
+    <p class="say">"And here is what it costs to fix. An HTTPRoute whose backend is a pool instead of a Service. That is the whole migration. Two or three times your time-to-first-token, for a four-line diff that your application team never even sees."</p>
+  </div>
+</section>
+
+<!-- 17 ..................................................................... -->
+<section class="slide on-deep slide--section">
+  <p class="num">04</p>
+  <h2>Two machines wearing one costume</h2>
+  <p class="stops">stops 05–06 · prefill → decode</p>
+  <div class="s-notes"><p><b>12 seconds. Land the title — this is the hinge of the talk.</b></p></div>
+</section>
+
+<!-- 18 ..................................................................... -->
+<section class="slide on-dark slide--duo" data-stop="5">
+  <h2>Same model. Same card. Milliseconds apart.</h2>
+  <div class="duo">
+    <div class="pane">
+      <p class="t">Stop 05 · prefill</p>
+      <h3>All 31,219 tokens. One pass.</h3>
+      <div class="fig">
+        <svg viewBox="0 0 700 250" role="img" aria-label="Prefill: an enormous amount of arithmetic, reading the weights once.">
+          <text x="0" y="28" font-family="JetBrains Mono" font-size="20" fill="#6b7080">arithmetic</text>
+          <rect x="0" y="42" width="700" height="52" rx="4" fill="#f8a823"/>
+          <text x="20" y="78" font-family="JetBrains Mono" font-size="30" font-weight="700" fill="#121212">4.4 PFLOP</text>
+          <text x="0" y="146" font-family="JetBrains Mono" font-size="20" fill="#6b7080">weights read from HBM</text>
+          <rect x="0" y="160" width="700" height="52" rx="4" fill="#07005e" stroke="#1a1282"/>
+          <text x="20" y="196" font-family="JetBrains Mono" font-size="30" font-weight="700" fill="#cfd3ff">71 GB — once</text>
+        </svg>
+      </div>
+      <p class="note"><b>Tensor cores flat out.</b> The memory bus is bored.<br>Sets your <b>time to first token</b>.</p>
+    </div>
+    <div class="pane">
+      <p class="t">Stop 06 · decode</p>
+      <h3>One token. Then again. 800 times.</h3>
+      <div class="fig">
+        <svg viewBox="0 0 700 250" role="img" aria-label="Decode: almost no arithmetic, but the full weights are read for every single token.">
+          <text x="0" y="28" font-family="JetBrains Mono" font-size="20" fill="#6b7080">arithmetic</text>
+          <rect x="0" y="42" width="700" height="52" rx="4" fill="#1b1f29" stroke="#2f3851"/>
+          <rect x="0" y="42" width="4" height="52" rx="2" fill="#f8a823"/>
+          <text x="24" y="78" font-family="JetBrains Mono" font-size="30" font-weight="700" fill="#a1a1a1">141 GFLOP</text>
+          <text x="0" y="146" font-family="JetBrains Mono" font-size="20" fill="#6b7080">weights read from HBM</text>
+          <rect x="0" y="160" width="700" height="52" rx="4" fill="#07005e" stroke="#f94144" stroke-width="2"/>
+          <text x="20" y="196" font-family="JetBrains Mono" font-size="30" font-weight="700" fill="#f94144">71 GB — every token</text>
+        </svg>
+      </div>
+      <p class="note"><b>Tensor cores idle.</b> A very expensive memcpy.<br>Sets your <b>typing speed</b>.</p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>95 seconds. The heart of the talk. Let the two indigo bars do the work.</b></p>
+    <p class="say">"Look at the bottom bars. They are the same. Seventy-one gigabytes of weights, read out of memory, in both cases. Now look at the top bars. On the left, four and a half petaflops of arithmetic. On the right — that sliver — a hundred and forty-one gigaflops. Thirty-one thousand times less work, for exactly the same memory traffic. Prefill uses the GPU as designed. Decode turns the most expensive accelerator NVIDIA sells into a very fancy memcpy."</p>
+    <p>If someone wants the ratio: prefill runs at ~62,000 FLOP per byte read, decode at 2. The card breaks even around 1,250. One is fifty times over, the other six hundred times under.</p>
+    <p>Every operational consequence follows from this slide: why your latency dashboard needs two numbers, why a bigger GPU did not help, why there is a whole project devoted to running these on separate machines.</p>
+  </div>
+</section>
+
+<!-- 19 ..................................................................... -->
+<section class="slide on-dark slide--num" data-stop="6">
+  <div>
+    <p class="n">8.9<span class="u">ms</span></p>
+    <p class="lab">per token, and no software can beat it</p>
+    <p class="sub">71 GB ÷ 8 TB/s of HBM · batch of one · ≈ 113 tokens/second</p>
+  </div>
+  <div class="s-notes">
+    <p><b>40 seconds. Say it slowly.</b></p>
+    <p class="say">"Seventy-one gigabytes divided by eight terabytes a second. Eight point nine milliseconds. That is a floor set by physics, not by code. One user, one of the best GPUs money can buy, a hundred and thirteen tokens a second — and about two-tenths of one percent of its arithmetic in use. There is exactly one way out of this, and it is the next slide."</p>
+  </div>
+</section>
+
+<!-- 20 ..................................................................... -->
+<section class="slide on-dark slide--big" data-stop="6">
+  <div>
+    <h2>Read the weights once.<br>Serve <b>sixty-four people</b>.</h2>
+    <p class="cap">batching is the whole business model</p>
+  </div>
+  <div class="s-notes">
+    <p><b>35 seconds.</b></p>
+    <p class="say">"Same eight point nine milliseconds. Sixty-four tokens instead of one. The cost per pass does not move; the cost per token collapses. This is why throughput and latency are different products, why inference is a utilisation game, and why everything in the next three slides exists."</p>
+  </div>
+</section>
+
+<!-- 21 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="6">
+  <p class="kick">llm-d · prefill/decode disaggregation</p>
+  <h2>If the two halves fight, stop making them share.</h2>
+  <div class="fig" style="margin-top:40px">
+  <svg viewBox="0 0 1780 400" role="img" aria-label="A router sends prefill to a compute-shaped pool and decode to a bandwidth-shaped pool; KV blocks move between them over NIXL on RDMA.">
+    <defs><marker id="a4" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#f8a823"/></marker></defs>
+    <rect x="40" y="150" width="230" height="100" rx="6" fill="#0f2422" stroke="#35d0ba"/>
+    <text x="155" y="192" font-family="Inter" font-size="26" font-weight="700" fill="#35d0ba" text-anchor="middle">scheduler</text>
+    <text x="155" y="224" font-family="JetBrains Mono" font-size="19" fill="#35d0ba" text-anchor="middle">cache-aware</text>
+    <path d="M278 200 L 378 200" stroke="#f8a823" stroke-width="3" fill="none" marker-end="url(#a4)"/>
+    <rect x="390" y="60" width="440" height="280" rx="8" fill="#1b1f29" stroke="#f8a823" stroke-width="2"/>
+    <text x="610" y="112" font-family="Inter" font-size="34" font-weight="800" fill="#f8a823" text-anchor="middle">prefill pool</text>
+    <text x="610" y="146" font-family="JetBrains Mono" font-size="20" fill="#a1a1a1" text-anchor="middle">sized for FLOPs · tiny KV</text>
+    <g fill="#f8a823">
+      <rect x="430" y="180" width="80" height="110" rx="4"/><rect x="530" y="180" width="80" height="110" rx="4"/>
+      <rect x="630" y="180" width="80" height="110" rx="4"/><rect x="730" y="180" width="60" height="110" rx="4" opacity="0.35"/>
+    </g>
+    <path d="M840 200 L 1070 200" stroke="#f8a823" stroke-width="5" fill="none" marker-end="url(#a4)"/>
+    <text x="955" y="176" font-family="Inter" font-size="25" font-weight="700" fill="#f8a823" text-anchor="middle">KV blocks</text>
+    <text x="955" y="238" font-family="JetBrains Mono" font-size="20" fill="#a1a1a1" text-anchor="middle">NIXL over RDMA</text>
+    <rect x="1090" y="60" width="650" height="280" rx="8" fill="#07005e" stroke="#1a1282" stroke-width="2"/>
+    <text x="1415" y="112" font-family="Inter" font-size="34" font-weight="800" fill="#35d0ba" text-anchor="middle">decode pool</text>
+    <text x="1415" y="146" font-family="JetBrains Mono" font-size="20" fill="#9ea3e8" text-anchor="middle">sized for bandwidth · huge KV</text>
+    <g fill="#35d0ba">
+      <rect x="1130" y="180" width="80" height="110" rx="4"/><rect x="1230" y="180" width="80" height="110" rx="4"/>
+      <rect x="1330" y="180" width="80" height="110" rx="4"/><rect x="1430" y="180" width="80" height="110" rx="4"/>
+      <rect x="1530" y="180" width="80" height="110" rx="4"/><rect x="1630" y="180" width="80" height="110" rx="4"/>
+    </g>
+  </svg>
+  </div>
+  <p class="cap">Two deployments, two sets of knobs, one pool in front. <b>Earn this — do not start here.</b></p>
+  <div class="s-notes">
+    <p><b>70 seconds.</b></p>
+    <p class="say">"Once you accept that prefill and decode are different machines, the conclusion is obvious: stop making them share a GPU. Prefill pods sized for raw compute, with almost no KV cache. Decode pods sized for memory bandwidth and capacity, with an enormous one. The KV cache travels between them over RDMA. llm-d reports up to seventy percent more tokens per second — and a significantly more complicated cluster."</p>
+    <p>Be honest: this is the right answer at scale and the wrong answer for almost everyone in this room. Cache-aware scheduling — the green box on the left — is where the money is and where the risk is not.</p>
+    <p>On one GPU, the cheap version of this is <b>chunked prefill</b>, which slices a long prefill and interleaves it with everyone else's decode steps. It is on by default in vLLM. Most of you already have it.</p>
+  </div>
+</section>
+
+<!-- 22 ..................................................................... -->
+<section class="slide on-dark slide--viz" data-stop="6">
+  <p class="kick">llm-d</p>
+  <h2>vLLM, plus the problems that only appear at fleet scale.</h2>
+  <div class="trio">
+    <div class="c">
+      <div class="ico"><svg viewBox="0 0 72 72" fill="none" stroke="#f8a823" stroke-width="4"><circle cx="18" cy="18" r="10"/><circle cx="54" cy="18" r="10"/><circle cx="36" cy="54" r="10"/><path d="M26 24 L46 48 M46 24 L26 48"/></svg></div>
+      <h3>Scheduling</h3>
+      <p>Route to the replica that already holds your prefix.</p>
+      <p class="m">3× throughput · 2× TTFT</p>
+    </div>
+    <div class="c">
+      <div class="ico"><svg viewBox="0 0 72 72" fill="none" stroke="#f8a823" stroke-width="4"><rect x="6" y="14" width="24" height="44" rx="3"/><rect x="42" y="14" width="24" height="44" rx="3"/><path d="M30 36 L42 36"/></svg></div>
+      <h3>Disaggregation</h3>
+      <p>Prefill and decode on separate, differently-shaped pools.</p>
+      <p class="m">up to +70% tokens/s</p>
+    </div>
+    <div class="c cool">
+      <div class="ico"><svg viewBox="0 0 72 72" fill="none" stroke="#35d0ba" stroke-width="4"><rect x="8" y="10" width="56" height="16" rx="3"/><rect x="8" y="30" width="56" height="16" rx="3"/><rect x="8" y="50" width="56" height="16" rx="3"/></svg></div>
+      <h3>KV tiering</h3>
+      <p>Spill blocks to CPU and NVMe. Cache hits survive a restart.</p>
+      <p class="m">LMCache + a global index</p>
+    </div>
+  </div>
+  <p class="cap">CNCF Sandbox · Red Hat, Google Cloud, IBM Research, CoreWeave, NVIDIA · <b>figures are the project's own — treat as upper bounds</b></p>
+  <div class="s-notes">
+    <p><b>50 seconds. Three cards, one sentence each, move on.</b></p>
+    <p class="say">"llm-d is not a new engine — it is vLLM plus the three problems you only get when you have a fleet. Which replica should answer. Should prefill and decode live on the same box. And where does a cache block go when it falls out of HBM. In 2024 every one of these lived inside a hyperscaler's private serving stack. Today they are Helm charts with a conformance suite."</p>
+    <p>"Cache hits survive a pod restart" is the line — that is the difference between a cache and a coincidence.</p>
+  </div>
+</section>
+
+<!-- 23 ..................................................................... -->
+<section class="slide on-deep slide--section">
+  <p class="num">05</p>
+  <h2>Inside the engine</h2>
+  <p class="stops">stop 06 · vLLM</p>
+  <div class="s-notes"><p><b>8 seconds.</b></p></div>
+</section>
+
+<!-- 24 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="6">
+  <p class="kick">continuous batching</p>
+  <h2>There is no queue. There is a scheduler.</h2>
+  <div class="fig" style="margin-top:36px">
+  <svg viewBox="0 0 1780 330" role="img" aria-label="Static batching wastes GPU time padding to the longest sequence; continuous batching refills each slot on the next forward pass.">
+    <defs>
+      <pattern id="waste" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+        <rect width="9" height="9" fill="#1b1f29"/><line x1="0" y1="0" x2="0" y2="9" stroke="#3f4557" stroke-width="3"/>
+      </pattern>
+    </defs>
+    <text x="60" y="30" fill="#f94144" font-family="Inter" font-size="27" font-weight="700">leave together, wait together</text>
+    <rect x="60" y="62"  width="260" height="34" rx="3" fill="#f8a823"/><rect x="320" y="62"  width="130" height="34" rx="3" fill="url(#waste)"/>
+    <rect x="60" y="110" width="130" height="34" rx="3" fill="#f8a823"/><rect x="190" y="110" width="260" height="34" rx="3" fill="url(#waste)"/>
+    <rect x="60" y="158" width="390" height="34" rx="3" fill="#f8a823"/>
+    <rect x="60" y="206" width="195" height="34" rx="3" fill="#f8a823"/><rect x="255" y="206" width="195" height="34" rx="3" fill="url(#waste)"/>
+    <line x1="450" y1="52" x2="450" y2="250" stroke="#f94144" stroke-width="2" stroke-dasharray="7 5"/>
+    <g fill="#8a5f16">
+      <rect x="450" y="62"  width="230" height="34" rx="3"/><rect x="450" y="110" width="170" height="34" rx="3"/>
+      <rect x="450" y="158" width="260" height="34" rx="3"/><rect x="450" y="206" width="200" height="34" rx="3"/>
+    </g>
+    <text x="60" y="296" fill="#f94144" font-family="JetBrains Mono" font-size="23">the hatching is money</text>
+    <text x="980" y="30" fill="#35d0ba" font-family="Inter" font-size="27" font-weight="700">a slot frees, the next pass refills it</text>
+    <rect x="980" y="62"  width="260" height="34" rx="3" fill="#f8a823"/><rect x="1240" y="62"  width="300" height="34" rx="3" fill="#8a5f16"/><rect x="1540" y="62"  width="180" height="34" rx="3" fill="#35d0ba"/>
+    <rect x="980" y="110" width="130" height="34" rx="3" fill="#f8a823"/><rect x="1110" y="110" width="320" height="34" rx="3" fill="#8a5f16"/><rect x="1430" y="110" width="290" height="34" rx="3" fill="#35d0ba"/>
+    <rect x="980" y="158" width="390" height="34" rx="3" fill="#f8a823"/><rect x="1370" y="158" width="350" height="34" rx="3" fill="#8a5f16"/>
+    <rect x="980" y="206" width="195" height="34" rx="3" fill="#f8a823"/><rect x="1175" y="206" width="265" height="34" rx="3" fill="#8a5f16"/><rect x="1440" y="206" width="280" height="34" rx="3" fill="#35d0ba"/>
+    <text x="980" y="296" fill="#35d0ba" font-family="JetBrains Mono" font-size="23">no padding, no idle slots — 2–4× the throughput</text>
+  </svg>
+  </div>
+  <p class="cap">The batch is torn down and rebuilt <b>every forward pass</b> — roughly a hundred times a second.</p>
+  <div class="s-notes">
+    <p><b>60 seconds. Point at the hatching, then at the teal.</b></p>
+    <p class="say">"Your request does not wait its turn and then get served. It joins a batch that is rebuilt on every single forward pass, next to total strangers. On the left, the old way: four requests start together, and because the batch leaves together, three of them sit there computing padding. On the right, the moment a sequence emits its stop token the slot is free, and the scheduler admits someone else on the very next pass."</p>
+    <p>The consequence worth saying out loud for the SREs: <b>your tail latency is a property of your neighbours.</b> "It was fast in staging" is not evidence of anything.</p>
+    <p>Admission is a <i>memory</i> decision — do I have free KV blocks — not a queue position.</p>
+  </div>
+</section>
+
+<!-- 25 ..................................................................... -->
+<section class="slide on-dark slide--duo" data-stop="6">
+  <h2>The KV cache is virtual memory. Finally.</h2>
+  <div class="duo">
+    <div class="pane">
+      <p class="t">Before</p>
+      <h3>Reserve for the longest thing that might happen.</h3>
+      <div class="fig">
+        <svg viewBox="0 0 700 210" role="img" aria-label="Three sequences each reserving a full contiguous slab, mostly unused.">
+          <rect x="0" y="10"  width="700" height="48" rx="4" fill="#1b1f29" stroke="#2f3851"/><rect x="2" y="12" width="150" height="44" rx="3" fill="#f8a823"/>
+          <rect x="0" y="76"  width="700" height="48" rx="4" fill="#1b1f29" stroke="#2f3851"/><rect x="2" y="78" width="310" height="44" rx="3" fill="#f8a823"/>
+          <rect x="0" y="142" width="700" height="48" rx="4" fill="#1b1f29" stroke="#2f3851"/><rect x="2" y="144" width="85" height="44" rx="3" fill="#f8a823"/>
+        </svg>
+      </div>
+      <p class="note"><b>20–40%</b> utilisation. The rest is fragmentation you paid for.</p>
+    </div>
+    <div class="pane good">
+      <p class="t">PagedAttention</p>
+      <h3>Blocks of 16 tokens, scattered, with a page table.</h3>
+      <div class="fig">
+        <svg viewBox="0 0 700 180" role="img" aria-label="The same sequences packed into 16-token blocks with almost no waste."><rect x="0" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="50" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="100" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="150" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="200" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="250" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="300" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="350" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="400" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="450" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="500" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="550" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="600" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="650" y="10" width="44" height="44" rx="2" fill="#f8a823"/><rect x="0" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="50" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="100" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="150" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="200" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="250" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="300" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="350" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="400" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="450" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="500" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="550" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="600" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="650" y="60" width="44" height="44" rx="2" fill="#f8a823"/><rect x="0" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="50" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="100" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="150" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="200" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="250" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="300" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="350" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="400" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="450" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="500" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="550" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="600" y="110" width="44" height="44" rx="2" fill="#f8a823"/><rect x="650" y="110" width="44" height="44" rx="2" fill="#f8a823"/></svg>
+      </div>
+      <p class="note">Near-zero waste. Shared prefixes point at the <b>same physical blocks</b>.</p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>55 seconds.</b></p>
+    <p class="say">"vLLM's founding idea was to steal the oldest trick in the operating system. Stop reserving a contiguous slab for the longest answer a sequence might produce, and start handing out sixteen-token pages with a block table. Utilisation goes from a third to over ninety percent. And sharing falls out for free — two sequences with the same prefix just point at the same physical blocks."</p>
+  </div>
+</section>
+
+<!-- 26 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="6">
+  <p class="kick">prefix caching · on by default</p>
+  <h2>Turn seven: you pay for one block.</h2>
+  <div class="fig" style="margin-top:34px">
+  <svg viewBox="0 0 1780 300" role="img" aria-label="Of the prompt's sixteen-token blocks, all but one are already cached.">
+    <rect x="40" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="20" width="24" height="24" rx="2" fill="#f8a823"/><rect x="40" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="48" width="24" height="24" rx="2" fill="#f8a823"/><rect x="40" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="76" width="24" height="24" rx="2" fill="#f8a823"/><rect x="40" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="68" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="96" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="124" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="152" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="180" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="208" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="236" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="264" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="292" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="320" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="348" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="376" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="404" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="432" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="460" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="488" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="516" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="544" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="572" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="600" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="628" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="656" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="684" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="712" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="740" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="768" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="796" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="824" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="852" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="880" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="908" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="936" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="964" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="992" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1020" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1048" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1076" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1104" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1132" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1160" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1188" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1216" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1244" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1272" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1300" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1328" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1356" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1384" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1412" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1440" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1468" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1496" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1524" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1552" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1580" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1608" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1636" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1664" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1692" y="104" width="24" height="24" rx="2" fill="#f8a823"/><rect x="1720" y="104" width="24" height="24" rx="2" fill="#f8a823"/>
+    <rect x="1012" y="104" width="24" height="24" rx="2" fill="#f94144"/>
+    <g font-family="JetBrains Mono" font-size="30" font-weight="700">
+      <text x="40" y="228" fill="#f8a823">1,951 blocks cached</text>
+      <text x="40" y="274" fill="#f94144">1 block to compute</text>
+    </g>
+    <g font-family="Inter" font-size="36" font-weight="800" fill="#f5f5f5" text-anchor="end">
+      <text x="1740" y="228">900 ms  →  12 ms</text>
+    </g>
+    <g font-family="JetBrains Mono" font-size="22" fill="#a1a1a1" text-anchor="end">
+      <text x="1740" y="272">…if stop 04 sent you to the replica holding them</text>
+    </g>
+  </svg>
+  </div>
+  <div class="s-notes">
+    <p><b>60 seconds. This is where the two halves of the talk meet.</b></p>
+    <p class="say">"Blocks are keyed by a hash of their contents and everything before them. Your system prompt, your tool schemas, your project instructions — byte-identical on every turn. So on turn seven, the prefill you actually pay for is the delta. Nine hundred milliseconds becomes twelve. But — and this is the whole argument — only if the router sent you to the replica that is holding those blocks. Cache-aware serving and cache-aware routing are the same optimisation in two different projects, and one without the other buys you nothing."</p>
+    <p>Free gift for the room: a timestamp or session ID at the <i>top</i> of a system prompt invalidates every block after it and silently destroys your hit rate. Put volatile content at the end.</p>
+  </div>
+</section>
+
+<!-- 27 ..................................................................... -->
+<section class="slide on-deep slide--section">
+  <p class="num">06</p>
+  <h2>The silicon, and what lives on it</h2>
+  <p class="stops">stop 06 · HBM · KV cache · experts</p>
+  <div class="s-notes"><p><b>8 seconds.</b> Signal that this section is short.</p></div>
+</section>
+
+<!-- 28 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="6">
+  <p class="kick">288 GB of HBM, and how you spend it</p>
+  <h2>Weights are rent. KV cache is what you sell.</h2>
+  <div class="fig" style="margin-top:38px">
+    <div class="mem">
+      <div class="mrow frag">
+        <div class="ml">BF16</div>
+        <div class="mbar"><div class="w" style="width:49%">141 GB weights</div><div class="ov" style="width:12.8%"></div><div class="kv" style="width:38.2%">110 GB KV cache</div></div>
+        <div class="mv">11</div>
+      </div>
+      <div class="mrow frag">
+        <div class="ml">FP8 weights</div>
+        <div class="mbar"><div class="w" style="width:24.6%">71 GB</div><div class="ov" style="width:12.8%"></div><div class="kv" style="width:62.6%">180 GB KV cache</div></div>
+        <div class="mv">17</div>
+      </div>
+      <div class="mrow frag">
+        <div class="ml">+ FP8 KV</div>
+        <div class="mbar"><div class="w" style="width:24.6%">71 GB</div><div class="ov" style="width:12.8%"></div><div class="kv" style="width:62.6%">180 GB KV cache · half the bytes per token</div></div>
+        <div class="mv hot">35</div>
+      </div>
+    </div>
+  </div>
+  <p class="cap">concurrent 31k-token agent sessions on one card &nbsp;·&nbsp; <b>two command-line flags</b></p>
+  <div class="s-notes">
+    <p><b>75 seconds. Reveal one bar per click.</b></p>
+    <p class="say">"Weights are rent — you pay it once per replica whether anyone is talking to the model or not. The KV cache is the inventory you actually sell: every token in flight lives there. So the interesting effect of quantisation is not a smaller download. It is that the same card went from eleven concurrent agent conversations to thirty-five. Two flags. No new hardware."</p>
+    <p>Numbers if challenged: Llama 70B keeps 320 KB of KV per token at BF16, 160 KB at FP8. <code>--gpu-memory-utilization 0.9</code> leaves 259 GB of the 288. Sessions counted at the 31,219-token context from act one.</p>
+    <p>And the diagnosis: if <code>gpu_cache_usage_perc</code> is pinned at 1.0 you are out of <i>concurrency</i>, not compute. A faster GPU will not help. This slide will.</p>
+  </div>
+</section>
+
+<!-- 29 ..................................................................... -->
+<section class="slide on-dark slide--duo" data-stop="6">
+  <h2>And then someone asked: why read all of it?</h2>
+  <div class="duo">
+    <div class="pane">
+      <p class="t">Dense</p>
+      <h3>Every parameter, every token.</h3>
+      <div class="fig" style="display:flex;justify-content:center">
+        <svg viewBox="0 0 504 504" style="width:290px;height:290px" role="img" aria-label="A dense model: every block of parameters is read for every token."><rect x="0" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="0" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="64" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="128" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="192" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="256" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="320" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="384" width="56" height="56" rx="2" fill="#f8a823"/><rect x="0" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="64" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="128" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="192" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="256" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="320" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="384" y="448" width="56" height="56" rx="2" fill="#f8a823"/><rect x="448" y="448" width="56" height="56" rx="2" fill="#f8a823"/></svg>
+      </div>
+      <p class="note" style="text-align:center"><b>64 of 64 read</b><br><span style="color:#6b7080">71 GB off the bus, 800 times, for one answer</span></p>
+    </div>
+    <div class="pane good">
+      <p class="t">Mixture of experts</p>
+      <h3>A router picks a handful.</h3>
+      <div class="fig" style="display:flex;justify-content:center">
+        <svg viewBox="0 0 506 506" style="width:290px;height:290px" role="img" aria-label="A mixture-of-experts model: only a few experts are active per token."><rect x="0" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="0" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="32" width="26" height="26" rx="2" fill="#f8a823"/><rect x="128" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="32" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="64" width="26" height="26" rx="2" fill="#f8a823"/><rect x="480" y="64" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="96" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="128" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="160" width="26" height="26" rx="2" fill="#f8a823"/><rect x="288" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="160" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="192" width="26" height="26" rx="2" fill="#f8a823"/><rect x="256" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="192" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="224" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="256" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="288" width="26" height="26" rx="2" fill="#f8a823"/><rect x="448" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="288" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="320" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="352" width="26" height="26" rx="2" fill="#f8a823"/><rect x="160" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="352" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="384" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="416" width="26" height="26" rx="2" fill="#f8a823"/><rect x="128" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="416" width="26" height="26" rx="2" fill="#232d47"/><rect x="0" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="448" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="448" width="26" height="26" rx="2" fill="#f8a823"/><rect x="0" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="32" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="64" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="96" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="128" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="160" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="192" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="224" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="256" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="288" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="320" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="352" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="384" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="416" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="448" y="480" width="26" height="26" rx="2" fill="#232d47"/><rect x="480" y="480" width="26" height="26" rx="2" fill="#232d47"/></svg>
+      </div>
+      <p class="note" style="text-align:center"><b style="color:#35d0ba">8 of 256 read</b><br><span>far more parameters on disk — far fewer bytes per token</span></p>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>70 seconds. The grids do the work — just point.</b></p>
+    <p class="say">"Here is the idea that broke the eight-point-nine-millisecond floor. In a dense model every parameter participates in every token, so decode is hostage to the total size of the thing. In a mixture of experts, a small router picks a handful of experts per token, and only those get read out of memory. The model on the right can have ten times the parameters of the one on the left and still be cheaper to decode — because decode is a bandwidth problem, and you just cut the bandwidth bill."</p>
+    <p>Concrete: DeepSeek-class models are hundreds of billions of parameters with only tens of billions active per token. That ratio is most of why serving costs collapsed over the last two years.</p>
+    <p>The catch, if asked: every expert still has to be resident in HBM somewhere, so you need either a very large box or expert parallelism across many GPUs — llm-d's third path. You trade memory <i>capacity</i> for memory <i>bandwidth</i>.</p>
+  </div>
+</section>
+
+<!-- 30 ..................................................................... -->
+<section class="slide on-deep slide--section">
+  <p class="num">07</p>
+  <h2>And back up again</h2>
+  <p class="stops">stops 07–08 · stream → loop</p>
+  <div class="s-notes"><p><b>8 seconds.</b> Change of energy — the hard arithmetic is behind you.</p></div>
+</section>
+
+<!-- 31 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="7">
+  <p class="kick">the forward pass does not output a token</p>
+  <h2>It outputs 128,256 numbers. One of them wins.</h2>
+  <div class="fig" style="margin-top:44px">
+  <svg viewBox="0 0 1780 320" role="img" aria-label="A logit distribution over the vocabulary, from which the sampler draws one token.">
+    <g>
+      <rect x="60"   y="44"  width="120" height="196" rx="4" fill="#f8a823"/>
+      <rect x="200"  y="116" width="120" height="124" rx="4" fill="#8a5f16"/>
+      <rect x="340"  y="158" width="120" height="82"  rx="4" fill="#8a5f16"/>
+      <rect x="480"  y="186" width="120" height="54"  rx="4" fill="#3a4560"/>
+      <rect x="620"  y="200" width="120" height="40"  rx="4" fill="#3a4560"/>
+      <rect x="760"  y="212" width="120" height="28"  rx="4" fill="#3a4560"/>
+      <rect x="900"  y="222" width="120" height="18"  rx="4" fill="#232d47"/>
+      <rect x="1040" y="228" width="120" height="12"  rx="4" fill="#232d47"/>
+      <rect x="1180" y="232" width="120" height="8"   rx="4" fill="#232d47"/>
+      <rect x="1320" y="235" width="120" height="5"   rx="4" fill="#232d47"/>
+    </g>
+    <text x="1500" y="214" font-family="JetBrains Mono" font-size="26" fill="#6b7080">… × 128,246 more</text>
+    <line x1="60" y1="244" x2="1740" y2="244" stroke="#3a4560" stroke-width="2"/>
+    <g font-family="JetBrains Mono" font-size="24" fill="#a1a1a1" text-anchor="middle">
+      <text x="120" y="282" fill="#f8a823" font-weight="700">" Пос"</text>
+      <text x="260" y="282">" Нај"</text><text x="400" y="282">" Сер"</text><text x="540" y="282">" Job"</text><text x="680" y="282">" ETL"</text>
+    </g>
+    <text x="120" y="30" font-family="JetBrains Mono" font-size="23" fill="#f8a823" text-anchor="middle">picked</text>
+  </svg>
+  </div>
+  <p class="cap">temperature · top-p · top-k reshape this. <b>temperature 0 is argmax — and still not reproducible</b>, because batching changes the order of the sums.</p>
+  <div class="s-notes">
+    <p><b>50 seconds.</b></p>
+    <p class="say">"Eleven milliseconds of silicon produced this: one floating-point score for every entry in the vocabulary. A hundred and twenty-eight thousand numbers, to choose one. Temperature, top-p and top-k reshape the distribution, and then we draw. And the fun fact for anyone who has fought a flaky eval: temperature zero is not a seed. The batch composition changes the order floating-point reductions happen in, which occasionally flips an argmax."</p>
+  </div>
+</section>
+
+<!-- 32 ..................................................................... -->
+<section class="slide on-dark slide--viz" data-stop="7">
+  <p class="kick">and then it has to become text</p>
+  <h2>Your logo is a buffering problem.</h2>
+  <div class="fig" style="margin-top:40px">
+  <svg viewBox="0 0 1700 310" role="img" aria-label="The die emoji is four UTF-8 bytes split across two tokens, neither of which is valid on its own, so the detokenizer must buffer.">
+    <text x="30" y="80" font-family="Inter" font-size="92" fill="#f5f5f5">🎲</text>
+    <text x="150" y="60" font-family="JetBrains Mono" font-size="27" fill="#a1a1a1">U+1F3B2</text>
+    <text x="150" y="100" font-family="JetBrains Mono" font-size="27" fill="#f8a823">f0 9f 8e b2</text>
+    <text x="400" y="100" font-family="JetBrains Mono" font-size="24" fill="#6b7080">4 bytes of UTF-8</text>
+    <rect x="30"  y="150" width="420" height="88" rx="6" fill="#2a0f12" stroke="#f94144" stroke-width="2"/>
+    <text x="60"  y="196" font-family="JetBrains Mono" font-size="28" fill="#f5f5f5">token A</text>
+    <text x="230" y="196" font-family="JetBrains Mono" font-size="26" fill="#f8a823">f0 9f 8e</text>
+    <text x="60"  y="228" font-family="JetBrains Mono" font-size="22" fill="#f94144">not a legal string</text>
+    <rect x="480" y="150" width="420" height="88" rx="6" fill="#2a0f12" stroke="#f94144" stroke-width="2"/>
+    <text x="510" y="196" font-family="JetBrains Mono" font-size="28" fill="#f5f5f5">token B</text>
+    <text x="680" y="196" font-family="JetBrains Mono" font-size="26" fill="#f8a823">b2</text>
+    <text x="510" y="228" font-family="JetBrains Mono" font-size="22" fill="#f94144">not a legal string</text>
+    <text x="940" y="186" font-family="JetBrains Mono" font-size="40" fill="#35d0ba">→</text>
+    <rect x="1000" y="150" width="300" height="88" rx="6" fill="#0f2422" stroke="#35d0ba" stroke-width="2"/>
+    <text x="1150" y="206" font-family="Inter" font-size="46" text-anchor="middle" fill="#f5f5f5">🎲</text>
+    <g font-family="JetBrains Mono" font-size="24" fill="#a1a1a1">
+      <text x="30" y="290">step 412 → <tspan fill="#f94144">hold</tspan>      step 413 → <tspan fill="#35d0ba">flush</tspan>      two forward passes, ~18 ms, one character — and one of them was invisible</text>
+    </g>
+  </svg>
+  </div>
+  <div class="s-notes">
+    <p><b>60 seconds. This is the one built for this room. Enjoy it.</b></p>
+    <p class="say">"I checked something this week specifically for you. Your logo is a die. One character, four bytes of UTF-8 — and the tokenizer splits it across two tokens, neither of which is a legal string on its own. So the server generates a token at step four hundred and twelve and physically cannot show it to you. It has to wait nine milliseconds for the next forward pass before those bytes become a character. Your conference logo is a buffering problem."</p>
+    <p>Then the serious half: inter-token latency is measured at <i>token</i> emission; your users experience <i>character</i> emission. For Cyrillic, for emoji, for CJK, those are different events — so a latency SLO built on token timestamps measures something nobody can feel.</p>
+    <p>Verified with <code>tiktoken</code>, <code>o200k_base</code>, <code>decode_single_token_bytes</code>. Say that — the room will assume it is a joke otherwise.</p>
+  </div>
+</section>
+
+<!-- 33 ..................................................................... -->
+<section class="slide on-dark slide--viz wide" data-stop="8">
+  <p class="kick">stop 08 · and round again</p>
+  <h2>The answer was a tool call. So we go again.</h2>
+  <div class="fig" style="margin-top:40px">
+  <svg viewBox="0 0 1780 400" role="img" aria-label="Across successive agent turns the context grows, so each turn costs more than the last.">
+    <defs><marker id="a5" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#35d0ba"/></marker></defs>
+    <g font-family="JetBrains Mono" font-size="22" fill="#6b7080">
+      <text x="40" y="60">turn 1</text><text x="40" y="128">turn 4</text><text x="40" y="196">turn 7</text><text x="40" y="264">turn 12</text>
+    </g>
+    <rect x="180" y="34"  width="150"  height="38" rx="4" fill="#8a5f16"/>
+    <rect x="180" y="102" width="620"  height="38" rx="4" fill="#c9851c"/>
+    <rect x="180" y="170" width="1080" height="38" rx="4" fill="#f8a823"/>
+    <rect x="180" y="238" width="1500" height="38" rx="4" fill="#f8a823"/>
+    <g font-family="JetBrains Mono" font-size="22" fill="#f5f5f5">
+      <text x="348" y="61">4k</text><text x="818" y="129">17k</text><text x="1278" y="197">31k</text><text x="1698" y="265">52k</text>
+    </g>
+    <path d="M1600 304 C 1320 340, 480 340, 200 308" stroke="#35d0ba" stroke-width="3" fill="none" stroke-dasharray="10 7" marker-end="url(#a5)"/>
+    <text x="900" y="388" font-family="Inter" font-size="28" font-weight="600" fill="#35d0ba" text-anchor="middle">every tool result is appended, and the whole thing is sent again</text>
+  </svg>
+  </div>
+  <p class="cap">One user question is often <b>five round trips</b> — each one longer than the last. This is why prefix caching is not a nicety.</p>
+  <div class="s-notes">
+    <p><b>65 seconds. Closes the loop you opened on slide 3.</b></p>
+    <p class="say">"And here is the part that surprises people who have only ever built chatbots. The answer that came back was not prose — it was a tool call. So your harness runs the tool, appends the result, and sends the entire conversation again. One question from a human is routinely five of these round trips, and every one is longer than the last. Your agent's cost does not grow linearly with the conversation. It grows with the square of it."</p>
+    <p>That is the business case for everything in act four: prefix caching, cache-aware routing, KV tiering. Without them an agent gets quadratically more expensive the better it works.</p>
+  </div>
+</section>
+
+<!-- 34 ..................................................................... -->
+<section class="slide on-dark slide--cta">
+  <h2>You are not renting intelligence.<br>You are renting <em>memory bandwidth</em>.</h2>
+  <div class="me">
+    <img src="alessandro-vozza.jpg" alt="Alessandro Vozza">
+    <div class="who">
+      <b>Alessandro Vozza</b>
+      <span>VOLT Datacenters · from power to tokens · Amsterdam</span>
+      <span class="links">ams0.github.io/talks</span>
+    </div>
+  </div>
+  <div class="s-notes">
+    <p><b>45 seconds, then stop talking.</b> Leave this up for questions.</p>
+    <p class="say">"Eight stops. One request. And everything surprising was in the same place: the expensive state lives on the GPU — so routing, caching and batching turn out to be three names for one problem, which is keeping that state close to the request that needs it. Every layer that decides it is open source, standard, and will run on one box in this building. Thank you."</p>
+    <p>Three things to leave them with if there is a lull: count your context before you buy a GPU; replace the Service with an InferencePool; and TTFT is compute while inter-token latency is bandwidth, so never reach for the same knob twice.</p>
+    <p>Likely questions: cost of a box (pivot to utilisation — the same card is cheap or ruinous depending only on how busy you keep it); MoE (lower per-token traffic, same shape); "do I need this for a 7B model" (no — but fix the routing the moment you have two replicas); frontier API vs self-host (a per-workload decision, not a per-company one); "is greedy decoding deterministic" (no, batch composition changes reduction order).</p>
+  </div>
+</section>
+
+<!-- 35 ..................................................................... -->
+<section class="slide on-dark slide--srcs">
+  <h2>Sources</h2>
+  <div class="srcs">
+    <p><b>Tokenisation</b>All counts measured with <code>tiktoken</code>, encoding <code>o200k_base</code>, October 2026. <code>decode_single_token_bytes</code> is what shows the UTF-8 split on the die.</p>
+    <p><b>agentgateway</b>agentgateway.dev · Linux Foundation Agentic AI Foundation · MCP and A2A as first-class protocols, CEL tool authorisation. Envoy AI Gateway and kgateway are equivalent choices.</p>
+    <p><b>Gateway API Inference Extension</b>gateway-api-inference-extension.sigs.k8s.io · v1.6 · <code>InferencePool</code>, the endpoint picker, the conformance suite and the five gateways that implement it.</p>
+    <p><b>vLLM</b>vllm.ai · "Inside vLLM: anatomy of a high-throughput inference system" for the scheduler; the PagedAttention paper (Kwon et al., SOSP 2023) for the block allocator.</p>
+    <p><b>llm-d</b>llm-d.ai · CNCF Sandbox · cache-aware scheduling, P/D disaggregation over NIXL, wide expert parallelism, LMCache tiering. All performance figures are the project's own.</p>
+    <p><b>Hardware</b>NVIDIA B300: 288 GB HBM3e, 8 TB/s, NVLink 5 at 1.8 TB/s per GPU. Peak FP8 throughput is a vendor figure — the ratios are the argument, not the decimals.</p>
+    <p><b>The arithmetic</b>Every number on these slides is worked out in <code>SCRIPT.md</code> beside the deck. Nothing here is a benchmark; it is all division.</p>
+    <p><b>The deck</b>ams0.github.io/talks — one self-contained HTML file. Press <code>N</code> on any slide for the notes.</p>
+  </div>
+  <div class="s-notes"><p>Backup. Do not present; reach it with <code>End</code> if a number is challenged.</p></div>
+</section>
+
+</div>
+
+<div id="pager"><span id="cur">1</span> / <span id="tot">0</span></div>
+<div id="clock">press T for timer</div>
+<div id="help">→ next · ← back · N notes · T timer · F fullscreen · P print</div>
+<div id="notes"><h4>Speaker notes — <span id="nslide"></span></h4><div id="nbody"></div></div>
+
+<script>
+(function () {
+  var LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXEAAACJCAMAAADt7/hWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAMAUExURf2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNP2xNHoW36gAAAD/dFJOUwAOHCAdBTpxpNHowKVyPwozntX3v4d+TTtb2MJgOAlHm/Pvz8y9ioBCHnvSdzzyt2wYD2VrF+q0LEqs4KF2U0BSuWEpeuHmcBBitowL10YkkNpWLevkASOoXzU9VVpY9sVBluLn1oZFzpFO7peE1NNQxvGamapDFnze28G1L/XLDI1zG76DCIW8xG0ysZ+LESeCbvQr8DapXK6tPrB/XQ2yj6eUBmf5yeyJbxXl3C7pGiiYSa/7S7r8AkwE0N95lSGj+Df9E1H+JdlqJhIqyM1U450ZxwNmT3UxnLhjB31IFFnKV/rDoJJEiHSBXpM5NKLdu3iO7TCzq2giph9kaU5BOJYAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAHdElNRQfqBRYNITUUbVfkAAADT3pUWHRSYXcgcHJvZmlsZSB0eXBlIHhtcAAASImtVluWmzAM/fcqugRbkiWzHILNX8/pZ5ffKxsSCJmZdFpyQgiWpaurl8Pvn7/CD1yJeQq88GrFoiZlvWk2oaikWU0nbVzJ2nq73VYyvJ9U/E02zlI5SrUoDNmiU5Bis2FjZpulZVH8QiFsqJDxyi3WOPNihWcriq1a3Zwmiv5fF23GPAcIVCLgEV0dCc9j4S6+Eg1lcYI6gpzynElE9Kgq8Lwturpigk/kGdtX6xc1g15qukLOaOXEk3/wFJlwJ9yrUXAleGADI47AClW34Os7kiMWAAFFIIB0sogdEzxpFMMuAOcIVuGOY8N1YkBSx4rNSlfs3TWAPgi5os1GQxRXrRADf0AIp6hxPHI2sA4jYbMCmy5+FDmRiyBbOq8e13UJOsGJ7a9nkyHmSAYxMIAYwo1MnRV3m4AynxHtKsPJ+1mcxOzO4i7cwDliw5kqopVwj5x5ofW6Kxy3Xe08bcioARHP74ZvwS7l0k2B7MoZeVwU2cCCZ0VGV2wDAkYquBCECRFPQIMf9euCK5ztfIkJSTckoZT6V3GfOAWgSGx4zB3k1f/71s+NABEKFREB5HKPlZN8UflK7qE8DN20PjJCp+dseqxe82k3GA5OPKXkUcHrCjvKhq+K8b1aVAkI/bWBxJ7Fy6N5QBmqDXmz4ItO5Z3iXn+9Z4Wzv74BpQI8+C5nOk/NJOli8oLsI9U76P4vaVNzzL1PeQUoKiG7Gq850q7whn5EleII9ntxu2Lx1cHRS1f+LmZbq/3XmCE5gehF2+89uz0my6Nb+hbUzIgWH7vlTnbcGejNtnjYuYlTjfmFfO4I8RYjqDt9kQ9G3+flKBm+zUufug9awhu8FGRO/HiKDJXh1KfhmDcLfBYwxJ6Ops4SFR8BYMnd8GFAhMTtRlFiGN8pCPjDlFUrAuoy3COvNG8XGIUYJ0kkp5wYU9j7IRwtfl4x6lkPt4VcJriQTejFYD6v2QvEC8FPHcsYC1x7EAYnH+IP/yNi2sfROWLHuPhbfTdhwxaZbdM5NrC8K5tl7Z00b2eWO0qMDvcFJfKV4Bsuu8y91Y4z2H7Qc3Kfj3r72oszJ8yHcbw0G+fF8AdqvH04GXsszwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNi0wNS0yMlQxMTo1NzozMiswMDowMNl5nW4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjYtMDUtMjJUMTE6NTY6NDMrMDA6MDDrVExBAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI2LTA1LTIyVDEzOjMzOjUzKzAwOjAwHivZTAAAABZ0RVh0cGRmOkF1dGhvcgBBbmEgU2lvbm92IKAYGEYAAABddEVYdHhtcDpDcmVhdG9yVG9vbABDYW52YSAoUmVuZGVyZXIpIGRvYz1EQUdieWZ4SkFZbyB1c2VyPVVBRFFRNGEyNnQ4IGJyYW5kPUJBRFFReTNob19ZIHRlbXBsYXRlPTm5Kp4AAAABb3JOVAHPoneaAAAAEGNhTnYAAAGSAAAAlgAAABIAAAANZxZztwAAEsZJREFUeNrtnXlAVNUexw/aU3TcEDUVxURhXHIDxZ3BTIzcDSfTFAVTxB1FSxBBcElJTFJzrdxNXDOXlErTyOWllC+XfFpZGtmimVbW67w5d5m5++/O3LlzmZrvX/eee9bPzJw553d+51yEfPLJJ5988sknn3zyySeffPLpHyC/MmUZPfQvo+vyt1e58v4VMFcVTZUqV6lqdLX+rqoWUB1LK7BGzVoP1za6fn831amLQQXVrFc/2OiK/j3U4JGGDq4hQSaTqZEs9sahYeYmRlfYu9W0WXMu0UeZ4BYVFb7tLVu1bmN0vb1U4RFBAphtmSftIoE+pn0HoyvvherYSYJk5y5doyzR3eBuHT9mdP29TN0f76GCqoJicE+j2+BFeiL2SW24Me7Vuw/ua3Q7vEX9+jfUynvAQISeihtkNbopXqGnB2vFjZs/g9CQoehZPMzoxniDhserQDrCZJKfEoX2RSMTEjEe1Rm3Mro1XiALfg6g3Xl0FSpm1TFJEk9bju2OkkPtt+FGt6fUq+y4rihBmfh4PzbyBNGziV2roraTOAGTjW5QqdcUPKnjI1CfkjLVTDRNGJ46Hc14/gVeUJjRDSrtGkNzmplmMin11JJKn4Wqds0Q/iCMblFp12yM65rthtfM2hFZ6Z1V4Y6ZUwZl+48ShT9idItKufwwNqPgFr1MOZXmNujNBAbPqz9/wYuKvBMXzkOLcqWevGR0k0q5OuDOqFoIAyuwxmJzbJ792ZKeL5tTpcxXjeZbEFoaI/1Z+BvdpFKuIbhiz0A+snzT2NZNHNxfscxPW8Z5PChrOUJNesktD+EVRjeplKucHLiJE1pwlzP9lltokeH2qyHi+Bkrhw+gLlYZ3aRSrtVKnfXMNWvXlcsUJnktVSLqsrIIVaOuXje6SaVPyemcmyYYVPU3xvDWMtdLRdpAnlBrGfpN81c9azQ6V7RxU3O8mXM/hkU23vL8FlnoW1s7UkyXjBFNHm0jV6G61T0S133T2xw3tpsLbEy4xBuwX2RyMytflrmpLJtih+TzneRRZXKVplvtybBpV83dRkN0Qnv2tqTocIm/xRAbS935y/cty5jl+sekH79CnpnJ1Qjd6k8PVDMCnjIapEpZ9r3N0OES38+EVabu+it054GLqChp0k8fJs8OkKsturWAnRocbO8FK02Hhk1x0OESf4cJe4a6k/qOx4xdSV+8kEmiZEgTT0BsD9VYt0ZwJmOz6x02GqmiMufM5NKRIh5A3YktKoHky1+Fvp5vu3xI7idQs2yTAuriiG7rbrzpb+G7TxiNVVYPLY7jw+EST2bCxpFBwBAxSNo96D36Jhuh5RhSc88Qt1V57PtGo5XUoqOBQiZSxPEbthsJ4xXt9FPbHqcvSHyip4hjfGzwB0bjFWn/geNiJlzik+2h6805EvxO0NHom3yEPgSJ1/UccYyLcj40GjFXGyMqSDLhEocIPs0ljj9Cw0HiJz1J3KZJp0qLd++JtYNkmDhDnPZr283cjVRBfICHidtGU3PbGQ3bptMJKbJMnCGeeIbEMjN30WgYSHyHx4lj3PCRfxvMe+jKtxWYSBOfGPaxVOSz/RA6x970ROuEz4v7Bp/jBRhB3DYryjXShX248oKZNHEyIP9EMnpSY/vlNBQreNjjU1u6FcYTt+n8q/8xBHdm+QEYkCTxGbabM1DKwegzQQjlXH6hVBC3FX3xNY/zzt4WB1Xr+IIoCeIVqLv2QNpc1FYQ0o8ka1rkEeId0w9Cjdua1dSjvC91CYSq1PLyLF4SdgY0grqbD6RuhXoKQii827nE9RurINR9QwhQQxzoX81jvN/6/DhUnR2PnxEkYokXUne1JNIUTnEYrxaghYKnlMNFdy5x/WZARH6V+0CNPH7gHU/g3nilEVSTohoDxekeZp9uJ3eXxam62YIvsBauNLRU8Jiym/K6mup6e5BP/hzsXI589l+dK3HmaiJUiYYvXZJKydoOcU3bTbD4v6k4k8S6xtyNEPUqZMWnDW+qpZ8ly65Xxi/DgIrXfqFjBfptSIEqUHj1hHRaO3G870uLxL4U2orLzvK/EvUquP9r1/k23kae2CURfhF0kUxJOK1T4bU7fQ2UXZT25SG51G8BaSfQ0YrpuyR0CmqojmtAfEUfgP62vl41VIdyB34DEci/UU0hPWR9vUlHYxyWj4jG42Lpt7IsVIdpYOfy4nX3/uJ6v3kSKrLz2hmKWXwLpO9DR2OGK5PQMyDxbgqlPVHbYokljuhXHx7qh7Qr71FwuneyZ6bbeO8ugSZhRd/UOQRkshqqcTKJtZO5mYiug8RTZWq7f+lUPp6g8kvcQOHcAqhz2VWS7Rbes16KB0rKOLpcRTaO+F22SU0v4rrbRofsMmldzgqGnAJEZZweufCo9FajlKDvtNOYdbklUKX4G7M0l9LgSWhMmnhLldG4Hxs//0OEFklNWQM5/hInVXjNmXn5r45eHKQcP+eKZmPIicd3AJU6+GQDLQUcjj0LNXvE9yq9C+xr85T7RFcg2x1oEUi8HJv1zu97harabpExXsWPUVmHrucUAaU0fszVI6fymkG75+Mr1VedWxs20TxyFwzYZQpRWQgfNThssbZLGmji4WriXM2D50sBUOfSudkZF/J9+iY0Iiqe+6kT+bEG2q30LfDrLCa7WGhlJUj/b5/qPnq2U7BZ5UzWyny7YNedWCE/PO1knj+mQrOd8046K9kJ0rcVlXOPsc8+byFU9XVXwCqoYEJ3jcwPDTcBncvmVPW/f9tAKA2ocuD6ck5kR2kem5bqSsOBAiLtxMm64m6JGPkBI7RAr/GtRubopxv5ykUU1YhSNysKXgiZKQtGuzLSYlPfJjd1pD7Gac/2Zb/NIQjRneUdKq1oa2HKqUxph3674oP23TKbs36Ol4swM8zpb41AM9YWAqSqt4YdLj4dDfze8VdXNrpUP3sGxKgs5bM/hsRi5rbL2KWvA1RakyDquI9sgQOValnCNjVT4fda+LzG+eihOt8AnUvMBOWxc4eADOUMjq1o4WrtHL/BqU2kVpbnU7HesBOnLbMvUqHC79I6KnRoK/mKhl6jS91zd5xSe1J+WaKNOVp+G0DW8PIrsonHtAdmOzElD7letRjlvOmFTDTaTpyefgaSLW8dBFHvWe9fsRCP0bzKSr/rgi3QMI5osVYTVDszMIo++Ot06TKgBfbZEa51J4xCgezpH7i/nTiz1ETOOxCeg5MeRez0jSNIgio52GU1MplMo3DODC3NIjq8DnAjoSchIp1QSnLst9UaqxULVGo/FavATpy1Dm+Ikj0crvB3svr5YK+ar7JQM29GUQe0BF+8V1xWS7to1fePVypNeh+XAvGKYdp9BR4ACHqQSKyNtiWz80Ss89e4Q6nIvdQWllPVsVNKYk7OQZcsqzOzIxu7w4Vz99xitxFP+n2ek6VLClqRHhyOzrFflHiEpKc9dxHK4oe0p9yMa09VS/urko5UBzar7VG6Rncw3uSO9qHD9c67g/jmle7ys7sPzBhwIGfSjtAfEjHS37flc1sY+txtspbdtNYoDOnOttZlbFF7R2Wl8xycQt21gFN7fbxkwc4QT3ZTXZBjoV6NqqLForDnaKeMxhLR91Fb4JInKuQ45SqZ7fr1bbZPvJ6V4r4lsxaSA3RniE93H3F0H3S6YbUVoRJB0L2lTC7ShtlRYcRW0mCFlLdB4R8XyTQiM3rqJJny3LN4Q3RJM/HQ/W5EjhaqPK5pMEI1+CH97QbQXXKJgsgRiMGx5oQCe1BiJfPVL8lI/7Vrl5VWKte5q4HfttdMHOOJb2a6kflyc9pZmHh9FMy771LGkYOCFTmyvH3UsdNisfzEXDcJ2wKU18st3UrwpiSZ/J0dHW4d28+NzG2/vNhPlB0pbV/xLhinsYbxQde4qZk/4LnBSOIwp3trhY0b4w+6NWH8ixuI/7lN3iTl9Hgcv53r9v3S0+cfkSstZju1RSLhzG0yf97VjD9cpn+2o6wyp1Mk8rx16lTAarRXM/HVK44p5O88cZuOuH+r1xPTH10jYWiK6YDKUecJf2eZi5P+J0xFE+9FLndJ1vQvR9xKqnhjvFIb8Y2xQLclTTwYWoeI7OWG6bBIHzy/IJ5XzJZPOW6eZnECmvh1cikzL41lYuadVQkc/6yFePaEQcq5F9WQ28byY+pm5aSbO43UgTlCe/7ifNrJZnas0VLSlkoT70gu5axjQ+iYBxQbg486ToX62HXiP1aKVy7m2AqlDc/wevLsCLdM+cWqEmbmT5KD5kuviNPEfyeXd2QqSQO8q9ySagi9z/ZpFVwkDlsN4U39ec0g14+Ymhqs5IB2WkYOv/hDbuqtd6O/kItDEw+yXZ2WXYAhNXygbFUIIJB7Mjm84BLxdmsh/xJ1B1fAfkGBg418DRUD6SoKl//jIevGwOny1HJ+OyazUS4QB5eW8ex6qn2FYN83Z50n3E9cqoXRJ/5HXw1HKFx5BTLSys1snLPEYfeJg+l9ncoU9u8sftkZByFPEM8g2zPoXXRXEJpsjxcSMFX88gp6p1xVJlK+c8RPNINchDJecv6QLdiHOV6NT60HiVNDvPvU47acDYx38hC6IE5EzS6S2XBniN8HfWwruniQXO83IbtT0TfDIL9xDxK/4XhcHqHxbDBl4xXvPKpHgu12EPXEo36G/Mj7aDksEd6LUnh1u4eJy3or/EZhu0cuuzr2/tNd9BzR55T/rqWJY8Cucj6ddxHcLBI0UKPFAN5v1TDgkrYinJTsCKEHaSr9h1nLMcHvRgF4FvifU/UaEHiz4ded3DGKg/cUFuV48qBX+Vc4EW+vMRTa0QixE8pcingdgLgK9+PkVtAALuW9j9zURhX7ZnfcdcVl2iXJG3pjstEeeuHtF4TYV/UlUsQXA/WHuka/ntCbdXBirRMqaq9Wh68kQQWmTPPQOxzvCUvu05/1Ro9jj7ccb0X72Mfkdz4PWnVW9g48PfYekB43inD7y7jh8w8OdpvsCeLCQesWq3h+OdXq8L4gg8abEDClucW116Hu5Hi3/bpsoL4Pn/FRd447dk8qS+jASJzF8gTd9CdWzhEuZ1f5Q/WWX1ru3RZc0wg8qt/QITsMPMcmZMMenYkLjNG058MKfuANK2oFUuaqjHRZD7LABsf1KuNM7Z1W7/LggPRg+466VkEwwT5PBV7kB/o7S1zSHDp9FTQyxjO/88D5TdB5ZDZNWtpbezlyEnhBTKECW/MDV2gnPu+zxmCqKcM8dEZZC8Uz9yjF9Xd2s5dqTeKXFE/96e3lB3ZylrjQk7VpCehT9/aaKp7BTUnpXElGX6/RvLlJWmcFBa2xdeSZgkH6Pm3Ehw4+BiVoOVXrfjlnJX92qkOzdSlZtBl8/U/sKdp2/aqpV1kARi+4pdnN3wVtjDgC1Guz9kIklArywPhzK0p3nThkpm7+l2FnBu9XPl5HH+L0uzvrmlcplLzACh6p6CrxotDJhr5UW+Kcd72Jj6XyHmIrW36snGZFudgZ7VZJ/NgfQ4zETUn0LgO9iVNGKWqZ7IosmCkcu4oq8Wb5ssTv9dfDR8p5Cd7XoTfxmiRr6njJTFkT7Fkr+s0p4jxLlgzxF+6Wnpdp895Jozdx6qXX9PGSM+UA2h6DLochL891mGi+AIl/9YwxJzLLavU+8axIH+LvkqzptTTZ/bN3rMINWmJdQCj8Z/Ymj1uCmPjBX3WaXGjSHtG+Sn2IP0rlTQi0k+1VEq2oPAC8D/nM/mRz4FlHhMTzAzxk+nda280FvJrqQ5w+AaHP+2iG/Ewlxoo2Aetst6lfCbuywzt+lk+84ug2RoNVEHlHpN7E2fMplLZxxVnROoD4aIo4+6Hxhthc4s8tLfXvjUxeYG+qTsQ3yUH8/PQDxvXS1s0PVEWc2Y84QJp4UZp3vBu1WqVAXYkjmW/3Sdvcewbt4NzQij7kEB8gYQOqRCCzuy9vShHfnKr1zBvPqWnWVj2Jy5wPepc8ow9cyLBy/A7X7LGfIsLRuBkIZbPeyPw1FIr4sh/cu91Mb/ldvKMfcdRMkvgF8uhBEdMv24m/SH1/xauVg172Zy0UBXxLiY14j6se8wZxmw69+vEx3TK/LUWc6nMzWeL2XoV+f8gtpT49gp97ZNIVt7tCeEYun/AES8odooQ8KMMSj2KJ06aQaIU/0jSBMVDHenuxpot9pOLIDpBXMUPc7mlI7wv5Xp741j+NboyXaJ3Iq2ClH2rDmFoy0TkW8RIqdhdZ4LuMt796ja4L97rFj2CdX8MdxOeQqP1kv+KjlhjdDK/SNTkreJ6DeMNqtmGg7LFOuaXHAuslGpIrQ5wz5zTJetj0iNVeg3+ezpRI+NFvR8Ogc8Ix/u2a9tL/ofpe5N9+BtVTJn4yIVp/p1SffPLJJ5988sknn3zyySeffPKk/g9iESSuFsX3KAAAAABJRU5ErkJggg==';
+  var STOPS = ['harness','context','gateway','route','prefill','decode','stream','loop'];
+  var BACK  = 7;   /* stops 7 and 8 are the way home — teal */
+
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length, idx = 0;
+  var cur = document.getElementById('cur'), tot = document.getElementById('tot');
+  var prog = document.getElementById('progress');
+  var notes = document.getElementById('notes'), nbody = document.getElementById('nbody'), nslide = document.getElementById('nslide');
+  var clock = document.getElementById('clock');
+  tot.textContent = total;
+
+  slides.forEach(function (s, i) {
+    var stop = parseInt(s.getAttribute('data-stop') || '0', 10);
+    if (stop) {
+      var strip = document.createElement('div');
+      strip.className = 'strip';
+      strip.setAttribute('aria-label', 'route position: stop ' + stop + ', ' + STOPS[stop - 1]);
+      var html = '';
+      for (var k = 1; k <= STOPS.length; k++) {
+        var cls = 'st';
+        if (k >= BACK) cls += ' back';
+        if (k < stop) cls += ' done';
+        if (k === stop) cls += ' here';
+        html += '<span class="' + cls + '">' + STOPS[k - 1] + '</span>';
+      }
+      strip.innerHTML = html;
+      s.insertBefore(strip, s.firstChild);
+    }
+
+    if (s.classList.contains('slide--title') || s.classList.contains('slide--cta')) {
+      var mark = document.createElement('img');
+      mark.className = 'cover-mark'; mark.src = LOGO; mark.alt = 'Game of Codes';
+      s.appendChild(mark);
+      return;
+    }
+    var f = document.createElement('div');
+    f.className = 'ref';
+    var num = s.querySelector('.num'), head = s.querySelector('h2');
+    f.innerHTML = (s.classList.contains('slide--section') && num && head)
+      ? '<span class="ref-n">§ ' + num.textContent.trim() + '</span><span>' + head.textContent.trim() + '</span>'
+      : '<span>Life of a token · Game of Codes 2026</span>';
+    var right = document.createElement('span');
+    right.className = 'ref-right';
+    right.innerHTML = '<img class="ref-logo" src="' + LOGO + '" alt="Game of Codes"><span class="ref-pg">' + (i + 1) + '</span>';
+    f.appendChild(right);
+    s.appendChild(f);
+  });
+
+  var helpEl = document.getElementById('help');
+  var booted = false;
+  setTimeout(function () { helpEl.classList.add('gone'); }, 8000);
+
+  var step = 0;
+  function frags(i) { return slides[i].querySelectorAll('.frag'); }
+  function applyStep() {
+    var f = frags(idx);
+    for (var i = 0; i < f.length; i++) f[i].classList.toggle('on', i < step);
+  }
+
+  function show(n, atEnd) {
+    idx = Math.max(0, Math.min(total - 1, n));
+    if (booted) helpEl.classList.add('gone');
+    for (var i = 0; i < total; i++) slides[i].classList.toggle('is-active', i === idx);
+    cur.textContent = idx + 1;
+    prog.style.width = ((idx + 1) / total * 100) + '%';
+    var s = slides[idx].querySelector('.s-notes');
+    nbody.innerHTML = s ? s.innerHTML : '<p style="color:#6b7080">No notes for this slide.</p>';
+    nslide.textContent = 'slide ' + (idx + 1) + ' of ' + total;
+    step = atEnd ? frags(idx).length : 0;
+    applyStep();
+    try { sessionStorage.setItem('lot-goc-slide', idx); } catch (e) {}
+  }
+
+  function next() {
+    if (step < frags(idx).length) { step++; applyStep(); if (booted) helpEl.classList.add('gone'); return; }
+    show(idx + 1);
+  }
+  function prev() {
+    if (step > 0) { step--; applyStep(); return; }
+    show(idx - 1, true);
+  }
+
+  var start = 0, running = false;
+  function tick() {
+    if (!running) return;
+    var s = Math.floor((Date.now() - start) / 1000);
+    var m = Math.floor(s / 60);
+    clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') +
+      (m >= 26 ? '  ·  wrap up' : '  ·  target 26:00');
+  }
+  setInterval(tick, 1000);
+
+  function rescale() {
+    var pad = notes.classList.contains('on') ? 0.62 : 1;
+    document.documentElement.style.setProperty('--scale',
+      Math.min(window.innerWidth / 1920, (window.innerHeight * pad) / 1080));
+  }
+
+  document.addEventListener('keydown', function (e) {
+    switch (e.key) {
+      case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'ArrowDown': e.preventDefault(); show(idx + 1); break;
+      case 'ArrowUp': e.preventDefault(); show(idx - 1, true); break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(total - 1); break;
+      case 'n': case 'N': e.preventDefault(); notes.classList.toggle('on'); rescale(); break;
+      case 't': case 'T':
+        e.preventDefault();
+        if (!running) { start = Date.now(); running = true; tick(); }
+        else { running = false; clock.textContent = 'timer stopped — press T'; }
+        break;
+      case 'f': case 'F':
+        e.preventDefault();
+        if (!document.fullscreenElement) { if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); }
+        else document.exitFullscreen();
+        break;
+      case 'p': case 'P': e.preventDefault(); window.print(); break;
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a, button, input, textarea, #notes')) return;
+    next();
+  });
+
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) { if (dx < 0) next(); else prev(); }
+    tx = null;
+  });
+
+  window.addEventListener('resize', rescale);
+  rescale();
+  var saved = 0;
+  try { saved = parseInt(sessionStorage.getItem('lot-goc-slide') || '0', 10) || 0; } catch (e) {}
+  show(saved >= 0 && saved < total ? saved : 0);
+  booted = true;
+})();
+</script>
+
+</body>
+</html>
