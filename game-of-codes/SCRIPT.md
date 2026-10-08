@@ -1,18 +1,18 @@
 # Life of a token — delivery script
 
 **Game of Codes 2026 · Science & Technology Park, Niš · Saturday 10 October 2026**
-37 slides · **28:25** of material in a 30-minute slot · press `T` on the title to start the clock.
+36 slides · **28:25** of material in a 30-minute slot · press `T` on the title to start the clock.
 
-This is a **visual deck on a fixed grid**. The slides carry pictures; you carry the words.
-Almost no slide can be read instead of listened to — which is the point, and also means you
-cannot wing it. Read these notes once the night before.
+This is a **visual deck on a fixed grid**. The slides carry pictures and manifests; you carry
+the words. Almost no slide can be read instead of listened to — which is the point, and also
+means you cannot wing it. Read these notes once the night before.
 
-28:25 is over a comfortable 30-minute budget. The cut list below recovers nearly three minutes;
-take the first two cuts as a matter of course unless the room is running early.
+28:25 is at the edge of a 30-minute budget. The cut list below recovers nearly three minutes;
+take the first two as a matter of course unless the room is running early.
 
 The strip across the top of every journey slide says where the token is: amber going down, teal
 coming home. Slides with no strip are outside the journey — the opening block on what a token
-actually is, and the section dividers.
+is, and the section dividers.
 
 ---
 
@@ -21,7 +21,8 @@ actually is, and the section dividers.
 - Press `F`. Press `T`. `N` toggles notes on the presenter screen.
 - Open from `file://` if the venue Wi-Fi looks shaky. Only Google Fonts is remote, with a fallback.
 - **Slide 30 reveals one bar per click** (3 clicks). Everything else is a single click.
-- Have an agent open on the laptop in case someone asks to see a real context dump.
+- Have an agent open on the laptop in case someone asks to see a real context dump, and a
+  terminal with a cluster in case someone asks to see a real `InferencePool`.
 
 ---
 
@@ -30,42 +31,41 @@ actually is, and the section dividers.
 | # | Slide | Say | Time | Cum. |
 |---|---|---|---|---|
 | 1 | Title | one request, all the way down and back | 0:30 | 0:30 |
-| 2 | **Terminal: you type seven words** | the hook — ask who has an agent open now | 0:40 | 1:10 |
-| 3 | First — what *is* a token? | a beat before the definition | 0:15 | 1:25 |
-| 4 | **Not a word. Not a letter.** | 54 chars, 9 words, 12 tokens | 1:00 | 2:25 |
-| 5 | The two obvious answers are worse | letters vs words vs subwords | 0:55 | 3:20 |
-| 6 | **The vocabulary is learned** | GPU earned an entry; Kubernetes did not | 1:05 | 4:25 |
-| 7 | And your alphabet sets the price | the 75% Cyrillic surcharge | 1:05 | 5:30 |
-| 8 | Eight stops, down and back | point at 3, 5, 6 — don't narrate all eight | 0:40 | 6:10 |
-| 9 | § 01 | — | 0:08 | 6:18 |
-| 10 | **The request, proportionally** | the harness wrote this, not you | 1:15 | 7:33 |
-| 11 | 1,643× | say the number, pause | 0:25 | 7:58 |
-| 12 | § 02 | — | 0:08 | 8:06 |
-| 13 | **Three languages. One is tokens.** | the dangerous lane is MCP | 1:10 | 9:16 |
-| 14 | **Per tool. Not per service.** | the control that didn't exist a year ago | 1:15 | 10:31 |
-| 15 | It acts *as somebody* | "the agent did it" is a useless audit log | 0:55 | 11:26 |
-| 16 | Two more jobs for the gateway | budgets and the two backends | 1:00 | 12:26 |
-| 17 | § 03 | — | 0:08 | 12:34 |
-| 18 | **Identical. Not interchangeable.** | the cold-replica slide. Slow down. | 1:25 | 13:59 |
-| 19 | § 04 | land the title | 0:12 | 14:11 |
-| 20 | **Same card. Milliseconds apart.** | the two indigo bars are identical | 1:35 | 15:46 |
-| 21 | 8.9 ms | physics, not code | 0:40 | 16:26 |
-| 22 | Read once, serve 64 | batching is the business model | 0:35 | 17:01 |
-| 23 | Stop making them share | earn it, don't start here | 1:10 | 18:11 |
-| 24 | llm-d, three cards | one sentence each | 0:50 | 19:01 |
-| 25 | § 05 | — | 0:08 | 19:09 |
-| 26 | No queue. A scheduler. | the hatching is money | 1:00 | 20:09 |
-| 27 | The KV cache gets a page table | the OS's oldest trick | 0:55 | 21:04 |
-| 28 | **Turn seven. One block.** | caching and routing are one optimisation | 1:00 | 22:04 |
-| 29 | § 06 | — | 0:08 | 22:12 |
-| 30 | **Weights are rent. KV is stock.** (3 clicks) | 11 → 35 sessions, two flags | 1:15 | 23:27 |
-| 31 | **Why read all of it?** | dense vs MoE — why decode got cheap | 1:10 | 24:37 |
-| 32 | § 07 | — | 0:08 | 24:45 |
-| 33 | 128,256 numbers. One wins. | temperature 0 is not a seed | 0:50 | 25:35 |
-| 34 | **🎲 is two tokens** | built for this room | 1:00 | 26:35 |
-| 35 | **It was a tool call. Go again.** | the loop, and quadratic cost | 1:05 | 27:40 |
-| 36 | Close | stop talking, take questions | 0:45 | 28:25 |
-| 37 | Sources | backup — do not present | — | — |
+| 2 | **Terminal: you type seven words** | the hook — who has an agent open right now? | 0:40 | 1:10 |
+| 3 | **Not a word. Not a letter.** | 54 chars, 9 words, 12 tokens | 1:00 | 2:10 |
+| 4 | The two obvious answers are worse | letters vs words vs subwords | 0:55 | 3:05 |
+| 5 | **The vocabulary is learned** | GPU earned an entry; Kubernetes did not | 1:05 | 4:10 |
+| 6 | And your alphabet sets the price | the 75% Cyrillic surcharge | 1:00 | 5:10 |
+| 7 | Eight stops, down and back | point at 3, 5, 6 — don't narrate all eight | 0:40 | 5:50 |
+| 8 | § 01 | — | 0:08 | 5:58 |
+| 9 | **The request, proportionally** | the harness wrote this, not you | 1:15 | 7:13 |
+| 10 | 1,643× | say the number, pause | 0:25 | 7:38 |
+| 11 | § 02 | — | 0:08 | 7:46 |
+| 12 | **Every hop is a Kubernetes object** | the frame — say it once, then stop repeating it | 0:50 | 8:36 |
+| 13 | **Three languages. One is tokens.** | the dangerous lane is MCP | 1:10 | 9:46 |
+| 14 | **Per tool. Not per service.** | the control that didn't exist a year ago | 1:15 | 11:01 |
+| 15 | It acts *as somebody* | "the agent did it" is a useless audit log | 0:55 | 11:56 |
+| 16 | **agentgateway: two routes, one log** | left pane fast, right pane slow | 1:00 | 12:56 |
+| 17 | § 03 | — | 0:08 | 13:04 |
+| 18 | **Identical. Not interchangeable.** | the cold-replica slide. Slow down. | 1:25 | 14:29 |
+| 19 | **A pool, where the Service was** | point at the last two lines | 0:50 | 15:19 |
+| 20 | § 04 | land the title | 0:12 | 15:31 |
+| 21 | **Same card. Milliseconds apart.** | the two indigo bars are identical | 1:35 | 17:06 |
+| 22 | 8.9 ms | physics, not code — and batching is the way out | 0:45 | 17:51 |
+| 23 | Stop making them share | why two pools | 1:00 | 18:51 |
+| 24 | **Two pools, as deployments** | the caption is the advice: stop at path one | 1:00 | 19:51 |
+| 25 | § 05 | — | 0:08 | 19:59 |
+| 26 | No queue. A scheduler. | the hatching is money | 1:00 | 20:59 |
+| 27 | The KV cache gets a page table | the OS's oldest trick | 0:55 | 21:54 |
+| 28 | **Turn seven. One block.** | caching and routing are one optimisation | 1:00 | 22:54 |
+| 29 | § 06 | — | 0:08 | 23:02 |
+| 30 | **Weights are rent. KV is stock.** (3 clicks) | 11 → 35 sessions, two flags | 1:15 | 24:17 |
+| 31 | **Why read all of it?** | dense vs MoE — why decode got cheap | 1:10 | 25:27 |
+| 32 | § 07 | — | 0:08 | 25:35 |
+| 33 | **🎲 is two tokens** | built for this room | 1:00 | 26:35 |
+| 34 | **It was a tool call. Go again.** | the loop, and quadratic cost | 1:05 | 27:40 |
+| 35 | Close | stop talking, take questions | 0:45 | 28:25 |
+| 36 | Sources | backup — do not present | — | — |
 
 ---
 
@@ -73,14 +73,46 @@ actually is, and the section dividers.
 
 Cut in this order. Nothing downstream refers back to any of them.
 
-1. **33** — the logit distribution. Nice, not load-bearing. **−50s**
-2. **15** — identity. Painful to lose, but 14 carries the gateway act. **−55s**
-3. **27** — PagedAttention. Slide 28 works without it. **−55s**
-4. **5** — the letters/words/subwords trade. Slides 4 and 6 carry the idea. **−55s**
+1. **4** — the letters/words/subwords trade. Slides 3 and 5 carry the idea. **−55s**
+2. **15** — identity. Painful to lose, but 14 and 16 carry the gateway act. **−55s**
+3. **27** — PagedAttention. Slide 28 works without it, with one sentence of setup. **−55s**
+4. **23** — the pools diagram. Slide 24 shows the same thing as config. **−60s**
 
-Taking the first two lands you at **26:40**, which is the number to aim for.
+Taking the first two lands you at **26:35**, which is the number to aim for.
 
-**Never cut:** 2, 4, 6, 10, 14, 18, 20, 30, 31, 35. Those ten are the talk.
+**Never cut:** 2, 3, 5, 9, 12, 14, 16, 18, 19, 21, 24, 30, 31, 34.
+
+---
+
+## The Kubernetes spine
+
+Four slides carry the platform, and they are the reason an architect stays in the room. The
+through-line to say out loud once, on slide 12, and then never repeat:
+
+> "All four of these are Kubernetes objects. Not a vendor console, not a SaaS dashboard, not an
+> API you file a ticket against. You can `kubectl get` them, you can put them in git, and you
+> can diff them when something changes at three in the morning."
+
+**12 · Every hop is a Kubernetes object.** `Gateway` → `HTTPRoute` → `InferencePool` →
+`Deployment`. The amber one is the only unfamiliar kind in the list; everything else has been
+in Kubernetes for years.
+
+**16 · agentgateway, as two routes.** The `/v1` route carries identity and a token budget and
+sends traffic to your own pool, with the frontier API configured at weight zero — reachable by
+explicit route, landing in the same audit log. The `/mcp` route is the one almost nobody has:
+per-tool authorisation in CEL, evaluated in the data plane on every call.
+
+**19 · A pool, where the Service was.** One new object and one changed line — `kind:
+InferencePool` where it said `kind: Service`. Say the metric names while it is on screen:
+`vllm:num_requests_waiting`, `vllm:gpu_cache_usage_perc`, `vllm:prefix_cache_hits_total`. The
+picker is a scrape loop and a weighted sum, not magic.
+
+**24 · Two pools, as deployments.** Prefill sized for FLOPs, decode sized for bandwidth, KV
+blocks over NIXL on RDMA, one `InferencePool` in front. Then the ordering, which is the real
+advice: **cache-aware scheduling first, disaggregation only once you have earned it.**
+
+Both config blocks are the *shape*, not paste-ready files. Say so — field names move between
+minors, and an engineer who pastes it and fails will remember that, not the argument.
 
 ---
 
@@ -90,19 +122,19 @@ Four slides, and they are new. The deck is called *Life of a token*; the room de
 what one is before you follow it anywhere. Every split on these slides is real output from
 `tiktoken` with the `o200k_base` encoding — say so, because people assume the diagrams are drawn.
 
-**4 · Not a word. Not a letter.**
+**3 · Not a word. Not a letter.**
 > "This is the answer the model is going to give you, taken apart. Fifty-four characters. Nine
 > words. Twelve tokens — so it is neither. Look at the amber ones: E-T-L is two tokens, because
 > the tokenizer has never seen enough ETL to keep it whole. But 'failed' and 'nightly' survive
 > intact, because they are common."
 
-**5 · Because the two obvious answers are worse.**
+**4 · Because the two obvious answers are worse.**
 > "Why not letters? Your vocabulary is two hundred and fifty-six and every sentence becomes
 > enormous — and attention cost grows with the square of sequence length. Why not whole words?
 > The vocabulary is unbounded; new words arrive every day, and a word-level model cannot
 > represent `agentgateway` at all."
 
-**6 · The vocabulary is learned, not written.**
+**5 · The vocabulary is learned, not written.**
 > "Nobody sat down and wrote this. You start from raw bytes, count which pair occurs together
 > most often, merge it, and do that two hundred thousand times. What falls out is a frequency
 > ranking of the internet. GPU appears often enough to earn a single entry. Kubernetes — the
@@ -119,7 +151,7 @@ what one is before you follow it anywhere. Every split on these slides is real o
 > you for the next twenty-five minutes happens between this keystroke and the first character
 > coming back — and almost none of it was written by you."
 
-**10 · the request**
+**9 · the request**
 > "Your harness just loaded a system prompt, read your project instructions, serialised every tool
 > it has, pasted in the files it decided were relevant, and replayed the entire conversation from
 > the beginning — because the model has no memory. The illusion of memory is retransmission. And
@@ -138,7 +170,7 @@ what one is before you follow it anywhere. Every split on these slides is real o
 > this request. A Service cannot know that. You land on a cold one and pay for the same prefill
 > twice. No error. No 503. The dashboard is green."
 
-**20 · prefill vs decode**
+**21 · prefill vs decode**
 > "Look at the bottom bars. They are the same — seventy-one gigabytes, both sides. Now look at the
 > top bars. Four and a half petaflops on the left; that sliver on the right. Thirty-one thousand
 > times less work for exactly the same memory traffic. Prefill uses the GPU as designed. Decode
@@ -150,7 +182,7 @@ what one is before you follow it anywhere. Every split on these slides is real o
 > read out of memory. The model on the right can have ten times the parameters and still be cheaper
 > to decode — because decode is a bandwidth problem, and you just cut the bandwidth bill."
 
-**35 · the loop**
+**34 · the loop**
 > "The answer that came back was not prose — it was a tool call. So the harness runs the tool,
 > appends the result, and sends the whole conversation again. One question from a human is
 > routinely five round trips, each longer than the last. Your agent's cost does not grow linearly
@@ -177,8 +209,8 @@ Everything is division on published figures. None of it is a benchmark. Say so i
 | 11 → 35 sessions | 110 GB and 180 GB of KV ÷ (31,219 × 320 KB / 160 KB). |
 | B300 | 288 GB HBM3e, 8 TB/s, NVLink 5 at 1.8 TB/s per GPU. |
 
-**Illustrative, and the slide says so:** the context breakdown on slide 10, the padding waste on
-slide 26, the turn-growth bars on slide 35, and every llm-d figure on slides 23–24 (those are the
+**Illustrative, and the slide says so:** the context breakdown on slide 9, the padding waste on
+slide 26, the turn-growth bars on slide 34, and both config blocks (16 and 24), and every llm-d figure on slides 23–24 (those are the
 project's own — treat as upper bounds).
 
 ---
