@@ -1,279 +1,171 @@
 # Life of a token — delivery script
 
+**Alessandro Vozza · VOLT Datacenters**
+
 **Game of Codes 2026 · Science & Technology Park, Niš · Saturday 10 October 2026**
-40 slides · **27:23 as planned** (**29:13** if you restore the two default cuts) · press `T` on the title to start the clock.
-The on-screen timer now targets 27:00, matching this plan.
 
-This is a **visual deck on a fixed grid**. The slides carry pictures and manifests; you carry
-the words. Almost no slide can be read instead of listened to — which is the point, and also
-means you cannot wing it. Read these notes once the night before.
+40 slides, including the sources backup. **26:01 planned delivery**, with 59 seconds of breathing room against the **27:00 timer target**. All content slides remain; the running order includes the tokenisation trade and identity slides.
 
-Two slides are **cut by default** in the table above — the letters/words/subwords trade and the
-identity slide. They are struck through rather than deleted, so restore them only if the room is
-slow. Everything below is the fallback if you are still behind after that.
-
-The strip across the top of every journey slide says where the token is: amber going down, teal
-coming home. Slides with no strip are outside the journey — the opening block on what a token
-is, and the section dividers.
-
----
+The slides carry pictures; these notes carry explanation. Amber follows the request down; teal follows the answer home.
 
 ## Before you go on
 
-- Press `F`. Press `T`. `N` toggles notes on the presenter screen.
-- Open from `file://` if the venue Wi-Fi looks shaky. Only Google Fonts is remote, with a fallback.
-- **Slide 33 reveals one bar per click** (3 clicks). Everything else is a single click.
-- Have an agent open on the laptop in case someone asks to see a real context dump, and a
-  terminal with a cluster in case someone asks to see a real `InferencePool`.
-
----
+- Press **F** for fullscreen, **T** to start the timer, **N** for notes. Arrow keys advance; **P** prints.
+- Keep a local copy for unreliable venue Wi-Fi. Fonts and artwork are bundled for offline presentation.
+- Slide 33 reveals its capacity rows one at a time.
+- Have an agent context dump and a cluster terminal ready for optional questions. No embedded live demo or required network call is part of the talk.
+- Configuration snippets show architecture, not complete deployable manifests. Check installed versions before demonstrating them.
 
 ## Running order
 
-| # | Slide | Say | Time | Cum. |
-|---|---|---|---|---|
-| 1 | Title | one request, all the way down and back | 0:30 | 0:30 |
-| 2 | **Who here uses AI?** | your hand up first; every hand, instantly | 0:05 | 0:35 |
-| 3 | **Who uses it every day?** | "keep them up" — the drop is the point | 0:08 | 0:43 |
-| 4 | **Who has a fleet of agents?** | read the room; it calibrates the rest | 0:15 | 0:58 |
-| 5 | **Terminal: you type seven words** | the hook — who has an agent open right now? | 0:40 | 1:38 |
-| 6 | **Not a word. Not a letter.** | 54 chars, 9 words, 12 tokens | 1:00 | 2:38 |
-| ~~7~~ | ~~The two obvious answers are worse~~ | **cut by default** — restore only if the room is slow | ~~0:55~~ | — |
-| 8 | **The vocabulary is learned** | GPU earned an entry; Kubernetes did not | 1:05 | 3:43 |
-| 9 | And your alphabet sets the price | the 1.9× Cyrillic surcharge | 1:00 | 4:43 |
-| 10 | Eight stops, down and back | point at 3, 5, 6 — don't narrate all eight | 0:40 | 5:23 |
-| 11 | 01 | — | 0:08 | 5:31 |
-| 12 | **The request, proportionally** | the harness wrote this, not you | 1:15 | 6:46 |
-| 13 | 1,643× | say the number, pause | 0:25 | 7:11 |
-| 14 | 02 | — | 0:08 | 7:19 |
-| 15 | **Every hop is a Kubernetes object** | the frame — say it once, then stop repeating it | 0:50 | 8:09 |
-| 16 | **Three languages. One is tokens.** | the dangerous lane is MCP | 1:10 | 9:19 |
-| 17 | **Per tool. Not per service.** | the control that didn't exist a year ago | 1:15 | 10:34 |
-| ~~18~~ | ~~It acts *as somebody*~~ | **cut by default** — restore only if the room is slow | ~~0:55~~ | — |
-| 19 | **agentgateway: two routes, one log** | left pane fast, right pane slow | 1:00 | 11:34 |
-| 20 | 03 | — | 0:08 | 11:42 |
-| 21 | **Identical. Not interchangeable.** | the cold-replica slide. Slow down. | 1:25 | 13:07 |
-| 22 | **A pool, where the Service was** | point at the last two lines | 0:50 | 13:57 |
-| 23 | 04 | land the title | 0:12 | 14:09 |
-| 24 | **Same card. Milliseconds apart.** | the two indigo bars are identical | 1:35 | 15:44 |
-| 25 | 8.9 ms | physics, not code — and batching is the way out | 0:45 | 16:29 |
-| 26 | Stop making them share | why two pools | 1:00 | 17:29 |
-| 27 | **Two pools, as deployments** | the caption is the advice: stop at path one | 1:00 | 18:29 |
-| 28 | 05 | — | 0:08 | 18:37 |
-| 29 | No queue. A scheduler. | the hatching is money | 1:00 | 19:37 |
-| 30 | The KV cache gets a page table | the OS's oldest trick | 0:55 | 20:32 |
-| 31 | **Turn seven. One block.** | caching and routing are one optimisation | 1:00 | 21:32 |
-| 32 | 06 | — | 0:08 | 21:40 |
-| 33 | **Weights are rent. KV is stock.** (3 clicks) | 11 → 35 sessions, two flags | 1:15 | 22:55 |
-| 34 | **Why read all of it?** | dense vs MoE — why decode got cheap | 1:10 | 24:05 |
-| 35 | 07 | — | 0:08 | 24:13 |
-| 36 | **🎲 is three tokens** | built for this room | 1:00 | 25:13 |
-| 37 | **It was a tool call. Go again.** | the loop, and quadratic cost | 1:05 | 26:18 |
-| 38 | **And here it is** | the terminal again, with the answer | 0:20 | 26:38 |
-| 39 | Close | stop talking, take questions | 0:45 | 27:23 |
-| 40 | Sources | backup — do not present | — | — |
+| # | Slide / speaking cue | Time | Cum. |
+|---|---|---:|---:|
+| 1 | Life of a token | 0:30 | 0:30 |
+| 2 | Who uses AI? | 0:05 | 0:35 |
+| 3 | Every day? | 0:08 | 0:43 |
+| 4 | Who runs a fleet? | 0:15 | 0:58 |
+| 5 | Seven words. Nine tokens | 0:35 | 1:33 |
+| 6 | Tokens aren’t words | 0:55 | 2:28 |
+| 7 | Bytes. Words. The compromise | 0:35 | 3:03 |
+| 8 | Compression, learned | 0:50 | 3:53 |
+| 9 | Same meaning. Different bill | 0:55 | 4:48 |
+| 10 | Down to silicon. Back again | 0:35 | 5:23 |
+| 11 | The prompt you never wrote | 0:08 | 5:31 |
+| 12 | Your prompt is 0.03% | 1:05 | 6:36 |
+| 13 | ≈3,468× | 0:20 | 6:56 |
+| 14 | Where trust ends | 0:08 | 7:04 |
+| 15 | Four objects. One stack | 0:45 | 7:49 |
+| 16 | Models. Tools. Agents | 1:00 | 8:49 |
+| 17 | Authorize the action | 1:05 | 9:54 |
+| 18 | Carry the identity | 0:35 | 10:29 |
+| 19 | Two routes. One audit trail | 1:05 | 11:34 |
+| 20 | Which GPU answers? | 0:08 | 11:42 |
+| 21 | Same model. Different cost | 1:15 | 12:57 |
+| 22 | Route to the cache | 0:55 | 13:52 |
+| 23 | One GPU. Two bottlenecks | 0:10 | 14:02 |
+| 24 | Prefill computes. Decode reads | 1:25 | 15:27 |
+| 25 | 8.9 ms | 0:45 | 16:12 |
+| 26 | Separate when it pays | 0:55 | 17:07 |
+| 27 | Start with smarter routing | 1:00 | 18:07 |
+| 28 | Inside the engine | 0:08 | 18:15 |
+| 29 | Refill every step | 0:55 | 19:10 |
+| 30 | Give KV a page table | 0:50 | 20:00 |
+| 31 | Reuse the prefix | 0:55 | 20:55 |
+| 32 | What fits in memory? | 0:08 | 21:03 |
+| 33 | Weights are rent. KV is capacity | 1:05 | 22:08 |
+| 34 | Activate less. Read less | 1:00 | 23:08 |
+| 35 | The journey home | 0:08 | 23:16 |
+| 36 | One character. Three tokens | 0:50 | 24:06 |
+| 37 | Tool call. Append. Repeat | 0:55 | 25:01 |
+| 38 | The answer comes home | 0:20 | 25:21 |
+| 39 | Count. Route. Reuse | 0:40 | 26:01 |
+| 40 | Sources & assumptions — backup | — | — |
 
----
-
-## If you are behind
-
-Two slides are already cut in the plan above. If you are still over, drop these, in this order.
-Nothing downstream refers back to any of them.
-
-1. **38** — the callback terminal. A flourish, not an argument, and the cheapest thing in the
-   deck to lose. **−20s** → 27:03
-2. **30** — PagedAttention. Slide 31 works without it, with one sentence of setup. **−55s** → 26:08
-3. **26** — the pools diagram. Slide 27 makes the same point as config. **−60s** → 25:08
-
-If you are *ahead*, restore slide 7 first (the letters/words/subwords trade) — it is the one
-that makes the token block feel complete rather than asserted.
-
-**Never cut:** the three opening questions (2–4), then 6, 8, 12, 15, 17, 19, 21, 22, 24, 27, 33, 34, 37.
-
----
+These are speaking budgets, not benchmark timings. If discussion runs long, skip slide 38 first (20 seconds), then 7 (35 seconds), then 30 (50 seconds). Slide 31 works with a one-sentence explanation of blocks. Preserve the opening questions and the gateway, routing, prefill/decode, capacity and agent-loop arguments.
 
 ## The opening questions
 
-Three slides, 28 seconds, and they do two jobs. They get arms in the air before you have asked
-anyone to think, and the third one tells you which talk to give.
+Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the audience see the change. Slide 4 calibrates the room. Many hands: move briskly through the harness and spend time on policy and serving. Few hands: slow down on the context breakdown. No hands: “Good — then nothing in this talk has hurt you yet.”
 
-Get your own hand up on question one — a room follows the speaker, and a dead first question
-poisons the next two. On question two say **"keep them up"** rather than asking again, so people
-watch hands going *down*; the drop is the content, not the count. Let them look around for a beat.
+## Opening the request: slides 5–13
 
-Question three is the calibration. **Many hands:** the room already feels the cost, so move
-briskly through the harness act and spend what you save on the gateway and llm-d. **Two or three
-hands:** slow down on the 31,219-token context slide, because that is what makes the rest matter
-and this room has not felt it yet. **No hands at all,** which is quite likely: *"good — then
-nothing in this talk has hurt you yet"*, which gets a laugh and reframes the whole thing as a
-warning rather than a retrospective.
+**5 — terminal.** “Seven words. Nine tokens. Follow what the harness does with them, all the way to the GPU and back.” Nine counts raw user text. The example chat template in `tokenizer-check.py` adds another nine tokens; those are outside the headline.
 
-The indigo ground on question three marks the turn into the talk.
+**6 — token splits.** Walk the amber chips: 54 characters, 9 words, 12 tokens. `ETL` splits into ` E` and `TL`; `deserialization` into ` des` and `erialization`. Leading spaces can belong to tokens. These are measured splits.
 
----
+**7 — the trade.** The 256 is byte values, not alphabet letters. Bytes express any text but create long sequences. Whole words need a policy for unseen words. Subwords offer a fixed vocabulary with byte fallback. Attention work can grow quadratically with sequence length; total serving cost has more moving parts.
 
-## The Kubernetes spine
+**8 — learned compression.** “Start with bytes, merge frequent pairs. GPU has an entry; Kubernetes does not. Nothing here understands the text: this is compression fitted to a corpus.” Vocabulary size includes special tokens; it is not an exact merge count.
 
-Four slides carry the platform, and they are the reason an architect stays in the room. The
-through-line to say out loud once, on slide 15, and then never repeat:
+**9 — language.** Read the Serbian sentence aloud before showing its count. These exact sentences produce 12, 20 and 23 tokens. Cyrillic uses 1.92 times the English tokens **in this example**. Measure workloads in users’ languages. Do not generalize that ratio to all Serbian text, tokenizers, context capacity, latency or compute.
 
-> "All four of these are Kubernetes objects. Not a vendor console, not a SaaS dashboard, not an
-> API you file a ticket against. You can `kubectl get` them, you can put them in git, and you
-> can diff them when something changes at three in the morning."
+**10 — route map.** Point to gateway, prefill and decode; do not narrate all eight stops. Notice the return arrow: an agent can go around again.
 
-**15 · Every hop is a Kubernetes object.** `Gateway` → `HTTPRoute` → `InferencePool` →
-`Deployment`. The amber one is the only unfamiliar kind in the list; everything else has been
-in Kubernetes for years.
+**12 — context.** “Instructions, tool schemas, files and history fill the request. Your nine tokens are the tiny part.” The **illustrative** breakdown is 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 9 = **31,209 tokens**. The question is 0.0288%, rounded to 0.03%. Protocol/template overhead is omitted. Harnesses can trim, compact, retrieve, cache or reference context; not every system retransmits every byte unchanged. A model conditions on supplied context rather than remembering the previous HTTP call by itself.
 
-**19 · agentgateway, as two routes.** The `/v1` route carries identity and a token budget and
-sends traffic to your own pool, with the frontier API configured at weight zero — reachable by
-explicit route, landing in the same audit log. The `/mcp` route is the one almost nobody has:
-per-tool authorisation in CEL, evaluated in the data plane on every call.
+**13 — ratio.** **31,209 ÷ 9 ≈ 3,468×**, rounded to the nearest whole number. Pause. This compares illustrative context to raw prompt, not every agent request.
 
-**22 · A pool, where the Service was.** One new object and one changed line — `kind:
-InferencePool` where it said `kind: Service`. Say the metric names while it is on screen:
-`vllm:num_requests_waiting`, `vllm:gpu_cache_usage_perc`, `vllm:prefix_cache_hits_total`. The
-picker is a scrape loop and a weighted sum, not magic.
+## The Kubernetes spine: slides 15–22
 
-**27 · Two pools, as deployments.** Prefill sized for FLOPs, decode sized for bandwidth, KV
-blocks over NIXL on RDMA, one `InferencePool` in front. Then the ordering, which is the real
-advice: **cache-aware scheduling first, disaggregation only once you have earned it.**
+**15 — objects.** Say the through-line once: “Gateway, HTTPRoute, InferencePool, Deployment. Inspect them, put them in git, review the diff.” InferencePool needs the extension, its controller and a compatible gateway. This diagram is not an installation guide.
 
-Both config blocks are the *shape*, not paste-ready files. Say so — field names move between
-minors, and an engineer who pastes it and fails will remember that, not the argument.
+**16 — protocols.** LLM traffic requests output; MCP invokes tools; A2A connects agents. Tools can change external state, making per-action policy valuable. agentgateway is the example. Other implementations have different feature sets; do not promise equivalent protocol support.
 
----
+**17 — authorization.** “May this identity call this tool, with these claims, in this environment?” Distinguish search from deletion. The CEL-like snippet illustrates the decision; check actual field names. Filtering advertised tools reduces exposure but does not replace enforcing policy on calls.
 
-## The opening block — what is a token?
+**18 — identity.** Shared long-lived keys weaken attribution. Carry an appropriate human or workload identity, verify it, obtain scoped credentials where supported. JWT, OIDC, OAuth token exchange and SPIFFE are building blocks, not automatic end-to-end delegation.
 
-Four slides, and they are new. The deck is called *Life of a token*; the room deserves to know
-what one is before you follow it anywhere. Every split on these slides is real output from
-**Llama 3's own tokenizer** — the model these slides serve — rebuilt as a `tiktoken` encoding from its
-128,256-entry vocabulary. Say that it is measured, because people assume the diagrams are drawn.
+**19 — two routes.** `/v1` illustrates model access and budget policy; `/mcp` illustrates tool authorization. Keep frontier-provider access intentional. Zero backend weight alone does not implement a separate explicit route. Both panels are **illustrative**, not deployable manifests. Validate actual policies and versions before an optional demonstration.
 
-**6 · Not a word. Not a letter.**
-> "This is the answer the model is going to give you, taken apart. Fifty-four characters. Nine
-> words. Twelve tokens — so it is neither. Look at the amber ones: E-T-L is two tokens, because
-> the tokenizer has never seen enough ETL to keep it whole. But 'failed' and 'nightly' survive
-> intact, because they are common."
+**21 — warm replicas.** “Same image, same weights. One replica already holds your reusable prefix. Pick a cold replica and repeat work.” The 900 ms versus 12 ms contrast is **illustrative**, not a benchmark or guaranteed cost ratio. A basic Service lacks inference-cache awareness; Kubernetes Service behavior is not universally literal round-robin.
 
-**7 · Because the two obvious answers are worse.**
-> "Why not letters? Your vocabulary is two hundred and fifty-six and every sentence becomes
-> enormous — and attention cost grows with the square of sequence length. Why not whole words?
-> The vocabulary is unbounded; new words arrive every day, and a word-level model cannot
-> represent `agentgateway` at all."
+**22 — endpoint picking.** Highlight backend kind and picker reference. Compatible pickers can consider load, cache state and prefix locality. Plugins, signals and metrics vary. A prefix-hit counter alone does not locate the cached blocks for an incoming request. Migration needs more than a one-line YAML edit: the extension, controller and picker must exist.
 
-**8 · The vocabulary is learned, not written.**
-> "Nobody sat down and wrote this. You start from raw bytes, count which pair occurs together
-> most often, merge it, and do that two hundred thousand times. What falls out is a frequency
-> ranking of the internet. GPU appears often enough to earn a single entry. Kubernetes — the
-> thing we are all running — does not."
->
-> Then land it: **nothing in this vocabulary understands anything. It is compression.**
+## Two bottlenecks: slides 24–27
 
----
+**24 — prefill/decode.** Dense 70.6B model arithmetic: `2 × parameters × input tokens` is about **4.4 PFLOP** for this prefill; one decode step is about **141 GFLOP**. Both omit attention and other work. The equal **71 GB** bars model FP8 weight reads, not total measured traffic. “Long prefills can use compute. Low-batch dense decode often moves weights. First-token latency and streaming speed need different diagnostics.” Bottlenecks depend on context length, batches, hardware, kernels and parallelism.
 
-## The other slides that matter, and what to say on them
+**25 — 8.9 ms.** **71 GB ÷ 8 TB/s ≈ 8.9 ms** is an idealized batch-one weight-read lower bound. It ignores KV traffic, attention, communication, overhead and imperfect bandwidth utilization. About 113 steps/second is its reciprocal, **not observed throughput**. Batching amortizes weight reads; a batch of 64 does not necessarily take the same elapsed time as one request.
 
-**5 · the terminal**
-> "Here is the entire user interface of modern AI. Seven words. Nineteen tokens. Everything I show
-> you for the next twenty-five minutes happens between this keystroke and the first character
-> coming back — and almost none of it was written by you."
+**26 — separate workers.** Prefill and decode can use different workers, with KV transferred between them. NIXL/RDMA is one illustrated path. Prefill still needs memory while building and transferring KV; “tiny KV” is a sizing contrast, not zero requirement.
 
-**12 · the request**
-> "Your harness just loaded a system prompt, read your project instructions, serialised every tool
-> it has, pasted in the files it decided were relevant, and replayed the entire conversation from
-> the beginning — because the model has no memory. The illusion of memory is retransmission. And
-> then, right at the end, your nineteen tokens."
-> *Hands up: who has ever counted the tokens in their tool definitions? Nobody. That's the point.*
+**27 — adoption order.** Measure first; try cache-aware scheduling; disaggregate when workload and scale justify the transfer and complexity. Wide expert parallelism is a later option for appropriate MoE models. Project-reported speedups depend on workload. On small deployments, investigate batching and chunked prefill first. Defaults and flags vary by version.
 
-**17 · per-tool authorisation**
-> "This is the control that did not exist a year ago. Not 'may this agent use MCP' — but 'may this
-> agent call delete_customer, given these claims, in this environment'. Your agent is a program
-> that writes its own next action. You would not give a junior engineer unrestricted production
-> credentials on day one."
+## Inside the engine: slides 29–34
 
-**21 · identical ≠ interchangeable**
-> "Three replicas. Same image, same weights. And one of them already holds thirty thousand of your
-> thirty-one thousand tokens, because this is turn seven. That replica is seventy times cheaper for
-> this request. A Service cannot know that. You land on a cold one and pay for the same prefill
-> twice. No error. No 503. The dashboard is green."
+**29 — batching.** Finished sequences leave; waiting work can join the next scheduling step. Compare empty slots with refilled slots. Real schedulers still have queues and admission constraints. The drawing implies no universal throughput multiple or fixed scheduling frequency. Neighbors affect latency: measure representative concurrency.
 
-**24 · prefill vs decode**
-> "Look at the bottom bars. They are the same — seventy-one gigabytes, both sides. Now look at the
-> top bars. Four and a half petaflops on the left; that sliver on the right. Thirty-one thousand
-> times less work for exactly the same memory traffic. Prefill uses the GPU as designed. Decode
-> turns the most expensive accelerator NVIDIA sells into a very fancy memcpy."
+**30 — paging.** Allocate KV blocks through a block table instead of reserving a giant contiguous allocation. Sixteen-token blocks are an example; sizes and sharing vary. Paging reduces fragmentation, not every kind of memory waste.
 
-**34 · dense vs MoE**
-> "In a dense model every parameter participates in every token, so decode is hostage to the total
-> size of the thing. In a mixture of experts a small router picks a handful, and only those get
-> read out of memory. The model on the right can have ten times the parameters and still be cheaper
-> to decode — because decode is a bandwidth problem, and you just cut the bandwidth bill."
+**31 — prefix reuse.** Matching cached blocks can avoid repeated prefill. One new block is a favorable illustration; tool results may add many. Route to reusable cache while considering load. Reuse within one replica can help without an advanced router. Keep stable prefix content stable; place volatile content later where semantics permit. The 900→12 ms contrast is illustrative.
 
-**37 · the loop**
-> "The answer that came back was not prose — it was a tool call. So the harness runs the tool,
-> appends the result, and sends the whole conversation again. One question from a human is
-> routinely five round trips, each longer than the last. Your agent's cost does not grow linearly
-> with the conversation. It grows with the square of it."
+**33 — capacity.** Reveal **10 → 17 → 35**. The graph assumes 110 GB of KV with BF16 weights, 180 GB with FP8 weights, then half the modeled bytes per token with FP8 KV. Allocations leave room for weights and overhead; they are assumptions, not guaranteed consequences of two flags. Quantization needs compatible hardware/engine/model support and quality evaluation. A full cache can constrain concurrency, but one metric cannot establish every bottleneck.
 
----
+**34 — MoE.** State the architecture change: preceding math uses dense Llama 3.3 70B; the sparse grid is a separate MoE illustration. Fewer active experts can reduce weight traffic. Shared layers still participate; experts reside somewhere or must be transferred; routing adds communication. **8 of 256** does not mean total runtime is 8/256. MoE changes the workload rather than breaking a physical bound for the old one.
 
-## Numbers you must be able to defend
+## The return trip: slides 36–39
 
-All token counts were re-measured on **Llama 3's own 128,256-entry tokenizer**, not GPT-4o's
-`o200k_base`. The two disagree in exactly the places that matter: Cyrillic costs 1.92× on Llama
-against 1.75× on GPT-4o, and the die is three tokens rather than two. They agree on everything
-else — slide 6's twelve tokens and all four words on slide 8 are identical on both.
-If anyone asks why Llama's numbers: because that is the model in the manifests on slides 15–27.
+**36 — the die.** “One character, four UTF-8 bytes, three Llama 3 tokens. None of the fragments is independently valid UTF-8. Assemble them before showing the character.” Fragments: `f0 9f`, `8e`, `b2`. Three generation steps do not imply a fixed 27 ms visible delay. Token emission and displayed-character timing differ; measure the user-facing stream too.
 
-Everything is division on published figures. None of it is a benchmark. Say so if pressed.
+**37 — agent loop.** A tool request returns; the harness executes an allowed call, appends its result and requests another model step. Growth bars are illustrative. Fixed growth and fully charged untrimmed context can make cumulative input volume quadratic in turn count. Caching, compaction, retrieval and variable turns change that result. Spoken takeaway: **“Each turn can carry more context than the last.”**
 
-| Claim | Working |
+**38 — callback.** “At the start, you asked why the ETL job failed. Here is the answer after looking at the evidence.” Serbian output and round-trip counts are an **illustrative trace**, not an execution log. Do not derive an 11-second latency from ideal bandwidth arithmetic.
+
+**39 — close.** “Count your context. Route to useful cached state. Keep the engine busy. Inspect those before reaching for more hardware.” Leave author, VOLT and `ams0.github.io/talks` visible for questions.
+
+## Numbers you can reproduce
+
+`python3 tokenizer-check.py` ran successfully during this revision. It rebuilds the tokenizer from the referenced vocabulary mirror, checks **128,256 entries** and round-trip decoding. The checks do not independently prove the mirror identical to every Llama release; counts describe this script and vocabulary.
+
+| Quantity | Reproduction / assumption |
 |---|---|
-| 12 / 20 / 23 tokens | Llama 3's tokenizer, October 2026. Cyrillic is **1.92×** English. |
-| 🎲 = three tokens | `b'\xf0\x9f'` + `b'\x8e'` + `b'\xb2'`, not one of them valid UTF-8. |
-| 1,643× | 31,219 ÷ 19. |
-| 128,256 | Llama 3 vocabulary: ~100k inherited from tiktoken + 28k added for non-English. |
-| 54 / 9 / 12 | "The nightly ETL job failed on a deserialization error." |
-| Prefill 4.4 PFLOP | 2 × 70.6e9 params × 31,219 tokens. Ignores attention's quadratic term. |
-| Decode 141 GFLOP | 2 × 70.6e9 × 1 token. |
-| 8.9 ms floor | 71 GB of FP8 weights ÷ 8 TB/s HBM → 113 tok/s at batch 1. |
-| 62,000 vs 2 FLOP/byte | 4.4e15 ÷ 71e9, and 141e9 ÷ 71e9. Card breaks even ≈ 1,250. |
-| KV 320 KB/token | 2 × 80 layers × 8 KV heads × 128 dims × 2 bytes. Half at FP8. |
-| 11 → 35 sessions | 110 GB and 180 GB of KV ÷ (31,219 × 320 KB / 160 KB). |
-| B300 | 288 GB HBM3e, 8 TB/s, NVLink 5 at 1.8 TB/s per GPU. |
+| Raw question | 7 whitespace-separated words; 9 tokens |
+| Question with script’s chat wrapper | 18 tokens, including 9 wrapper tokens |
+| Answer sentence | 54 characters / 9 words / 12 tokens |
+| GPU / agentgateway / Kubernetes / vLLM | 1 / 2 / 2 / 3 tokens |
+| English / Serbian Latin / Serbian Cyrillic | 12 / 20 / 23; 23 ÷ 12 ≈ 1.92, for the displayed examples |
+| 🎲 | 4 UTF-8 bytes; 3 tokens; `f0 9f` + `8e` + `b2` |
+| Context | 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 9 = 31,209; illustrative; wrapper omitted |
+| Amplification | 31,209 ÷ 9 ≈ 3,468×, rounded |
+| Prefill estimate | 2 × 70.6e9 × 31,209 ≈ 4.4e15 FLOP; attention/other work omitted |
+| Decode estimate | 2 × 70.6e9 ≈ 141e9 FLOP per step; same omissions |
+| Ideal weight-read time | 71e9 bytes ÷ 8e12 bytes/s ≈ 8.9 ms; not measured latency |
+| BF16 KV | 2 × 80 × 8 × 128 × 2 = 327,680 bytes/token = **320 KiB/token** |
+| FP8 KV | 163,840 bytes/token = **160 KiB/token**, before extra overhead |
+| Session estimates | floor(110e9 ÷ 31,209 ÷ 327,680) = 10; floor(180e9 ÷ 31,209 ÷ 327,680) = 17; floor(180e9 ÷ 31,209 ÷ 163,840) = 35 |
+| Hardware assumptions | 288 GB HBM and 8 TB/s for the stated B300 example; decimal GB and binary KiB are distinguished |
 
-**Illustrative, and the slide says so:** the context breakdown on slide 12, the padding waste on
-slide 29, the turn-growth bars on slide 37, and both config blocks (19 and 27); every llm-d figure on slides 26–27 is the project's own — treat as upper bounds.
-
----
+Context breakdowns, growth curves, cache-latency contrasts, capacity allocations and configuration are illustrative. Project performance reports and vendor peaks are neither independent benchmarks nor service-level guarantees. Consult the links on slide 40 for original sources.
 
 ## Expected questions
 
-1. **"What does a box like that cost?"** → Pivot to utilisation. The same card is $0.21 or $15.25
-   per million output tokens depending only on how busy you keep it. The hardware is not the
-   variable; you are.
-2. **"Do I need all this for a 7B model?"** → No. One GPU, one vLLM, done. But fix the routing the
-   moment you have a second replica — that part is size-independent.
-3. **"Why not Istio / Envoy AI Gateway?"** → Both implement the inference extension; both are fine.
-   The point is the API, not the proxy. Do not get drawn into a proxy war on stage.
-4. **"Is temperature 0 deterministic?"** → No. Batch composition changes floating-point reduction
-   order, which occasionally flips an argmax. It is not a seed.
-5. **"Frontier API or self-host?"** → A per-workload decision, not a per-company one. That is what
-   the two-backend slide is for.
-6. **"How do I see my own context?"** → Most harnesses will dump it; otherwise count with
-   `tiktoken` at the client. Offer to show it in the hallway.
+1. **“What does a box cost?”** Discuss measured utilization and workload, then check current prices. Avoid unsourced per-million-token cost figures from simplified arithmetic.
+2. **“Do I need this for a small model?”** Start simple and measure. More replicas make locality and routing worth examining; complexity must earn its keep.
+3. **“Which gateway?”** Choose for supported APIs, protocols and operational fit. Check current compatibility rather than promising equivalent features.
+4. **“Is temperature zero deterministic?”** Not necessarily; execution and numerical differences can change outputs. Check the actual stack’s guarantees.
+5. **“Frontier API or self-host?”** Compare per workload: quality, volume, utilization, latency and operations.
+6. **“How do I see my context?”** Use available harness tracing/export or instrument the client. Count with the correct tokenizer and real wrapper.
 
----
+## Programme context
 
-## Where this talk sits in the programme
-
-Several sessions touch yours. You are not cross-referencing them on the slides — but know the
-overlaps so you can defer gracefully rather than re-explaining:
-
-- **Stefan Đokić — running AI agents on real .NET.** Your stop 01 is his whole talk.
-- **Stefan Gavrilović — bringing AI into a bank.** The gateway act, from the regulated side.
-- **Spirovski & Stefanovski — APIs that don't leak in the era of AI coding.** Adjacent to stop 03.
-- **Dušan Stanojević — reliable services are the ones that crash.** Your slide 21 ends on "nothing
-  errors, everything degrades" — a good callback if he spoke first.
+Original programme notes list related sessions by Stefan Đokić (agents on .NET), Stefan Gavrilović (AI in a bank), Spirovski & Stefanovski (API security), and Dušan Stanojević (reliability). Check the final programme before naming an overlap on stage. These remain delivery cues rather than slide claims.

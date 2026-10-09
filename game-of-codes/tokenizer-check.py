@@ -75,7 +75,7 @@ def main():
     n_w = len(enc.encode(wrapped, allowed_special="all"))
     print(f"  wrapped in the chat template: {n_w} tokens "
           f"({n_w - len(ids)} of template)")
-    print(f"  slide 13's ratio: 31,209 / {len(ids)} = {31209 // len(ids):,}x\n")
+    print(f"  slide 13's ratio: 31,209 / {len(ids)} ≈{round(31209 / len(ids)):,}x\n")
 
     print("SLIDE 6 — a token is not a word")
     s = "The nightly ETL job failed on a deserialization error."
