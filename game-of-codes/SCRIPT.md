@@ -1,13 +1,13 @@
 # Life of a token — delivery script
 
 **Game of Codes 2026 · Science & Technology Park, Niš · Saturday 10 October 2026**
-39 slides · **29:10** of material in a 30-minute slot · press `T` on the title to start the clock.
+39 slides · **28:53** of material in a 30-minute slot · press `T` on the title to start the clock.
 
 This is a **visual deck on a fixed grid**. The slides carry pictures and manifests; you carry
 the words. Almost no slide can be read instead of listened to — which is the point, and also
 means you cannot wing it. Read these notes once the night before.
 
-29:10 is over a comfortable 30-minute budget. The cut list below recovers nearly three minutes;
+28:53 is over a comfortable 30-minute budget. The cut list below recovers nearly three minutes;
 take the first two as a matter of course unless the room is running early.
 
 The strip across the top of every journey slide says where the token is: amber going down, teal
@@ -31,43 +31,43 @@ is, and the section dividers.
 | # | Slide | Say | Time | Cum. |
 |---|---|---|---|---|
 | 1 | Title | one request, all the way down and back | 0:30 | 0:30 |
-| 2 | **Who here uses AI?** | your hand up first — the room follows | 0:15 | 0:45 |
-| 3 | **Who uses it every day?** | "keep them up" — the drop is the point | 0:12 | 0:57 |
-| 4 | **Who has a fleet of agents?** | read the room; it calibrates the rest | 0:18 | 1:15 |
-| 5 | **Terminal: you type seven words** | the hook — who has an agent open right now? | 0:40 | 1:55 |
-| 6 | **Not a word. Not a letter.** | 54 chars, 9 words, 12 tokens | 1:00 | 2:55 |
-| 7 | The two obvious answers are worse | letters vs words vs subwords | 0:55 | 3:50 |
-| 8 | **The vocabulary is learned** | GPU earned an entry; Kubernetes did not | 1:05 | 4:55 |
-| 9 | And your alphabet sets the price | the 1.9× Cyrillic surcharge | 1:00 | 5:55 |
-| 10 | Eight stops, down and back | point at 3, 5, 6 — don't narrate all eight | 0:40 | 6:35 |
-| 11 |  01 | — | 0:08 | 6:43 |
-| 12 | **The request, proportionally** | the harness wrote this, not you | 1:15 | 7:58 |
-| 13 | 1,643× | say the number, pause | 0:25 | 8:23 |
-| 14 |  02 | — | 0:08 | 8:31 |
-| 15 | **Every hop is a Kubernetes object** | the frame — say it once, then stop repeating it | 0:50 | 9:21 |
-| 16 | **Three languages. One is tokens.** | the dangerous lane is MCP | 1:10 | 10:31 |
-| 17 | **Per tool. Not per service.** | the control that didn't exist a year ago | 1:15 | 11:46 |
-| 18 | It acts *as somebody* | "the agent did it" is a useless audit log | 0:55 | 12:41 |
-| 19 | **agentgateway: two routes, one log** | left pane fast, right pane slow | 1:00 | 13:41 |
-| 20 |  03 | — | 0:08 | 13:49 |
-| 21 | **Identical. Not interchangeable.** | the cold-replica slide. Slow down. | 1:25 | 15:14 |
-| 22 | **A pool, where the Service was** | point at the last two lines | 0:50 | 16:04 |
-| 23 |  04 | land the title | 0:12 | 16:16 |
-| 24 | **Same card. Milliseconds apart.** | the two indigo bars are identical | 1:35 | 17:51 |
-| 25 | 8.9 ms | physics, not code — and batching is the way out | 0:45 | 18:36 |
-| 26 | Stop making them share | why two pools | 1:00 | 19:36 |
-| 27 | **Two pools, as deployments** | the caption is the advice: stop at path one | 1:00 | 20:36 |
-| 28 |  05 | — | 0:08 | 20:44 |
-| 29 | No queue. A scheduler. | the hatching is money | 1:00 | 21:44 |
-| 30 | The KV cache gets a page table | the OS's oldest trick | 0:55 | 22:39 |
-| 31 | **Turn seven. One block.** | caching and routing are one optimisation | 1:00 | 23:39 |
-| 32 |  06 | — | 0:08 | 23:47 |
-| 33 | **Weights are rent. KV is stock.** (3 clicks) | 11 → 35 sessions, two flags | 1:15 | 25:02 |
-| 34 | **Why read all of it?** | dense vs MoE — why decode got cheap | 1:10 | 26:12 |
-| 35 |  07 | — | 0:08 | 26:20 |
-| 36 | **🎲 is three tokens** | built for this room | 1:00 | 27:20 |
-| 37 | **It was a tool call. Go again.** | the loop, and quadratic cost | 1:05 | 28:25 |
-| 38 | Close | stop talking, take questions | 0:45 | 29:10 |
+| 2 | **Who here uses AI?** | your hand up first; every hand, instantly | 0:05 | 0:35 |
+| 3 | **Who uses it every day?** | "keep them up" — the drop is the point | 0:08 | 0:43 |
+| 4 | **Who has a fleet of agents?** | read the room; it calibrates the rest | 0:15 | 0:58 |
+| 5 | **Terminal: you type seven words** | the hook — who has an agent open right now? | 0:40 | 1:38 |
+| 6 | **Not a word. Not a letter.** | 54 chars, 9 words, 12 tokens | 1:00 | 2:38 |
+| 7 | The two obvious answers are worse | letters vs words vs subwords | 0:55 | 3:33 |
+| 8 | **The vocabulary is learned** | GPU earned an entry; Kubernetes did not | 1:05 | 4:38 |
+| 9 | And your alphabet sets the price | the 1.9× Cyrillic surcharge | 1:00 | 5:38 |
+| 10 | Eight stops, down and back | point at 3, 5, 6 — don't narrate all eight | 0:40 | 6:18 |
+| 11 | 01 | — | 0:08 | 6:26 |
+| 12 | **The request, proportionally** | the harness wrote this, not you | 1:15 | 7:41 |
+| 13 | 1,643× | say the number, pause | 0:25 | 8:06 |
+| 14 | 02 | — | 0:08 | 8:14 |
+| 15 | **Every hop is a Kubernetes object** | the frame — say it once, then stop repeating it | 0:50 | 9:04 |
+| 16 | **Three languages. One is tokens.** | the dangerous lane is MCP | 1:10 | 10:14 |
+| 17 | **Per tool. Not per service.** | the control that didn't exist a year ago | 1:15 | 11:29 |
+| 18 | It acts *as somebody* | "the agent did it" is a useless audit log | 0:55 | 12:24 |
+| 19 | **agentgateway: two routes, one log** | left pane fast, right pane slow | 1:00 | 13:24 |
+| 20 | 03 | — | 0:08 | 13:32 |
+| 21 | **Identical. Not interchangeable.** | the cold-replica slide. Slow down. | 1:25 | 14:57 |
+| 22 | **A pool, where the Service was** | point at the last two lines | 0:50 | 15:47 |
+| 23 | 04 | land the title | 0:12 | 15:59 |
+| 24 | **Same card. Milliseconds apart.** | the two indigo bars are identical | 1:35 | 17:34 |
+| 25 | 8.9 ms | physics, not code — and batching is the way out | 0:45 | 18:19 |
+| 26 | Stop making them share | why two pools | 1:00 | 19:19 |
+| 27 | **Two pools, as deployments** | the caption is the advice: stop at path one | 1:00 | 20:19 |
+| 28 | 05 | — | 0:08 | 20:27 |
+| 29 | No queue. A scheduler. | the hatching is money | 1:00 | 21:27 |
+| 30 | The KV cache gets a page table | the OS's oldest trick | 0:55 | 22:22 |
+| 31 | **Turn seven. One block.** | caching and routing are one optimisation | 1:00 | 23:22 |
+| 32 | 06 | — | 0:08 | 23:30 |
+| 33 | **Weights are rent. KV is stock.** (3 clicks) | 11 → 35 sessions, two flags | 1:15 | 24:45 |
+| 34 | **Why read all of it?** | dense vs MoE — why decode got cheap | 1:10 | 25:55 |
+| 35 | 07 | — | 0:08 | 26:03 |
+| 36 | **🎲 is three tokens** | built for this room | 1:00 | 27:03 |
+| 37 | **It was a tool call. Go again.** | the loop, and quadratic cost | 1:05 | 28:08 |
+| 38 | Close | stop talking, take questions | 0:45 | 28:53 |
 | 39 | Sources | backup — do not present | — | — |
 
 ---
@@ -81,8 +81,9 @@ Cut in this order. Nothing downstream refers back to any of them.
 3. **30** — PagedAttention. Slide 31 works without it, with one sentence of setup. **−55s**
 4. **26** — the pools diagram. Slide 27 shows the same thing as config. **−60s**
 
-The opening questions are 45 seconds and buy more goodwill than any slide in the deck — cut elsewhere.
-Taking the first two lands you at **27:20**; all four gets you to **25:25**. Aim for the first two.
+The three opening questions are 28 seconds all together — a reflex, not a discussion — and they buy
+more goodwill than any slide in the deck. Cut elsewhere.
+Taking the first two lands you at **27:03**; all four gets you to **25:08**. Aim for the first two.
 
 **Never cut:** the three opening questions (2–4), then 6, 8, 12, 15, 17, 19, 21, 22, 24, 27, 33, 34, 37.
 
@@ -90,7 +91,7 @@ Taking the first two lands you at **27:20**; all four gets you to **25:25**. Aim
 
 ## The opening questions
 
-Three slides, 45 seconds, and they do two jobs. They get arms in the air before you have asked
+Three slides, 28 seconds, and they do two jobs. They get arms in the air before you have asked
 anyone to think, and the third one tells you which talk to give.
 
 Get your own hand up on question one — a room follows the speaker, and a dead first question
