@@ -425,11 +425,11 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 
 <!-- 4 ...................................................................... -->
 <section class="slide on-dark slide--viz wide">
-  <p class="kick">the model's answer to your question</p>
+  <p class="kick">the model's answer · llama 3 · 128,256 entries</p>
   <h2>Not a word. Not a letter.</h2>
   <div class="fig">
     <div class="tokline">
-      <span>The</span><span> nightly</span><span class="hot"> ET</span><span class="hot">L</span><span> job</span><span> failed</span><span> on</span><span> a</span><span class="hot"> des</span><span class="hot">erialization</span><span> error</span><span>.</span>
+      <span>The</span><span> nightly</span><span class="hot"> E</span><span class="hot">TL</span><span> job</span><span> failed</span><span> on</span><span> a</span><span class="hot"> des</span><span class="hot">erialization</span><span> error</span><span>.</span>
     </div>
     <div class="counts">
       <div><b>54</b><span>characters</span></div>
@@ -506,7 +506,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
       <div class="wr"><span class="w">vLLM</span><span class="t">v</span><span class="t">LL</span><span class="t">M</span><span class="n">3</span></div>
     </div>
   </div>
-  <p class="cap">Start from bytes. Merge the most frequent pair. Repeat 200,019 times. <b>GPU earned its own entry; Kubernetes did not.</b></p>
+  <p class="cap">Start from bytes. Merge the most frequent pair. Repeat until you have <b>128,256</b> entries. <b>GPU earned one; Kubernetes did not</b> — and GPT-4o’s vocabulary splits all four of these exactly the same way.</p>
   <div class="s-notes">
     <p><b>65 seconds. The last line is the one that lands.</b></p>
     <p class="say">"Nobody sat down and wrote this vocabulary. You start from raw bytes, you count which pair occurs together most often, you merge it into a new symbol, and you do that two hundred thousand times. What falls out is a frequency ranking of the internet. GPU appears often enough to earn a single entry. Kubernetes — the thing we are all running — does not; it costs you a K and then everything else. And agentgateway is free, but only because 'agent' and 'gateway' were already common separately."</p>
@@ -527,22 +527,25 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
       </div>
       <div class="tokrow">
         <div class="lang">Srpski · latinica</div>
-        <div class="pieces"><span>Sv</span><span>aki</span><span> poz</span><span>iv</span><span> ag</span><span>enta</span><span> završ</span><span>ava</span><span> kao</span><span> token</span><span>i</span><span> na</span><span> ne</span><span>kom</span><span> GPU</span><span>-u</span><span>.</span></div>
-        <div class="count">17</div>
+        <div class="pieces"><span>S</span><span>v</span><span>aki</span><span> poz</span><span>iv</span><span> agent</span><span>a</span><span> z</span><span>avr</span><span>š</span><span>ava</span><span> kao</span><span> token</span><span>i</span><span> na</span><span> ne</span><span>kom</span><span> GPU</span><span>-u</span><span>.</span></div>
+        <div class="count">20</div>
       </div>
       <div class="tokrow hot">
         <div class="lang">Српски · ћирилица</div>
-        <div class="pieces"><span>С</span><span>ва</span><span>ки</span><span> поз</span><span>ив</span><span> аген</span><span>та</span><span> зав</span><span>р</span><span>ша</span><span>ва</span><span> као</span><span> ток</span><span>ени</span><span> на</span><span> не</span><span>ком</span><span> GPU</span><span>-</span><span>у</span><span>.</span></div>
-        <div class="count">21</div>
+        <div class="pieces"><span>С</span><span>в</span><span>аки</span><span> поз</span><span>ив</span><span> аг</span><span>ента</span><span> зав</span><span>р</span><span>ш</span><span>ава</span><span> ка</span><span>о</span><span> т</span><span>ок</span><span>ени</span><span> на</span><span> нек</span><span>ом</span><span> GPU</span><span>-</span><span>у</span><span>.</span></div>
+        <div class="count">23</div>
       </div>
     </div>
   </div>
-  <p class="cap">Same sentence · same 54 characters · measured with <b>tiktoken</b>, <b>o200k_base</b></p>
+  <p class="cap">Llama 3 spent <b>28,000</b> of its 128,256 entries on non-English — and Cyrillic still costs <b>1.9×</b>. Somebody decided how many slots your alphabet was worth, and baked it into the weights.</p>
   <div class="s-notes">
     <p><b>65 seconds. Let them read the third row. These are the real splits.</b></p>
-    <p class="say">"Identical sentence. Identical fifty-four characters. Twelve tokens in English. Twenty-one in Cyrillic. That is a seventy-five percent surcharge — on compute, on cache, on your context window, and on every per-token price list in the industry — for writing in your own alphabet. Nobody decided this. It fell out of a training corpus."</p>
-    <p>Three consequences, fast: your 128k context is really 73k in Cyrillic; your latency budget is 1.75× tighter; and if you benchmarked in English you sized your cluster wrong. Then move.</p>
+    <p class="say">"Identical sentence. Identical fifty-four characters. Twelve tokens in English. Twenty-three in Cyrillic. That is a ninety-two percent surcharge — on compute, on cache, on your context window, and on every per-token price list in the industry — for writing in your own alphabet."</p>
+    <p>Three consequences, fast: your 128k context is really 67k in Cyrillic; your latency budget is 1.9× tighter; and if you benchmarked in English you sized your cluster wrong.</p>
     <p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
+    <p><b>Then the turn, and it is the best thirty seconds in the first act.</b> Llama 3's vocabulary is 128,256 entries — roughly a hundred thousand inherited from tiktoken, plus <i>twenty-eight thousand added specifically for non-English</i>. After all of that, Serbian Cyrillic still costs 1.9× English. The effort was made and the gap survived it.</p>
+    <p class="say">"And here is the part that should annoy you. Meta spent twenty-eight thousand of Llama's hundred and twenty-eight thousand vocabulary slots specifically on languages that are not English. After all of that, Serbian Cyrillic still costs nearly twice what English costs. Somebody sat in a room and decided how many slots your alphabet was worth. That is a product decision, taken on your behalf, and baked into the weights — and you cannot change the tokenizer of a model you did not train."</p>
+    <p>If asked which tokenizer: Llama 3's own, rebuilt from its 128,256-entry vocabulary and round-trip checked — <code>tokenizer-check.py</code> beside the deck reproduces every number on these slides. GPT-4o's <code>o200k_base</code> is kinder here, at 1.75×, which is worth conceding if someone has measured it themselves.</p>
   </div>
 </section>
 
@@ -1308,22 +1311,26 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <div class="fig">
   <svg viewBox="0 0 1700 310" role="img" aria-label="The die emoji is four UTF-8 bytes split across two tokens, neither of which is valid on its own, so the detokenizer must buffer.">
     <text x="30" y="80" font-family="Inter" font-size="92" fill="#f5f5f5">🎲</text>
-    <text x="150" y="60" font-family="JetBrains Mono" font-size="27" fill="#a1a1a1">U+1F3B2</text>
+    <text x="150" y="60" font-family="JetBrains Mono" font-size="27" fill="#99a0b2">U+1F3B2</text>
     <text x="150" y="100" font-family="JetBrains Mono" font-size="27" fill="#f8a823">f0 9f 8e b2</text>
-    <text x="400" y="100" font-family="JetBrains Mono" font-size="24" fill="#6b7080">4 bytes of UTF-8</text>
-    <rect x="30"  y="150" width="420" height="88" rx="6" fill="#2a0f12" stroke="#f94144" stroke-width="2"/>
-    <text x="60"  y="196" font-family="JetBrains Mono" font-size="28" fill="#f5f5f5">token A</text>
-    <text x="230" y="196" font-family="JetBrains Mono" font-size="26" fill="#f8a823">f0 9f 8e</text>
-    <text x="60"  y="228" font-family="JetBrains Mono" font-size="22" fill="#f94144">not a legal string</text>
-    <rect x="480" y="150" width="420" height="88" rx="6" fill="#2a0f12" stroke="#f94144" stroke-width="2"/>
-    <text x="510" y="196" font-family="JetBrains Mono" font-size="28" fill="#f5f5f5">token B</text>
-    <text x="680" y="196" font-family="JetBrains Mono" font-size="26" fill="#f8a823">b2</text>
-    <text x="510" y="228" font-family="JetBrains Mono" font-size="22" fill="#f94144">not a legal string</text>
-    <text x="940" y="186" font-family="JetBrains Mono" font-size="40" fill="#35d0ba">→</text>
-    <rect x="1000" y="150" width="300" height="88" rx="6" fill="#0f2422" stroke="#35d0ba" stroke-width="2"/>
-    <text x="1150" y="206" font-family="Inter" font-size="46" text-anchor="middle" fill="#f5f5f5">🎲</text>
-    <g font-family="JetBrains Mono" font-size="24" fill="#a1a1a1">
-      <text x="30" y="290">step 412 → <tspan fill="#f94144">hold</tspan>      step 413 → <tspan fill="#35d0ba">flush</tspan>      two forward passes, ~18 ms, one character — and one of them was invisible</text>
+    <text x="400" y="100" font-family="JetBrains Mono" font-size="24" fill="#7d8498">4 bytes of UTF-8 · 3 tokens on Llama 3</text>
+    <rect x="30"  y="150" width="300" height="88" fill="#2a0f12" stroke="#f94144" stroke-width="2"/>
+    <text x="58"  y="196" font-family="JetBrains Mono" font-size="27" fill="#f2f3f6">token A</text>
+    <text x="205" y="196" font-family="JetBrains Mono" font-size="26" fill="#f8a823">f0 9f</text>
+    <text x="58"  y="228" font-family="JetBrains Mono" font-size="22" fill="#f94144">illegal</text>
+    <rect x="350" y="150" width="300" height="88" fill="#2a0f12" stroke="#f94144" stroke-width="2"/>
+    <text x="378" y="196" font-family="JetBrains Mono" font-size="27" fill="#f2f3f6">token B</text>
+    <text x="525" y="196" font-family="JetBrains Mono" font-size="26" fill="#f8a823">8e</text>
+    <text x="378" y="228" font-family="JetBrains Mono" font-size="22" fill="#f94144">illegal</text>
+    <rect x="670" y="150" width="300" height="88" fill="#2a0f12" stroke="#f94144" stroke-width="2"/>
+    <text x="698" y="196" font-family="JetBrains Mono" font-size="27" fill="#f2f3f6">token C</text>
+    <text x="845" y="196" font-family="JetBrains Mono" font-size="26" fill="#f8a823">b2</text>
+    <text x="698" y="228" font-family="JetBrains Mono" font-size="22" fill="#f94144">illegal</text>
+    <text x="1010" y="202" font-family="JetBrains Mono" font-size="40" fill="#35d0ba">→</text>
+    <rect x="1080" y="150" width="240" height="88" fill="#0f2422" stroke="#35d0ba" stroke-width="2"/>
+    <text x="1200" y="206" font-family="Inter" font-size="46" text-anchor="middle" fill="#f2f3f6">🎲</text>
+    <g font-family="JetBrains Mono" font-size="24" fill="#99a0b2">
+      <text x="30" y="292">412 <tspan fill="#f94144">hold</tspan>   413 <tspan fill="#f94144">hold</tspan>   414 <tspan fill="#35d0ba">flush</tspan>   three forward passes, ~27 ms, one character — two of them invisible</text>
     </g>
   </svg>
   </div>
@@ -1331,7 +1338,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
     <p><b>60 seconds. This is the one built for this room. Enjoy it.</b></p>
     <p class="say">"I checked something this week specifically for you. Your logo is a die. One character, four bytes of UTF-8 — and the tokenizer splits it across two tokens, neither of which is a legal string on its own. So the server generates a token at step four hundred and twelve and physically cannot show it to you. It has to wait nine milliseconds for the next forward pass before those bytes become a character. Your conference logo is a buffering problem."</p>
     <p>Then the serious half: inter-token latency is measured at <i>token</i> emission; your users experience <i>character</i> emission. For Cyrillic, for emoji, for CJK, those are different events — so a latency SLO built on token timestamps measures something nobody can feel.</p>
-    <p>Verified with <code>tiktoken</code>, <code>o200k_base</code>, <code>decode_single_token_bytes</code>. Say that — the room will assume it is a joke otherwise.</p>
+    <p>Measured on Llama 3’s own tokenizer — the model this talk serves — with <code>decode_single_token_bytes</code>. Say that, because the room will assume it is a joke. On GPT-4o it is two tokens rather than three; the boundary moves with the vocabulary, the <i>principle</i> does not, because any byte-level BPE can split a multi-byte character.</p>
   </div>
 </section>
 
@@ -1387,7 +1394,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 <section class="slide on-dark slide--srcs">
   <h2>Sources</h2>
   <div class="srcs">
-    <p><b>Tokenisation</b>All counts measured with <code>tiktoken</code>, encoding <code>o200k_base</code>, October 2026. <code>decode_single_token_bytes</code> is what shows the UTF-8 split on the die.</p>
+    <p><b>Tokenisation</b>Every count measured on <b>Llama 3’s own tokenizer</b> — the model these slides serve — rebuilt as a <code>tiktoken</code> encoding from its 128,256-entry vocabulary and checked for round-trip. Not GPT-4o’s <code>o200k_base</code>, which gives different numbers: a 1.75× Cyrillic surcharge rather than 1.9×, and a two-token die rather than three.</p>
     <p><b>agentgateway</b>agentgateway.dev · Linux Foundation Agentic AI Foundation · MCP and A2A as first-class protocols, CEL tool authorisation. Envoy AI Gateway and kgateway are equivalent choices.</p>
     <p><b>Gateway API Inference Extension</b>gateway-api-inference-extension.sigs.k8s.io · v1.6 · <code>InferencePool</code>, the endpoint picker, the conformance suite and the five gateways that implement it.</p>
     <p><b>vLLM</b>vllm.ai · "Inside vLLM: anatomy of a high-throughput inference system" for the scheduler; the PagedAttention paper (Kwon et al., SOSP 2023) for the block allocator.</p>

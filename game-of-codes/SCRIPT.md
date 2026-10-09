@@ -35,7 +35,7 @@ is, and the section dividers.
 | 3 | **Not a word. Not a letter.** | 54 chars, 9 words, 12 tokens | 1:00 | 2:10 |
 | 4 | The two obvious answers are worse | letters vs words vs subwords | 0:55 | 3:05 |
 | 5 | **The vocabulary is learned** | GPU earned an entry; Kubernetes did not | 1:05 | 4:10 |
-| 6 | And your alphabet sets the price | the 75% Cyrillic surcharge | 1:00 | 5:10 |
+| 6 | And your alphabet sets the price | the 1.9× Cyrillic surcharge | 1:00 | 5:10 |
 | 7 | Eight stops, down and back | point at 3, 5, 6 — don't narrate all eight | 0:40 | 5:50 |
 | 8 | § 01 | — | 0:08 | 5:58 |
 | 9 | **The request, proportionally** | the harness wrote this, not you | 1:15 | 7:13 |
@@ -62,7 +62,7 @@ is, and the section dividers.
 | 30 | **Weights are rent. KV is stock.** (3 clicks) | 11 → 35 sessions, two flags | 1:15 | 24:17 |
 | 31 | **Why read all of it?** | dense vs MoE — why decode got cheap | 1:10 | 25:27 |
 | 32 | § 07 | — | 0:08 | 25:35 |
-| 33 | **🎲 is two tokens** | built for this room | 1:00 | 26:35 |
+| 33 | **🎲 is three tokens** | built for this room | 1:00 | 26:35 |
 | 34 | **It was a tool call. Go again.** | the loop, and quadratic cost | 1:05 | 27:40 |
 | 35 | Close | stop talking, take questions | 0:45 | 28:25 |
 | 36 | Sources | backup — do not present | — | — |
@@ -120,7 +120,8 @@ minors, and an engineer who pastes it and fails will remember that, not the argu
 
 Four slides, and they are new. The deck is called *Life of a token*; the room deserves to know
 what one is before you follow it anywhere. Every split on these slides is real output from
-`tiktoken` with the `o200k_base` encoding — say so, because people assume the diagrams are drawn.
+**Llama 3's own tokenizer** — the model these slides serve — rebuilt as a `tiktoken` encoding from its
+128,256-entry vocabulary. Say that it is measured, because people assume the diagrams are drawn.
 
 **3 · Not a word. Not a letter.**
 > "This is the answer the model is going to give you, taken apart. Fifty-four characters. Nine
@@ -192,14 +193,20 @@ what one is before you follow it anywhere. Every split on these slides is real o
 
 ## Numbers you must be able to defend
 
+All token counts were re-measured on **Llama 3's own 128,256-entry tokenizer**, not GPT-4o's
+`o200k_base`. The two disagree in exactly the places that matter: Cyrillic costs 1.92× on Llama
+against 1.75× on GPT-4o, and the die is three tokens rather than two. They agree on everything
+else — slide 3's twelve tokens and all four words on slide 5 are identical on both.
+If anyone asks why Llama's numbers: because that is the model in the manifests on slides 12–24.
+
 Everything is division on published figures. None of it is a benchmark. Say so if pressed.
 
 | Claim | Working |
 |---|---|
-| 12 / 17 / 21 tokens | `tiktoken`, `o200k_base`, October 2026. Four lines to reproduce. |
-| 🎲 = two tokens | `decode_single_token_bytes` → `b'\xf0\x9f\x8e'` + `b'\xb2'`, neither valid UTF-8. |
+| 12 / 20 / 23 tokens | Llama 3's tokenizer, October 2026. Cyrillic is **1.92×** English. |
+| 🎲 = three tokens | `b'\xf0\x9f'` + `b'\x8e'` + `b'\xb2'`, not one of them valid UTF-8. |
 | 1,643× | 31,219 ÷ 19. |
-| 200,019 | `tiktoken` vocab size for `o200k_base`. |
+| 128,256 | Llama 3 vocabulary: ~100k inherited from tiktoken + 28k added for non-English. |
 | 54 / 9 / 12 | "The nightly ETL job failed on a deserialization error." |
 | Prefill 4.4 PFLOP | 2 × 70.6e9 params × 31,219 tokens. Ignores attention's quadratic term. |
 | Decode 141 GFLOP | 2 × 70.6e9 × 1 token. |
