@@ -259,6 +259,7 @@ html, body { height: 100%; overflow: hidden; background: var(--ground); font-fam
   padding: var(--s5) var(--s5); font-size: var(--t5); line-height: 1.5; color: var(--ink);
 }
 .term .p { color: var(--request); }
+.term .a { color: var(--return); font-size: var(--t3); line-height: 1.45; }
 .term .d { color: var(--ink-3); font-size: var(--t2); }
 .term .cur { display: inline-block; width: 20px; height: 44px; background: var(--request); vertical-align: -7px; margin-left: 6px; }
 
@@ -439,7 +440,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <div class="s-notes">
     <p><b>Fifteen seconds — the only one of the three worth a pause. Read the room before you move: this is the calibration slide.</b></p>
     <p class="say">"And keep them up if you have a fleet of them — agents running, doing the dirty work, while you do something else. … Right. This talk is for those hands. Everybody else: this is where you are going, and I would rather you saw the bill before you got there."</p>
-    <p><b>Use the answer.</b> Many hands: the room already feels the cost, so move briskly through the harness material and spend the time you save on the gateway and llm-d acts. Two or three hands: slow down on slide 9 — the 31,219-token context is the slide that makes the rest matter, and this room has not felt it yet.</p>
+    <p><b>Use the answer.</b> Many hands: the room already feels the cost, so move briskly through the harness material and spend the time you save on the gateway and llm-d acts. Two or three hands: slow down on slide 9 — the 31,209-token context is the slide that makes the rest matter, and this room has not felt it yet.</p>
     <p>Nobody at all: that is fine and quite likely. Say "good — then nothing in this talk has hurt you yet", which gets a laugh and reframes the whole thing as a warning rather than a retrospective.</p>
     <p>The indigo ground marks this as the turn. The next slide is a terminal, and the question it contains is the one the rest of the talk answers.</p>
   </div>
@@ -455,7 +456,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
       <span class="p">&gt;</span> why did the nightly ETL job fail?<span class="cur"></span>
     </div>
   </div>
-  <p class="cap">Seven words · <b>19 tokens</b> · and then the harness goes to work.</p>
+  <p class="cap">Seven words · <b>nine tokens</b> · and then the harness goes to work.</p>
   <div class="s-notes">
     <p><b>40 seconds. This is the hook — stay on it.</b></p>
     <p class="say">"Here is the entire user interface of modern AI. Seven words. Nineteen tokens. Now: everything I am going to show you for the next twenty-five minutes happens between this keystroke and the first character of the answer coming back. And almost none of it was written by you."</p>
@@ -482,7 +483,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <div class="s-notes">
     <p><b>60 seconds. Walk the amber chips.</b></p>
     <p class="say">"This is the answer the model is going to give you, taken apart. Fifty-four characters. Nine words. Twelve tokens — so it is neither. Look at the amber ones: E-T-L is two tokens, because the tokenizer has never seen enough ETL to keep it whole. Deserialization is two. But 'failed' and 'nightly' survive intact, because they are common. A token is just a byte sequence that showed up often enough in the training corpus to be worth an entry."</p>
-    <p>Real splits from <code>tiktoken</code>, <code>o200k_base</code>. Say that — people assume these diagrams are drawn by hand.</p>
+    <p>Real splits from Llama 3’s own tokenizer — <code>tokenizer-check.py</code> beside the deck prints them. Say that it is measured; people assume these diagrams are drawn by hand.</p>
     <p>If someone asks why there's a leading space on most chips: the space is part of the token. That is why "ETL" mid-sentence and "ETL" at the start are different tokens.</p>
   </div>
 </section>
@@ -503,12 +504,12 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
     <g>
       <rect x="0"    y="110" width="212"  height="40" fill="#2a3144"/>
       <rect x="610"  y="110" width="530"  height="40" fill="#2a3144"/>
-      <rect x="1220" y="110" width="466"  height="40" fill="#f8a823"/>
+      <rect x="1220" y="110" width="451"  height="40" fill="#f8a823"/>
     </g>
     <g font-family="JetBrains Mono" font-size="25" fill="#99a0b2">
       <text x="0"    y="186">256</text>
       <text x="610"  y="186">unbounded</text>
-      <text x="1220" y="186" fill="#f8a823">200,019</text>
+      <text x="1220" y="186" fill="#f8a823">128,256</text>
     </g>
     <g>
       <rect x="0"    y="262" width="530" height="40" fill="#2a3144"/>
@@ -550,7 +551,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <p class="cap">Start from bytes. Merge the most frequent pair. Repeat until you have <b>128,256</b> entries. <b>GPU earned one; Kubernetes did not</b> — and GPT-4o’s vocabulary splits all four of these exactly the same way.</p>
   <div class="s-notes">
     <p><b>65 seconds. The last line is the one that lands.</b></p>
-    <p class="say">"Nobody sat down and wrote this vocabulary. You start from raw bytes, you count which pair occurs together most often, you merge it into a new symbol, and you do that two hundred thousand times. What falls out is a frequency ranking of the internet. GPU appears often enough to earn a single entry. Kubernetes — the thing we are all running — does not; it costs you a K and then everything else. And agentgateway is free, but only because 'agent' and 'gateway' were already common separately."</p>
+    <p class="say">"Nobody sat down and wrote this vocabulary. You start from raw bytes, you count which pair occurs together most often, you merge it into a new symbol, and you do that a hundred and twenty-eight thousand times. What falls out is a frequency ranking of the internet. GPU appears often enough to earn a single entry. Kubernetes — the thing we are all running — does not; it costs you a K and then everything else. And agentgateway is free, but only because 'agent' and 'gateway' were already common separately."</p>
     <p>Then land it: <b>nothing in this vocabulary understands anything.</b> It is compression, fitted to a corpus. Every semantic thing the model does happens after this point, in the weights — not here.</p>
     <p>This is also the honest setup for the next slide: if the corpus was mostly English, the compression is tuned for English.</p>
   </div>
@@ -583,7 +584,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
     <p><b>65 seconds. Let them read the third row. These are the real splits.</b></p>
     <p class="say">"Identical sentence. Identical fifty-four characters. Twelve tokens in English. Twenty-three in Cyrillic. That is a ninety-two percent surcharge — on compute, on cache, on your context window, and on every per-token price list in the industry — for writing in your own alphabet."</p>
     <p>Three consequences, fast: your 128k context is really 67k in Cyrillic; your latency budget is 1.9× tighter; and if you benchmarked in English you sized your cluster wrong.</p>
-    <p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
+    <p><b>Read the Cyrillic line aloud, in Serbian, before you give any number.</b> Say the sentence, let them hear it is ordinary speech, then put the 23 on it. The surcharge lands far harder on a sentence the room has just heard in its own language than on a row of chips.</p><p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
     <p><b>Then the turn, and it is the best thirty seconds in the first act.</b> Llama 3's vocabulary is 128,256 entries — roughly a hundred thousand inherited from tiktoken, plus <i>twenty-eight thousand added specifically for non-English</i>. After all of that, Serbian Cyrillic still costs 1.9× English. The effort was made and the gap survived it.</p>
     <p class="say">"And here is the part that should annoy you. Meta spent twenty-eight thousand of Llama's hundred and twenty-eight thousand vocabulary slots specifically on languages that are not English. After all of that, Serbian Cyrillic still costs nearly twice what English costs. Somebody sat in a room and decided how many slots your alphabet was worth. That is a product decision, taken on your behalf, and baked into the weights — and you cannot change the tokenizer of a model you did not train."</p>
     <p>If asked which tokenizer: Llama 3's own, rebuilt from its 128,256-entry vocabulary and round-trip checked — <code>tokenizer-check.py</code> beside the deck reproduces every number on these slides. GPT-4o's <code>o200k_base</code> is kinder here, at 1.75×, which is worth conceding if someone has measured it themselves.</p>
@@ -615,7 +616,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
     </g>
     <g font-family="JetBrains Mono" font-size="19" fill="#7a8192" text-anchor="middle">
       <text x="100"  y="356">your keystroke</text>
-      <text x="320"  y="356">31,219 tokens</text>
+      <text x="320"  y="356">31,209 tokens</text>
       <text x="540"  y="356">who may do what</text>
       <text x="760"  y="356">which GPU</text>
       <text x="980"  y="356">compute-bound</text>
@@ -645,9 +646,9 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 
 <!-- 4 ...................................................................... -->
 <section class="slide on-deep slide--section">
-  <p class="num">01</p>
+  <p class="num">01–02</p>
   <h2>The prompt you never wrote</h2>
-  <p class="stops">stops 01–02 · harness → context</p>
+  <p class="stops">stop 01–02 · harness → context</p>
   <div class="s-notes"><p><b>8 seconds.</b> Breath, not content.</p></div>
 </section>
 
@@ -658,8 +659,8 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <svg viewBox="0 0 1780 360" role="img" aria-label="A proportional bar of the request: tool schemas, file reads and conversation history dominate; the user's question is a 19-token sliver at the end.">
     <path d="M1757 108 L1757 70 L1360 70" stroke="#f94144" stroke-width="2.5" fill="none"/>
     <circle cx="1757" cy="108" r="5" fill="#f94144"/>
-    <text x="1344" y="62" font-family="Inter" font-size="38" font-weight="800" fill="#f94144" text-anchor="end">19 — your question</text>
-    <text x="1344" y="98" font-family="JetBrains Mono" font-size="22" fill="#f94144" text-anchor="end">0.06% of the request</text>
+    <text x="1344" y="62" font-family="Inter" font-size="38" font-weight="800" fill="#f94144" text-anchor="end">9 — your question</text>
+    <text x="1344" y="98" font-family="JetBrains Mono" font-size="22" fill="#f94144" text-anchor="end">0.03% of the request</text>
     <g>
       <rect x="20"   y="118" width="568" height="160" rx="4" fill="#f8a823"/>
       <rect x="588"  y="118" width="535" height="160" fill="#c9851c"/>
@@ -693,9 +694,9 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 <!-- 6 ...................................................................... -->
 <section class="slide on-dark slide--num" data-stop="2">
   <div>
-    <p class="n">1,643<span class="u">×</span></p>
+    <p class="n">3,467<span class="u">×</span></p>
     <p class="lab">more tokens than you typed</p>
-    <p class="sub">19 → 31,219 · and the next turn is bigger</p>
+    <p class="sub">9 → 31,209 · and the next turn is bigger</p>
   </div>
   <div class="s-notes">
     <p><b>25 seconds. Say the number, pause, click.</b></p>
@@ -707,9 +708,9 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 
 <!-- 9 ...................................................................... -->
 <section class="slide on-deep slide--section">
-  <p class="num">02</p>
+  <p class="num">03</p>
   <h2>Where the agent stops being trusted</h2>
-  <p class="stops">stop 03 · the gateway</p>
+  <p class="stops">stop 03 · gateway</p>
   <div class="s-notes"><p><b>8 seconds.</b> This is the act you said you'd spend time on — signal it.</p></div>
 </section>
 <!-- K1 ..................................................................... -->
@@ -926,7 +927,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <div class="s-notes">
     <p><b>60 seconds. Left pane fast, right pane slow.</b></p>
     <p class="say">"Here is the whole thing as configuration. On the left, the model route: verify a JWT, cap the day's tokens, and send it to your own pool — with the frontier API configured at weight zero, reachable by explicit route and landing in the same audit log. That is what it looks like to rent knowingly instead of by accident. On the right, the route almost nobody has: per-tool authorisation on MCP, in CEL, evaluated on every call."</p>
-    <p>Token budgets are worth ten seconds of their own: a runaway agent loop is a cost incident long before it is an outage, because nothing errors — it just gets expensive. Tokens are the only backpressure an agent respects.</p>
+    <p><b>Explain <code>weight: 0</code> or it sounds self-contradictory.</b> Zero weight means it takes no share of ordinary traffic — nothing lands there by load balancing. It is still a configured backend, so a request that explicitly asks for <code>gpt-5</code> reaches it, through this gateway, with this identity, into this audit log. Configured and auditable, never accidental. That is the whole difference between renting knowingly and discovering it in the invoice.</p><p>Token budgets are worth ten seconds of their own: a runaway agent loop is a cost incident long before it is an outage, because nothing errors — it just gets expensive. Tokens are the only backpressure an agent respects.</p>
     <p>Honest caveat on screen: this is the shape of the config, not a paste-ready file. Field names move between minors; check the reference.</p>
     <p>If asked why not Envoy AI Gateway or kgateway: both fine, both speak Gateway API. agentgateway's differentiator is MCP and A2A as first-class protocols. Pick one that speaks the standard.</p>
   </div>
@@ -935,7 +936,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 
 <!-- 14 ..................................................................... -->
 <section class="slide on-deep slide--section">
-  <p class="num">03</p>
+  <p class="num">04</p>
   <h2>Which GPU answers</h2>
   <p class="stops">stop 04 · route</p>
   <div class="s-notes"><p><b>8 seconds.</b></p></div>
@@ -1028,9 +1029,9 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 
 <!-- 17 ..................................................................... -->
 <section class="slide on-deep slide--section">
-  <p class="num">04</p>
+  <p class="num">05–06</p>
   <h2>Two machines wearing one costume</h2>
-  <p class="stops">stops 05–06 · prefill → decode</p>
+  <p class="stops">stop 05–06 · prefill → decode</p>
   <div class="s-notes"><p><b>12 seconds. Land the title — this is the hinge of the talk.</b></p></div>
 </section>
 
@@ -1040,7 +1041,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <div class="duo">
     <div class="pane">
       <p class="t">Stop 05 · prefill</p>
-      <h3>All 31,219 tokens. One pass.</h3>
+      <h3>All 31,209 tokens. One pass.</h3>
       <div class="fig">
         <svg viewBox="0 0 700 250" role="img" aria-label="Prefill: an enormous amount of arithmetic, reading the weights once.">
           <text x="0" y="28" font-family="JetBrains Mono" font-size="20" fill="#6b7080">arithmetic</text>
@@ -1164,9 +1165,9 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 
 <!-- 23 ..................................................................... -->
 <section class="slide on-deep slide--section">
-  <p class="num">05</p>
+  <p class="num">06</p>
   <h2>Inside the engine</h2>
-  <p class="stops">stop 06 · vLLM</p>
+  <p class="stops">stop 06 · still decoding · the engine</p>
   <div class="s-notes"><p><b>8 seconds.</b></p></div>
 </section>
 
@@ -1271,7 +1272,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
 <section class="slide on-deep slide--section">
   <p class="num">06</p>
   <h2>The silicon, and what lives on it</h2>
-  <p class="stops">stop 06 · HBM · KV cache · experts</p>
+  <p class="stops">stop 06 · still decoding · the silicon</p>
   <div class="s-notes"><p><b>8 seconds.</b> Signal that this section is short.</p></div>
 </section>
 
@@ -1284,7 +1285,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
       <div class="mrow frag">
         <div class="ml">BF16</div>
         <div class="mbar"><div class="w" style="width:49%">141 GB weights</div><div class="ov" style="width:12.8%"></div><div class="kv" style="width:38.2%">110 GB KV cache</div></div>
-        <div class="mv">11</div>
+        <div class="mv">10</div>
       </div>
       <div class="mrow frag">
         <div class="ml">FP8 weights</div>
@@ -1302,7 +1303,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <div class="s-notes">
     <p><b>75 seconds. Reveal one bar per click.</b></p>
     <p class="say">"Weights are rent — you pay it once per replica whether anyone is talking to the model or not. The KV cache is the inventory you actually sell: every token in flight lives there. So the interesting effect of quantisation is not a smaller download. It is that the same card went from eleven concurrent agent conversations to thirty-five. Two flags. No new hardware."</p>
-    <p>Numbers if challenged: Llama 70B keeps 320 KB of KV per token at BF16, 160 KB at FP8. <code>--gpu-memory-utilization 0.9</code> leaves 259 GB of the 288. Sessions counted at the 31,219-token context from act one.</p>
+    <p>Numbers if challenged: Llama 70B keeps 2 × 80 layers × 8 KV heads × 128 dims × 2 bytes = 327,680 bytes of KV per token — <b>320 KiB</b> exactly, and 160 KiB at FP8. <code>--gpu-memory-utilization 0.9</code> leaves 259 GB of the 288. Sessions are floored at the 31,209-token context from act one: 110e9 ÷ 327,680 ÷ 31,209 = 10.7, so ten.</p>
     <p>And the diagnosis: if <code>gpu_cache_usage_perc</code> is pinned at 1.0 you are out of <i>concurrency</i>, not compute. A faster GPU will not help. This slide will.</p>
   </div>
 </section>
@@ -1331,16 +1332,16 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
   <div class="s-notes">
     <p><b>70 seconds. The grids do the work — just point.</b></p>
     <p class="say">"Here is the idea that broke the eight-point-nine-millisecond floor. In a dense model every parameter participates in every token, so decode is hostage to the total size of the thing. In a mixture of experts, a small router picks a handful of experts per token, and only those get read out of memory. The model on the right can have ten times the parameters of the one on the left and still be cheaper to decode — because decode is a bandwidth problem, and you just cut the bandwidth bill."</p>
-    <p>Concrete: DeepSeek-class models are hundreds of billions of parameters with only tens of billions active per token. That ratio is most of why serving costs collapsed over the last two years.</p>
+    <p><b>Say the model change out loud, or someone will ask.</b> Everything up to here was Llama 3.3 70B, which is dense — the 8-of-256 grid on the right is a DeepSeek-shaped model, not this one. Phrase it as "and this is where you would stop running Llama": hundreds of billions of parameters, only tens of billions active per token. That ratio is most of why serving costs collapsed over the last two years.</p>
     <p>The catch, if asked: every expert still has to be resident in HBM somewhere, so you need either a very large box or expert parallelism across many GPUs — llm-d's third path. You trade memory <i>capacity</i> for memory <i>bandwidth</i>.</p>
   </div>
 </section>
 
 <!-- 30 ..................................................................... -->
 <section class="slide on-deep slide--section">
-  <p class="num">07</p>
+  <p class="num">07–08</p>
   <h2>And back up again</h2>
-  <p class="stops">stops 07–08 · stream → loop</p>
+  <p class="stops">stop 07–08 · stream → loop</p>
   <div class="s-notes"><p><b>8 seconds.</b> Change of energy — the hard arithmetic is behind you.</p></div>
 </section>
 
@@ -1409,6 +1410,28 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
     <p><b>65 seconds. Closes the loop you opened on slide 3.</b></p>
     <p class="say">"And here is the part that surprises people who have only ever built chatbots. The answer that came back was not prose — it was a tool call. So your harness runs the tool, appends the result, and sends the entire conversation again. One question from a human is routinely five of these round trips, and every one is longer than the last. Your agent's cost does not grow linearly with the conversation. It grows with the square of it."</p>
     <p>That is the business case for everything in act four: prefix caching, cache-aware routing, KV tiering. Without them an agent gets quadratically more expensive the better it works.</p>
+  </div>
+</section>
+
+<!-- CB ..................................................................... -->
+<section class="slide on-dark slide--viz" data-stop="8">
+  <p class="kick">twenty-nine minutes ago you asked this</p>
+  <h2>And here it is.</h2>
+  <div class="fig">
+    <div class="term">
+      <span class="d">~/repos/etl</span><br>
+      <span class="p">&gt;</span> why did the nightly ETL job fail?<br>
+      <span class="a">Постао је неважећи кеш шеме — ETL је пао на<br>
+      десеријализацији. Погледај ревизију 4f21c…</span><span class="cur"></span>
+    </div>
+  </div>
+  <p class="cap"><b>31,209 in · 412 out · 5 round trips · 11 seconds.</b> Nine of those tokens were yours.</p>
+  <div class="s-notes">
+    <p><b>20 seconds, and then go straight to the close. Do not explain the footer — let them read it.</b></p>
+    <p class="say">"And twenty-nine minutes later, here is the answer to the question we started with. Thirty-one thousand tokens in. Four hundred and twelve out. Five round trips, because it had to go and look at things. Eleven seconds. And nine of those thirty-one thousand tokens were typed by a human."</p>
+    <p>This is the slide that closes the loop you opened on slide 5, and the whole point of the footer is that every number in it is now something the room can account for: the 31,209 is the context bar, the five round trips are the loop slide, the eleven seconds is prefill plus four hundred decode steps at nine milliseconds.</p>
+    <p>The answer is in Serbian deliberately — it is the callback to the alphabet slide, and in Cyrillic it cost about 1.9× what the English would have. Nobody needs that said; the ones who notice will enjoy it.</p>
+    <p>If you are over time, this is the one slide in the last act you can drop without breaking anything. It is a flourish, not an argument. But it is a good flourish.</p>
   </div>
 </section>
 
@@ -1496,7 +1519,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
     f.className = 'ref';
     var num = s.querySelector('.num'), head = s.querySelector('h2');
     f.innerHTML = (s.classList.contains('slide--section') && num && head)
-      ? '<span class="ref-n">§ ' + num.textContent.trim() + '</span><span>' + head.textContent.trim() + '</span>'
+      ? '<span class="ref-n">stop ' + num.textContent.trim() + '</span><span>' + head.textContent.trim() + '</span>'
       : '<span>Life of a token · Game of Codes 2026</span>';
     var right = document.createElement('span');
     right.className = 'ref-right';
@@ -1545,7 +1568,7 @@ pre.code.sm { font-size: var(--t1); line-height: 1.4; padding: var(--s3) var(--s
     var s = Math.floor((Date.now() - start) / 1000);
     var m = Math.floor(s / 60);
     clock.textContent = 'elapsed ' + m + ':' + String(s % 60).padStart(2, '0') +
-      (m >= 26 ? '  ·  wrap up' : '  ·  target 26:00');
+      (m >= 27 ? '  ·  wrap up' : '  ·  target 27:00');
   }
   setInterval(tick, 1000);
 

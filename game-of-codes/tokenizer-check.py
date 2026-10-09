@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce every token count on slides 3, 5, 6 and 33 of Life of a token.
+"""Reproduce every token count on slides 5, 6, 8, 9 and 36 of Life of a token.
 
 The deck serves Llama 3.3 70B, so the counts are measured on Llama 3's own
 tokenizer rather than OpenAI's. Meta's tokenizer is a tiktoken BPE with a
@@ -64,18 +64,31 @@ def split(enc, text):
 def main():
     enc = load_llama3()
 
-    print("SLIDE 3 — a token is not a word")
+    print("SLIDE 5 — the question you actually type")
+    q = "why did the nightly ETL job fail?"
+    ids = enc.encode(q)
+    print(f"  {q!r}")
+    print(f"  {len(q.split())} words · {len(ids)} tokens")
+    print("  " + " | ".join(split(enc, q)))
+    wrapped = ("<|start_header_id|>user<|end_header_id|>\n\n" + q +
+               "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n")
+    n_w = len(enc.encode(wrapped, allowed_special="all"))
+    print(f"  wrapped in the chat template: {n_w} tokens "
+          f"({n_w - len(ids)} of template)")
+    print(f"  slide 13's ratio: 31,209 / {len(ids)} = {31209 // len(ids):,}x\n")
+
+    print("SLIDE 6 — a token is not a word")
     s = "The nightly ETL job failed on a deserialization error."
     print(f"  {len(s)} characters · {len(s.split())} words · {len(enc.encode(s))} tokens")
     print("  " + " | ".join(split(enc, s)) + "\n")
 
-    print("SLIDE 5 — what earned an entry")
+    print("SLIDE 8 — what earned an entry")
     for w in ("GPU", "agentgateway", "Kubernetes", "vLLM"):
         ids = enc.encode(w)
         print(f"  {w:14} {len(ids)}  " + " | ".join(split(enc, w)))
     print()
 
-    print("SLIDE 6 — your alphabet sets the price")
+    print("SLIDE 9 — your alphabet sets the price")
     rows = {
         "English":          "Every agent call ends up as tokens on a GPU somewhere.",
         "Srpski (latinica)": "Svaki poziv agenta završava kao tokeni na nekom GPU-u.",
@@ -88,7 +101,7 @@ def main():
         print(f"  {name:20} {len(text)} chars → {n:3} tokens  ({n / base:.2f}×)")
     print()
 
-    print("SLIDE 33 — the die is not one character to the detokenizer")
+    print("SLIDE 36 — the die is not one character to the detokenizer")
     ids = enc.encode("🎲")
     print(f"  🎲 is {len(ids)} tokens:")
     for i in ids:
