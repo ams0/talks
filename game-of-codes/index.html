@@ -1340,8 +1340,10 @@ body.notes-open #toolbar{bottom:38vh}
     if (Number.isFinite(n)) show(n - 1);
   });
   document.addEventListener('keydown', function (e) {
-    if (e.target.closest('input, textarea, [contenteditable]')) return;
-    if (e.key === ' ' && e.target.closest('button')) return;
+    var t = e.target;
+    var near = (t && typeof t.closest === 'function') ? t.closest.bind(t) : function () { return null; };
+    if (near('input, textarea, [contenteditable]')) return;
+    if (e.key === ' ' && near('button')) return;
     switch (e.key) {
       case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
       case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
