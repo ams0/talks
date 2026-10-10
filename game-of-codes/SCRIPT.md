@@ -4,7 +4,7 @@
 
 **Game of Codes 2026 · Science & Technology Park, Niš · Saturday 10 October 2026**
 
-40 slides, including the sources backup. **26:01 planned delivery**, with 59 seconds of breathing room against the **27:00 timer target**. All content slides remain; the running order includes the tokenisation trade and identity slides.
+41 slides, including the introduction and sources backup. **26:21 planned delivery**, with 39 seconds of breathing room against the **27:00 timer target**. All content slides remain; the running order includes the tokenisation trade and identity slides.
 
 The slides carry pictures; these notes carry explanation. Amber follows the request down; teal follows the answer home.
 
@@ -59,7 +59,8 @@ The slides carry pictures; these notes carry explanation. Amber follows the requ
 | 37 | Tool call. Append. Repeat | 0:55 | 25:01 |
 | 38 | The answer comes home | 0:20 | 25:21 |
 | 39 | Count. Route. Reuse | 0:40 | 26:01 |
-| 40 | Sources & assumptions — backup | — | — |
+| 40 | Alessandro Vozza — introduction | 0:20 | 26:21 |
+| 41 | Sources & assumptions — backup | — | — |
 
 These are speaking budgets, not benchmark timings. If discussion runs long, skip slide 38 first (20 seconds), then 7 (35 seconds), then 30 (50 seconds). Slide 31 works with a one-sentence explanation of blocks. Preserve the opening questions and the gateway, routing, prefill/decode, capacity and agent-loop arguments.
 
@@ -131,7 +132,9 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 **38 — callback.** “At the start, you asked why the ETL job failed. Here is the answer after looking at the evidence.” Serbian output and round-trip counts are an **illustrative trace**, not an execution log. Do not derive an 11-second latency from ideal bandwidth arithmetic.
 
-**39 — close.** “Count your context. Route to useful cached state. Keep the engine busy. Inspect those before reaching for more hardware.” Leave author, VOLT and `ams0.github.io/talks` visible for questions.
+**39 — close.** “Count your context. Route to useful cached state. Keep the engine busy. Inspect those before reaching for more hardware.” Advance to the introduction slide and leave it visible for questions.
+
+**40 — introduction.** “I’m Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. Scan these codes for my LinkedIn or more talks — I’d love to hear what you’re building.” Keep this to 20 seconds; email, LinkedIn and more talks are linked on the slide.
 
 ## Numbers you can reproduce
 
@@ -155,7 +158,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 | Session estimates | floor(110e9 ÷ 31,209 ÷ 327,680) = 10; floor(180e9 ÷ 31,209 ÷ 327,680) = 17; floor(180e9 ÷ 31,209 ÷ 163,840) = 35 |
 | Hardware assumptions | 288 GB HBM and 8 TB/s for the stated B300 example; decimal GB and binary KiB are distinguished |
 
-Context breakdowns, growth curves, cache-latency contrasts, capacity allocations and configuration are illustrative. Project performance reports and vendor peaks are neither independent benchmarks nor service-level guarantees. Consult the links on slide 40 for original sources.
+Context breakdowns, growth curves, cache-latency contrasts, capacity allocations and configuration are illustrative. Project performance reports and vendor peaks are neither independent benchmarks nor service-level guarantees. Consult the links on slide 41 for original sources.
 
 ## Expected questions
 
