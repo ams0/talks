@@ -149,6 +149,7 @@ pre.code.sm{font-size:24px;line-height:1.42;padding:24px 40px}.duo .pane pre.cod
 /* slide 5 asks the room to guess: dimmed is still readable, so hide it outright */
 #slide-5 .frag{opacity:0}#slide-5 .frag.on{opacity:1}.s-notes{display:none}
 #slide-10 .frag{opacity:0;visibility:hidden}#slide-10 .frag.on{opacity:1;visibility:visible}
+#slide-11 .frag{opacity:0;visibility:hidden}#slide-11 .frag.on{opacity:1;visibility:visible}
 #progress{position:fixed;left:0;top:0;height:3px;background:var(--request);width:0;z-index:60;transition:width 140ms linear}
 #toolbar{position:fixed;bottom:0;left:0;right:0;height:48px;z-index:60;display:flex;align-items:center;justify-content:center;gap:8px;background:#090908;border-top:1px solid #272720}
 body.notes-open #toolbar{bottom:38vh}
@@ -410,49 +411,73 @@ body.notes-open #toolbar{bottom:38vh}
 <section data-slide="11" id="slide-11" role="group" aria-roledescription="slide" aria-label="Slide 11 of 43" class="slide on-dark slide--viz wide">
   <h2>Down to silicon. Back again</h2>
   <div class="fig">
-  <svg viewBox="0 0 1780 440" role="img" aria-label="The route: harness, context, gateway, route, prefill, decode, then stream and loop back to the harness.">
+  <svg viewBox="0 0 1780 440" role="group" aria-label="An eight-stop route through an agent request; reveal each stop to follow the journey.">
     <defs>
       <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#a7d2bd"/></marker>
     </defs>
-    <path d="M1640 182 C 1700 40, 1500 24, 900 24 C 300 24, 120 44, 100 176"
-          stroke="#a7d2bd" stroke-width="3" fill="none" stroke-dasharray="10 7" marker-end="url(#ah)"/>
-    <text x="890" y="14" fill="#a7d2bd" font-family="Barlow" font-size="21" text-anchor="middle">the answer comes home — and the agent goes round again</text>
-    <line x1="100" y1="222" x2="1640" y2="222" stroke="#34362f" stroke-width="3"/>
-    <g font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">
-      <text x="100"  y="320">harness</text>
-      <text x="320"  y="320">context</text>
-      <text x="540"  y="320">gateway</text>
-      <text x="760"  y="320">route</text>
-      <text x="980"  y="320">prefill</text>
-      <text x="1200" y="320">decode</text>
-      <text x="1420" y="320">stream</text>
-      <text x="1640" y="320">loop</text>
+    <g class="frag">
+      <circle cx="100" cy="222" r="40" fill="#ffb72f"/>
+      <text x="100" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">01</text>
+      <text x="100" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">harness</text>
+      <text x="100" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">your keystroke</text>
     </g>
-    <g font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">
-      <text x="100"  y="356">your keystroke</text>
-      <text x="320"  y="356">31,212 tokens</text>
-      <text x="540"  y="356">who may do what</text>
-      <text x="760"  y="356">which GPU</text>
-      <text x="980"  y="356">compute-bound</text>
-      <text x="1200" y="356">bandwidth-bound</text>
-      <text x="1420" y="356">tokens home</text>
-      <text x="1640" y="356">tool call → again</text>
+    <g class="frag">
+      <line x1="140" y1="222" x2="280" y2="222" stroke="#34362f" stroke-width="3"/>
+      <circle cx="320" cy="222" r="40" fill="#ffb72f"/>
+      <text x="320" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">02</text>
+      <text x="320" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">context</text>
+      <text x="320" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">31,212 tokens</text>
     </g>
-    <g>
-      <circle cx="100"  cy="222" r="40" fill="#ffb72f"/><circle cx="320"  cy="222" r="40" fill="#ffb72f"/>
-      <circle cx="540"  cy="222" r="40" fill="#ffb72f"/><circle cx="760"  cy="222" r="40" fill="#ffb72f"/>
-      <circle cx="980"  cy="222" r="40" fill="#ffb72f"/><circle cx="1200" cy="222" r="40" fill="#ffb72f"/>
-      <circle cx="1420" cy="222" r="40" fill="#a7d2bd"/><circle cx="1640" cy="222" r="40" fill="#a7d2bd"/>
+    <g class="frag">
+      <line x1="360" y1="222" x2="500" y2="222" stroke="#34362f" stroke-width="3"/>
+      <circle cx="540" cy="222" r="40" fill="#ffb72f"/>
+      <text x="540" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">03</text>
+      <text x="540" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">gateway</text>
+      <text x="540" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">who may do what</text>
     </g>
-    <g font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">
-      <text x="100" y="223">01</text><text x="320" y="223">02</text><text x="540" y="223">03</text><text x="760" y="223">04</text>
-      <text x="980" y="223">05</text><text x="1200" y="223">06</text><text x="1420" y="223">07</text><text x="1640" y="223">08</text>
+    <g class="frag">
+      <line x1="580" y1="222" x2="720" y2="222" stroke="#34362f" stroke-width="3"/>
+      <circle cx="760" cy="222" r="40" fill="#ffb72f"/>
+      <text x="760" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">04</text>
+      <text x="760" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">route</text>
+      <text x="760" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">which GPU</text>
+    </g>
+    <g class="frag">
+      <line x1="800" y1="222" x2="940" y2="222" stroke="#34362f" stroke-width="3"/>
+      <circle cx="980" cy="222" r="40" fill="#ffb72f"/>
+      <text x="980" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">05</text>
+      <text x="980" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">prefill</text>
+      <text x="980" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">compute-bound</text>
+    </g>
+    <g class="frag">
+      <line x1="1020" y1="222" x2="1160" y2="222" stroke="#34362f" stroke-width="3"/>
+      <circle cx="1200" cy="222" r="40" fill="#ffb72f"/>
+      <text x="1200" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">06</text>
+      <text x="1200" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">decode</text>
+      <text x="1200" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">bandwidth-bound</text>
+    </g>
+    <g class="frag">
+      <line x1="1240" y1="222" x2="1380" y2="222" stroke="#34362f" stroke-width="3"/>
+      <circle cx="1420" cy="222" r="40" fill="#a7d2bd"/>
+      <text x="1420" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">07</text>
+      <text x="1420" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">stream</text>
+      <text x="1420" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">tokens home</text>
+    </g>
+    <g class="frag">
+      <line x1="1460" y1="222" x2="1600" y2="222" stroke="#34362f" stroke-width="3"/>
+      <circle cx="1640" cy="222" r="40" fill="#a7d2bd"/>
+      <text x="1640" y="223" font-family="Barlow" font-size="25" font-weight="700" fill="#121212" text-anchor="middle" dominant-baseline="central">08</text>
+      <text x="1640" y="320" font-family="Barlow" font-size="27" font-weight="700" fill="#f5f1e7" text-anchor="middle">loop</text>
+      <text x="1640" y="356" font-family="Barlow" font-size="19" fill="#929387" text-anchor="middle">tool call → again</text>
+      <path d="M1640 182 C 1700 40, 1500 24, 900 24 C 300 24, 120 44, 100 176"
+            stroke="#a7d2bd" stroke-width="3" fill="none" stroke-dasharray="10 7" marker-end="url(#ah)"/>
+      <text x="890" y="14" fill="#a7d2bd" font-family="Barlow" font-size="21" text-anchor="middle">the answer comes home — and the agent goes round again</text>
     </g>
   </svg>
   </div>
   <p class="cap">Eight stops. One request.</p>
   <div class="s-notes"><p><b>Additional context:</b> The strip at the top of every slide from here says where we are.</p>
-    <p><b>30 seconds. Point, do not narrate all eight.</b></p>
+    <p><b>30 seconds. Eight clicks:</b> reveal each stop in order, one per short phrase; the return arc appears with loop on click eight. Point through the journey, then move.</p>
     <p>Say which stops you will spend time on: three (the gateway), five and six (the two halves of inference). Then move.</p>
 
     <p class="say">Here is our route: the request travels down through the harness, gateway, routing layer and model engine, then streams back. Watch the loop at the top. An agent can call a tool, add its result and make another model request. The colors change where the answer starts home. We will focus on the gateway, the replica choice, and the engine where prefill and decode use the GPU differently.</p>
