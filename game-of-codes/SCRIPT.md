@@ -1,10 +1,10 @@
 # Life of a token — delivery script
 
-**Alessandro Vozza · VOLT Datacenters**
+**Alessandro Vozza · Lovelace Engineering**
 
 **Game of Codes 2026 · Science & Technology Park, Niš · Saturday 10 October 2026**
 
-41 slides, including the introduction and sources backup. **26:21 planned delivery**, with 39 seconds of breathing room against the **27:00 timer target**. All content slides remain; the running order includes the tokenisation trade and identity slides.
+41 slides, including the introduction and sources backup. **26:31 planned delivery**, with 29 seconds of breathing room against the **27:00 timer target**. All content slides remain; the running order includes the tokenisation trade and identity slides.
 
 The slides carry pictures; these notes carry explanation. Amber follows the request down; teal follows the answer home.
 
@@ -24,45 +24,131 @@ The slides carry pictures; these notes carry explanation. Amber follows the requ
 | 2 | Who uses AI? | 0:05 | 0:35 |
 | 3 | Every day? | 0:08 | 0:43 |
 | 4 | Who runs a fleet? | 0:15 | 0:58 |
-| 5 | Nine words. How many tokens? | 0:35 | 1:33 |
-| 6 | Tokens aren’t words | 0:55 | 2:28 |
-| 7 | Bytes. Words. The compromise | 0:35 | 3:03 |
-| 8 | Compression, learned | 0:50 | 3:53 |
-| 9 | Same meaning. Different bill | 0:55 | 4:48 |
-| 10 | Down to silicon. Back again | 0:35 | 5:23 |
-| 11 | The prompt you never wrote | 0:08 | 5:31 |
-| 12 | Your prompt is 0.04% | 1:05 | 6:36 |
-| 13 | ≈2,601× | 0:20 | 6:56 |
-| 14 | Where trust ends | 0:08 | 7:04 |
-| 15 | Four objects. One stack | 0:45 | 7:49 |
-| 16 | Models. Tools. Agents | 1:00 | 8:49 |
-| 17 | Authorize the action | 1:05 | 9:54 |
-| 18 | Carry the identity | 0:35 | 10:29 |
-| 19 | Two routes. One audit trail | 1:05 | 11:34 |
-| 20 | Which GPU answers? | 0:08 | 11:42 |
-| 21 | Same model. Different cost | 1:15 | 12:57 |
-| 22 | Route to the cache | 0:55 | 13:52 |
-| 23 | One GPU. Two bottlenecks | 0:10 | 14:02 |
-| 24 | Prefill computes. Decode reads | 1:25 | 15:27 |
-| 25 | 8.9 ms | 0:45 | 16:12 |
-| 26 | Separate when it pays | 0:55 | 17:07 |
-| 27 | Start with smarter routing | 1:00 | 18:07 |
-| 28 | Inside the engine | 0:08 | 18:15 |
-| 29 | Refill every step | 0:55 | 19:10 |
-| 30 | Give KV a page table | 0:50 | 20:00 |
-| 31 | Reuse the prefix | 0:55 | 20:55 |
-| 32 | What fits in memory? | 0:08 | 21:03 |
-| 33 | Weights are rent. KV is capacity | 1:05 | 22:08 |
-| 34 | Activate less. Read less | 1:00 | 23:08 |
-| 35 | The journey home | 0:08 | 23:16 |
-| 36 | One character. Three tokens | 0:50 | 24:06 |
-| 37 | Tool call. Append. Repeat | 0:55 | 25:01 |
-| 38 | The answer comes home | 0:20 | 25:21 |
-| 39 | Count. Route. Reuse | 0:40 | 26:01 |
-| 40 | Alessandro Vozza — introduction | 0:20 | 26:21 |
+| 5 | Nine words. How many tokens? | 0:45 | 1:43 |
+| 6 | Tokens aren’t words | 0:55 | 2:38 |
+| 7 | Bytes. Words. The compromise | 0:35 | 3:13 |
+| 8 | Compression, learned | 0:50 | 4:03 |
+| 9 | Same meaning. Different bill | 0:55 | 4:58 |
+| 10 | Down to silicon. Back again | 0:35 | 5:33 |
+| 11 | The prompt you never wrote | 0:08 | 5:41 |
+| 12 | Your prompt is 0.04% | 1:05 | 6:46 |
+| 13 | ≈2,601× | 0:20 | 7:06 |
+| 14 | Where trust ends | 0:08 | 7:14 |
+| 15 | Four objects. One stack | 0:45 | 7:59 |
+| 16 | Models. Tools. Agents | 1:00 | 8:59 |
+| 17 | Authorize the action | 1:05 | 10:04 |
+| 18 | Carry the identity | 0:35 | 10:39 |
+| 19 | Two routes. One audit trail | 1:05 | 11:44 |
+| 20 | Which GPU answers? | 0:08 | 11:52 |
+| 21 | Same model. Different cost | 1:15 | 13:07 |
+| 22 | Route to the cache | 0:55 | 14:02 |
+| 23 | One GPU. Two bottlenecks | 0:10 | 14:12 |
+| 24 | Prefill computes. Decode reads | 1:25 | 15:37 |
+| 25 | 8.9 ms | 0:45 | 16:22 |
+| 26 | Separate when it pays | 0:55 | 17:17 |
+| 27 | Start with smarter routing | 1:00 | 18:17 |
+| 28 | Inside the engine | 0:08 | 18:25 |
+| 29 | Refill every step | 0:55 | 19:20 |
+| 30 | Give KV a page table | 0:50 | 20:10 |
+| 31 | Reuse the prefix | 0:55 | 21:05 |
+| 32 | What fits in memory? | 0:08 | 21:13 |
+| 33 | Weights are rent. KV is capacity | 1:05 | 22:18 |
+| 34 | Activate less. Read less | 1:00 | 23:18 |
+| 35 | The journey home | 0:08 | 23:26 |
+| 36 | One character. Three tokens | 0:50 | 24:16 |
+| 37 | Tool call. Append. Repeat | 0:55 | 25:11 |
+| 38 | The answer comes home | 0:20 | 25:31 |
+| 39 | Count. Route. Reuse | 0:40 | 26:11 |
+| 40 | Alessandro Vozza — introduction | 0:20 | 26:31 |
 | 41 | Sources & assumptions — backup | — | — |
 
 These are speaking budgets, not benchmark timings. If discussion runs long, skip slide 38 first (20 seconds), then 7 (35 seconds), then 30 (50 seconds). Slide 31 works with a one-sentence explanation of blocks. Preserve the opening questions and the gateway, routing, prefill/decode, capacity and agent-loop arguments.
+
+## Word-for-word script
+
+These are the exact spoken lines shown in each slide’s speaker notes. Delivery cues and supporting explanations follow separately. Slide 41 is backup; speak its line only when opening that slide for questions.
+
+**1.** Everyone here called a model this week. Many of you have an agent running right now. Today I want to follow one request after you press Enter: through the software, down to the silicon, and back again. Our question is simple: where do the time, memory and money go after an agent receives a tiny request? One example will carry us through the whole stack.
+
+**2.** Hands up if you use AI, any day of the week.
+
+**3.** Keep your hand up if you use it every day, as part of how you actually work.
+
+**4.** Now keep it up if you run a fleet of agents: they keep working while you do something else. Look around. This talk follows what all those agents ask the infrastructure to do.
+
+**5.** Here is the entire user interface of modern AI: nine words. How many tokens do you think that is? [Pause for guesses; click to reveal.] Twelve. Nine words, twelve tokens. ETL and deserialization each split into two pieces. Everything we will see happens between this keystroke and the answer coming back. First, what exactly is a token?
+
+**6.** This example answer has fifty-four characters, nine words and twelve tokens. Those are three different counts. The tokenizer keeps common pieces together: “failed” stays whole, while “ETL” and “deserialization” split. A token is a learned piece of text, sometimes including a leading space. Notice the leading spaces on several chips. A space can be part of a token, so the count belongs to this exact string and tokenizer. That is why words and tokens are not interchangeable.
+
+**7.** Why split text at all? Starting with individual bytes gives us only two hundred and fifty-six possible byte values, but very long sequences. Whole words give shorter sequences, but new names need a way through. Subword tokens are the compromise: a fixed vocabulary that can still represent unfamiliar text. Longer byte sequences give the model more positions to process. A word-only vocabulary struggles with new product names and code identifiers. The middle lane keeps common pieces and still spells the rest.
+
+**8.** Byte-pair encoding starts with bytes and repeatedly merges frequent neighboring pieces. These examples come from the tokenizer used in this talk: “GPU” gets one token; “Kubernetes” gets two; “vLLM” gets three. The vocabulary reflects patterns in its training text. It does not understand the words. These rows show storage decisions, not definitions. Another tokenizer may split the same word differently. Measure with the tokenizer behind the model you actually serve.
+
+**9.** Listen to the same thought in Serbian: “Сваки позив агента завршава као токени на неком GPU-у.” Here, the English sentence takes twelve tokens, Serbian in Latin script takes twenty, and Serbian in Cyrillic takes twenty-three. This particular Cyrillic example uses about ninety-two percent more tokens than the English one. Token budgets and billing can therefore differ by language; measure the text your users actually send. The Latin and Cyrillic versions both express ordinary thoughts, yet occupy different amounts of context here. I am not claiming the same ratio for latency. English-only budget tests can misrepresent another language.
+
+**10.** Here is our route: the request travels down through the harness, gateway, routing layer and model engine, then streams back. Watch the loop at the top. An agent can call a tool, add its result and make another model request. The colors change where the answer starts home. We will focus on the gateway, the replica choice, and the engine where prefill and decode use the GPU differently.
+
+**11.** First, let us open the request and see the prompt you never wrote.
+
+**12.** Our twelve-token question is the red sliver. In this illustrative request, instructions, tool descriptions, files and conversation history bring the total to thirty-one thousand, two hundred and twelve tokens. The harness decides what context to supply; different harnesses trim, retrieve or compact it in different ways. The model sees the context it receives on this call. The diagram assigns ten thousand two hundred tokens to tool schemas and nine thousand six hundred to files. These are illustrative amounts. Export a real request from your harness to learn what it sends.
+
+**13.** The full request is about two thousand, six hundred and one times larger than the twelve tokens you typed. Your question is just 0.04 percent of this example context. Now follow where it goes.
+
+**14.** Now that the request is assembled, it reaches the boundary where identity and policy matter.
+
+**15.** This part of the stack can be represented by four Kubernetes objects: a Gateway, an HTTPRoute, an InferencePool and a Deployment. That lets you inspect routing and serving configuration in the cluster and review changes in Git. The InferencePool requires its extension and a compatible gateway. Follow the objects in order: Gateway receives traffic, HTTPRoute chooses a target, InferencePool adds an inference-aware destination, and Deployment runs serving pods. This is an architecture map, not an installation manifest.
+
+**16.** An agent sends three kinds of traffic: model requests, tool calls over MCP, and messages to other agents over A2A. A tool call can change a real system. That is why the gateway must understand more than the model endpoint; it needs a place to check each action. The lanes have different consequences. A completion generates text; a tool may read a document or delete a record. Policy has to follow the action the agent requests.
+
+**17.** For a tool call, the question is specific: may this identity invoke this tool under these conditions? In the example, document search is allowed for the right group, while customer deletion is denied. The rule is checked when the call happens, even if the agent discovered the tool earlier. Hiding a dangerous tool during discovery helps, but it does not enforce authorization. The gateway still checks the actual call against current identity and claims.
+
+**18.** To make that decision useful, carry identity through the request. If every user shares one long-lived key, the log only tells you which agent ran. Verify the caller at the gateway and, where the tool supports it, pass a scoped credential so the action can be attributed to the right person or workload. After an incident, you need to trace who initiated the chain and which workload called the tool. Credential exchange needs support at both ends; the diagram shows the intended identity path.
+
+**19.** The left route illustrates model access: verify identity, set a token budget and use our own inference pool as the ordinary destination. An external model is shown with zero weight, so it receives no ordinary weighted traffic. Using it deliberately needs an explicit routing rule in the deployed configuration. The right route illustrates per-tool authorization for MCP calls. Together, those controls can feed one audit trail; this sketch does not show the logging setup. The budget limits an agent loop that could spend tokens without visibly failing. The MCP rule controls its next action. Both policies need to be enforced at the gateway.
+
+**20.** The request has passed the gateway. Next question: which GPU should answer it?
+
+**21.** These replicas run the same model, but one may already hold a reusable prefix in its KV cache. A basic Kubernetes Service has no knowledge of that cache. If it sends the request to a cold replica, the engine may repeat prefill work. The latency numbers here illustrate the potential difference; the actual result depends on the request and the cache. In a continuing conversation, one replica may hold the processed prefix. A request sent there can focus on the new suffix. Equal model weights therefore do not mean equal work for every replica.
+
+**22.** This is where the InferencePool comes in. The HTTPRoute points to the pool, and an endpoint picker can choose a compatible replica using signals such as load and cache locality. The endpoint can stay the same for callers. Deploying this also requires the extension, controller and picker; the highlighted line is the routing change, not the whole installation. The endpoint picker may consider queueing, load and cache locality. Available signals depend on the implementation. Validate the chosen provider and its routing behavior before treating this as a production change.
+
+**23.** We have reached inference. Inside one GPU, the request encounters two very different bottlenecks.
+
+**24.** Prefill processes the long input and can be dominated by arithmetic. Decode produces one new token at a time and, at low batch sizes, often spends much of its time moving model weights. In this simplified dense-model calculation, the weight-read bars are both seventy-one gigabytes, while the arithmetic bars differ by roughly thirty-one thousand times. Real bottlenecks vary with batching, context length and hardware. For this thirty-one-thousand-token input, the simplified dense-model estimate is about four point four petaflops of prefill arithmetic. One decode step is about one hundred and forty-one gigaflops. These are estimates, not measured GPU traces.
+
+**25.** Seventy-one gigabytes of weights divided by eight terabytes per second of peak memory bandwidth is about eight point nine milliseconds. That is an ideal lower bound for one weight read, not measured time per token. KV reads, kernels, communication and imperfect utilization all add time. Batching can share the weight read across requests. That division uses the model’s weight size and advertised peak bandwidth. It omits everything else the engine does. Its reciprocal is a simplified ceiling, not a throughput promise; benchmark the deployment.
+
+**26.** One option at scale is to use different workers for prefill and decode. Prefill workers emphasize compute; decode workers emphasize bandwidth and room for long-lived KV state. Prefill still needs memory while it builds that state, and transferring KV between workers has a cost. Specialize only when measurements justify that cost. The drawing separates compute-heavy prefill from memory-heavy decode, then transfers KV state. That transfer adds cost and complexity. Small deployments may benefit more from better scheduling on shared workers.
+
+**27.** Here is what that specialized setup can look like: separate prefill and decode deployments, KV transfer between them, and one pool in front. The numbers are illustrative configuration, not a recipe. The adoption order is the real point: measure first, use cache-aware routing, and disaggregate only when the workload is large enough to benefit. The replica counts are illustrations, not target ratios. Measure prefix reuse and queues first. Add separate worker pools only when those measurements show a benefit that exceeds transfer cost.
+
+**28.** Now let us look inside the engine that actually generates the tokens.
+
+**29.** Continuous batching revisits the batch at each scheduling step. When one sequence finishes, the scheduler can admit another instead of leaving a slot idle until the longest request ends. That keeps the GPU busier, although admission limits and competing requests still affect latency. On the left, finished sequences leave capacity idle until the longest member ends. On the right, new work fills slots at later steps. Real schedulers still enforce memory and admission limits.
+
+**30.** The KV cache also needs memory management. PagedAttention allocates it in blocks, using a block table instead of reserving one huge contiguous region for a sequence. That reduces fragmentation and can let matching prefixes share physical blocks. Sixteen-token blocks are an example, not a universal setting. A block table maps logical sequence positions to physical cache blocks. The engine allocates as a sequence grows. Matching content and cache machinery are still required to share a prefix.
+
+**31.** If a new request begins with exactly the same prefix, cached KV blocks can avoid recomputing that part of prefill. The example latency contrast is illustrative. Reuse only helps when the cached blocks are accessible to the replica serving this request, so the cache and the routing decision belong in the same design. Stable system instructions and tool schemas can make useful cached prefixes. New tool results still need processing. The routing choice must balance locality against load on each replica.
+
+**32.** That leads to a practical capacity question: how much of the GPU memory is left for active conversations?
+
+**33.** Weights occupy memory before the first request arrives. KV cache grows with the tokens in active requests. In this simplified capacity model, quantizing weights changes the estimate from ten to seventeen concurrent sessions; quantizing KV as well raises it to thirty-five. Those are modeled capacities, not promised throughput. Check quality, runtime support and memory overhead on your own stack. The bars show an assumed KV budget rising from one hundred and ten to one hundred and eighty gigabytes as weights shrink. Smaller KV entries then hold more tokens. Real capacity moves with overhead and output length.
+
+**34.** The earlier arithmetic described a dense model, where all its layers participate in each token. This diagram introduces a different architecture: a mixture of experts. A router selects some experts per token, so fewer expert weights may need to be read for that step. Shared layers, stored experts and communication still cost resources. Sparse activation changes the workload; it does not remove the hardware limit. Only selected experts are active in the sparse grid, but shared layers still run. Unselected experts still occupy memory somewhere. Sparse activation trades one bottleneck against storage and communication elsewhere.
+
+**35.** Now the tokens stream back, and the agent loop closes.
+
+**36.** Here is a detail built for this room. The dice character is four UTF-eight bytes, and this tokenizer represents it with three tokens. The first fragments cannot be displayed as a complete character; the server has to assemble them. That means token arrival and visible character arrival are different moments in a streamed response. Those three tokens are byte fragments, not three visible dice. The server buffers incomplete UTF-eight until it can display a character. User-visible streaming deserves its own latency measurement.
+
+**37.** Sometimes the model returns a tool request instead of the final answer. The harness calls the tool, appends the result and asks the model again. These bars sketch growth across turns; the separate ETL trace takes five round trips. Later turns can carry more context, although caching, retrieval and compaction change how much work is repeated. Each loop can add tool output and history. Fully resent, growing context can become costly across turns. Prefix reuse, trimming and retrieval change that accounting.
+
+**38.** Here is the answer in Serbian. In English: an invalid schema cache caused the ETL failure. The illustrated request carries about thirty-one thousand input tokens; the agent example takes five round trips.
+
+**39.** If you take three things away, make them these: count the context your agent sends, route requests toward reusable state, and keep the engine busy with good batching. Measure those before you size more hardware. Those checks map to the journey: the harness decides context, routing decides location, and the engine shares GPU work. Make those choices visible before buying more capacity. Thank you.
+
+**40.** I am Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. Scan the codes for my LinkedIn profile or more talks. I would love to hear what you are building.
+
+**41.** These are the sources and assumptions behind the examples. The tokenizer counts are reproducible; the configuration and performance comparisons are illustrative. I am happy to open any of these links or walk through a number.
 
 ## The opening questions
 
@@ -134,7 +220,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 **39 — close.** “Count your context. Route to useful cached state. Keep the engine busy. Inspect those before reaching for more hardware.” Advance to the introduction slide and leave it visible for questions.
 
-**40 — introduction.** “I’m Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. Scan these codes for my LinkedIn or more talks — I’d love to hear what you’re building.” Keep this to 20 seconds; email, LinkedIn and more talks are linked on the slide.
+**40 — introduction.** Keep this to 20 seconds; email, LinkedIn and more talks are linked on the slide. Read the exact line in the word-for-word section above.
 
 ## Numbers you can reproduce
 
@@ -142,8 +228,8 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 | Quantity | Reproduction / assumption |
 |---|---|
-| Raw question | 7 whitespace-separated words; 9 tokens |
-| Question with script’s chat wrapper | 18 tokens, including 9 wrapper tokens |
+| Raw question | 9 whitespace-separated words; 12 tokens |
+| Question with script’s chat wrapper | 21 tokens, including 9 wrapper tokens |
 | Answer sentence | 54 characters / 9 words / 12 tokens |
 | GPU / agentgateway / Kubernetes / vLLM | 1 / 2 / 2 / 3 tokens |
 | English / Serbian Latin / Serbian Cyrillic | 12 / 20 / 23; 23 ÷ 12 ≈ 1.92, for the displayed examples |

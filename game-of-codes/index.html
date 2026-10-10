@@ -130,7 +130,7 @@ body.notes-open #toolbar{bottom:38vh}
 #pager{font:13px var(--f-code);color:#b9b8aa;min-width:75px;text-align:center}
 #clock{position:absolute;left:18px;font:12px var(--f-code);color:#929387}#help{position:absolute;right:18px;font:12px var(--f-text);color:#929387}
 #notes{position:fixed;left:0;right:0;bottom:0;height:38vh;background:#14140f;border-top:1px solid var(--request);color:#c9c8bb;padding:20px 28px 26px;overflow-y:auto;display:none;z-index:70}
-#notes.on{display:block}#notes h4{font:500 14px var(--f-text);letter-spacing:.1em;text-transform:uppercase;color:var(--request);margin-bottom:14px}#nbody{font-size:18px;line-height:1.5;max-width:140ch}#nbody p{margin-bottom:10px}#nbody b{color:var(--ink)}#nbody code{font-family:var(--f-code);color:var(--request);font-size:.9em}#nbody .say{border-left:2px solid var(--request);padding-left:14px;color:var(--ink);font-style:italic}
+#notes.on{display:block}#notes h4{font:500 14px var(--f-text);letter-spacing:.1em;text-transform:uppercase;color:var(--request);margin-bottom:14px}#nbody{font-size:18px;line-height:1.5;max-width:140ch}#nbody p{margin-bottom:10px}#nbody b{color:var(--ink)}#nbody code{font-family:var(--f-code);color:var(--request);font-size:.9em}#nbody .say{border-left:2px solid var(--request);padding-left:14px;color:var(--ink)}#nbody .say::before{content:'SAY THIS';display:block;color:var(--request);font:500 13px var(--f-text);letter-spacing:.1em;margin-bottom:5px}
 @media(max-width:900px){#clock,#help{display:none}}
 @media(prefers-reduced-motion:reduce){.slide,.frag,#progress{transition:none}}
 @page{size:1920px 1080px;margin:0}
@@ -148,12 +148,13 @@ body.notes-open #toolbar{bottom:38vh}
   <h1>Life of a <em>token</em></h1>
   <p class="sub">From agents to silicon. And back.</p>
   <div class="meta">
-    <span class="who">Alessandro Vozza</span><span>VOLT Datacenters</span>
+    <span class="who">Alessandro Vozza</span><span>Lovelace Engineering</span>
     <span class="spacer"></span><span>Saturday 10 October 2026</span>
   </div>
   <div class="s-notes"><p>Cover: AI-generated conceptual illustration of a token above silicon; not a photograph or hardware diagram.</p>
     <p><b>30 seconds.</b> Press <code>T</code> now. Target 27:00.</p>
-    <p class="say">"Everyone here called a model this week. Most of you have an agent running right now. Almost nobody has looked at what happens in the half-second after you press enter. Today we look. One request, all the way down, all the way back — in a stack you can run yourself."</p>
+
+    <p class="say">Everyone here called a model this week. Many of you have an agent running right now. Today I want to follow one request after you press Enter: through the software, down to the silicon, and back again. Our question is simple: where do the time, memory and money go after an agent receives a tiny request? One example will carry us through the whole stack.</p>
   </div>
 </section>
 <!-- Q1 ..................................................................... -->
@@ -164,9 +165,10 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <div class="s-notes">
     <p><b>5 seconds. Get your own hand up first — the room follows the speaker.</b></p>
-    <p class="say">"Before anything else. Hands up if you use AI. Any of it, any day of the week."</p>
     <p>Every hand, instantly — nobody has to think about this one, which is the whole reason it is here. Do not comment on the result and do not pause for it; question one exists only to get arms in the air so question two costs nothing. Ask it and click.</p>
     <p>If the room is shy — early slot, big hall, Saturday — say "right, it is Saturday, let me try that again" and ask once more. Never leave a show of hands hanging; a dead first question poisons the next two.</p>
+
+    <p class="say">Hands up if you use AI, any day of the week.</p>
   </div>
 </section>
 
@@ -178,8 +180,9 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <div class="s-notes">
     <p><b>8 seconds. Do not re-ask — say "keep them up" so the room sees hands going down.</b></p>
-    <p class="say">"Keep them up if it is every day. Part of how you actually work, not something you tried once."</p>
     <p>The <i>drop</i> is the content here, not the count. A short beat while people look around — they enjoy seeing where they sit — then move. All three questions together should take well under half a minute.</p>
+
+    <p class="say">Keep your hand up if you use it every day, as part of how you actually work.</p>
   </div>
 </section>
 
@@ -191,10 +194,11 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <div class="s-notes">
     <p><b>15 seconds — the only one of the three worth a pause. Read the room before you move: this is the calibration slide.</b></p>
-    <p class="say">"And keep them up if you have a fleet of them — agents running, doing the dirty work, while you do something else. … Right. This talk is for those hands. Everybody else: this is where you are going, and I would rather you saw the bill before you got there."</p>
-    <p><b>Use the answer.</b> Many hands: the room already feels the cost, so move briskly through the harness material and spend the time you save on the gateway and llm-d acts. Two or three hands: slow down on slide 9 — the 31,212-token context is the slide that makes the rest matter, and this room has not felt it yet.</p>
+    <p><b>Use the answer.</b> Many hands: the room already feels the cost, so move briskly through the harness material and spend the time you save on the gateway and llm-d acts. Two or three hands: slow down on slide 12 — the 31,212-token context is the slide that makes the rest matter, and this room has not felt it yet.</p>
     <p>Nobody at all: that is fine and quite likely. Say "good — then nothing in this talk has hurt you yet", which gets a laugh and reframes the whole thing as a warning rather than a retrospective.</p>
     <p>The visual shift marks this as the turn. The next slide is a terminal, and the question it contains is the one the rest of the talk answers.</p>
+
+    <p class="say">Now keep it up if you run a fleet of agents: they keep working while you do something else. Look around. This talk follows what all those agents ask the infrastructure to do.</p>
   </div>
 </section>
 
@@ -210,13 +214,13 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <p class="cap">Then the harness goes to work.</p>
   <div class="s-notes"><p><b>Additional context:</b> Nine words · <b>twelve tokens</b> · and then the harness goes to work.</p>
-    <p><b>45 seconds, and it is a two-click slide. Ask, wait, then reveal.</b></p>
-    <p class="say">"Here is the entire user interface of modern AI. Nine words. Before I click — how many tokens is that?"</p>
+    <p><b>45 seconds, and it is a two-click slide. Ask, wait, then reveal “Twelve.”</b></p>
     <p><b>Then stop talking and wait. Do not rush this.</b> Let two or three land before you click. Most rooms say nine, because they are counting words; a few say thirty or more, because they have heard tokens are smaller than words and over-correct. Both are useful to be wrong about, and both make the reveal land.</p>
     <p>If a number is close, say so and move — "twelve, who said twelve, you have done this before". If the room is silent, say your own guess out loud and click; never let a question die on stage.</p>
-    <p class="say">[click] "Twelve. Nine words, twelve tokens — ETL costs two of them and deserialization costs two more, and you will see why in a moment. Now: everything I am going to show you for the next twenty-five minutes happens between this keystroke and the first character of the answer coming back. And almost none of it was written by you."</p>
     <p>Twelve is measured on Llama 3, not estimated — <code>tokenizer-check.py</code> prints it. The split is <code>why | did | the | nightly | E | TL | job | fail | on | des | erialization | ?</code>. It is deliberately the same nine words and twelve tokens as the answer on the next slide, so the two never contradict each other on stage.</p>
     <p>If the room is a Claude Code / Cursor / Copilot room, ask for hands — "who has one of these open right now?" — and then say "good, you are all running the thing I am about to take apart."</p>
+
+    <p class="say">Here is the entire user interface of modern AI: nine words. How many tokens do you think that is? [Pause for guesses; click to reveal.] Twelve. Nine words, twelve tokens. ETL and deserialization each split into two pieces. Everything we will see happens between this keystroke and the answer coming back. First, what exactly is a token?</p>
   </div>
 </section>
 
@@ -237,9 +241,10 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">A token is a learned piece of text.</p>
   <div class="s-notes"><p><b>Additional context:</b> Common words survive whole. <b>ETL</b> splits. <b>deserialization</b> splits. A token is a byte sequence the tokenizer saw often enough to keep.</p>
     <p><b>55 seconds. Walk the amber chips.</b></p>
-    <p class="say">"This is the answer the model is going to give you, taken apart. Fifty-four characters. Nine words. Twelve tokens — so it is neither. Look at the amber ones: E-T-L is two tokens, because the tokenizer has never seen enough ETL to keep it whole. Deserialization is two. But 'failed' and 'nightly' survive intact, because they are common. A token is just a byte sequence that showed up often enough in the training corpus to be worth an entry."</p>
     <p>Real splits from Llama 3’s own tokenizer — <code>tokenizer-check.py</code> beside the deck prints them. Say that it is measured; people assume these diagrams are drawn by hand.</p>
     <p>If someone asks why there's a leading space on most chips: the space is part of the token. That is why "ETL" mid-sentence and "ETL" at the start are different tokens.</p>
+
+    <p class="say">This example answer has fifty-four characters, nine words and twelve tokens. Those are three different counts. The tokenizer keeps common pieces together: “failed” stays whole, while “ETL” and “deserialization” split. A token is a learned piece of text, sometimes including a leading space. Notice the leading spaces on several chips. A space can be part of a token, so the count belongs to this exact string and tokenizer. That is why words and tokens are not interchangeable.</p>
   </div>
 </section>
 
@@ -284,10 +289,11 @@ body.notes-open #toolbar{bottom:38vh}
   </svg>
   </div>
   <p class="cap">Short sequences. Fixed vocabulary. Unseen words welcome.</p>
-  <div class="s-notes"><p><b>Additional context:</b> Letters: nothing to learn, enormous sequences. Words: short sequences, and <b>agentgateway</b> isn't in the dictionary. Subwords are the trade.</p>
+  <div class="s-notes"><p><b>Additional context:</b> Bytes: a tiny vocabulary, but long sequences. Words: shorter sequences, but unfamiliar names need a fallback. Subwords are the trade.</p>
     <p><b>35 seconds. Left, right, middle — in that order.</b></p>
-    <p class="say">"Why not just use letters? Because your vocabulary is two hundred and fifty-six and every sentence becomes enormous — and attention cost grows with the square of sequence length, so that is ruinous. Why not whole words? Because the vocabulary is unbounded. New words arrive every day — agentgateway, llm-d, your internal service names — and a word-level model simply cannot represent them. Subwords are the compromise: a fixed vocabulary that can still spell anything it has never seen."</p>
     <p>If challenged on "256": byte-level, so 256 is exactly right — not an alphabet, the byte range. That is also why these models can handle any script on earth without a special case.</p>
+
+    <p class="say">Why split text at all? Starting with individual bytes gives us only two hundred and fifty-six possible byte values, but very long sequences. Whole words give shorter sequences, but new names need a way through. Subword tokens are the compromise: a fixed vocabulary that can still represent unfamiliar text. Longer byte sequences give the model more positions to process. A word-only vocabulary struggles with new product names and code identifiers. The middle lane keeps common pieces and still spells the rest.</p>
   </div>
 </section>
 
@@ -304,11 +310,12 @@ body.notes-open #toolbar{bottom:38vh}
     </div>
   </div>
   <p class="cap">Frequent byte pairs become vocabulary.</p>
-  <div class="s-notes"><p><b>Additional context:</b> Start from bytes. Merge the most frequent pair. Repeat until you have <b>128,256</b> entries. <b>GPU earned one; Kubernetes did not</b> — and GPT-4o’s vocabulary splits all four of these exactly the same way.</p>
+  <div class="s-notes"><p><b>Additional context:</b> Start from bytes and merge frequent pairs. The tokenizer used here has <b>128,256 vocabulary entries</b>, including special tokens; that is not the number of merge operations. <b>GPU earned one; Kubernetes did not.</b></p>
     <p><b>50 seconds. The last line is the one that lands.</b></p>
-    <p class="say">"Nobody sat down and wrote this vocabulary. You start from raw bytes, you count which pair occurs together most often, you merge it into a new symbol, and you do that a hundred and twenty-eight thousand times. What falls out is a frequency ranking of the internet. GPU appears often enough to earn a single entry. Kubernetes — the thing we are all running — does not; it costs you a K and then everything else. And agentgateway is free, but only because 'agent' and 'gateway' were already common separately."</p>
     <p>Then land it: <b>nothing in this vocabulary understands anything.</b> It is compression, fitted to a corpus. Every semantic thing the model does happens after this point, in the weights — not here.</p>
     <p>This is also the honest setup for the next slide: if the corpus was mostly English, the compression is tuned for English.</p>
+
+    <p class="say">Byte-pair encoding starts with bytes and repeatedly merges frequent neighboring pieces. These examples come from the tokenizer used in this talk: “GPU” gets one token; “Kubernetes” gets two; “vLLM” gets three. The vocabulary reflects patterns in its training text. It does not understand the words. These rows show storage decisions, not definitions. Another tokenizer may split the same word differently. Measure with the tokenizer behind the model you actually serve.</p>
   </div>
 </section>
 
@@ -338,12 +345,12 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">This example: Cyrillic uses <b>1.9×</b> the English tokens.</p>
   <div class="s-notes">
     <p><b>55 seconds. Let them read the third row. These are the real splits.</b></p>
-    <p class="say">"Equivalent meaning. Twelve tokens in this English sentence. Twenty-three in this Cyrillic translation. This example uses roughly ninety-two percent more tokens. That affects token budgets and per-token billing, but compute and latency do not necessarily scale by the same ratio."</p>
     <p>Token efficiency depends on the language, the actual text and the model vocabulary. Benchmark representative production languages rather than assuming English token counts transfer.</p>
     <p><b>Read the Cyrillic line aloud, in Serbian, before you give any number.</b> Say the sentence, let them hear it is ordinary speech, then put the 23 on it. The surcharge lands far harder on a sentence the room has just heard in its own language than on a row of chips.</p><p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
-    <p><b>Then the turn, and it is the best thirty seconds in the first act.</b> Llama 3's vocabulary is 128,256 entries — roughly a hundred thousand inherited from tiktoken, plus <i>twenty-eight thousand added specifically for non-English</i>. In this measured example, Serbian Cyrillic uses 1.9× the tokens of the English sentence. The effort was made and the gap survived it.</p>
-    <p class="say">"And here is the part that should annoy you. Meta spent twenty-eight thousand of Llama's hundred and twenty-eight thousand vocabulary slots specifically on languages that are not English. In this example, Serbian Cyrillic still uses nearly twice the tokens of English. Somebody sat in a room and decided how many slots your alphabet was worth. That is a product decision, taken on your behalf, and baked into the weights — and you cannot change the tokenizer of a model you did not train."</p>
-    <p>If asked which tokenizer: Llama 3's own, rebuilt from its 128,256-entry vocabulary and round-trip checked — <code>tokenizer-check.py</code> beside the deck reproduces every number on these slides. GPT-4o's <code>o200k_base</code> is kinder here, at 1.75×, which is worth conceding if someone has measured it themselves.</p>
+    <p>In this measured example, Serbian Cyrillic uses 1.9× the tokens of the English sentence. This ratio depends on the exact text and tokenizer; it is not a general multiplier for the language.</p>
+    <p>If asked which tokenizer: Llama 3's own, rebuilt from its 128,256-entry vocabulary and round-trip checked — <code>tokenizer-check.py</code> beside the deck reproduces every number on these slides.</p>
+
+    <p class="say">Listen to the same thought in Serbian: “Сваки позив агента завршава као токени на неком GPU-у.” Here, the English sentence takes twelve tokens, Serbian in Latin script takes twenty, and Serbian in Cyrillic takes twenty-three. This particular Cyrillic example uses about ninety-two percent more tokens than the English one. Token budgets and billing can therefore differ by language; measure the text your users actually send. The Latin and Cyrillic versions both express ordinary thoughts, yet occupy different amounts of context here. I am not claiming the same ratio for latency. English-only budget tests can misrepresent another language.</p>
   </div>
 </section>
 
@@ -394,8 +401,9 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Eight stops. One request.</p>
   <div class="s-notes"><p><b>Additional context:</b> The strip at the top of every slide from here says where we are.</p>
     <p><b>35 seconds. Point, do not narrate all eight.</b></p>
-    <p class="say">"Eight stops. Amber on the way down, teal on the way home. And notice the dashed line at the top — that is the bit people forget. An agent is not one request. The answer comes back, the harness runs a tool, and the whole thing goes round again, longer each time."</p>
     <p>Say which stops you will spend time on: three (the gateway), five and six (the two halves of inference). Then move.</p>
+
+    <p class="say">Here is our route: the request travels down through the harness, gateway, routing layer and model engine, then streams back. Watch the loop at the top. An agent can call a tool, add its result and make another model request. The colors change where the answer starts home. We will focus on the gateway, the replica choice, and the engine where prefill and decode use the GPU differently.</p>
   </div>
 </section>
 
@@ -404,14 +412,14 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="num">01–02</p>
   <h2>The prompt<br>you never wrote</h2>
   <p class="stops">stop 01–02 · harness → context</p>
-  <div class="s-notes"><p><b>8 seconds.</b> Breath, not content.</p></div>
+  <div class="s-notes"><p><b>8 seconds.</b> Breath, not content.</p><p class="say">First, let us open the request and see the prompt you never wrote.</p></div>
 </section>
 
 <!-- 5 ...................................................................... -->
 <section data-slide="12" id="slide-12" role="group" aria-roledescription="slide" aria-label="Slide 12 of 41" class="slide on-dark slide--viz wide" data-stop="1">
   <h2>Your prompt is <em>0.04%</em></h2>
   <div class="fig">
-  <svg viewBox="0 0 1780 360" role="img" aria-label="A proportional bar of the request: tool schemas, file reads and conversation history dominate; the user's question is a 19-token sliver at the end.">
+  <svg viewBox="0 0 1780 360" role="img" aria-label="A proportional bar of the request: tool schemas, file reads and conversation history dominate; the user's question is a 12-token sliver at the end.">
     <path d="M1757 108 L1757 70 L1360 70" stroke="#ff6b51" stroke-width="2.5" fill="none"/>
     <circle cx="1757" cy="108" r="5" fill="#ff6b51"/>
     <text x="1344" y="62" font-family="Barlow" font-size="38" font-weight="800" fill="#ff6b51" text-anchor="end">12 — your question</text>
@@ -440,9 +448,10 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Tools, files and history fill the rest.</p>
   <div class="s-notes"><p><b>Additional context:</b> In this untrimmed example, history is resent each turn. Prefix caching can avoid recomputing reusable prefixes.</p>
     <p><b>65 seconds. The most useful slide in act one. Point at the red sliver.</b></p>
-    <p class="say">"Your harness just did all of this. It loaded a system prompt. It read your project instructions. It serialised every tool it has — and tool definitions as JSON Schema are enormous, this is ten thousand tokens of descriptions and parameter docs. It pasted in the files it decided were relevant. It replayed the entire conversation from the beginning, because the model has no memory — the illusion of memory is retransmission. And then, right at the end, your twelve tokens."</p>
     <p>Hands up: "who has ever counted the tokens in their tool definitions?" Nobody. That is the point.</p>
     <p>Illustrative but correctly shaped: MCP/tool schemas really do run 400–900 tokens each; six turns of real work really is 8–10k. Count your own with <code>tiktoken</code>.</p>
+
+    <p class="say">Our twelve-token question is the red sliver. In this illustrative request, instructions, tool descriptions, files and conversation history bring the total to thirty-one thousand, two hundred and twelve tokens. The harness decides what context to supply; different harnesses trim, retrieve or compact it in different ways. The model sees the context it receives on this call. The diagram assigns ten thousand two hundred tokens to tool schemas and nine thousand six hundred to files. These are illustrative amounts. Export a real request from your harness to learn what it sends.</p>
   </div>
 </section>
 
@@ -455,7 +464,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <div class="s-notes">
     <p><b>20 seconds. Say the number, pause, click.</b></p>
-    <p class="say">"About two thousand six hundred times. And every single one of those tokens gets multiplied by seventy billion parameters at stop five. This number is why the rest of the talk matters."</p>
+    <p class="say">The full request is about two thousand, six hundred and one times larger than the twelve tokens you typed. Your question is just 0.04 percent of this example context. Now follow where it goes.</p>
   </div>
 </section>
 
@@ -466,7 +475,7 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="num">03</p>
   <h2>Where<br>trust ends</h2>
   <p class="stops">stop 03 · gateway</p>
-  <div class="s-notes"><p><b>8 seconds.</b> This is the act you said you'd spend time on — signal it.</p></div>
+  <div class="s-notes"><p><b>8 seconds.</b> This is the act you said you'd spend time on — signal it.</p><p class="say">Now that the request is assembled, it reaches the boundary where identity and policy matter.</p></div>
 </section>
 <!-- K1 ..................................................................... -->
 <section data-slide="15" id="slide-15" role="group" aria-roledescription="slide" aria-label="Slide 15 of 41" class="slide on-dark slide--viz wide" data-stop="3">
@@ -504,9 +513,10 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Standard Kubernetes objects. Your infrastructure.</p>
   <div class="s-notes"><p><b>Additional context:</b> No console, no vendor API, nothing proprietary on the path. <b>kubectl get inferencepool</b> and you are looking at your own routing.</p>
     <p><b>45 seconds. The frame for the next six slides — say it once, then stop repeating it.</b></p>
-    <p class="say">"Before we go into the two hops, one thing that matters more than any of the detail: all four of these are Kubernetes objects. Not a vendor console, not a SaaS dashboard, not an API you file a ticket against. A Gateway, an HTTPRoute, an InferencePool and a Deployment. You can kubectl get them, you can put them in git, and you can diff them when something changes at three in the morning."</p>
     <p>The amber one is the only unfamiliar kind in the list, and it is the subject of stop four. Everything else in this diagram has been in Kubernetes for years.</p>
     <p>If someone asks what provides the Gateway: any Gateway API implementation — agentgateway, Envoy Gateway, kgateway, Istio. The kind is the contract; the implementation is yours to pick and to change.</p>
+
+    <p class="say">This part of the stack can be represented by four Kubernetes objects: a Gateway, an HTTPRoute, an InferencePool and a Deployment. That lets you inspect routing and serving configuration in the cluster and review changes in Git. The InferencePool requires its extension and a compatible gateway. Follow the objects in order: Gateway receives traffic, HTTPRoute chooses a target, InferencePool adds an inference-aware destination, and Deployment runs serving pods. This is an architecture map, not an installation manifest.</p>
   </div>
 </section>
 
@@ -561,8 +571,9 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">One gateway. Three kinds of traffic.</p>
   <div class="s-notes">
     <p><b>60 seconds. Start of the gateway act. Slow down.</b></p>
-    <p class="say">"Here is the thing most LLM gateways get wrong. They sit in front of chat completions and call it done. But an agent does not mostly talk to a model — it talks to tools, over MCP, and to other agents, over A2A. And a completion writes you a bad paragraph. A tool call drops a table. The dangerous traffic is the middle lane, and almost nobody has a policy enforcement point in front of it."</p>
     <p>agentgateway handles all three in one data plane: Rust, one binary, donated by Solo.io to the Linux Foundation's Agentic AI Foundation. Envoy AI Gateway and kgateway are fine alternatives — the argument is the shape, not the vendor.</p>
+
+    <p class="say">An agent sends three kinds of traffic: model requests, tool calls over MCP, and messages to other agents over A2A. A tool call can change a real system. That is why the gateway must understand more than the model endpoint; it needs a place to check each action. The lanes have different consequences. A completion generates text; a tool may read a document or delete a record. Policy has to follow the action the agent requests.</p>
   </div>
 </section>
 
@@ -608,8 +619,9 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">Allow search. Deny deletion. Check every call.</p>
   <div class="s-notes">
     <p><b>65 seconds. This is the slide the gateway act exists for.</b></p>
-    <p class="say">"This is the control that matters for tool access. Not 'may this agent use MCP' — but 'may this agent call delete_customer, given these claims, in this environment'. Written in CEL, evaluated in the data plane, on every single call. Your agent is a program that writes its own next action. You would not give a junior engineer unrestricted production credentials on day one, and you should not give it to something that hallucinates."</p>
     <p>If asked how tools get discovered: the gateway can federate several MCP servers behind one endpoint and filter the tool list it advertises — so the agent never even learns that <code>delete_customer</code> exists. That is better than denying it at call time.</p>
+
+    <p class="say">For a tool call, the question is specific: may this identity invoke this tool under these conditions? In the example, document search is allowed for the right group, while customer deletion is denied. The rule is checked when the call happens, even if the agent discovered the tool earlier. Hiding a dangerous tool during discovery helps, but it does not enforce authorization. The gateway still checks the actual call against current identity and claims.</p>
   </div>
 </section>
 
@@ -645,8 +657,9 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">Audit <b>who</b> acted, not only what happened.</p>
   <div class="s-notes">
     <p><b>35 seconds.</b></p>
-    <p class="say">"The single most common thing I see in production agent stacks is a long-lived API key in an environment variable, shared by every user of the agent. Which means your audit log says 'the agent did it'. Useless. What you want is the human's identity carried through the agent, verified at the gateway, exchanged into a short-lived credential, and presented to the tool — so the log says who, not just what."</p>
     <p>JWT, OIDC, OAuth token exchange, SPIFFE workload identities. All standard, all boring, none of it specific to AI — which is the reassuring part.</p>
+
+    <p class="say">To make that decision useful, carry identity through the request. If every user shares one long-lived key, the log only tells you which agent ran. Verify the caller at the gateway and, where the tool supports it, pass a scoped credential so the action can be attributed to the right person or workload. After an incident, you need to trace who initiated the chain and which workload called the tool. Credential exchange needs support at both ends; the diagram shows the intended identity path.</p>
   </div>
 </section>
 <!-- K2 ..................................................................... -->
@@ -664,7 +677,7 @@ body.notes-open #toolbar{bottom:38vh}
   <span class="k">backends:</span>
   - <span class="k">inferencePool:</span> {name: llama-70b}
   - <span class="k">openai:</span> {model: gpt-5, <span class="v">weight: 0</span>}</pre>
-      <p class="note">Yours by default; the frontier model reachable only by explicit route. <b>Rent knowingly, in git.</b></p>
+      <p class="note">Your pool is the default. Intentional external-model use needs a separate routing rule. <b>Rent knowingly, in git.</b></p>
     </div>
     <div class="pane good">
       <p class="t">/mcp · the tools</p>
@@ -683,10 +696,11 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">Illustrative configuration · check your deployed API version.</p>
   <div class="s-notes">
     <p><b>65 seconds. Left pane fast, right pane slow.</b></p>
-    <p class="say">"Here is the whole thing as configuration. On the left, the model route: verify a JWT, cap the day's tokens, and send it to your own pool — with the frontier API configured at weight zero, reachable by explicit route and landing in the same audit log. That is what it looks like to rent knowingly instead of by accident. On the right, the route almost nobody has: per-tool authorisation on MCP, in CEL, evaluated on every call."</p>
-    <p><b>Explain <code>weight: 0</code> or it sounds self-contradictory.</b> Zero weight means it takes no share of ordinary traffic — nothing lands there by load balancing. It is still a configured backend, so a request that explicitly asks for <code>gpt-5</code> reaches it, through this gateway, with this identity, into this audit log. Configured and auditable, never accidental. That is the whole difference between renting knowingly and discovering it in the invoice.</p><p>Token budgets are worth ten seconds of their own: a runaway agent loop is a cost incident long before it is an outage, because nothing errors — it just gets expensive. Tokens are the only backpressure an agent respects.</p>
+    <p><b>Explain <code>weight: 0</code>.</b> It removes the external backend from ordinary weighted traffic. Deliberate access requires a separately configured route or selection rule. To support the headline, configure request and decision logging as well; it is not shown in this sketch.</p><p>Token budgets matter because a runaway agent loop can become a cost incident before it causes an outage.</p>
     <p>Honest caveat on screen: this is the shape of the config, not a paste-ready file. Field names move between minors; check the reference.</p>
     <p>If asked why not Envoy AI Gateway or kgateway: both fine, both speak Gateway API. agentgateway's differentiator is MCP and A2A as first-class protocols. Pick one that speaks the standard.</p>
+
+    <p class="say">The left route illustrates model access: verify identity, set a token budget and use our own inference pool as the ordinary destination. An external model is shown with zero weight, so it receives no ordinary weighted traffic. Using it deliberately needs an explicit routing rule in the deployed configuration. The right route illustrates per-tool authorization for MCP calls. Together, those controls can feed one audit trail; this sketch does not show the logging setup. The budget limits an agent loop that could spend tokens without visibly failing. The MCP rule controls its next action. Both policies need to be enforced at the gateway.</p>
   </div>
 </section>
 
@@ -696,7 +710,7 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="num">04</p>
   <h2>Which GPU<br>answers?</h2>
   <p class="stops">stop 04 · route</p>
-  <div class="s-notes"><p><b>8 seconds.</b></p></div>
+  <div class="s-notes"><p><b>8 seconds.</b></p><p class="say">The request has passed the gateway. Next question: which GPU should answer it?</p></div>
 </section>
 
 <!-- 15 ..................................................................... -->
@@ -748,9 +762,10 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Illustrative latency · a warm replica can reuse your prefix.</p>
   <div class="s-notes"><p><b>Additional context:</b> The fix is an <b>InferencePool</b> where the <b>Service</b> was. Your application team changes nothing.</p>
     <p><b>75 seconds. The biggest money slide of the first half.</b></p>
-    <p class="say">"Three replicas. Same image, same weights, same answer. And one of them already has thirty thousand of your thirty-one thousand tokens sitting in its KV cache, because this is turn seven of a conversation. In this illustrative trace, that replica avoids most of the prefill work. A Service cannot know that. It round-robins, you land on a cold replica, and you pay for the same prefill twice. No error. No 503. The dashboard is green."</p>
     <p>A <code>Service</code> balances connections. An <code>InferencePool</code> balances <i>requests</i>. The signals are vLLM's own Prometheus metrics — nothing proprietary. Gateway API Inference Extension provides a common routing model; check provider and release compatibility.</p>
     <p>If challenged: yes, this is also why connection-count load balancing fails — one streaming SSE connection can hold for ninety seconds using a sliver of a GPU while another saturates it.</p>
+
+    <p class="say">These replicas run the same model, but one may already hold a reusable prefix in its KV cache. A basic Kubernetes Service has no knowledge of that cache. If it sends the request to a cold replica, the engine may repeat prefill work. The latency numbers here illustrate the potential difference; the actual result depends on the request and the cache. In a continuing conversation, one replica may hold the processed prefix. A request sent there can focus on the new suffix. Equal model weights therefore do not mean equal work for every replica.</p>
   </div>
 </section>
 <!-- K3 ..................................................................... -->
@@ -776,10 +791,11 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Queue depth. Cache state. Prefix overlap. <b>Illustrative manifest.</b></p>
   <div class="s-notes">
     <p><b>55 seconds. Point at the last two lines.</b></p>
-    <p class="say">"And here is what the fix costs. One new object, and one line changed in the route: kind InferencePool where it used to say kind Service. The application endpoint can stay stable while routing changes. Deploy the extension, configure a picker, and validate provider support before changing the route."</p>
     <p>The endpoint picker uses serving metrics and configured scoring rules to select a replica. Queue depth, KV occupancy and prefix information can guide the choice; available signals and metric names vary by implementation and release.</p>
     <p>High KV occupancy alongside queuing can indicate memory pressure. Check the metric name and units for your vLLM release, then measure KV occupancy, queuing, compute and bandwidth together.</p>
     <p>Gateway API Inference Extension is a Kubernetes SIG project. Provider support, API versions and picker configuration vary; validate manifests against the deployed release.</p>
+
+    <p class="say">This is where the InferencePool comes in. The HTTPRoute points to the pool, and an endpoint picker can choose a compatible replica using signals such as load and cache locality. The endpoint can stay the same for callers. Deploying this also requires the extension, controller and picker; the highlighted line is the routing change, not the whole installation. The endpoint picker may consider queueing, load and cache locality. Available signals depend on the implementation. Validate the chosen provider and its routing behavior before treating this as a production change.</p>
   </div>
 </section>
 
@@ -789,7 +805,7 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="num">05–06</p>
   <h2>One GPU.<br>Two bottlenecks</h2>
   <p class="stops">stop 05–06 · prefill → decode</p>
-  <div class="s-notes"><p><b>10 seconds. Land the title — this is the hinge of the talk.</b></p></div>
+  <div class="s-notes"><p><b>10 seconds. Land the title — this is the hinge of the talk.</b></p><p class="say">We have reached inference. Inside one GPU, the request encounters two very different bottlenecks.</p></div>
 </section>
 
 <!-- 18 ..................................................................... -->
@@ -831,9 +847,10 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">First-token latency and streaming speed need different knobs.</p>
   <div class="s-notes">
     <p><b>85 seconds. The heart of the talk. Let the two memory bars do the work.</b></p>
-    <p class="say">"Look at the bottom bars. They are the same. Seventy-one gigabytes of weights, read out of memory, in both cases. Now look at the top bars. On the left, four and a half petaflops of arithmetic. On the right — that sliver — a hundred and forty-one gigaflops. Thirty-one thousand times less work, for exactly the same memory traffic. Prefill uses the GPU as designed. Decode turns the most expensive accelerator NVIDIA sells into a very fancy memcpy."</p>
     <p>If someone wants the ratio: prefill runs at ~62,000 FLOP per byte read, decode at 2. The card breaks even around 1,250. One is fifty times over, the other six hundred times under.</p>
     <p>Every operational consequence follows from this slide: why your latency dashboard needs two numbers, why a bigger GPU did not help, why there is a whole project devoted to running these on separate machines.</p>
+
+    <p class="say">Prefill processes the long input and can be dominated by arithmetic. Decode produces one new token at a time and, at low batch sizes, often spends much of its time moving model weights. In this simplified dense-model calculation, the weight-read bars are both seventy-one gigabytes, while the arithmetic bars differ by roughly thirty-one thousand times. Real bottlenecks vary with batching, context length and hardware. For this thirty-one-thousand-token input, the simplified dense-model estimate is about four point four petaflops of prefill arithmetic. One decode step is about one hundred and forty-one gigaflops. These are estimates, not measured GPU traces.</p>
   </div>
 </section>
 
@@ -844,7 +861,7 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="lab">The ideal weight-read floor.</p>
     <p class="sub">71 GB ÷ 8 TB/s · batch one · excludes KV and overhead</p>
   </div>
-  <div class="s-notes"><p><b>45 seconds.</b> This is an ideal lower bound from weight traffic alone, not measured token latency. It assumes a dense 71 GB model, one GPU at 8 TB/s peak HBM bandwidth, and batch one. KV-cache reads, other traffic, kernels and utilization add cost.</p><p class="say">“Seventy-one gigabytes divided by eight terabytes a second. Eight point nine milliseconds, before KV reads and overhead. Batching lets multiple sequences share the weight read; it does not guarantee identical per-step latency.”</p></div>
+  <div class="s-notes"><p><b>45 seconds.</b> This is an ideal lower bound from weight traffic alone, not measured token latency. It assumes a dense 71 GB model, one GPU at 8 TB/s peak HBM bandwidth, and batch one. KV-cache reads, other traffic, kernels and utilization add cost.</p><p class="say">Seventy-one gigabytes of weights divided by eight terabytes per second of peak memory bandwidth is about eight point nine milliseconds. That is an ideal lower bound for one weight read, not measured time per token. KV reads, kernels, communication and imperfect utilization all add time. Batching can share the weight read across requests. That division uses the model’s weight size and advertised peak bandwidth. It omits everything else the engine does. Its reciprocal is a simplified ceiling, not a throughput promise; benchmark the deployment.</p></div>
 </section>
 
 
@@ -861,7 +878,7 @@ body.notes-open #toolbar{bottom:38vh}
     <path d="M278 200 L 378 200" stroke="#ffb72f" stroke-width="3" fill="none" marker-end="url(#a4)"/>
     <rect x="390" y="60" width="440" height="280" rx="8" fill="#1d1d19" stroke="#ffb72f" stroke-width="2"/>
     <text x="610" y="112" font-family="Barlow" font-size="34" font-weight="800" fill="#ffb72f" text-anchor="middle">prefill pool</text>
-    <text x="610" y="146" font-family="Barlow" font-size="20" fill="#a1a1a1" text-anchor="middle">sized for FLOPs · tiny KV</text>
+    <text x="610" y="146" font-family="Barlow" font-size="20" fill="#a1a1a1" text-anchor="middle">sized for FLOPs · builds KV</text>
     <g fill="#ffb72f">
       <rect x="430" y="180" width="80" height="110" rx="4"/><rect x="530" y="180" width="80" height="110" rx="4"/>
       <rect x="630" y="180" width="80" height="110" rx="4"/><rect x="730" y="180" width="60" height="110" rx="4" opacity="0.35"/>
@@ -882,9 +899,10 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Prefill for compute. Decode for memory. KV crosses the network.</p>
   <div class="s-notes"><p><b>Additional context:</b> Two deployments, two sets of knobs, one pool in front. <b>Earn this — do not start here.</b></p>
     <p><b>55 seconds.</b></p>
-    <p class="say">"Once you accept that prefill and decode are different machines, the conclusion is obvious: stop making them share a GPU. Prefill pods sized for raw compute, with almost no KV cache. Decode pods sized for memory bandwidth and capacity, with an enormous one. The KV cache travels between them over RDMA. Specialization can improve utilization at scale, while adding network and operational complexity."</p>
-    <p>Be honest: this is the right answer at scale and the wrong answer for almost everyone in this room. Cache-aware scheduling — the green box on the left — is where the money is and where the risk is not.</p>
+    <p>Disaggregation can help when measured utilization gains exceed KV-transfer and operational costs. Cache-aware scheduling is a simpler first option when the workload has reusable prefixes.</p>
     <p>On one GPU, the cheap version of this is <b>chunked prefill</b>, which slices a long prefill and interleaves it with everyone else's decode steps. Check support and defaults for your vLLM version and configuration.</p>
+
+    <p class="say">One option at scale is to use different workers for prefill and decode. Prefill workers emphasize compute; decode workers emphasize bandwidth and room for long-lived KV state. Prefill still needs memory while it builds that state, and transferring KV between workers has a cost. Specialize only when measurements justify that cost. The drawing separates compute-heavy prefill from memory-heavy decode, then transfers KV state. That transfer adds cost and complexity. Small deployments may benefit more from better scheduling on shared workers.</p>
   </div>
 </section>
 <!-- K4 ..................................................................... -->
@@ -893,7 +911,7 @@ body.notes-open #toolbar{bottom:38vh}
   <h2>Start with smarter routing</h2>
   <div class="fig">
     <pre class="code sm"><span class="k">prefill:</span>
-  <span class="k">replicas:</span> 4                 <span class="c"># sized for FLOPs, tiny KV</span>
+  <span class="k">replicas:</span> 4                 <span class="c"># sized for FLOPs, builds KV</span>
   <span class="k">parallelism:</span> {tensor: 8}
   <span class="k">vllm:</span> {maxNumBatchedTokens: 16384}
 
@@ -910,10 +928,11 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Illustrative configuration · disaggregate when the workload justifies it.</p>
   <div class="s-notes">
     <p><b>60 seconds. The caption is the advice; the panel is the proof it is only config.</b></p>
-    <p class="say">"The diagram before this said prefill and decode want different machines. This is that, as deployments. Four prefill replicas tuned for raw compute with almost no KV cache. Twelve decode replicas tuned for bandwidth with an enormous one. The KV blocks travel between them over RDMA. And one InferencePool in front, so the caller still sees a single endpoint."</p>
     <p>Then the honest ordering, which is the real takeaway: path one is cache-aware scheduling — reusing warm prefixes while balancing load; its benefit depends on workload and cache hit rate. Path two is this slide, and it pays off only once you have enough replicas that specialising them beats the cost of shipping KV over the network. Path three is wide expert parallelism for MoE at scale.</p>
     <p>Say plainly: <b>most of this room should start and stop at path one.</b> It is where the money is and where the risk is not.</p>
     <p>Provenance: llm-d is CNCF Sandbox, founded by Red Hat, Google Cloud, IBM Research, CoreWeave and NVIDIA. Project benchmarks are workload-specific examples, not universal bounds or forecasts. The config is the shape, not a paste-ready values file.</p>
+
+    <p class="say">Here is what that specialized setup can look like: separate prefill and decode deployments, KV transfer between them, and one pool in front. The numbers are illustrative configuration, not a recipe. The adoption order is the real point: measure first, use cache-aware routing, and disaggregate only when the workload is large enough to benefit. The replica counts are illustrations, not target ratios. Measure prefix reuse and queues first. Add separate worker pools only when those measurements show a benefit that exceeds transfer cost.</p>
   </div>
 </section>
 
@@ -923,7 +942,7 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="num">06</p>
   <h2>Inside<br>the engine</h2>
   <p class="stops">stop 06 · still decoding · the engine</p>
-  <div class="s-notes"><p><b>8 seconds.</b></p></div>
+  <div class="s-notes"><p><b>8 seconds.</b></p><p class="say">Now let us look inside the engine that actually generates the tokens.</p></div>
 </section>
 
 <!-- 24 ..................................................................... -->
@@ -959,9 +978,10 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Finished sequence out. Waiting sequence in.</p>
   <div class="s-notes"><p><b>Additional context:</b> The batch is torn down and rebuilt <b>every forward pass</b> — at a rate that depends on the workload.</p>
     <p><b>55 seconds. Point at the hatching, then at the teal.</b></p>
-    <p class="say">"Your request does not wait its turn and then get served. It joins a batch that is rebuilt on every single forward pass, next to total strangers. On the left, the old way: four requests start together, and because the batch leaves together, three of them sit there computing padding. On the right, the moment a sequence emits its stop token the slot is free, and the scheduler admits someone else on the very next pass."</p>
     <p>The consequence worth saying out loud for the SREs: <b>your tail latency is a property of your neighbours.</b> "It was fast in staging" is not evidence of anything.</p>
     <p>Admission is a <i>memory</i> decision — do I have free KV blocks — not a queue position.</p>
+
+    <p class="say">Continuous batching revisits the batch at each scheduling step. When one sequence finishes, the scheduler can admit another instead of leaving a slot idle until the longest request ends. That keeps the GPU busier, although admission limits and competing requests still affect latency. On the left, finished sequences leave capacity idle until the longest member ends. On the right, new work fills slots at later steps. Real schedulers still enforce memory and admission limits.</p>
   </div>
 </section>
 
@@ -993,7 +1013,8 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">Allocate as sequences grow. Share common prefixes.</p>
   <div class="s-notes">
     <p><b>50 seconds.</b></p>
-    <p class="say">"vLLM's founding idea was to steal the oldest trick in the operating system. Stop reserving a contiguous slab for the longest answer a sequence might produce, and start handing out sixteen-token pages with a block table. Paged allocation reduces wasted reservations and fragmentation. And sharing falls out for free — two sequences with the same prefix just point at the same physical blocks."</p>
+
+    <p class="say">The KV cache also needs memory management. PagedAttention allocates it in blocks, using a block table instead of reserving one huge contiguous region for a sequence. That reduces fragmentation and can let matching prefixes share physical blocks. Sixteen-token blocks are an example, not a universal setting. A block table maps logical sequence positions to physical cache blocks. The engine allocates as a sequence grows. Matching content and cache machinery are still required to share a prefix.</p>
   </div>
 </section>
 
@@ -1020,8 +1041,9 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">Illustrative latency · cached work helps only when your request reaches it.</p>
   <div class="s-notes">
     <p><b>55 seconds. This is where the two halves of the talk meet.</b></p>
-    <p class="say">"Blocks are keyed by a hash of their contents and everything before them. Your system prompt, your tool schemas, your project instructions — byte-identical on every turn. So on turn seven, the prefill you actually pay for is the delta. The illustrative 900-to-12 ms comparison shows the potential shape of that benefit, not a measured guarantee. But — and this is the whole argument — the cached blocks must be accessible to the replica that handles the request. Cache-aware serving and cache-aware routing are the same optimisation in two different projects, and routing and caching should be designed together."</p>
     <p>Free gift for the room: a timestamp or session ID at the <i>top</i> of a system prompt invalidates every block after it and silently destroys your hit rate. Put volatile content at the end.</p>
+
+    <p class="say">If a new request begins with exactly the same prefix, cached KV blocks can avoid recomputing that part of prefill. The example latency contrast is illustrative. Reuse only helps when the cached blocks are accessible to the replica serving this request, so the cache and the routing decision belong in the same design. Stable system instructions and tool schemas can make useful cached prefixes. New tool results still need processing. The routing choice must balance locality against load on each replica.</p>
   </div>
 </section>
 
@@ -1030,7 +1052,7 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="num">06</p>
   <h2>What fits<br>in memory?</h2>
   <p class="stops">stop 06 · still decoding · the silicon</p>
-  <div class="s-notes"><p><b>8 seconds.</b> Signal that this section is short.</p></div>
+  <div class="s-notes"><p><b>8 seconds.</b> Signal that this section is short.</p><p class="say">That leads to a practical capacity question: how much of the GPU memory is left for active conversations?</p></div>
 </section>
 
 <!-- 28 ..................................................................... -->
@@ -1059,9 +1081,10 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Illustrative capacity: <b>10 → 17 → 35</b> concurrent 31k-token sessions.</p>
   <div class="s-notes"><p><b>Additional context:</b> concurrent 31k-token agent sessions on one card &nbsp;·&nbsp; <b>weight and KV quantization</b></p>
     <p><b>65 seconds. Reveal one bar per click.</b></p>
-    <p class="say">"Weights are rent — you pay it once per replica whether anyone is talking to the model or not. The KV cache is the inventory you actually sell: every token in flight lives there. So the interesting effect of quantisation is not a smaller download. It is that the same card went from ten concurrent agent conversations to thirty-five in this simplified capacity model. Quantization changes the memory budget. Validate model quality, hardware support and runtime overhead."</p>
     <p>Numbers if challenged: Llama 70B keeps 2 × 80 layers × 8 KV heads × 128 dims × 2 bytes = 327,680 bytes of KV per token — <b>320 KiB</b> exactly, and 160 KiB at FP8. <code>--gpu-memory-utilization 0.9</code> leaves 259 GB of the 288. Sessions are floored at the 31,212-token context from act one: 110e9 ÷ 327,680 ÷ 31,212 = 10.7, so ten.</p>
     <p>This is a capacity illustration, not a throughput prediction. Output tokens, runtime reservations, cache sharing and quantization support change the number of simultaneous sessions.</p>
+
+    <p class="say">Weights occupy memory before the first request arrives. KV cache grows with the tokens in active requests. In this simplified capacity model, quantizing weights changes the estimate from ten to seventeen concurrent sessions; quantizing KV as well raises it to thirty-five. Those are modeled capacities, not promised throughput. Check quality, runtime support and memory overhead on your own stack. The bars show an assumed KV budget rising from one hundred and ten to one hundred and eighty gigabytes as weights shrink. Smaller KV entries then hold more tokens. Real capacity moves with overhead and output length.</p>
   </div>
 </section>
 
@@ -1089,9 +1112,10 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">Sparse computation trades off memory capacity and communication.</p>
   <div class="s-notes">
     <p><b>60 seconds. The grids do the work — just point.</b></p>
-    <p class="say">"Here is the idea that broke the eight-point-nine-millisecond floor. In a dense model every parameter participates in every token, so decode is hostage to the total size of the thing. In a mixture of experts, a small router picks a handful of experts per token, and only those get read out of memory. The model on the right can have ten times the parameters of the one on the left and still be cheaper to decode — because decode is a bandwidth problem, and you just cut the bandwidth bill."</p>
     <p><b>Say the model change out loud, or someone will ask.</b> Everything up to here was Llama 3.3 70B, which is dense — the 8-of-256 grid on the right is a DeepSeek-shaped model, not this one. Phrase it as "and this is where you would stop running Llama": hundreds of billions of parameters, only tens of billions active per token. That ratio is most of why serving costs collapsed over the last two years.</p>
     <p>The catch, if asked: every expert still has to be resident in HBM somewhere, so you need either a very large box or expert parallelism across many GPUs — llm-d's third path. You trade memory <i>capacity</i> for memory <i>bandwidth</i>.</p>
+
+    <p class="say">The earlier arithmetic described a dense model, where all its layers participate in each token. This diagram introduces a different architecture: a mixture of experts. A router selects some experts per token, so fewer expert weights may need to be read for that step. Shared layers, stored experts and communication still cost resources. Sparse activation changes the workload; it does not remove the hardware limit. Only selected experts are active in the sparse grid, but shared layers still run. Unselected experts still occupy memory somewhere. Sparse activation trades one bottleneck against storage and communication elsewhere.</p>
   </div>
 </section>
 
@@ -1100,7 +1124,7 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="num">07–08</p>
   <h2>The journey<br>home</h2>
   <p class="stops">stop 07–08 · stream → loop</p>
-  <div class="s-notes"><p><b>8 seconds.</b> Change of energy — the hard arithmetic is behind you.</p></div>
+  <div class="s-notes"><p><b>8 seconds.</b> Change of energy — the hard arithmetic is behind you.</p><p class="say">Now the tokens stream back, and the agent loop closes.</p></div>
 </section>
 
 
@@ -1137,9 +1161,10 @@ body.notes-open #toolbar{bottom:38vh}
     <p class="cap">Four bytes. Three tokens. One visible character.</p>
   <div class="s-notes">
     <p><b>50 seconds. This is the one built for this room. Enjoy it.</b></p>
-    <p class="say">"I checked something this week specifically for you. Your logo is a die. One character, four bytes of UTF-8 — and this tokenizer splits it across three tokens, none a complete character alone. The first two pieces are buffered. Once the third arrives, the server can emit the character. Your conference logo is a buffering problem."</p>
     <p>Then the serious half: inter-token latency is measured at <i>token</i> emission; your users experience <i>character</i> emission. For Cyrillic, for emoji, for CJK, those are different events — so a latency SLO built on token timestamps measures something nobody can feel.</p>
     <p>Measured on Llama 3’s own tokenizer — the model this talk serves — with <code>decode_single_token_bytes</code>. Say that, because the room will assume it is a joke. On GPT-4o it is two tokens rather than three; the boundary moves with the vocabulary, the <i>principle</i> does not, because any byte-level BPE can split a multi-byte character.</p>
+
+    <p class="say">Here is a detail built for this room. The dice character is four UTF-eight bytes, and this tokenizer represents it with three tokens. The first fragments cannot be displayed as a complete character; the server has to assemble them. That means token arrival and visible character arrival are different moments in a streamed response. Those three tokens are byte fragments, not three visible dice. The server buffers incomplete UTF-eight until it can display a character. User-visible streaming deserves its own latency measurement.</p>
   </div>
 </section>
 
@@ -1166,8 +1191,9 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">Longer conversations can mean more work on every turn.</p>
   <div class="s-notes"><p><b>Additional context:</b> This example uses <b>five round trips</b>, with more context on later turns. This is why prefix caching is not a nicety.</p>
     <p><b>55 seconds. Closes the loop you opened on slide 3.</b></p>
-    <p class="say">"And here is the part that surprises people who have only ever built chatbots. The answer that came back was not prose — it was a tool call. So your harness runs the tool, appends the result, and sends the entire conversation again. This example has five round trips. Each turn can carry more context than the last. With fixed growth and no trimming or prefix reuse, cumulative input volume can grow quadratically; actual cost depends on the serving strategy."</p>
     <p>That is the business case for everything in act four: prefix caching, cache-aware routing, KV tiering. With an untrimmed growing history and no prefix reuse, total context processed can grow quadratically across turns. Trimming, compaction and caching change that model.</p>
+
+    <p class="say">Sometimes the model returns a tool request instead of the final answer. The harness calls the tool, appends the result and asks the model again. These bars sketch growth across turns; the separate ETL trace takes five round trips. Later turns can carry more context, although caching, retrieval and compaction change how much work is repeated. Each loop can add tool output and history. Fully resent, growing context can become costly across turns. Prefix reuse, trimming and retrieval change that accounting.</p>
   </div>
 </section>
 
@@ -1185,10 +1211,11 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="cap">31,212 in · 412 out · 5 round trips · <b>illustrative trace</b></p>
   <div class="s-notes">
     <p><b>20 seconds, and then go straight to the close. Do not explain the footer — let them read it.</b></p>
-    <p class="say">"And here is the answer to the question we started with. Thirty-one thousand tokens in. Four hundred and twelve out. Five round trips, because it had to go and look at things. This is an illustrative trace. And nine of those thirty-one thousand tokens were typed by a human."</p>
     <p>This closes the loop opened on slide 5. The 31,212-token context and five round trips are illustrative. End-to-end latency also includes tool execution, networking, queues and every model round trip; it cannot be inferred from the weight-read floor alone.</p>
     <p>The Serbian response is a callback to the tokenizer example. Its token ratio has not been measured; do not transfer the earlier sentence’s 1.9× ratio to this different text.</p>
     <p>If you are over time, this is the one slide in the last act you can drop without breaking anything. It is a flourish, not an argument. But it is a good flourish.</p>
+
+    <p class="say">Here is the answer in Serbian. In English: an invalid schema cache caused the ETL failure. The illustrated request carries about thirty-one thousand input tokens; the agent example takes five round trips.</p>
   </div>
 </section>
 
@@ -1200,15 +1227,16 @@ body.notes-open #toolbar{bottom:38vh}
     <img src="alessandro-vozza.jpg" alt="Alessandro Vozza">
     <div class="who">
       <b>Alessandro Vozza</b>
-      <span>VOLT Datacenters · from power to tokens · Amsterdam</span>
+      <span>Lovelace Engineering · Amsterdam</span>
       <span class="links">ams0.github.io/talks</span>
     </div>
   </div>
   <div class="s-notes">
     <p><b>40 seconds.</b> Land the three takeaways, then advance to the introduction slide and leave it visible for questions.</p>
-    <p class="say">"Eight stops. One request. And everything surprising was in the same place: the expensive state lives on the GPU — so routing, caching and batching turn out to be three names for one problem, which is keeping that state close to the request that needs it. Every layer that decides it is open source, standard, and will run on one box in this building. Thank you."</p>
     <p>Three things to leave them with if there is a lull: count your context before you buy a GPU; replace the Service with an InferencePool; and TTFT is compute while inter-token latency is bandwidth, so never reach for the same knob twice.</p>
     <p>Likely questions: cost of a box (pivot to utilisation — the same card is cheap or ruinous depending only on how busy you keep it); MoE (lower per-token traffic, same shape); "do I need this for a 7B model" (no — but fix the routing the moment you have two replicas); frontier API vs self-host (a per-workload decision, not a per-company one); "is greedy decoding deterministic" (no, batch composition changes reduction order).</p>
+
+    <p class="say">If you take three things away, make them these: count the context your agent sends, route requests toward reusable state, and keep the engine busy with good batching. Measure those before you size more hardware. Those checks map to the journey: the harness decides context, routing decides location, and the engine shares GPU work. Make those choices visible before buying more capacity. Thank you.</p>
   </div>
 </section>
 
@@ -1234,8 +1262,9 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <div class="s-notes">
     <p><b>20 seconds. Leave this slide visible for questions.</b></p>
-    <p class="say">"I’m Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. Scan these codes for my LinkedIn or more talks — I’d love to hear what you’re building."</p>
     <p>Bio and affiliation checked against the repository’s recent decks: <a href="https://github.com/ams0/talks/blob/f83d34a38d61fd58ceaecd6d34728e8530613345/ai-tech-summit-2026/index.html#L1708-L1718" target="_blank" rel="noopener">AI Tech Summit 2026: contact and consulting disclosure</a>; <a href="https://github.com/ams0/talks/blob/f83d34a38d61fd58ceaecd6d34728e8530613345/ai-advantage/index.html#L870-L873" target="_blank" rel="noopener">AI Advantage: Lovelace Engineering, Golden Kubestronaut and Amsterdam</a>.</p>
+
+    <p class="say">I am Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. Scan the codes for my LinkedIn profile or more talks. I would love to hear what you are building.</p>
   </div>
 </section>
 
@@ -1252,7 +1281,7 @@ body.notes-open #toolbar{bottom:38vh}
     <p><b>Read the arithmetic</b>Illustrative models, not benchmarks<br><a href="SCRIPT.md">Speaker script & assumptions ↗</a></p>
     <p><b>Take the talk</b><a href="https://ams0.github.io/talks/" target="_blank" rel="noopener">ams0.github.io/talks ↗</a><br>Press N for notes on every slide.</p>
   </div>
-  <div class="s-notes"><p>Backup. Do not present; reach it with <code>End</code> if a number is challenged.</p></div>
+  <div class="s-notes"><p>Backup. Do not present; reach it with <code>End</code> if a number is challenged.</p><p class="say">These are the sources and assumptions behind the examples. The tokenizer counts are reproducible; the configuration and performance comparisons are illustrative. I am happy to open any of these links or walk through a number.</p></div>
 </section>
 
 </div>
@@ -1340,6 +1369,8 @@ body.notes-open #toolbar{bottom:38vh}
     prog.style.width = ((idx + 1) / total * 100) + '%';
     var s = slides[idx].querySelector('.s-notes');
     nbody.innerHTML = s ? s.innerHTML : '<p style="color:#a0a093">No notes for this slide.</p>';
+    var spoken = nbody.querySelector('.say');
+    if (spoken) nbody.prepend(spoken);
     nslide.textContent = 'slide ' + (idx + 1) + ' of ' + total;
     applyStep();
     try { sessionStorage.setItem('lot-goc-slide', idx); } catch (e) {}
