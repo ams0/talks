@@ -116,7 +116,7 @@ These are the exact spoken lines shown in each slide’s speaker notes. Delivery
 
 **22.** The request has passed the gateway. Next question: which GPU should answer it?
 
-**23.** These replicas run the same model, but one may already hold a reusable prefix in its KV cache. A basic Kubernetes Service has no knowledge of that cache. If it sends the request to a cold replica, the engine may repeat prefill work. The latency numbers here illustrate the potential difference; the actual result depends on the request and the cache. In a continuing conversation, one replica may hold the processed prefix. A request sent there can focus on the new suffix. Equal model weights therefore do not mean equal work for every replica.
+**23.** These replicas run the same model, but one may already hold a reusable prefix in its KV cache. A basic Kubernetes Service has no knowledge of that cache. If it sends the request to a cold replica, the engine may repeat prefill work. The latency numbers here illustrate the potential difference; the actual result depends on the request and the cache. In a continuing conversation, one replica may hold the processed prefix. An InferencePool can route the request to that warm replica, reusing the prefix and focusing on the new suffix. Equal model weights therefore do not mean equal work for every replica.
 
 **24.** This is where the InferencePool comes in. The HTTPRoute points to the pool, and an endpoint picker can choose a compatible replica using signals such as load and cache locality. The endpoint can stay the same for callers. Deploying this also requires the extension, controller and picker; the highlighted line is the routing change, not the whole installation. The endpoint picker may consider queueing, load and cache locality. Available signals depend on the implementation. Validate the chosen provider and its routing behavior before treating this as a production change.
 
@@ -186,7 +186,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 **16 — agentgateway.** The open-source gateway sits between an agent and models or MCP tools. Its Rust data plane handles traffic; Kubernetes integration uses Gateway API. It is an AAIF project. The 5.2k+ stars and 900+ forks are a dated GitHub snapshot, not a production adoption figure.
 
-**17 — objects.** Say the through-line once: “Gateway, HTTPRoute, InferencePool, Deployment. Inspect them, put them in git, review the diff.” InferencePool needs the extension, its controller and a compatible gateway. This diagram is not an installation guide.
+**17 — objects.** Click through Gateway → HTTPRoute → InferencePool → Deployment, naming each as its row appears. Say the through-line once: “Gateway, HTTPRoute, InferencePool, Deployment. Inspect them, put them in git, review the diff.” InferencePool needs the extension, its controller and a compatible gateway. This diagram is not an installation guide.
 
 **18 — protocols.** LLM traffic requests output; MCP invokes tools; A2A connects agents. Tools can change external state, making per-action policy valuable. agentgateway is the example. Other implementations have different feature sets; do not promise equivalent protocol support.
 
@@ -196,7 +196,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 **21 — two routes.** `/v1` illustrates model access and budget policy; `/mcp` illustrates tool authorization. Keep frontier-provider access intentional. Zero backend weight alone does not implement a separate explicit route. Both panels are **illustrative**, not deployable manifests. Validate actual policies and versions before an optional demonstration.
 
-**23 — warm replicas.** “Same image, same weights. One replica already holds your reusable prefix. Pick a cold replica and repeat work.” The 900 ms versus 12 ms contrast is **illustrative**, not a benchmark or guaranteed cost ratio. A basic Service lacks inference-cache awareness; Kubernetes Service behavior is not universally literal round-robin.
+**23 — warm replicas.** Click through the three cache states, the cold Service route, then the warm InferencePool route. “Same image, same weights. One replica already holds your reusable prefix. Pick a cold replica and repeat work.” The 900 ms versus 12 ms contrast is **illustrative**, not a benchmark or guaranteed cost ratio. A basic Service lacks inference-cache awareness; Kubernetes Service behavior is not universally literal round-robin.
 
 **24 — endpoint picking.** Highlight backend kind and picker reference. Compatible pickers can consider load, cache state and prefix locality. Plugins, signals and metrics vary. A prefix-hit counter alone does not locate the cached blocks for an incoming request. Migration needs more than a one-line YAML edit: the extension, controller and picker must exist.
 
@@ -224,7 +224,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 ## The return trip: slides 38–41
 
-**38 — the die.** “One character, four UTF-8 bytes, three Llama 3 tokens. None of the fragments is independently valid UTF-8. Assemble them before showing the character.” Fragments: `f0 9f`, `8e`, `b2`. Three generation steps do not imply a fixed 27 ms visible delay. Token emission and displayed-character timing differ; measure the user-facing stream too.
+**38 — the die.** Click to reveal token A, B and C in order; pause after C, then click once more to reveal the assembled die. “One character, four UTF-8 bytes, three Llama 3 tokens. None of the fragments is independently valid UTF-8. Assemble them before showing the character.” Fragments: `f0 9f`, `8e`, `b2`. Three generation steps do not imply a fixed 27 ms visible delay. Token emission and displayed-character timing differ; measure the user-facing stream too.
 
 **39 — agent loop.** A tool request returns; the harness executes an allowed call, appends its result and requests another model step. Growth bars are illustrative. Fixed growth and fully charged untrimmed context can make cumulative input volume quadratic in turn count. Caching, compaction, retrieval and variable turns change that result. Spoken takeaway: **“Each turn can carry more context than the last.”**
 
