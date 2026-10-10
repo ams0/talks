@@ -25,8 +25,8 @@
 html,body{height:100%;overflow:hidden;background:#090908;color:var(--ink);font-family:var(--f-text)}
 #deck{position:relative;width:100vw;height:calc(100vh - 48px);overflow:hidden;background:#090908}
 body.notes-open #deck{height:calc(62vh - 48px)}
-.slide{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--scale,1));transform-origin:center;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;background:var(--ground);transition:opacity 180ms ease}
-.slide.is-active{opacity:1;visibility:visible;pointer-events:auto}
+.slide{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--scale,1));transform-origin:center;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;background:var(--ground);transition:opacity 380ms ease,visibility 0s linear 380ms}
+.slide.is-active{z-index:1;opacity:1;visibility:visible;pointer-events:auto;transition:opacity 380ms ease,visibility 0s}
 .wide{--margin:96px}
 .slide>h2{position:absolute;left:var(--margin);right:var(--margin);top:var(--r-head);font-family:var(--f-display);font-weight:600;font-size:96px;line-height:1;letter-spacing:-.025em;text-wrap:balance}
 h2 em{font-style:normal;color:var(--request)} h2 b{color:var(--return);font-weight:600}
@@ -152,6 +152,34 @@ pre.code.sm{font-size:24px;line-height:1.42;padding:24px 40px}.duo .pane pre.cod
 #slide-11 .frag{opacity:0;visibility:hidden}#slide-11 .frag.on{opacity:1;visibility:visible}
 #slide-17 .frag,#slide-23 .frag,#slide-38 .frag{opacity:0;visibility:hidden}
 #slide-17 .frag.on,#slide-23 .frag.on,#slide-38 .frag.on{opacity:1;visibility:visible}
+/* The canvas stays fixed; content enters in the same reading order as the talk. */
+@keyframes content-in{from{opacity:0;translate:var(--entry-x,0px) 13px}to{opacity:1;translate:0 0}}
+.slide.is-active>:is(h1,h2,.n,.num,.bio-copy){animation:content-in 420ms cubic-bezier(.2,.7,.2,1) both}
+.slide.is-active>:is(.fig,.duo,.scale-stage,.srcs){animation:content-in 470ms 65ms cubic-bezier(.2,.7,.2,1) both}
+.slide.is-active>:is(.cap,.scale-foot,.closing-line){animation:content-in 430ms 130ms cubic-bezier(.2,.7,.2,1) both}
+/* Meaningful quantities draw from their baseline, never bouncing or looping. */
+@keyframes bar-fill{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+.slide.is-active#slide-7 svg rect,
+.slide.is-active#slide-13 svg rect,
+.slide.is-active#slide-26 .duo svg rect,
+.slide.is-active#slide-31 svg rect,
+.slide.is-active#slide-39 svg rect{animation:bar-fill 680ms var(--fill-delay,0ms) cubic-bezier(.2,.7,.2,1) both}
+#slide-7 svg rect:nth-of-type(2),#slide-31 svg rect:nth-of-type(2),#slide-39 svg rect:nth-of-type(2){--fill-delay:85ms}
+#slide-7 svg rect:nth-of-type(3),#slide-31 svg rect:nth-of-type(3),#slide-39 svg rect:nth-of-type(3){--fill-delay:170ms}
+#slide-7 svg>g:nth-of-type(5) rect{--fill-delay:260ms}
+#slide-13 svg rect:nth-of-type(2){--fill-delay:80ms}
+#slide-13 svg rect:nth-of-type(3){--fill-delay:160ms}
+#slide-13 svg rect:nth-of-type(4){--fill-delay:240ms}
+#slide-13 svg rect:nth-of-type(5){--fill-delay:320ms}
+#slide-13 svg rect:nth-of-type(6){--fill-delay:400ms}
+#slide-39 svg rect:nth-of-type(4){--fill-delay:255ms}
+.slide.is-active#slide-10 .scale-track{animation:bar-fill 780ms 120ms cubic-bezier(.2,.7,.2,1) both}
+#slide-10 .scale-point.frag.on{animation:content-in 380ms cubic-bezier(.2,.7,.2,1) both}
+#slide-17 .frag.on>rect{animation:bar-fill 490ms cubic-bezier(.2,.7,.2,1) both}
+#slide-23 .frag.on rect[height="22"],#slide-23 .frag.on path{animation:bar-fill 620ms cubic-bezier(.2,.7,.2,1) both}
+#slide-35 .mrow.frag.on .mbar{animation:bar-fill 680ms cubic-bezier(.2,.7,.2,1) both}
+@keyframes cell-fill{from{opacity:.14;transform:scale(.65)}to{opacity:1;transform:scale(1)}}
+.slide.is-active#slide-33 .fig svg rect{transform-box:fill-box;transform-origin:center;animation:cell-fill 270ms var(--cell-delay,0ms) ease-out both}
 #progress{position:fixed;left:0;top:0;height:3px;background:var(--request);width:0;z-index:60;transition:width 140ms linear}
 #toolbar{position:fixed;bottom:0;left:0;right:0;height:48px;z-index:60;display:flex;align-items:center;justify-content:center;gap:8px;background:#090908;border-top:1px solid #272720}
 body.notes-open #toolbar{bottom:38vh}
@@ -162,9 +190,9 @@ body.notes-open #toolbar{bottom:38vh}
 #notes{position:fixed;left:0;right:0;bottom:0;height:38vh;background:#14140f;border-top:1px solid var(--request);color:#c9c8bb;padding:20px 28px 26px;overflow-y:auto;display:none;z-index:70}
 #notes.on{display:block}#notes h4{font:500 14px var(--f-text);letter-spacing:.1em;text-transform:uppercase;color:var(--request);margin-bottom:14px}#nbody{font-size:18px;line-height:1.5;max-width:140ch}#nbody p{margin-bottom:10px}#nbody b{color:var(--ink)}#nbody code{font-family:var(--f-code);color:var(--request);font-size:.9em}#nbody .say{border-left:2px solid var(--request);padding-left:14px;color:var(--ink)}#nbody .say::before{content:'SAY THIS';display:block;color:var(--request);font:500 13px var(--f-text);letter-spacing:.1em;margin-bottom:5px}
 @media(max-width:900px){#clock,#help{display:none}}
-@media(prefers-reduced-motion:reduce){.slide,.frag,#progress{transition:none}}
+@media(prefers-reduced-motion:reduce){.slide,.frag,#progress{transition:none!important}.slide.is-active *{animation:none!important}}
 @page{size:1920px 1080px;margin:0}
-@media print{html,body,#deck,body.notes-open #deck{height:auto;overflow:visible;background:var(--ground)}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.slide{position:relative;opacity:1!important;visibility:visible;page-break-after:always;break-after:page;transform:none;top:auto;left:auto;margin:0}.slide:last-child{break-after:auto}.frag{opacity:1!important;visibility:visible!important}#progress,#toolbar,#notes,.pronunciation{display:none!important}}
+@media print{html,body,#deck,body.notes-open #deck{height:auto;overflow:visible;background:var(--ground)}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.slide{position:relative;opacity:1!important;visibility:visible;transition:none!important;page-break-after:always;break-after:page;transform:none;top:auto;left:auto;margin:0}.slide:last-child{break-after:auto}.slide *{animation:none!important;transition:none!important}.frag{opacity:1!important;visibility:visible!important}#progress,#toolbar,#notes,.pronunciation{display:none!important}}
 
 </style>
 </head>
@@ -1480,6 +1508,16 @@ body.notes-open #toolbar{bottom:38vh}
     s.appendChild(f);
   });
 
+  /* Cache blocks sweep left to right, then resolve the new partial block. */
+  document.querySelectorAll('#slide-33 .fig svg rect').forEach(function (cell) {
+    var x = Number(cell.getAttribute('x'));
+    var y = Number(cell.getAttribute('y'));
+    var delay = cell.getAttribute('fill') === '#ff6b51'
+      ? 1100
+      : Math.max(0, Math.round((x - 40) / 28)) * 13 + Math.max(0, Math.round((y - 20) / 28)) * 38;
+    cell.style.setProperty('--cell-delay', delay + 'ms');
+  });
+
   var helpEl = document.getElementById('help');
   var booted = false;
 
@@ -1498,7 +1536,9 @@ body.notes-open #toolbar{bottom:38vh}
   function show(n, atEnd) {
     var recording = document.getElementById('serbian-audio');
     if (idx !== n && !recording.paused) recording.pause();
-    idx = Math.max(0, Math.min(total - 1, n));
+    var target = Math.max(0, Math.min(total - 1, n));
+    slides[target].style.setProperty('--entry-x', !booted || target === idx ? '0px' : (target > idx ? '20px' : '-20px'));
+    idx = target;
     if (booted) helpEl.classList.add('gone');
     for (var i = 0; i < total; i++) {
       slides[i].classList.toggle('is-active', i === idx);
