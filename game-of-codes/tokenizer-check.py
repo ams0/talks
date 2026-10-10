@@ -65,7 +65,7 @@ def main():
     enc = load_llama3()
 
     print("SLIDE 5 — the question you actually type")
-    q = "why did the nightly ETL job fail?"
+    q = "why did the nightly ETL job fail on deserialization?"
     ids = enc.encode(q)
     print(f"  {q!r}")
     print(f"  {len(q.split())} words · {len(ids)} tokens")
@@ -75,7 +75,7 @@ def main():
     n_w = len(enc.encode(wrapped, allowed_special="all"))
     print(f"  wrapped in the chat template: {n_w} tokens "
           f"({n_w - len(ids)} of template)")
-    print(f"  slide 13's ratio: 31,209 / {len(ids)} ≈{round(31209 / len(ids)):,}x\n")
+    print(f"  slide 13's ratio: 31,212 / {len(ids)} ≈{round(31212 / len(ids)):,}x\n")
 
     print("SLIDE 6 — a token is not a word")
     s = "The nightly ETL job failed on a deserialization error."

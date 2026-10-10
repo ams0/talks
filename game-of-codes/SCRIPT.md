@@ -24,15 +24,15 @@ The slides carry pictures; these notes carry explanation. Amber follows the requ
 | 2 | Who uses AI? | 0:05 | 0:35 |
 | 3 | Every day? | 0:08 | 0:43 |
 | 4 | Who runs a fleet? | 0:15 | 0:58 |
-| 5 | Seven words. Nine tokens | 0:35 | 1:33 |
+| 5 | Nine words. How many tokens? | 0:35 | 1:33 |
 | 6 | Tokens aren’t words | 0:55 | 2:28 |
 | 7 | Bytes. Words. The compromise | 0:35 | 3:03 |
 | 8 | Compression, learned | 0:50 | 3:53 |
 | 9 | Same meaning. Different bill | 0:55 | 4:48 |
 | 10 | Down to silicon. Back again | 0:35 | 5:23 |
 | 11 | The prompt you never wrote | 0:08 | 5:31 |
-| 12 | Your prompt is 0.03% | 1:05 | 6:36 |
-| 13 | ≈3,468× | 0:20 | 6:56 |
+| 12 | Your prompt is 0.04% | 1:05 | 6:36 |
+| 13 | ≈2,601× | 0:20 | 6:56 |
 | 14 | Where trust ends | 0:08 | 7:04 |
 | 15 | Four objects. One stack | 0:45 | 7:49 |
 | 16 | Models. Tools. Agents | 1:00 | 8:49 |
@@ -70,7 +70,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 ## Opening the request: slides 5–13
 
-**5 — terminal.** “Seven words. Nine tokens. Follow what the harness does with them, all the way to the GPU and back.” Nine counts raw user text. The example chat template in `tokenizer-check.py` adds another nine tokens; those are outside the headline.
+**5 — terminal, now a two-click quiz.** Ask “nine words — how many tokens?”, wait for shouts, then click to reveal **Twelve**. The question is `why did the nightly ETL job fail on deserialization?` — deliberately the same nine words and twelve tokens as the answer on slide 6, so the two slides can never contradict each other on stage. Twelve counts raw user text; the example chat template in `tokenizer-check.py` adds nine more, outside the headline.
 
 **6 — token splits.** Walk the amber chips: 54 characters, 9 words, 12 tokens. `ETL` splits into ` E` and `TL`; `deserialization` into ` des` and `erialization`. Leading spaces can belong to tokens. These are measured splits.
 
@@ -82,9 +82,9 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 **10 — route map.** Point to gateway, prefill and decode; do not narrate all eight stops. Notice the return arrow: an agent can go around again.
 
-**12 — context.** “Instructions, tool schemas, files and history fill the request. Your nine tokens are the tiny part.” The **illustrative** breakdown is 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 9 = **31,209 tokens**. The question is 0.0288%, rounded to 0.03%. Protocol/template overhead is omitted. Harnesses can trim, compact, retrieve, cache or reference context; not every system retransmits every byte unchanged. A model conditions on supplied context rather than remembering the previous HTTP call by itself.
+**12 — context.** “Instructions, tool schemas, files and history fill the request. Your twelve tokens are the tiny part.” The **illustrative** breakdown is 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 12 = **31,212 tokens**. The question is 0.0384%, rounded to 0.04%. Protocol/template overhead is omitted. Harnesses can trim, compact, retrieve, cache or reference context; not every system retransmits every byte unchanged. A model conditions on supplied context rather than remembering the previous HTTP call by itself.
 
-**13 — ratio.** **31,209 ÷ 9 ≈ 3,468×**, rounded to the nearest whole number. Pause. This compares illustrative context to raw prompt, not every agent request.
+**13 — ratio.** **31,212 ÷ 12 ≈ 2,601×**, rounded to the nearest whole number. Pause. This compares illustrative context to raw prompt, not every agent request.
 
 ## The Kubernetes spine: slides 15–22
 
@@ -148,14 +148,14 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 | GPU / agentgateway / Kubernetes / vLLM | 1 / 2 / 2 / 3 tokens |
 | English / Serbian Latin / Serbian Cyrillic | 12 / 20 / 23; 23 ÷ 12 ≈ 1.92, for the displayed examples |
 | 🎲 | 4 UTF-8 bytes; 3 tokens; `f0 9f` + `8e` + `b2` |
-| Context | 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 9 = 31,209; illustrative; wrapper omitted |
-| Amplification | 31,209 ÷ 9 ≈ 3,468×, rounded |
-| Prefill estimate | 2 × 70.6e9 × 31,209 ≈ 4.4e15 FLOP; attention/other work omitted |
+| Context | 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 12 = 31,212; illustrative; wrapper omitted |
+| Amplification | 31,212 ÷ 12 ≈ 2,601×, rounded |
+| Prefill estimate | 2 × 70.6e9 × 31,212 ≈ 4.4e15 FLOP; attention/other work omitted |
 | Decode estimate | 2 × 70.6e9 ≈ 141e9 FLOP per step; same omissions |
 | Ideal weight-read time | 71e9 bytes ÷ 8e12 bytes/s ≈ 8.9 ms; not measured latency |
 | BF16 KV | 2 × 80 × 8 × 128 × 2 = 327,680 bytes/token = **320 KiB/token** |
 | FP8 KV | 163,840 bytes/token = **160 KiB/token**, before extra overhead |
-| Session estimates | floor(110e9 ÷ 31,209 ÷ 327,680) = 10; floor(180e9 ÷ 31,209 ÷ 327,680) = 17; floor(180e9 ÷ 31,209 ÷ 163,840) = 35 |
+| Session estimates | floor(110e9 ÷ 31,212 ÷ 327,680) = 10; floor(180e9 ÷ 31,212 ÷ 327,680) = 17; floor(180e9 ÷ 31,212 ÷ 163,840) = 35 |
 | Hardware assumptions | 288 GB HBM and 8 TB/s for the stated B300 example; decimal GB and binary KiB are distinguished |
 
 Context breakdowns, growth curves, cache-latency contrasts, capacity allocations and configuration are illustrative. Project performance reports and vendor peaks are neither independent benchmarks nor service-level guarantees. Consult the links on slide 41 for original sources.
