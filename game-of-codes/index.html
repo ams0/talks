@@ -150,6 +150,8 @@ pre.code.sm{font-size:24px;line-height:1.42;padding:24px 40px}.duo .pane pre.cod
 #slide-5 .frag{opacity:0}#slide-5 .frag.on{opacity:1}.s-notes{display:none}
 #slide-10 .frag{opacity:0;visibility:hidden}#slide-10 .frag.on{opacity:1;visibility:visible}
 #slide-11 .frag{opacity:0;visibility:hidden}#slide-11 .frag.on{opacity:1;visibility:visible}
+#slide-17 .frag,#slide-23 .frag,#slide-38 .frag{opacity:0;visibility:hidden}
+#slide-17 .frag.on,#slide-23 .frag.on,#slide-38 .frag.on{opacity:1;visibility:visible}
 #progress{position:fixed;left:0;top:0;height:3px;background:var(--request);width:0;z-index:60;transition:width 140ms linear}
 #toolbar{position:fixed;bottom:0;left:0;right:0;height:48px;z-index:60;display:flex;align-items:center;justify-content:center;gap:8px;background:#090908;border-top:1px solid #272720}
 body.notes-open #toolbar{bottom:38vh}
@@ -593,32 +595,35 @@ body.notes-open #toolbar{bottom:38vh}
 <section data-slide="17" id="slide-17" role="group" aria-roledescription="slide" aria-label="Slide 17 of 43" class="slide on-dark slide--viz wide" data-stop="3">
   <h2>Four objects. One stack</h2>
   <div class="fig">
-  <svg viewBox="0 0 1780 440" role="img" aria-label="The request path as four Kubernetes objects: Gateway, HTTPRoute, InferencePool and Deployment.">
+  <svg viewBox="0 0 1780 440" role="group" aria-label="Kubernetes request path, revealed one object at a time.">
     <defs><marker id="kdown" markerWidth="11" markerHeight="11" refX="5.5" refY="10" orient="auto"><path d="M0 0 L11 0 L5.5 11 z" fill="#ffb72f"/></marker></defs>
-    <line x1="64" y1="24" x2="64" y2="404" stroke="#ffb72f" stroke-width="3" marker-end="url(#kdown)"/>
-    <g>
-      <rect x="110" y="8"   width="1600" height="88" fill="#1d1d19" stroke="#494b40"/>
+    <g class="frag" aria-label="Gateway receives traffic">
+      <line x1="64" y1="24" x2="64" y2="64" stroke="#ffb72f" stroke-width="3"/>
+      <rect x="110" y="8" width="1600" height="88" fill="#1d1d19" stroke="#494b40"/>
+      <text x="146" y="63" font-family="Barlow" font-size="31" font-weight="700" fill="#f5f1e7">Gateway</text>
+      <text x="620" y="63" font-family="Barlow" font-size="25" fill="#929387">ai</text>
+      <text x="980" y="63" font-family="Barlow" font-size="25" fill="#b9b8aa">who may call what, as whom</text>
+    </g>
+    <g class="frag" aria-label="HTTPRoute chooses a target">
+      <line x1="64" y1="64" x2="64" y2="166" stroke="#ffb72f" stroke-width="3"/>
       <rect x="110" y="110" width="1600" height="88" fill="#1d1d19" stroke="#494b40"/>
+      <text x="146" y="165" font-family="Barlow" font-size="31" font-weight="700" fill="#f5f1e7">HTTPRoute</text>
+      <text x="620" y="165" font-family="Barlow" font-size="25" fill="#929387">llm</text>
+      <text x="980" y="165" font-family="Barlow" font-size="25" fill="#b9b8aa">/v1 goes to the pool</text>
+    </g>
+    <g class="frag" aria-label="InferencePool picks a replica">
+      <line x1="64" y1="166" x2="64" y2="268" stroke="#ffb72f" stroke-width="3"/>
       <rect x="110" y="212" width="1600" height="88" fill="#1d1d19" stroke="#ffb72f" stroke-width="2"/>
+      <text x="146" y="267" font-family="Barlow" font-size="31" font-weight="700" fill="#ffb72f">InferencePool</text>
+      <text x="620" y="267" font-family="Barlow" font-size="25" fill="#929387">llama-70b</text>
+      <text x="980" y="267" font-family="Barlow" font-size="25" fill="#ffb72f">which replica answers</text>
+    </g>
+    <g class="frag" aria-label="Deployment runs serving pods">
+      <line x1="64" y1="268" x2="64" y2="404" stroke="#ffb72f" stroke-width="3" marker-end="url(#kdown)"/>
       <rect x="110" y="314" width="1600" height="88" fill="#29291d" stroke="#45402d"/>
-    </g>
-    <g font-family="Barlow" font-size="31" font-weight="700" fill="#f5f1e7">
-      <text x="146" y="63">Gateway</text>
-      <text x="146" y="165">HTTPRoute</text>
-      <text x="146" y="267" fill="#ffb72f">InferencePool</text>
-      <text x="146" y="369">Deployment</text>
-    </g>
-    <g font-family="Barlow" font-size="25" fill="#929387">
-      <text x="620" y="63">ai</text>
-      <text x="620" y="165">llm</text>
-      <text x="620" y="267">llama-70b</text>
-      <text x="620" y="369" fill="#c6c6ae">vllm-llama-70b</text>
-    </g>
-    <g font-family="Barlow" font-size="25" fill="#b9b8aa">
-      <text x="980" y="63">who may call what, as whom</text>
-      <text x="980" y="165">/v1 goes to the pool</text>
-      <text x="980" y="267" fill="#ffb72f">which replica answers</text>
-      <text x="980" y="369" fill="#c6c6ae">8 pods, 71 GB of weights each</text>
+      <text x="146" y="369" font-family="Barlow" font-size="31" font-weight="700" fill="#f5f1e7">Deployment</text>
+      <text x="620" y="369" font-family="Barlow" font-size="25" fill="#c6c6ae">vllm-llama-70b</text>
+      <text x="980" y="369" font-family="Barlow" font-size="25" fill="#c6c6ae">8 pods, 71 GB of weights each</text>
     </g>
   </svg>
   </div>
@@ -627,6 +632,7 @@ body.notes-open #toolbar{bottom:38vh}
     <p><b>38 seconds. The frame for the next six slides — say it once, then stop repeating it.</b></p>
     <p>The amber one is the only unfamiliar kind in the list, and it is the subject of stop four. Everything else in this diagram has been in Kubernetes for years.</p>
     <p>If someone asks what provides the Gateway: any Gateway API implementation — agentgateway, Envoy Gateway, kgateway, Istio. The kind is the contract; the implementation is yours to pick and to change.</p>
+    <p><b>Click cues:</b> Gateway → HTTPRoute → InferencePool → Deployment. Speak the object names in order; let each row appear with its explanation.</p>
 
     <p class="say">This part of the stack can be represented by four Kubernetes objects: a Gateway, an HTTPRoute, an InferencePool and a Deployment. That lets you inspect routing and serving configuration in the cluster and review changes in Git. The InferencePool requires its extension and a compatible gateway. Follow the objects in order: Gateway receives traffic, HTTPRoute chooses a target, InferencePool adds an inference-aware destination, and Deployment runs serving pods. This is an architecture map, not an installation manifest.</p>
   </div>
@@ -835,7 +841,7 @@ body.notes-open #toolbar{bottom:38vh}
 <section data-slide="23" id="slide-23" role="group" aria-roledescription="slide" aria-label="Slide 23 of 43" class="slide on-dark slide--viz wide" data-stop="4">
   <h2>Same model. Different cost</h2>
   <div class="fig">
-  <svg viewBox="0 0 1780 420" role="img" aria-label="Three identical vLLM replicas; one already holds the request's prefix in its KV cache. Round-robin picks a cold one; an inference-aware picker picks the warm one.">
+  <svg viewBox="0 0 1780 420" role="group" aria-label="Comparison of routing choices across three replicas, revealed in stages.">
     <defs>
       <marker id="ar" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#ff6b51"/></marker>
       <marker id="ag" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0 0 L11 5.5 L0 11 z" fill="#a7d2bd"/></marker>
@@ -843,6 +849,7 @@ body.notes-open #toolbar{bottom:38vh}
         <feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
       </filter>
     </defs>
+    <g class="frag" aria-label="Three replicas with different cache states">
     <g>
       <rect x="640"  y="130" width="330" height="200" rx="7" fill="#1d1d19" stroke="#494b40"/>
       <rect x="1010" y="130" width="330" height="200" rx="7" fill="#1d1d19" stroke="#ffb72f" stroke-width="3" filter="url(#glow)"/>
@@ -861,29 +868,32 @@ body.notes-open #toolbar{bottom:38vh}
       <rect x="1042" y="238" width="266" height="22" rx="3" fill="#34362f"/><rect x="1042" y="238" width="250" height="22" rx="3" fill="#ffb72f"/>
       <rect x="1412" y="238" width="266" height="22" rx="3" fill="#34362f"/><rect x="1412" y="238" width="140" height="22" rx="3" fill="#525348"/>
     </g>
-    <g font-family="Barlow" font-size="27" font-weight="700">
-      <text x="672"  y="302" fill="#ff6b51">≈ 900 ms prefill</text>
-      <text x="1042" y="302" fill="#a7d2bd">≈ 12 ms prefill</text>
-      <text x="1412" y="302" fill="#ff6b51">≈ 900 ms prefill</text>
     </g>
-    <rect x="40" y="130" width="300" height="86" rx="6" fill="#2a0f12" stroke="#ff6b51"/>
-    <text x="190" y="166" font-family="Barlow" font-size="27" font-weight="700" fill="#ff6b51" text-anchor="middle">Service</text>
-    <text x="190" y="198" font-family="Barlow" font-size="20" fill="#ff6b51" text-anchor="middle">round-robin</text>
-    <rect x="40" y="252" width="300" height="86" rx="6" fill="#0f2422" stroke="#a7d2bd"/>
-    <text x="190" y="288" font-family="Barlow" font-size="27" font-weight="700" fill="#a7d2bd" text-anchor="middle">InferencePool</text>
-    <text x="190" y="320" font-family="Barlow" font-size="20" fill="#a7d2bd" text-anchor="middle">endpoint picker</text>
-    <path d="M348 170 C 480 170, 500 180, 632 190" stroke="#ff6b51" stroke-width="3" fill="none" marker-end="url(#ar)" stroke-dasharray="9 6"/>
-    <path d="M348 294 C 620 294, 820 384, 1175 340" stroke="#a7d2bd" stroke-width="3" fill="none" marker-end="url(#ag)"/>
-    <text x="1175" y="400" font-family="Barlow" font-size="21" fill="#a7d2bd" text-anchor="middle">queue depth · KV usage · prefix overlap · LoRA resident</text>
+    <g class="frag" aria-label="Basic Service sends the request to a cold replica" font-family="Barlow" font-size="27" font-weight="700">
+      <text x="672"  y="302" fill="#ff6b51">≈ 900 ms prefill</text>
+      <rect x="40" y="130" width="300" height="86" rx="6" fill="#2a0f12" stroke="#ff6b51"/>
+      <text x="190" y="166" font-family="Barlow" font-size="27" font-weight="700" fill="#ff6b51" text-anchor="middle">Service</text>
+      <text x="190" y="198" font-family="Barlow" font-size="20" fill="#ff6b51" text-anchor="middle">cache-blind routing</text>
+      <path d="M348 170 C 480 170, 500 180, 632 190" stroke="#ff6b51" stroke-width="3" fill="none" marker-end="url(#ar)" stroke-dasharray="9 6"/>
+    </g>
+    <g class="frag" aria-label="InferencePool sends the request to the warm replica" font-family="Barlow" font-size="27" font-weight="700">
+      <text x="1042" y="302" fill="#a7d2bd">≈ 12 ms prefill</text>
+      <rect x="40" y="252" width="300" height="86" rx="6" fill="#0f2422" stroke="#a7d2bd"/>
+      <text x="190" y="288" font-family="Barlow" font-size="27" font-weight="700" fill="#a7d2bd" text-anchor="middle">InferencePool</text>
+      <text x="190" y="320" font-family="Barlow" font-size="20" fill="#a7d2bd" text-anchor="middle">endpoint picker</text>
+      <path d="M348 294 C 620 294, 820 384, 1175 340" stroke="#a7d2bd" stroke-width="3" fill="none" marker-end="url(#ag)"/>
+      <text x="1175" y="400" font-family="Barlow" font-size="21" fill="#a7d2bd" text-anchor="middle">queue depth · KV usage · prefix overlap · LoRA resident</text>
+    </g>
   </svg>
   </div>
-  <p class="cap">Illustrative latency · a warm replica can reuse your prefix.</p>
+  <p class="cap">Illustrative latency · routing changes repeated work.</p>
   <div class="s-notes"><p><b>Additional context:</b> The fix is an <b>InferencePool</b> where the <b>Service</b> was. Your application team changes nothing.</p>
     <p><b>75 seconds. The biggest money slide of the first half.</b></p>
     <p>A <code>Service</code> balances connections. An <code>InferencePool</code> balances <i>requests</i>. The signals are vLLM's own Prometheus metrics — nothing proprietary. Gateway API Inference Extension provides a common routing model; check provider and release compatibility.</p>
     <p>If challenged: yes, this is also why connection-count load balancing fails — one streaming SSE connection can hold for ninety seconds using a sliver of a GPU while another saturates it.</p>
+    <p><b>Click cues:</b> Show the three cache states; reveal the Service and its cold route; then reveal InferencePool, its warm route and the signals behind that choice. The latency figures are illustrative.</p>
 
-    <p class="say">These replicas run the same model, but one may already hold a reusable prefix in its KV cache. A basic Kubernetes Service has no knowledge of that cache. If it sends the request to a cold replica, the engine may repeat prefill work. The latency numbers here illustrate the potential difference; the actual result depends on the request and the cache. In a continuing conversation, one replica may hold the processed prefix. A request sent there can focus on the new suffix. Equal model weights therefore do not mean equal work for every replica.</p>
+    <p class="say">These replicas run the same model, but one may already hold a reusable prefix in its KV cache. A basic Kubernetes Service has no knowledge of that cache. If it sends the request to a cold replica, the engine may repeat prefill work. The latency numbers here illustrate the potential difference; the actual result depends on the request and the cache. In a continuing conversation, one replica may hold the processed prefix. An InferencePool can route the request to that warm replica, reusing the prefix and focusing on the new suffix. Equal model weights therefore do not mean equal work for every replica.</p>
   </div>
 </section>
 <!-- K3 ..................................................................... -->
@@ -1251,36 +1261,45 @@ body.notes-open #toolbar{bottom:38vh}
   <p class="kick">Streaming UTF-8</p>
   <h2>One character. <em>Three tokens</em></h2>
   <div class="fig">
-  <svg viewBox="0 0 1700 310" role="img" aria-label="The die emoji is four UTF-8 bytes split across three tokens, none valid alone, so the detokenizer buffers until the character is complete.">
-    <text x="30" y="80" font-family="Barlow" font-size="92" fill="#f5f1e7">🎲</text>
-    <text x="150" y="60" font-family="Barlow" font-size="27" fill="#b9b8aa">U+1F3B2</text>
-    <text x="150" y="100" font-family="Barlow" font-size="27" fill="#ffb72f">f0 9f 8e b2</text>
-    <text x="400" y="100" font-family="Barlow" font-size="24" fill="#929387">4 bytes of UTF-8 · 3 tokens on Llama 3</text>
-    <rect x="30"  y="150" width="300" height="88" fill="#2a0f12" stroke="#ff6b51" stroke-width="2"/>
-    <text x="58"  y="196" font-family="Barlow" font-size="27" fill="#f5f1e7">token A</text>
-    <text x="205" y="196" font-family="Barlow" font-size="26" fill="#ffb72f">f0 9f</text>
-    <text x="58"  y="228" font-family="Barlow" font-size="22" fill="#ff6b51">illegal</text>
-    <rect x="350" y="150" width="300" height="88" fill="#2a0f12" stroke="#ff6b51" stroke-width="2"/>
-    <text x="378" y="196" font-family="Barlow" font-size="27" fill="#f5f1e7">token B</text>
-    <text x="525" y="196" font-family="Barlow" font-size="26" fill="#ffb72f">8e</text>
-    <text x="378" y="228" font-family="Barlow" font-size="22" fill="#ff6b51">illegal</text>
-    <rect x="670" y="150" width="300" height="88" fill="#2a0f12" stroke="#ff6b51" stroke-width="2"/>
-    <text x="698" y="196" font-family="Barlow" font-size="27" fill="#f5f1e7">token C</text>
-    <text x="845" y="196" font-family="Barlow" font-size="26" fill="#ffb72f">b2</text>
-    <text x="698" y="228" font-family="Barlow" font-size="22" fill="#ff6b51">illegal</text>
-    <text x="1010" y="202" font-family="Barlow" font-size="40" fill="#a7d2bd">→</text>
-    <rect x="1080" y="150" width="240" height="88" fill="#0f2422" stroke="#a7d2bd" stroke-width="2"/>
-    <text x="1200" y="206" font-family="Barlow" font-size="46" text-anchor="middle" fill="#f5f1e7">🎲</text>
-    <g font-family="Barlow" font-size="24" fill="#b9b8aa">
+  <svg viewBox="0 0 1700 310" role="group" aria-label="Streaming byte fragments, revealed one token at a time before a complete character appears.">
+    <g class="frag" aria-label="Token A contains the first two bytes">
+      <rect x="30"  y="150" width="300" height="88" fill="#2a0f12" stroke="#ff6b51" stroke-width="2"/>
+      <text x="58"  y="196" font-family="Barlow" font-size="27" fill="#f5f1e7">token A</text>
+      <text x="205" y="196" font-family="Barlow" font-size="26" fill="#ffb72f">f0 9f</text>
+      <text x="58"  y="228" font-family="Barlow" font-size="22" fill="#ff6b51">incomplete</text>
+    </g>
+    <g class="frag" aria-label="Token B adds a third byte">
+      <rect x="350" y="150" width="300" height="88" fill="#2a0f12" stroke="#ff6b51" stroke-width="2"/>
+      <text x="378" y="196" font-family="Barlow" font-size="27" fill="#f5f1e7">token B</text>
+      <text x="525" y="196" font-family="Barlow" font-size="26" fill="#ffb72f">8e</text>
+      <text x="378" y="228" font-family="Barlow" font-size="22" fill="#ff6b51">incomplete</text>
+    </g>
+    <g class="frag" aria-label="Token C supplies the final byte">
+      <rect x="670" y="150" width="300" height="88" fill="#2a0f12" stroke="#ff6b51" stroke-width="2"/>
+      <text x="698" y="196" font-family="Barlow" font-size="27" fill="#f5f1e7">token C</text>
+      <text x="845" y="196" font-family="Barlow" font-size="26" fill="#ffb72f">b2</text>
+      <text x="698" y="228" font-family="Barlow" font-size="22" fill="#ff6b51">incomplete</text>
+    </g>
+    <g class="frag" aria-label="The completed bytes display one dice character">
+      <text x="30" y="80" font-family="Barlow" font-size="92" fill="#f5f1e7">🎲</text>
+      <text x="150" y="60" font-family="Barlow" font-size="27" fill="#b9b8aa">U+1F3B2</text>
+      <text x="150" y="100" font-family="Barlow" font-size="27" fill="#ffb72f">f0 9f 8e b2</text>
+      <text x="400" y="100" font-family="Barlow" font-size="24" fill="#929387">4 bytes of UTF-8 · 3 tokens on Llama 3</text>
+      <text x="1010" y="202" font-family="Barlow" font-size="40" fill="#a7d2bd">→</text>
+      <rect x="1080" y="150" width="240" height="88" fill="#0f2422" stroke="#a7d2bd" stroke-width="2"/>
+      <text x="1200" y="206" font-family="Barlow" font-size="46" text-anchor="middle" fill="#f5f1e7">🎲</text>
+      <g font-family="Barlow" font-size="24" fill="#b9b8aa">
       <text x="30" y="292">412 <tspan fill="#ff6b51">hold</tspan>   413 <tspan fill="#ff6b51">hold</tspan>   414 <tspan fill="#a7d2bd">flush</tspan>   three tokens · one visible character</text>
+      </g>
     </g>
   </svg>
   </div>
-    <p class="cap">Four bytes. Three tokens. One visible character.</p>
+    <p class="cap">The visible stream may lag behind the token stream.</p>
   <div class="s-notes">
     <p><b>50 seconds. This is the one built for this room. Enjoy it.</b></p>
     <p>Then the serious half: inter-token latency is measured at <i>token</i> emission; your users experience <i>character</i> emission. For Cyrillic, for emoji, for CJK, those are different events — so a latency SLO built on token timestamps measures something nobody can feel.</p>
     <p>Measured on Llama 3’s own tokenizer — the model this talk serves — with <code>decode_single_token_bytes</code>. Say that, because the room will assume it is a joke. On GPT-4o it is two tokens rather than three; the boundary moves with the vocabulary, the <i>principle</i> does not, because any byte-level BPE can split a multi-byte character.</p>
+    <p><b>Click cues:</b> Reveal token A, then B, then C. Pause with no visible character. On the fourth click, reveal the assembled bytes and the die.</p>
 
     <p class="say">Here is a detail built for this room. The dice character is four UTF-eight bytes, and this tokenizer represents it with three tokens. The first fragments cannot be displayed as a complete character; the server has to assemble them. That means token arrival and visible character arrival are different moments in a streamed response. Those three tokens are byte fragments, not three visible dice. The server buffers incomplete UTF-eight until it can display a character. User-visible streaming deserves its own latency measurement.</p>
   </div>
