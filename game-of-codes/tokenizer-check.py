@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce every token count on slides 5, 6, 8, 9 and 37 of Life of a token.
+"""Reproduce every token count on slides 5, 6, 8, 9 and 38 of Life of a token.
 
 The deck serves Llama 3.3 70B, so the counts are measured on Llama 3's own
 tokenizer rather than OpenAI's. Meta's tokenizer is a tiktoken BPE with a
@@ -75,7 +75,7 @@ def main():
     n_w = len(enc.encode(wrapped, allowed_special="all"))
     print(f"  wrapped in the chat template: {n_w} tokens "
           f"({n_w - len(ids)} of template)")
-    print(f"  slide 13's ratio: 31,212 / {len(ids)} ≈{round(31212 / len(ids)):,}x\n")
+    print(f"  slide 14's ratio: 31,212 / {len(ids)} ≈{round(31212 / len(ids)):,}x\n")
 
     print("SLIDE 6 — a token is not a word")
     s = "The nightly ETL job failed on a deserialization error."
@@ -101,7 +101,7 @@ def main():
         print(f"  {name:20} {len(text)} chars → {n:3} tokens  ({n / base:.2f}×)")
     print()
 
-    print("SLIDE 37 — the die is not one character to the detokenizer")
+    print("SLIDE 38 — the die is not one character to the detokenizer")
     ids = enc.encode("🎲")
     print(f"  🎲 is {len(ids)} tokens:")
     for i in ids:
