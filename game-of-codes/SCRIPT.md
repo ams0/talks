@@ -134,7 +134,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 **39 — close.** “Count your context. Route to useful cached state. Keep the engine busy. Inspect those before reaching for more hardware.” Advance to the introduction slide and leave it visible for questions.
 
-**40 — introduction.** “I’m Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. You can find me here — I’d love to hear what you’re building.” Keep this to 20 seconds; email, LinkedIn and more talks are linked on the slide.
+**40 — introduction.** “I’m Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. Scan these codes for my LinkedIn or more talks — I’d love to hear what you’re building.” Keep this to 20 seconds; email, LinkedIn and more talks are linked on the slide.
 
 ## Numbers you can reproduce
 

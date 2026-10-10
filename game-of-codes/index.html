@@ -108,12 +108,16 @@ pre.code.sm{font-size:24px;line-height:1.42;padding:24px 40px}.duo .pane pre.cod
 .slide--bio .bio-company{margin-top:42px;font-size:40px;font-weight:500}
 .slide--bio .bio-credentials{margin-top:14px;font-size:27px;color:var(--ink-2)}
 .slide--bio .bio-focus{margin-top:62px;font-family:var(--f-display);font-size:64px;font-weight:500;line-height:1.05;letter-spacing:-.01em}
-.slide--bio .bio-portrait{position:absolute;right:112px;top:190px;width:618px;height:618px;object-fit:cover;filter:grayscale(1);border-bottom:6px solid var(--request)}
-.slide--bio .bio-disclosure{position:absolute;right:112px;top:842px;width:618px;font-size:25px;line-height:1.4;color:var(--ink-2)}
+.slide--bio .bio-portrait{position:absolute;right:246px;top:190px;width:350px;height:350px;object-fit:cover;filter:grayscale(1);border-bottom:6px solid var(--request)}
+.slide--bio .bio-disclosure{position:absolute;right:112px;top:558px;width:618px;font-size:23px;line-height:1.35;color:var(--ink-2);text-align:center}
 .slide--bio .bio-disclosure b{color:var(--ink);font-weight:500}
 .slide--bio .bio-links{position:absolute;left:112px;bottom:104px;display:flex;flex-wrap:wrap;gap:14px 30px;width:990px;font-size:25px;line-height:1.35}
 .slide--bio .bio-links a{color:var(--request);text-decoration:none}.slide--bio .bio-links a:first-child{flex-basis:100%}
 .slide--bio .bio-links a:hover{text-decoration:underline}.slide--bio .bio-links a:focus-visible{outline:2px solid var(--request);outline-offset:6px}
+.slide--bio .bio-qr{position:absolute;right:112px;top:640px;width:618px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.slide--bio .bio-qr a{display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--ink);text-decoration:none;font-family:var(--f-display);font-size:33px;font-weight:500;line-height:1}
+.slide--bio .bio-qr a:hover span{color:var(--request)}.slide--bio .bio-qr a:focus-visible{outline:2px solid var(--request);outline-offset:8px}
+.slide--bio .bio-qr img{display:block;width:278px;height:278px;background:#fff;image-rendering:pixelated}
 .srcs{position:absolute;left:var(--margin);right:var(--margin);top:350px;columns:2;column-gap:100px;font-size:27px;line-height:1.35}.srcs p{break-inside:avoid;margin-bottom:30px;color:var(--ink-2)}.srcs p b{display:block;font-family:var(--f-display);font-size:38px;font-weight:500;color:var(--ink);margin-bottom:5px}.srcs a{color:var(--request);text-decoration:none}.srcs a:hover{text-decoration:underline}
 .frag{opacity:.12;transition:opacity 160ms ease}.frag.on{opacity:1}.s-notes{display:none}
 #progress{position:fixed;left:0;top:0;height:3px;background:var(--request);width:0;z-index:60;transition:width 140ms linear}
@@ -1217,9 +1221,13 @@ body.notes-open #toolbar{bottom:38vh}
     <a href="https://www.linkedin.com/in/alessandrovozza/" target="_blank" rel="noopener">LinkedIn ↗</a>
     <a href="https://ams0.github.io/talks/" target="_blank" rel="noopener">More talks ↗</a>
   </div>
+  <div class="bio-qr" aria-label="Scan to connect or see more talks">
+    <a href="https://www.linkedin.com/in/alessandrovozza/" target="_blank" rel="noopener" aria-label="Open Alessandro Vozza on LinkedIn"><img src="qr-linkedin.svg" width="278" height="278" alt="QR code for Alessandro Vozza’s LinkedIn profile"><span>LinkedIn ↗</span></a>
+    <a href="https://ams0.github.io/talks/" target="_blank" rel="noopener" aria-label="Open Alessandro Vozza’s talks"><img src="qr-talks.svg" width="278" height="278" alt="QR code for Alessandro Vozza’s talks"><span>More talks ↗</span></a>
+  </div>
   <div class="s-notes">
     <p><b>20 seconds. Leave this slide visible for questions.</b></p>
-    <p class="say">"I’m Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. You can find me here — I’d love to hear what you’re building."</p>
+    <p class="say">"I’m Alessandro Vozza, from Lovelace Engineering in Amsterdam, and a Golden Kubestronaut. I work on sovereign AI infrastructure. Lovelace Engineering consults for VOLT Datacenters. Scan these codes for my LinkedIn or more talks — I’d love to hear what you’re building."</p>
     <p>Bio and affiliation checked against the repository’s recent decks: <a href="https://github.com/ams0/talks/blob/f83d34a38d61fd58ceaecd6d34728e8530613345/ai-tech-summit-2026/index.html#L1708-L1718" target="_blank" rel="noopener">AI Tech Summit 2026: contact and consulting disclosure</a>; <a href="https://github.com/ams0/talks/blob/f83d34a38d61fd58ceaecd6d34728e8530613345/ai-advantage/index.html#L870-L873" target="_blank" rel="noopener">AI Advantage: Lovelace Engineering, Golden Kubestronaut and Amsterdam</a>.</p>
   </div>
 </section>
