@@ -97,6 +97,12 @@ pre.code.sm{font-size:24px;line-height:1.42;padding:24px 40px}.duo .pane pre.cod
 .counts span{font-size:28px;color:var(--ink-3)}.counts .hot b,.counts .hot span{color:var(--request)}
 .wordrows{display:grid;gap:24px}.wr{display:flex;gap:16px;align-items:center}.wr .w{font-family:var(--f-display);font-size:55px;font-weight:500;width:420px}.wr .t{font-family:var(--f-code);font-size:31px;padding:14px 20px;background:var(--surface);color:var(--ink-2);white-space:pre}.wr .t.hot{background:var(--request);color:var(--ground)}.wr .n{margin-left:auto;font-family:var(--f-display);font-size:64px;color:var(--ink-3)}
 .toks{display:grid;gap:38px}.tokrow{display:grid;grid-template-columns:275px 1fr 104px;gap:32px;align-items:center}.tokrow .lang{font-family:var(--f-display);font-size:33px;font-weight:500}.tokrow .pieces{display:flex;flex-wrap:wrap;gap:5px}.tokrow .pieces span{font-family:var(--f-code);font-size:23px;padding:10px 8px;background:var(--surface);color:var(--ink-2);white-space:pre}.tokrow.hot .pieces span{background:#332919;color:var(--request)}.tokrow .count{font-family:var(--f-display);font-size:104px;line-height:1;text-align:right;font-weight:600;color:var(--ink-3)}.tokrow.hot .count{color:var(--request)}
+#slide-9>.cap{right:600px}
+.pronunciation{position:absolute;right:var(--margin);top:932px}
+.pronunciation button{min-width:420px;min-height:72px;padding:12px 24px;border:1px solid var(--request);border-radius:4px;background:#332919;color:var(--request);font:500 28px var(--f-text);letter-spacing:.01em;cursor:pointer}
+.pronunciation button:hover,.pronunciation button[aria-pressed="true"]{background:var(--request);color:var(--ground)}
+.pronunciation button:focus-visible{outline:3px solid var(--ink);outline-offset:5px}
+.pronunciation audio{display:none}
 .mem{display:grid;gap:38px}.mrow{display:grid;grid-template-columns:220px 1fr 160px;gap:36px;align-items:center}.mrow .ml{font-family:var(--f-display);font-size:40px;font-weight:500}.mbar{display:flex;height:100px;font-size:24px}.mbar>div{display:grid;place-items:center;text-align:center;padding:0 8px}.mbar .w{background:#404036;color:var(--ink)}.mbar .ov{background:var(--surface-2)}.mbar .kv{background:var(--request);color:var(--ground)}.mrow .mv{font-family:var(--f-display);font-size:114px;line-height:1;text-align:right;font-weight:600;color:var(--ink-3)}.mrow .mv.hot{color:var(--request)}
 .slide--cta{background-image:linear-gradient(90deg,#111110 15%,rgba(17,17,16,.98) 55%,rgba(17,17,16,.55)),url('token-hero.png');background-size:cover;background-position:center}
 .slide--cta h2{top:164px;font-size:194px;line-height:.89;width:1100px;max-width:20ch;font-weight:600}.closing-line{position:absolute;left:115px;top:726px;font-size:32px;color:var(--ink-2)}
@@ -134,7 +140,7 @@ body.notes-open #toolbar{bottom:38vh}
 @media(max-width:900px){#clock,#help{display:none}}
 @media(prefers-reduced-motion:reduce){.slide,.frag,#progress{transition:none}}
 @page{size:1920px 1080px;margin:0}
-@media print{html,body,#deck,body.notes-open #deck{height:auto;overflow:visible;background:var(--ground)}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.slide{position:relative;opacity:1!important;visibility:visible;page-break-after:always;break-after:page;transform:none;top:auto;left:auto;margin:0}.slide:last-child{break-after:auto}.frag{opacity:1!important}#progress,#toolbar,#notes{display:none!important}}
+@media print{html,body,#deck,body.notes-open #deck{height:auto;overflow:visible;background:var(--ground)}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.slide{position:relative;opacity:1!important;visibility:visible;page-break-after:always;break-after:page;transform:none;top:auto;left:auto;margin:0}.slide:last-child{break-after:auto}.frag{opacity:1!important}#progress,#toolbar,#notes,.pronunciation{display:none!important}}
 
 </style>
 </head>
@@ -343,10 +349,15 @@ body.notes-open #toolbar{bottom:38vh}
     </div>
   </div>
   <p class="cap">This example: Cyrillic uses <b>1.9×</b> the English tokens.</p>
+  <div class="pronunciation">
+    <button id="serbian-play" type="button" aria-controls="serbian-audio" aria-label="Play Serbian pronunciation" aria-pressed="false">▶ Hear Serbian</button>
+    <audio id="serbian-audio" preload="none" src="serbian-pronunciation.mp3"></audio>
+  </div>
   <div class="s-notes">
     <p><b>55 seconds. Let them read the third row. These are the real splits.</b></p>
+    <p><b>Click “Hear Serbian” after introducing the sentence; pause it before moving on if needed.</b></p>
     <p>Token efficiency depends on the language, the actual text and the model vocabulary. Benchmark representative production languages rather than assuming English token counts transfer.</p>
-    <p><b>Read the Cyrillic line aloud, in Serbian, before you give any number.</b> Say the sentence, let them hear it is ordinary speech, then put the 23 on it. The surcharge lands far harder on a sentence the room has just heard in its own language than on a row of chips.</p><p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
+    <p><b>Play the recording or read the Cyrillic line aloud before you give any number.</b> Let them hear it is ordinary speech, then put the 23 on it. The surcharge lands far harder on a sentence the room has just heard in its own language than on a row of chips.</p><p>"Ниш" is two tokens: <code>Н</code> + <code>иш</code>. Worth saying out loud — it always lands.</p>
     <p>In this measured example, Serbian Cyrillic uses 1.9× the tokens of the English sentence. This ratio depends on the exact text and tokenizer; it is not a general multiplier for the language.</p>
     <p>If asked which tokenizer: Llama 3's own, rebuilt from its 128,256-entry vocabulary and round-trip checked — <code>tokenizer-check.py</code> beside the deck reproduces every number on these slides.</p>
 
@@ -1354,6 +1365,8 @@ body.notes-open #toolbar{bottom:38vh}
   }
 
   function show(n, atEnd) {
+    var recording = document.getElementById('serbian-audio');
+    if (idx !== n && !recording.paused) recording.pause();
     idx = Math.max(0, Math.min(total - 1, n));
     if (booted) helpEl.classList.add('gone');
     for (var i = 0; i < total; i++) {
@@ -1416,6 +1429,23 @@ body.notes-open #toolbar{bottom:38vh}
   document.getElementById('next').addEventListener('click', next);
   document.getElementById('notes-toggle').addEventListener('click', toggleNotes);
   document.getElementById('fullscreen').addEventListener('click', toggleFullscreen);
+  var serbianAudio = document.getElementById('serbian-audio');
+  var serbianPlay = document.getElementById('serbian-play');
+  function updateSerbianPlay() {
+    var playing = !serbianAudio.paused && !serbianAudio.ended;
+    serbianPlay.textContent = playing ? '⏸ Pause Serbian' : '▶ Hear Serbian';
+    serbianPlay.setAttribute('aria-label', playing ? 'Pause Serbian pronunciation' : 'Play Serbian pronunciation');
+    serbianPlay.setAttribute('aria-pressed', String(playing));
+  }
+  serbianPlay.addEventListener('click', function () {
+    if (serbianAudio.paused) {
+      if (serbianAudio.ended) serbianAudio.currentTime = 0;
+      serbianAudio.play().catch(function () { updateSerbianPlay(); });
+    } else serbianAudio.pause();
+  });
+  serbianAudio.addEventListener('play', updateSerbianPlay);
+  serbianAudio.addEventListener('pause', updateSerbianPlay);
+  serbianAudio.addEventListener('ended', updateSerbianPlay);
   window.addEventListener('hashchange', function() {
     var n = parseInt(location.hash.slice(1), 10);
     if (Number.isFinite(n)) show(n - 1);
