@@ -4,7 +4,7 @@
 
 **Game of Codes 2026 · Science & Technology Park, Niš · Saturday 10 October 2026**
 
-41 slides, including the introduction and sources backup. **26:21 planned delivery**, with 39 seconds of breathing room against the **27:00 timer target**. All content slides remain; the running order includes the tokenisation trade and identity slides.
+41 slides, including the introduction and sources backup. **26:31 planned delivery**, with 29 seconds of breathing room against the **27:00 timer target**. All content slides remain; the running order includes the tokenisation trade and identity slides.
 
 The slides carry pictures; these notes carry explanation. Amber follows the request down; teal follows the answer home.
 
@@ -24,42 +24,42 @@ The slides carry pictures; these notes carry explanation. Amber follows the requ
 | 2 | Who uses AI? | 0:05 | 0:35 |
 | 3 | Every day? | 0:08 | 0:43 |
 | 4 | Who runs a fleet? | 0:15 | 0:58 |
-| 5 | Seven words. Nine tokens | 0:35 | 1:33 |
-| 6 | Tokens aren’t words | 0:55 | 2:28 |
-| 7 | Bytes. Words. The compromise | 0:35 | 3:03 |
-| 8 | Compression, learned | 0:50 | 3:53 |
-| 9 | Same meaning. Different bill | 0:55 | 4:48 |
-| 10 | Down to silicon. Back again | 0:35 | 5:23 |
-| 11 | The prompt you never wrote | 0:08 | 5:31 |
-| 12 | Your prompt is 0.03% | 1:05 | 6:36 |
-| 13 | ≈3,468× | 0:20 | 6:56 |
-| 14 | Where trust ends | 0:08 | 7:04 |
-| 15 | Four objects. One stack | 0:45 | 7:49 |
-| 16 | Models. Tools. Agents | 1:00 | 8:49 |
-| 17 | Authorize the action | 1:05 | 9:54 |
-| 18 | Carry the identity | 0:35 | 10:29 |
-| 19 | Two routes. One audit trail | 1:05 | 11:34 |
-| 20 | Which GPU answers? | 0:08 | 11:42 |
-| 21 | Same model. Different cost | 1:15 | 12:57 |
-| 22 | Route to the cache | 0:55 | 13:52 |
-| 23 | One GPU. Two bottlenecks | 0:10 | 14:02 |
-| 24 | Prefill computes. Decode reads | 1:25 | 15:27 |
-| 25 | 8.9 ms | 0:45 | 16:12 |
-| 26 | Separate when it pays | 0:55 | 17:07 |
-| 27 | Start with smarter routing | 1:00 | 18:07 |
-| 28 | Inside the engine | 0:08 | 18:15 |
-| 29 | Refill every step | 0:55 | 19:10 |
-| 30 | Give KV a page table | 0:50 | 20:00 |
-| 31 | Reuse the prefix | 0:55 | 20:55 |
-| 32 | What fits in memory? | 0:08 | 21:03 |
-| 33 | Weights are rent. KV is capacity | 1:05 | 22:08 |
-| 34 | Activate less. Read less | 1:00 | 23:08 |
-| 35 | The journey home | 0:08 | 23:16 |
-| 36 | One character. Three tokens | 0:50 | 24:06 |
-| 37 | Tool call. Append. Repeat | 0:55 | 25:01 |
-| 38 | The answer comes home | 0:20 | 25:21 |
-| 39 | Count. Route. Reuse | 0:40 | 26:01 |
-| 40 | Alessandro Vozza — introduction | 0:20 | 26:21 |
+| 5 | Nine words. How many tokens? | 0:45 | 1:43 |
+| 6 | Tokens aren’t words | 0:55 | 2:38 |
+| 7 | Bytes. Words. The compromise | 0:35 | 3:13 |
+| 8 | Compression, learned | 0:50 | 4:03 |
+| 9 | Same meaning. Different bill | 0:55 | 4:58 |
+| 10 | Down to silicon. Back again | 0:35 | 5:33 |
+| 11 | The prompt you never wrote | 0:08 | 5:41 |
+| 12 | Your prompt is 0.04% | 1:05 | 6:46 |
+| 13 | ≈2,601× | 0:20 | 7:06 |
+| 14 | Where trust ends | 0:08 | 7:14 |
+| 15 | Four objects. One stack | 0:45 | 7:59 |
+| 16 | Models. Tools. Agents | 1:00 | 8:59 |
+| 17 | Authorize the action | 1:05 | 10:04 |
+| 18 | Carry the identity | 0:35 | 10:39 |
+| 19 | Two routes. One audit trail | 1:05 | 11:44 |
+| 20 | Which GPU answers? | 0:08 | 11:52 |
+| 21 | Same model. Different cost | 1:15 | 13:07 |
+| 22 | Route to the cache | 0:55 | 14:02 |
+| 23 | One GPU. Two bottlenecks | 0:10 | 14:12 |
+| 24 | Prefill computes. Decode reads | 1:25 | 15:37 |
+| 25 | 8.9 ms | 0:45 | 16:22 |
+| 26 | Separate when it pays | 0:55 | 17:17 |
+| 27 | Start with smarter routing | 1:00 | 18:17 |
+| 28 | Inside the engine | 0:08 | 18:25 |
+| 29 | Refill every step | 0:55 | 19:20 |
+| 30 | Give KV a page table | 0:50 | 20:10 |
+| 31 | Reuse the prefix | 0:55 | 21:05 |
+| 32 | What fits in memory? | 0:08 | 21:13 |
+| 33 | Weights are rent. KV is capacity | 1:05 | 22:18 |
+| 34 | Activate less. Read less | 1:00 | 23:18 |
+| 35 | The journey home | 0:08 | 23:26 |
+| 36 | One character. Three tokens | 0:50 | 24:16 |
+| 37 | Tool call. Append. Repeat | 0:55 | 25:11 |
+| 38 | The answer comes home | 0:20 | 25:31 |
+| 39 | Count. Route. Reuse | 0:40 | 26:11 |
+| 40 | Alessandro Vozza — introduction | 0:20 | 26:31 |
 | 41 | Sources & assumptions — backup | — | — |
 
 These are speaking budgets, not benchmark timings. If discussion runs long, skip slide 38 first (20 seconds), then 7 (35 seconds), then 30 (50 seconds). Slide 31 works with a one-sentence explanation of blocks. Preserve the opening questions and the gateway, routing, prefill/decode, capacity and agent-loop arguments.
@@ -76,7 +76,7 @@ These are the exact spoken lines shown in each slide’s speaker notes. Delivery
 
 **4.** Now keep it up if you run a fleet of agents: they keep working while you do something else. Look around. This talk follows what all those agents ask the infrastructure to do.
 
-**5.** Here is our starting point: seven words typed by a human, represented by nine tokens. We will follow this request from the harness to the GPU and back. On screen, the request looks almost free. The harness may wrap it in instructions, tools, files and history. These nine tokens are only our starting point. First, what exactly is a token?
+**5.** Here is the entire user interface of modern AI: nine words. How many tokens do you think that is? [Pause for guesses; click to reveal.] Twelve. Nine words, twelve tokens. ETL and deserialization each split into two pieces. Everything we will see happens between this keystroke and the answer coming back. First, what exactly is a token?
 
 **6.** This example answer has fifty-four characters, nine words and twelve tokens. Those are three different counts. The tokenizer keeps common pieces together: “failed” stays whole, while “ETL” and “deserialization” split. A token is a learned piece of text, sometimes including a leading space. Notice the leading spaces on several chips. A space can be part of a token, so the count belongs to this exact string and tokenizer. That is why words and tokens are not interchangeable.
 
@@ -90,9 +90,9 @@ These are the exact spoken lines shown in each slide’s speaker notes. Delivery
 
 **11.** First, let us open the request and see the prompt you never wrote.
 
-**12.** Our nine-token question is the red sliver. In this illustrative request, instructions, tool descriptions, files and conversation history bring the total to thirty-one thousand, two hundred and nine tokens. The harness decides what context to supply; different harnesses trim, retrieve or compact it in different ways. The model sees the context it receives on this call. The diagram assigns ten thousand two hundred tokens to tool schemas and nine thousand six hundred to files. These are illustrative amounts. Export a real request from your harness to learn what it sends.
+**12.** Our twelve-token question is the red sliver. In this illustrative request, instructions, tool descriptions, files and conversation history bring the total to thirty-one thousand, two hundred and twelve tokens. The harness decides what context to supply; different harnesses trim, retrieve or compact it in different ways. The model sees the context it receives on this call. The diagram assigns ten thousand two hundred tokens to tool schemas and nine thousand six hundred to files. These are illustrative amounts. Export a real request from your harness to learn what it sends.
 
-**13.** The full request is about three thousand, four hundred and sixty-eight times larger than the nine tokens you typed. Your question is just 0.03 percent of this example context. Now follow where it goes.
+**13.** The full request is about two thousand, six hundred and one times larger than the twelve tokens you typed. Your question is just 0.04 percent of this example context. Now follow where it goes.
 
 **14.** Now that the request is assembled, it reaches the boundary where identity and policy matter.
 
@@ -156,7 +156,7 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 ## Opening the request: slides 5–13
 
-**5 — terminal.** “Seven words. Nine tokens. Follow what the harness does with them, all the way to the GPU and back.” Nine counts raw user text. The example chat template in `tokenizer-check.py` adds another nine tokens; those are outside the headline.
+**5 — terminal, now a two-click quiz.** Ask “nine words — how many tokens?”, wait for shouts, then click to reveal **Twelve**. The question is `why did the nightly ETL job fail on deserialization?` — deliberately the same nine words and twelve tokens as the answer on slide 6, so the two slides can never contradict each other on stage. Twelve counts raw user text; the example chat template in `tokenizer-check.py` adds nine more, outside the headline.
 
 **6 — token splits.** Walk the amber chips: 54 characters, 9 words, 12 tokens. `ETL` splits into ` E` and `TL`; `deserialization` into ` des` and `erialization`. Leading spaces can belong to tokens. These are measured splits.
 
@@ -168,9 +168,9 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 **10 — route map.** Point to gateway, prefill and decode; do not narrate all eight stops. Notice the return arrow: an agent can go around again.
 
-**12 — context.** “Instructions, tool schemas, files and history fill the request. Your nine tokens are the tiny part.” The **illustrative** breakdown is 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 9 = **31,209 tokens**. The question is 0.0288%, rounded to 0.03%. Protocol/template overhead is omitted. Harnesses can trim, compact, retrieve, cache or reference context; not every system retransmits every byte unchanged. A model conditions on supplied context rather than remembering the previous HTTP call by itself.
+**12 — context.** “Instructions, tool schemas, files and history fill the request. Your twelve tokens are the tiny part.” The **illustrative** breakdown is 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 12 = **31,212 tokens**. The question is 0.0384%, rounded to 0.04%. Protocol/template overhead is omitted. Harnesses can trim, compact, retrieve, cache or reference context; not every system retransmits every byte unchanged. A model conditions on supplied context rather than remembering the previous HTTP call by itself.
 
-**13 — ratio.** **31,209 ÷ 9 ≈ 3,468×**, rounded to the nearest whole number. Pause. This compares illustrative context to raw prompt, not every agent request.
+**13 — ratio.** **31,212 ÷ 12 ≈ 2,601×**, rounded to the nearest whole number. Pause. This compares illustrative context to raw prompt, not every agent request.
 
 ## The Kubernetes spine: slides 15–22
 
@@ -228,20 +228,20 @@ Get your own hand up on slide 2. On slide 3 say **“keep them up”**; let the 
 
 | Quantity | Reproduction / assumption |
 |---|---|
-| Raw question | 7 whitespace-separated words; 9 tokens |
-| Question with script’s chat wrapper | 18 tokens, including 9 wrapper tokens |
+| Raw question | 9 whitespace-separated words; 12 tokens |
+| Question with script’s chat wrapper | 21 tokens, including 9 wrapper tokens |
 | Answer sentence | 54 characters / 9 words / 12 tokens |
 | GPU / agentgateway / Kubernetes / vLLM | 1 / 2 / 2 / 3 tokens |
 | English / Serbian Latin / Serbian Cyrillic | 12 / 20 / 23; 23 ÷ 12 ≈ 1.92, for the displayed examples |
 | 🎲 | 4 UTF-8 bytes; 3 tokens; `f0 9f` + `8e` + `b2` |
-| Context | 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 9 = 31,209; illustrative; wrapper omitted |
-| Amplification | 31,209 ÷ 9 ≈ 3,468×, rounded |
-| Prefill estimate | 2 × 70.6e9 × 31,209 ≈ 4.4e15 FLOP; attention/other work omitted |
+| Context | 10,200 + 9,600 + 8,400 + 1,800 + 1,200 + 12 = 31,212; illustrative; wrapper omitted |
+| Amplification | 31,212 ÷ 12 ≈ 2,601×, rounded |
+| Prefill estimate | 2 × 70.6e9 × 31,212 ≈ 4.4e15 FLOP; attention/other work omitted |
 | Decode estimate | 2 × 70.6e9 ≈ 141e9 FLOP per step; same omissions |
 | Ideal weight-read time | 71e9 bytes ÷ 8e12 bytes/s ≈ 8.9 ms; not measured latency |
 | BF16 KV | 2 × 80 × 8 × 128 × 2 = 327,680 bytes/token = **320 KiB/token** |
 | FP8 KV | 163,840 bytes/token = **160 KiB/token**, before extra overhead |
-| Session estimates | floor(110e9 ÷ 31,209 ÷ 327,680) = 10; floor(180e9 ÷ 31,209 ÷ 327,680) = 17; floor(180e9 ÷ 31,209 ÷ 163,840) = 35 |
+| Session estimates | floor(110e9 ÷ 31,212 ÷ 327,680) = 10; floor(180e9 ÷ 31,212 ÷ 327,680) = 17; floor(180e9 ÷ 31,212 ÷ 163,840) = 35 |
 | Hardware assumptions | 288 GB HBM and 8 TB/s for the stated B300 example; decimal GB and binary KiB are distinguished |
 
 Context breakdowns, growth curves, cache-latency contrasts, capacity allocations and configuration are illustrative. Project performance reports and vendor peaks are neither independent benchmarks nor service-level guarantees. Consult the links on slide 41 for original sources.
