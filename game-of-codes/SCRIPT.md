@@ -12,6 +12,7 @@ The slides carry pictures; these notes carry explanation. Amber follows the requ
 
 - Press **F** for fullscreen, **T** to start the timer, **N** for notes. Arrow keys advance; **P** prints.
 - Keep a local copy for unreliable venue Wi-Fi. Fonts and artwork are bundled for offline presentation.
+- Slide 10 reveals the four token-volume milestones one click at a time: novel, Britannica, Google's book-count estimate, then Llama pretraining.
 - Slide 35 reveals its capacity rows one at a time.
 - Have an agent context dump and a cluster terminal ready for optional questions. No embedded live demo or required network call is part of the talk.
 - Configuration snippets show architecture, not complete deployable manifests. Check installed versions before demonstrating them.

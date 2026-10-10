@@ -148,6 +148,7 @@ pre.code.sm{font-size:24px;line-height:1.42;padding:24px 40px}.duo .pane pre.cod
 .frag{opacity:.12;transition:opacity 160ms ease}.frag.on{opacity:1}
 /* slide 5 asks the room to guess: dimmed is still readable, so hide it outright */
 #slide-5 .frag{opacity:0}#slide-5 .frag.on{opacity:1}.s-notes{display:none}
+#slide-10 .frag{opacity:0;visibility:hidden}#slide-10 .frag.on{opacity:1;visibility:visible}
 #progress{position:fixed;left:0;top:0;height:3px;background:var(--request);width:0;z-index:60;transition:width 140ms linear}
 #toolbar{position:fixed;bottom:0;left:0;right:0;height:48px;z-index:60;display:flex;align-items:center;justify-content:center;gap:8px;background:#090908;border-top:1px solid #272720}
 body.notes-open #toolbar{bottom:38vh}
@@ -160,7 +161,7 @@ body.notes-open #toolbar{bottom:38vh}
 @media(max-width:900px){#clock,#help{display:none}}
 @media(prefers-reduced-motion:reduce){.slide,.frag,#progress{transition:none}}
 @page{size:1920px 1080px;margin:0}
-@media print{html,body,#deck,body.notes-open #deck{height:auto;overflow:visible;background:var(--ground)}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.slide{position:relative;opacity:1!important;visibility:visible;page-break-after:always;break-after:page;transform:none;top:auto;left:auto;margin:0}.slide:last-child{break-after:auto}.frag{opacity:1!important}#progress,#toolbar,#notes,.pronunciation{display:none!important}}
+@media print{html,body,#deck,body.notes-open #deck{height:auto;overflow:visible;background:var(--ground)}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.slide{position:relative;opacity:1!important;visibility:visible;page-break-after:always;break-after:page;transform:none;top:auto;left:auto;margin:0}.slide:last-child{break-after:auto}.frag{opacity:1!important;visibility:visible!important}#progress,#toolbar,#notes,.pronunciation{display:none!important}}
 
 </style>
 </head>
@@ -389,16 +390,16 @@ body.notes-open #toolbar{bottom:38vh}
 <section data-slide="10" id="slide-10" role="group" aria-roledescription="slide" aria-label="Slide 10 of 43" class="slide on-dark slide--scale">
   <p class="scale-kicker">Text volume · milestones, not to scale</p>
   <h2>From one book to <em>trillions</em></h2>
-  <div class="scale-stage" role="img" aria-label="Illustrative token scale: a novel about 100 thousand tokens; print Encyclopaedia Britannica about 60 million; Google’s 2010 book count, extrapolated, about 13 trillion; Llama 3.3 70B pretraining more than 15 trillion.">
+  <div class="scale-stage" role="group" aria-label="Illustrative token scale; four milestones reveal one click at a time.">
     <div class="scale-track" aria-hidden="true"></div>
-    <div class="scale-point novel"><small>One novel</small><strong>~100K</strong><span>75K words</span></div>
-    <div class="scale-point britannica"><small>Britannica · 14th ed.</small><strong>~60M</strong><span>44M words</span></div>
-    <div class="scale-point books"><small>Google’s 2010 book count*</small><strong>~13T</strong><span>illustrative · 2010</span></div>
-    <div class="scale-point llama"><small>Llama 3.3 · 70B</small><strong>15T+</strong><span>pretraining tokens</span></div>
+    <div class="scale-point novel frag"><small>One novel</small><strong>~100K</strong><span>75K words</span></div>
+    <div class="scale-point britannica frag"><small>Britannica · 14th ed.</small><strong>~60M</strong><span>44M words</span></div>
+    <div class="scale-point books frag"><small>Google’s 2010 book count*</small><strong>~13T</strong><span>illustrative · 2010</span></div>
+    <div class="scale-point llama frag"><small>Llama 3.3 · 70B</small><strong>15T+</strong><span>pretraining tokens</span></div>
   </div>
-  <div class="scale-foot"><span><b>Text volume ≠ knowledge.</b> These are quantities of tokens, not what a model knows.</span><span class="est">* 130M books × 100K tokens; illustrative.</span></div>
+  <div class="scale-foot"><span><b>Text volume ≠ knowledge.</b> These are quantities of tokens, not what a model knows.</span><span class="est">* Google book count × assumed book length; illustrative.</span></div>
   <div class="s-notes">
-    <p><b>35 seconds. The milestones are conceptual, not proportionally spaced.</b> Move from one book to the last two figures, then pause.</p>
+    <p><b>35 seconds. Four clicks:</b> novel before the opening line; Britannica before “print Britannica”; books before Google's count; Llama before “Meta reports.” The milestones are conceptual, not proportionally spaced.</p>
     <p>Assumptions: a representative 75,000-word English novel at about 1⅓ tokens per word gives about 100,000 tokens. The 14th edition of <i>Encyclopaedia Britannica</i> had about 44 million words, so about 60 million tokens under the same conversion. This is an English-language rule of thumb, not a measured Llama tokenization of copyrighted books. Google's 2010 count of 129,864,880 distinct books/tomes, including different editions and forms, multiplied by an illustrative 100,000 tokens each, gives about 13 trillion. The count is not a count of unique works, and the extrapolation assumes a novel-sized average across very different books. It is deliberately rough, not a measured total of written works or a current census. Meta reports over 15 trillion pretraining tokens for Llama 3.3 70B. These are token volumes, not an amount of knowledge; training data includes more than books and is not a record of which books were used. Seventy billion counts model parameters, not tokens.</p>
     <p>Sources: <a href="https://reedsy.com/studio/resources/how-many-words-in-a-novel/" target="_blank" rel="noopener">Reedsy novel length</a>; <a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" target="_blank" rel="noopener">OpenAI English token approximation</a>; <a href="https://www.lib.uchicago.edu/collex/exhibits/expma/national-marketplace/" target="_blank" rel="noopener">University of Chicago Britannica word count</a>; <a href="https://googleblog.blogspot.com/2010/08/you-can-count-number-of-books-in-world.html" target="_blank" rel="noopener">Google Books 2010 count</a>; <a href="https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md" target="_blank" rel="noopener">Meta Llama 3.3 model card</a>.</p>
     <p class="say">A novel is about a hundred thousand tokens; print Britannica about sixty million. Google's twenty-ten count of distinct books and editions, multiplied by a novel-sized budget, suggests roughly thirteen trillion—but that is a thought experiment. Meta reports over fifteen trillion tokens used to pretrain Llama three point three seventy B. These are volumes of text, not knowledge. Its seventy billion parameters are a different count again.</p>
@@ -1443,7 +1444,11 @@ body.notes-open #toolbar{bottom:38vh}
   function frags(i) { return slides[i].querySelectorAll('.frag'); }
   function applyStep() {
     var f = frags(idx);
-    for (var i = 0; i < f.length; i++) f[i].classList.toggle('on', i < step);
+    for (var i = 0; i < f.length; i++) {
+      var revealed = i < step;
+      f[i].classList.toggle('on', revealed);
+      f[i].setAttribute('aria-hidden', String(!revealed));
+    }
   }
 
   function show(n, atEnd) {
