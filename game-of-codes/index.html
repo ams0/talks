@@ -610,7 +610,7 @@ body.notes-open #toolbar{bottom:38vh}
 <section data-slide="18" id="slide-18" role="group" aria-roledescription="slide" aria-label="Slide 18 of 43" class="slide on-dark slide--viz wide" data-stop="3">
   <h2>Models. Tools. Agents</h2>
   <div class="fig">
-  <svg viewBox="0 0 1780 440" role="img" aria-label="Three protocols — LLM chat completions, MCP tool calls, and A2A agent-to-agent — all converge on one gateway.">
+  <svg viewBox="0 0 1780 440" role="img" aria-label="Three protocols — LLM chat completions, MCP tool calls marked with a hazard symbol, and A2A agent-to-agent — all converge on one gateway.">
     <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#929387"/></marker></defs>
     <g>
       <rect x="40" y="46"  width="430" height="96" rx="6" fill="#1d1d19" stroke="#494b40"/>
@@ -625,7 +625,13 @@ body.notes-open #toolbar{bottom:38vh}
       <text x="72" y="248">"run this tool"</text>
       <text x="72" y="374">"ask that other agent"</text>
     </g>
-    <g font-family="Barlow" font-size="20" fill="#ff6b51"><text x="330" y="248">← the dangerous one</text></g>
+    <g transform="translate(422 220)" fill="#ff6b51" aria-hidden="true">
+      <circle r="29" fill="none" stroke="#ff6b51" stroke-width="3"/>
+      <circle r="5"/>
+      <path id="radiation-blade" d="M -5 -12 L -11 -26 A 28 28 0 0 1 11 -26 L 5 -12 A 13 13 0 0 0 -5 -12 Z"/>
+      <use href="#radiation-blade" transform="rotate(120)"/>
+      <use href="#radiation-blade" transform="rotate(240)"/>
+    </g>
     <g stroke="#929387" stroke-width="2.5" fill="none" marker-end="url(#a2)">
       <path d="M480 94  C 580 94, 580 220, 690 220"/>
       <path d="M480 220 L 690 220"/>
