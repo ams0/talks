@@ -35,9 +35,9 @@ h2 em{font-style:normal;color:var(--request)} h2 b{color:var(--return);font-weig
 .slide>.fig>svg{width:100%;height:100%;display:block;overflow:visible}
 .slide>.cap{position:absolute;left:var(--margin);right:var(--margin);top:var(--r-cap);font-size:30px;line-height:1.28;color:var(--ink-2)}
 .cap b{font-weight:500;color:var(--ink)}
-.slide[data-slide="15"]>.cap a{color:var(--request);text-decoration:none;border-bottom:1px solid currentColor}
-.slide[data-slide="15"]>.cap a:hover{color:var(--ink)}
-.slide[data-slide="15"]>.cap a:focus-visible{outline:3px solid var(--request);outline-offset:5px}
+.slide[data-slide="16"]>.cap a{color:var(--request);text-decoration:none;border-bottom:1px solid currentColor}
+.slide[data-slide="16"]>.cap a:hover{color:var(--ink)}
+.slide[data-slide="16"]>.cap a:focus-visible{outline:3px solid var(--request);outline-offset:5px}
 .strip{position:absolute;top:58px;left:var(--margin);right:var(--margin);display:flex;gap:22px;font-size:19px;font-weight:500;letter-spacing:.06em}
 .strip .st{flex:1;border-top:2px solid var(--line);padding-top:13px;color:var(--ink-3)}
 .strip .st.done{color:var(--ink-2)} .strip .st.here{color:var(--request);border-color:var(--request)}
@@ -66,18 +66,18 @@ h2 em{font-style:normal;color:var(--request)} h2 b{color:var(--return);font-weig
 .slide--num .n .u{font-size:.48em;letter-spacing:-.03em;margin-left:.05em}
 .slide--num .lab{font-family:var(--f-display);font-size:76px;font-weight:500;line-height:1.05;max-width:28ch;margin-top:38px}
 .slide--num .sub{font-size:29px;line-height:1.4;color:var(--ink-2);margin-top:28px}
-.slide[data-slide="13"]{background:var(--request);color:var(--ground)}
-.slide[data-slide="13"] .n{color:var(--ground)}.slide[data-slide="13"] .sub,.slide[data-slide="13"] .ref{color:#514019}
+.slide[data-slide="14"]{background:var(--request);color:var(--ground)}
+.slide[data-slide="14"] .n{color:var(--ground)}.slide[data-slide="14"] .sub,.slide[data-slide="14"] .ref{color:#514019}
 .slide--section{background:#15150f;background-image:linear-gradient(90deg,#111110 4%,rgba(17,17,16,.91) 48%,rgba(17,17,16,.52)),url('token-hero.png');background-size:cover;background-position:center}
 .slide--section>*{position:absolute;z-index:1}
 .slide--section .num{left:112px;top:104px;font-family:var(--f-display);font-size:64px;line-height:1;color:var(--request);letter-spacing:-.02em}
 .slide--section h2{left:104px;right:auto;top:360px;font-size:194px;line-height:.93;width:1340px;max-width:13ch;font-weight:600}
 .slide--section .stops{left:112px;bottom:110px;font-size:23px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.slide[data-slide="21"],.slide[data-slide="33"]{background-image:none;background:var(--request);color:var(--ground)}
-.slide[data-slide="21"] .num,.slide[data-slide="33"] .num{color:var(--ground)}
-.slide[data-slide="21"] .stops,.slide[data-slide="33"] .stops,.slide[data-slide="21"] .ref,.slide[data-slide="33"] .ref{color:#514019}
-.slide[data-slide="36"]{background-image:linear-gradient(90deg,#111110 10%,rgba(17,17,16,.94) 48%,rgba(17,17,16,.65)),url('token-hero.png');background-position:70% center}
-.slide[data-slide="36"] .num{color:var(--return)}
+.slide[data-slide="22"],.slide[data-slide="34"]{background-image:none;background:var(--request);color:var(--ground)}
+.slide[data-slide="22"] .num,.slide[data-slide="34"] .num{color:var(--ground)}
+.slide[data-slide="22"] .stops,.slide[data-slide="34"] .stops,.slide[data-slide="22"] .ref,.slide[data-slide="34"] .ref{color:#514019}
+.slide[data-slide="37"]{background-image:linear-gradient(90deg,#111110 10%,rgba(17,17,16,.94) 48%,rgba(17,17,16,.65)),url('token-hero.png');background-position:70% center}
+.slide[data-slide="37"] .num{color:var(--return)}
 .duo{position:absolute;left:var(--margin);right:var(--margin);top:var(--r-fig);height:var(--fig-h);display:grid;grid-template-columns:1fr 1fr;gap:80px}
 .duo .pane{padding:0;display:flex;flex-direction:column;min-width:0;position:relative}
 .duo .pane+.pane:before{position:absolute;content:'';left:-40px;top:0;bottom:0;width:1px;background:var(--line)}
@@ -106,6 +106,23 @@ pre.code.sm{font-size:24px;line-height:1.42;padding:24px 40px}.duo .pane pre.cod
 .pronunciation button:hover,.pronunciation button[aria-pressed="true"]{background:var(--request);color:var(--ground)}
 .pronunciation button:focus-visible{outline:3px solid var(--ink);outline-offset:5px}
 .pronunciation audio{display:none}
+.scale-kicker{position:absolute;left:112px;top:130px;font-size:19px;letter-spacing:.13em;text-transform:uppercase;color:var(--request)}
+.slide--scale h2{top:174px;font-size:104px}
+.scale-stage{position:absolute;left:112px;right:112px;top:360px;height:485px}
+.scale-track{position:absolute;left:52px;right:52px;top:230px;height:4px;background:linear-gradient(90deg,var(--request),#805d24 45%,#6d735d 72%,var(--return));box-shadow:0 0 42px #ffb72f44}
+.scale-track:after{content:'TEXT VOLUME →';position:absolute;right:0;top:22px;font:16px var(--f-code);letter-spacing:.11em;color:var(--ink-3)}
+.scale-point{position:absolute;width:360px;transform:translateX(-50%)}
+.scale-point:before{content:'';position:absolute;left:50%;top:221px;width:18px;height:18px;transform:translateX(-50%);border-radius:50%;background:var(--request);box-shadow:0 0 0 8px #ffb72f25,0 0 34px #ffb72f88}
+.scale-point small{display:block;font:18px var(--f-text);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.scale-point strong{display:block;margin-top:9px;font:600 102px/.94 var(--f-display);letter-spacing:-.03em;color:var(--ink)}
+.scale-point span{display:block;margin-top:12px;font-size:24px;color:var(--ink-2)}
+.scale-point.novel{left:10%;top:0}.scale-point.britannica{left:39%;top:0}
+.scale-point.books{left:69%;top:268px}.scale-point.llama{left:92%;top:268px;width:330px}
+.scale-point.books:before,.scale-point.llama:before{top:-47px;background:var(--return);box-shadow:0 0 0 8px #a7d2bd25,0 0 34px #a7d2bd88}
+.scale-point.books strong,.scale-point.llama strong{color:var(--return)}
+.scale-foot{position:absolute;left:112px;right:112px;top:912px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:50px;font-size:25px;line-height:1.3;color:var(--ink-2)}
+.scale-foot b{color:var(--ink);font-weight:500}
+.scale-foot .est{font:16px var(--f-code);color:var(--ink-3);white-space:nowrap;margin-top:7px}
 .mem{display:grid;gap:38px}.mrow{display:grid;grid-template-columns:220px 1fr 160px;gap:36px;align-items:center}.mrow .ml{font-family:var(--f-display);font-size:40px;font-weight:500}.mbar{display:flex;height:100px;font-size:24px}.mbar>div{display:grid;place-items:center;text-align:center;padding:0 8px}.mbar .w{background:#404036;color:var(--ink)}.mbar .ov{background:var(--surface-2)}.mbar .kv{background:var(--request);color:var(--ground)}.mrow .mv{font-family:var(--f-display);font-size:114px;line-height:1;text-align:right;font-weight:600;color:var(--ink-3)}.mrow .mv.hot{color:var(--request)}
 .slide--cta{background-image:linear-gradient(90deg,#111110 15%,rgba(17,17,16,.98) 55%,rgba(17,17,16,.55)),url('token-hero.png');background-size:cover;background-position:center}
 .slide--cta h2{top:164px;font-size:194px;line-height:.89;width:1100px;max-width:20ch;font-weight:600}.closing-line{position:absolute;left:115px;top:726px;font-size:32px;color:var(--ink-2)}
@@ -152,7 +169,7 @@ body.notes-open #toolbar{bottom:38vh}
 <div id="deck">
 
 <!-- 1 ...................................................................... -->
-<section data-slide="1" id="slide-1" role="group" aria-roledescription="slide" aria-label="Slide 1 of 42" class="slide on-dark slide--title">
+<section data-slide="1" id="slide-1" role="group" aria-roledescription="slide" aria-label="Slide 1 of 43" class="slide on-dark slide--title">
   <p class="eyebrow">Game of Codes 2026 · Niš</p>
   <h1>Life of a <em>token</em></h1>
   <p class="sub">From agents to silicon. And back.</p>
@@ -167,7 +184,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
 </section>
 <!-- Q1 ..................................................................... -->
-<section data-slide="2" id="slide-2" role="group" aria-roledescription="slide" aria-label="Slide 2 of 42" class="slide on-dark slide--big">
+<section data-slide="2" id="slide-2" role="group" aria-roledescription="slide" aria-label="Slide 2 of 43" class="slide on-dark slide--big">
   <div>
     <h2>Who uses <em>AI?</em></h2>
     <p class="cap">Hands up.</p>
@@ -182,7 +199,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- Q2 ..................................................................... -->
-<section data-slide="3" id="slide-3" role="group" aria-roledescription="slide" aria-label="Slide 3 of 42" class="slide on-dark slide--big">
+<section data-slide="3" id="slide-3" role="group" aria-roledescription="slide" aria-label="Slide 3 of 43" class="slide on-dark slide--big">
   <div>
     <h2><em>Every</em><br>day?</h2>
     <p class="cap">Keep them up.</p>
@@ -196,14 +213,14 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- Q3 ..................................................................... -->
-<section data-slide="4" id="slide-4" role="group" aria-roledescription="slide" aria-label="Slide 4 of 42" class="slide on-deep slide--big">
+<section data-slide="4" id="slide-4" role="group" aria-roledescription="slide" aria-label="Slide 4 of 43" class="slide on-deep slide--big">
   <div>
     <h2>Who runs<br>a <em>fleet?</em></h2>
     <p class="cap">Agents working while you do something else.</p>
   </div>
   <div class="s-notes">
     <p><b>15 seconds — the only one of the three worth a pause. Read the room before you move: this is the calibration slide.</b></p>
-    <p><b>Use the answer.</b> Many hands: the room already feels the cost, so move briskly through the harness material and spend the time you save on the gateway and llm-d acts. Two or three hands: slow down on slide 12 — the 31,212-token context is the slide that makes the rest matter, and this room has not felt it yet.</p>
+    <p><b>Use the answer.</b> Many hands: the room already feels the cost, so move briskly through the harness material and spend the time you save on the gateway and llm-d acts. Two or three hands: slow down on slide 13 — the 31,212-token context is the slide that makes the rest matter, and this room has not felt it yet.</p>
     <p>Nobody at all: that is fine and quite likely. Say "good — then nothing in this talk has hurt you yet", which gets a laugh and reframes the whole thing as a warning rather than a retrospective.</p>
     <p>The visual shift marks this as the turn. The next slide is a terminal, and the question it contains is the one the rest of the talk answers.</p>
 
@@ -212,7 +229,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 2 ...................................................................... -->
-<section data-slide="5" id="slide-5" role="group" aria-roledescription="slide" aria-label="Slide 5 of 42" class="slide on-dark slide--viz">
+<section data-slide="5" id="slide-5" role="group" aria-roledescription="slide" aria-label="Slide 5 of 43" class="slide on-dark slide--viz">
   <h2>Nine words. <em>How many tokens?</em></h2>
   <div class="fig">
     <div class="term">
@@ -235,7 +252,7 @@ body.notes-open #toolbar{bottom:38vh}
 
 
 <!-- 4 ...................................................................... -->
-<section data-slide="6" id="slide-6" role="group" aria-roledescription="slide" aria-label="Slide 6 of 42" class="slide on-dark slide--viz wide">
+<section data-slide="6" id="slide-6" role="group" aria-roledescription="slide" aria-label="Slide 6 of 43" class="slide on-dark slide--viz wide">
   <h2>Tokens aren’t words</h2>
   <div class="fig">
     <div class="tokline">
@@ -249,7 +266,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <p class="cap">A token is a learned piece of text.</p>
   <div class="s-notes"><p><b>Additional context:</b> Common words survive whole. <b>ETL</b> splits. <b>deserialization</b> splits. A token is a byte sequence the tokenizer saw often enough to keep.</p>
-    <p><b>55 seconds. Walk the amber chips.</b></p>
+    <p><b>50 seconds. Walk the amber chips.</b></p>
     <p>Real splits from Llama 3’s own tokenizer — <code>tokenizer-check.py</code> beside the deck prints them. Say that it is measured; people assume these diagrams are drawn by hand.</p>
     <p>If someone asks why there's a leading space on most chips: the space is part of the token. That is why "ETL" mid-sentence and "ETL" at the start are different tokens.</p>
 
@@ -258,7 +275,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 5 ...................................................................... -->
-<section data-slide="7" id="slide-7" role="group" aria-roledescription="slide" aria-label="Slide 7 of 42" class="slide on-dark slide--viz wide">
+<section data-slide="7" id="slide-7" role="group" aria-roledescription="slide" aria-label="Slide 7 of 43" class="slide on-dark slide--viz wide">
   <h2>Bytes. Words. <em>The compromise</em></h2>
   <div class="fig">
   <svg viewBox="0 0 1780 440" role="img" aria-label="Letters give a tiny vocabulary but very long sequences; words give short sequences but an unbounded vocabulary; subwords sit between them.">
@@ -307,7 +324,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 6 ...................................................................... -->
-<section data-slide="8" id="slide-8" role="group" aria-roledescription="slide" aria-label="Slide 8 of 42" class="slide on-dark slide--viz wide">
+<section data-slide="8" id="slide-8" role="group" aria-roledescription="slide" aria-label="Slide 8 of 43" class="slide on-dark slide--viz wide">
   <p class="kick">Byte-pair encoding</p>
   <h2>Compression, learned</h2>
   <div class="fig">
@@ -320,7 +337,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <p class="cap">Frequent byte pairs become vocabulary.</p>
   <div class="s-notes"><p><b>Additional context:</b> Start from bytes and merge frequent pairs. The tokenizer used here has <b>128,256 vocabulary entries</b>, including special tokens; that is not the number of merge operations. <b>GPU earned one; Kubernetes did not.</b></p>
-    <p><b>50 seconds. The last line is the one that lands.</b></p>
+    <p><b>45 seconds. The last line is the one that lands.</b></p>
     <p>Then land it: <b>nothing in this vocabulary understands anything.</b> It is compression, fitted to a corpus. Every semantic thing the model does happens after this point, in the weights — not here.</p>
     <p>This is also the honest setup for the next slide: if the corpus was mostly English, the compression is tuned for English.</p>
 
@@ -329,7 +346,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 7 ...................................................................... -->
-<section data-slide="9" id="slide-9" role="group" aria-roledescription="slide" aria-label="Slide 9 of 42" class="slide on-dark slide--viz">
+<section data-slide="9" id="slide-9" role="group" aria-roledescription="slide" aria-label="Slide 9 of 43" class="slide on-dark slide--viz">
   <p class="kick">Llama 3 tokenizer · measured example</p>
   <h2>Same meaning. <em>Different bill</em></h2>
   <div class="fig">
@@ -368,8 +385,28 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
 </section>
 
+<!-- Written-text scale .................................................... -->
+<section data-slide="10" id="slide-10" role="group" aria-roledescription="slide" aria-label="Slide 10 of 43" class="slide on-dark slide--scale">
+  <p class="scale-kicker">Text volume · milestones, not to scale</p>
+  <h2>From one book to <em>trillions</em></h2>
+  <div class="scale-stage" role="img" aria-label="Illustrative token scale: a novel about 100 thousand tokens; print Encyclopaedia Britannica about 60 million; Google’s 2010 book count, extrapolated, about 13 trillion; Llama 3.3 70B pretraining more than 15 trillion.">
+    <div class="scale-track" aria-hidden="true"></div>
+    <div class="scale-point novel"><small>One novel</small><strong>~100K</strong><span>75K words</span></div>
+    <div class="scale-point britannica"><small>Britannica · 14th ed.</small><strong>~60M</strong><span>44M words</span></div>
+    <div class="scale-point books"><small>Google’s 2010 book count*</small><strong>~13T</strong><span>illustrative · 2010</span></div>
+    <div class="scale-point llama"><small>Llama 3.3 · 70B</small><strong>15T+</strong><span>pretraining tokens</span></div>
+  </div>
+  <div class="scale-foot"><span><b>Text volume ≠ knowledge.</b> These are quantities of tokens, not what a model knows.</span><span class="est">* 130M books × 100K tokens; illustrative.</span></div>
+  <div class="s-notes">
+    <p><b>35 seconds. The milestones are conceptual, not proportionally spaced.</b> Move from one book to the last two figures, then pause.</p>
+    <p>Assumptions: a representative 75,000-word English novel at about 1⅓ tokens per word gives about 100,000 tokens. The 14th edition of <i>Encyclopaedia Britannica</i> had about 44 million words, so about 60 million tokens under the same conversion. This is an English-language rule of thumb, not a measured Llama tokenization of copyrighted books. Google's 2010 count of 129,864,880 distinct books/tomes, including different editions and forms, multiplied by an illustrative 100,000 tokens each, gives about 13 trillion. The count is not a count of unique works, and the extrapolation assumes a novel-sized average across very different books. It is deliberately rough, not a measured total of written works or a current census. Meta reports over 15 trillion pretraining tokens for Llama 3.3 70B. These are token volumes, not an amount of knowledge; training data includes more than books and is not a record of which books were used. Seventy billion counts model parameters, not tokens.</p>
+    <p>Sources: <a href="https://reedsy.com/studio/resources/how-many-words-in-a-novel/" target="_blank" rel="noopener">Reedsy novel length</a>; <a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" target="_blank" rel="noopener">OpenAI English token approximation</a>; <a href="https://www.lib.uchicago.edu/collex/exhibits/expma/national-marketplace/" target="_blank" rel="noopener">University of Chicago Britannica word count</a>; <a href="https://googleblog.blogspot.com/2010/08/you-can-count-number-of-books-in-world.html" target="_blank" rel="noopener">Google Books 2010 count</a>; <a href="https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md" target="_blank" rel="noopener">Meta Llama 3.3 model card</a>.</p>
+    <p class="say">A novel is about a hundred thousand tokens; print Britannica about sixty million. Google's twenty-ten count of distinct books and editions, multiplied by a novel-sized budget, suggests roughly thirteen trillion—but that is a thought experiment. Meta reports over fifteen trillion tokens used to pretrain Llama three point three seventy B. These are volumes of text, not knowledge. Its seventy billion parameters are a different count again.</p>
+  </div>
+</section>
+
 <!-- 3 ...................................................................... -->
-<section data-slide="10" id="slide-10" role="group" aria-roledescription="slide" aria-label="Slide 10 of 42" class="slide on-dark slide--viz wide">
+<section data-slide="11" id="slide-11" role="group" aria-roledescription="slide" aria-label="Slide 11 of 43" class="slide on-dark slide--viz wide">
   <h2>Down to silicon. Back again</h2>
   <div class="fig">
   <svg viewBox="0 0 1780 440" role="img" aria-label="The route: harness, context, gateway, route, prefill, decode, then stream and loop back to the harness.">
@@ -414,7 +451,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <p class="cap">Eight stops. One request.</p>
   <div class="s-notes"><p><b>Additional context:</b> The strip at the top of every slide from here says where we are.</p>
-    <p><b>35 seconds. Point, do not narrate all eight.</b></p>
+    <p><b>30 seconds. Point, do not narrate all eight.</b></p>
     <p>Say which stops you will spend time on: three (the gateway), five and six (the two halves of inference). Then move.</p>
 
     <p class="say">Here is our route: the request travels down through the harness, gateway, routing layer and model engine, then streams back. Watch the loop at the top. An agent can call a tool, add its result and make another model request. The colors change where the answer starts home. We will focus on the gateway, the replica choice, and the engine where prefill and decode use the GPU differently.</p>
@@ -422,7 +459,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 4 ...................................................................... -->
-<section data-slide="11" id="slide-11" role="group" aria-roledescription="slide" aria-label="Slide 11 of 42" class="slide on-deep slide--section">
+<section data-slide="12" id="slide-12" role="group" aria-roledescription="slide" aria-label="Slide 12 of 43" class="slide on-deep slide--section">
   <p class="num">01–02</p>
   <h2>The prompt<br>you never wrote</h2>
   <p class="stops">stop 01–02 · harness → context</p>
@@ -430,7 +467,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 5 ...................................................................... -->
-<section data-slide="12" id="slide-12" role="group" aria-roledescription="slide" aria-label="Slide 12 of 42" class="slide on-dark slide--viz wide" data-stop="1">
+<section data-slide="13" id="slide-13" role="group" aria-roledescription="slide" aria-label="Slide 13 of 43" class="slide on-dark slide--viz wide" data-stop="1">
   <h2>Your prompt is <em>0.04%</em></h2>
   <div class="fig">
   <svg viewBox="0 0 1780 360" role="img" aria-label="A proportional bar of the request: tool schemas, file reads and conversation history dominate; the user's question is a 12-token sliver at the end.">
@@ -461,7 +498,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
   <p class="cap">Tools, files and history fill the rest.</p>
   <div class="s-notes"><p><b>Additional context:</b> In this untrimmed example, history is resent each turn. Prefix caching can avoid recomputing reusable prefixes.</p>
-    <p><b>65 seconds. The most useful slide in act one. Point at the red sliver.</b></p>
+    <p><b>60 seconds. The most useful slide in act one. Point at the red sliver.</b></p>
     <p>Hands up: "who has ever counted the tokens in their tool definitions?" Nobody. That is the point.</p>
     <p>Illustrative but correctly shaped: MCP/tool schemas really do run 400–900 tokens each; six turns of real work really is 8–10k. Count your own with <code>tiktoken</code>.</p>
 
@@ -470,7 +507,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 6 ...................................................................... -->
-<section data-slide="13" id="slide-13" role="group" aria-roledescription="slide" aria-label="Slide 13 of 42" class="slide on-dark slide--num" data-stop="2">
+<section data-slide="14" id="slide-14" role="group" aria-roledescription="slide" aria-label="Slide 14 of 43" class="slide on-dark slide--num" data-stop="2">
   <div>
     <p class="n">≈2,601<span class="u">×</span></p>
     <p class="lab">more context than you typed</p>
@@ -485,14 +522,14 @@ body.notes-open #toolbar{bottom:38vh}
 
 
 <!-- 9 ...................................................................... -->
-<section data-slide="14" id="slide-14" role="group" aria-roledescription="slide" aria-label="Slide 14 of 42" class="slide on-deep slide--section">
+<section data-slide="15" id="slide-15" role="group" aria-roledescription="slide" aria-label="Slide 15 of 43" class="slide on-deep slide--section">
   <p class="num">03</p>
   <h2>Where<br>trust ends</h2>
   <p class="stops">stop 03 · gateway</p>
   <div class="s-notes"><p><b>8 seconds.</b> This is the act you said you'd spend time on — signal it.</p><p class="say">Now that the request is assembled, it reaches the boundary where identity and policy matter.</p></div>
 </section>
 <!-- K1 ..................................................................... -->
-<section data-slide="15" id="slide-15" role="group" aria-roledescription="slide" aria-label="Slide 15 of 42" class="slide on-dark slide--viz wide" data-stop="3">
+<section data-slide="16" id="slide-16" role="group" aria-roledescription="slide" aria-label="Slide 16 of 43" class="slide on-dark slide--viz wide" data-stop="3">
   <p class="kick">Open source · Agentic AI Foundation</p>
   <h2>Meet <em>agentgateway</em></h2>
   <div class="fig">
@@ -527,7 +564,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- K1 ..................................................................... -->
-<section data-slide="16" id="slide-16" role="group" aria-roledescription="slide" aria-label="Slide 16 of 42" class="slide on-dark slide--viz wide" data-stop="3">
+<section data-slide="17" id="slide-17" role="group" aria-roledescription="slide" aria-label="Slide 17 of 43" class="slide on-dark slide--viz wide" data-stop="3">
   <h2>Four objects. One stack</h2>
   <div class="fig">
   <svg viewBox="0 0 1780 440" role="img" aria-label="The request path as four Kubernetes objects: Gateway, HTTPRoute, InferencePool and Deployment.">
@@ -570,7 +607,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 10 ..................................................................... -->
-<section data-slide="17" id="slide-17" role="group" aria-roledescription="slide" aria-label="Slide 17 of 42" class="slide on-dark slide--viz wide" data-stop="3">
+<section data-slide="18" id="slide-18" role="group" aria-roledescription="slide" aria-label="Slide 18 of 43" class="slide on-dark slide--viz wide" data-stop="3">
   <h2>Models. Tools. Agents</h2>
   <div class="fig">
   <svg viewBox="0 0 1780 440" role="img" aria-label="Three protocols — LLM chat completions, MCP tool calls, and A2A agent-to-agent — all converge on one gateway.">
@@ -627,7 +664,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 11 ..................................................................... -->
-<section data-slide="18" id="slide-18" role="group" aria-roledescription="slide" aria-label="Slide 18 of 42" class="slide on-dark slide--viz wide" data-stop="3">
+<section data-slide="19" id="slide-19" role="group" aria-roledescription="slide" aria-label="Slide 19 of 43" class="slide on-dark slide--viz wide" data-stop="3">
   <p class="kick">agentgateway · tool authorization</p>
   <h2>Authorize <em>the action</em></h2>
   <div class="fig">
@@ -675,7 +712,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 12 ..................................................................... -->
-<section data-slide="19" id="slide-19" role="group" aria-roledescription="slide" aria-label="Slide 19 of 42" class="slide on-dark slide--viz wide" data-stop="3">
+<section data-slide="20" id="slide-20" role="group" aria-roledescription="slide" aria-label="Slide 20 of 43" class="slide on-dark slide--viz wide" data-stop="3">
   <h2>Carry the identity</h2>
   <div class="fig">
   <svg viewBox="0 0 1780 330" role="img" aria-label="Identity propagates from the human through the agent, the gateway and the tool call.">
@@ -712,7 +749,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
 </section>
 <!-- K2 ..................................................................... -->
-<section data-slide="20" id="slide-20" role="group" aria-roledescription="slide" aria-label="Slide 20 of 42" class="slide on-dark slide--duo" data-stop="3">
+<section data-slide="21" id="slide-21" role="group" aria-roledescription="slide" aria-label="Slide 21 of 43" class="slide on-dark slide--duo" data-stop="3">
   <p class="kick">agentgateway</p>
   <h2>Two routes. One audit trail</h2>
   <div class="duo">
@@ -755,7 +792,7 @@ body.notes-open #toolbar{bottom:38vh}
 
 
 <!-- 14 ..................................................................... -->
-<section data-slide="21" id="slide-21" role="group" aria-roledescription="slide" aria-label="Slide 21 of 42" class="slide on-deep slide--section">
+<section data-slide="22" id="slide-22" role="group" aria-roledescription="slide" aria-label="Slide 22 of 43" class="slide on-deep slide--section">
   <p class="num">04</p>
   <h2>Which GPU<br>answers?</h2>
   <p class="stops">stop 04 · route</p>
@@ -763,7 +800,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 15 ..................................................................... -->
-<section data-slide="22" id="slide-22" role="group" aria-roledescription="slide" aria-label="Slide 22 of 42" class="slide on-dark slide--viz wide" data-stop="4">
+<section data-slide="23" id="slide-23" role="group" aria-roledescription="slide" aria-label="Slide 23 of 43" class="slide on-dark slide--viz wide" data-stop="4">
   <h2>Same model. Different cost</h2>
   <div class="fig">
   <svg viewBox="0 0 1780 420" role="img" aria-label="Three identical vLLM replicas; one already holds the request's prefix in its KV cache. Round-robin picks a cold one; an inference-aware picker picks the warm one.">
@@ -818,7 +855,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
 </section>
 <!-- K3 ..................................................................... -->
-<section data-slide="23" id="slide-23" role="group" aria-roledescription="slide" aria-label="Slide 23 of 42" class="slide on-dark slide--viz" data-stop="4">
+<section data-slide="24" id="slide-24" role="group" aria-roledescription="slide" aria-label="Slide 24 of 43" class="slide on-dark slide--viz" data-stop="4">
   <p class="kick">Gateway API Inference Extension</p>
   <h2>Route to the cache</h2>
   <div class="fig">
@@ -850,7 +887,7 @@ body.notes-open #toolbar{bottom:38vh}
 
 
 <!-- 17 ..................................................................... -->
-<section data-slide="24" id="slide-24" role="group" aria-roledescription="slide" aria-label="Slide 24 of 42" class="slide on-deep slide--section">
+<section data-slide="25" id="slide-25" role="group" aria-roledescription="slide" aria-label="Slide 25 of 43" class="slide on-deep slide--section">
   <p class="num">05–06</p>
   <h2>One GPU.<br>Two bottlenecks</h2>
   <p class="stops">stop 05–06 · prefill → decode</p>
@@ -858,7 +895,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 18 ..................................................................... -->
-<section data-slide="25" id="slide-25" role="group" aria-roledescription="slide" aria-label="Slide 25 of 42" class="slide on-dark slide--duo" data-stop="5">
+<section data-slide="26" id="slide-26" role="group" aria-roledescription="slide" aria-label="Slide 26 of 43" class="slide on-dark slide--duo" data-stop="5">
   <h2>Prefill computes. <em>Decode reads</em></h2>
   <div class="duo">
     <div class="pane">
@@ -904,7 +941,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 19 ..................................................................... -->
-<section data-slide="26" id="slide-26" role="group" aria-roledescription="slide" aria-label="Slide 26 of 42" class="slide on-dark slide--num" data-stop="6">
+<section data-slide="27" id="slide-27" role="group" aria-roledescription="slide" aria-label="Slide 27 of 43" class="slide on-dark slide--num" data-stop="6">
   <div>
     <p class="n">8.9<span class="u">ms</span></p>
     <p class="lab">The ideal weight-read floor.</p>
@@ -915,7 +952,7 @@ body.notes-open #toolbar{bottom:38vh}
 
 
 <!-- 21 ..................................................................... -->
-<section data-slide="27" id="slide-27" role="group" aria-roledescription="slide" aria-label="Slide 27 of 42" class="slide on-dark slide--viz wide" data-stop="6">
+<section data-slide="28" id="slide-28" role="group" aria-roledescription="slide" aria-label="Slide 28 of 43" class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">llm-d · prefill/decode disaggregation</p>
   <h2>Separate when it pays</h2>
   <div class="fig">
@@ -955,7 +992,7 @@ body.notes-open #toolbar{bottom:38vh}
   </div>
 </section>
 <!-- K4 ..................................................................... -->
-<section data-slide="28" id="slide-28" role="group" aria-roledescription="slide" aria-label="Slide 28 of 42" class="slide on-dark slide--viz" data-stop="6">
+<section data-slide="29" id="slide-29" role="group" aria-roledescription="slide" aria-label="Slide 29 of 43" class="slide on-dark slide--viz" data-stop="6">
   <p class="kick">llm-d</p>
   <h2>Start with smarter routing</h2>
   <div class="fig">
@@ -987,7 +1024,7 @@ body.notes-open #toolbar{bottom:38vh}
 
 
 <!-- 23 ..................................................................... -->
-<section data-slide="29" id="slide-29" role="group" aria-roledescription="slide" aria-label="Slide 29 of 42" class="slide on-deep slide--section">
+<section data-slide="30" id="slide-30" role="group" aria-roledescription="slide" aria-label="Slide 30 of 43" class="slide on-deep slide--section">
   <p class="num">06</p>
   <h2>Inside<br>the engine</h2>
   <p class="stops">stop 06 · still decoding · the engine</p>
@@ -995,7 +1032,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 24 ..................................................................... -->
-<section data-slide="30" id="slide-30" role="group" aria-roledescription="slide" aria-label="Slide 30 of 42" class="slide on-dark slide--viz wide" data-stop="6">
+<section data-slide="31" id="slide-31" role="group" aria-roledescription="slide" aria-label="Slide 31 of 43" class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">Continuous batching</p>
   <h2>Refill every step</h2>
   <div class="fig">
@@ -1035,7 +1072,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 25 ..................................................................... -->
-<section data-slide="31" id="slide-31" role="group" aria-roledescription="slide" aria-label="Slide 31 of 42" class="slide on-dark slide--duo" data-stop="6">
+<section data-slide="32" id="slide-32" role="group" aria-roledescription="slide" aria-label="Slide 32 of 43" class="slide on-dark slide--duo" data-stop="6">
   <h2>Give KV a page table</h2>
   <div class="duo">
     <div class="pane">
@@ -1068,7 +1105,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 26 ..................................................................... -->
-<section data-slide="32" id="slide-32" role="group" aria-roledescription="slide" aria-label="Slide 32 of 42" class="slide on-dark slide--viz wide" data-stop="6">
+<section data-slide="33" id="slide-33" role="group" aria-roledescription="slide" aria-label="Slide 33 of 43" class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">Prefix caching</p>
   <h2>Reuse the prefix</h2>
   <div class="fig">
@@ -1097,7 +1134,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 27 ..................................................................... -->
-<section data-slide="33" id="slide-33" role="group" aria-roledescription="slide" aria-label="Slide 33 of 42" class="slide on-deep slide--section">
+<section data-slide="34" id="slide-34" role="group" aria-roledescription="slide" aria-label="Slide 34 of 43" class="slide on-deep slide--section">
   <p class="num">06</p>
   <h2>What fits<br>in memory?</h2>
   <p class="stops">stop 06 · still decoding · the silicon</p>
@@ -1105,7 +1142,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 28 ..................................................................... -->
-<section data-slide="34" id="slide-34" role="group" aria-roledescription="slide" aria-label="Slide 34 of 42" class="slide on-dark slide--viz wide" data-stop="6">
+<section data-slide="35" id="slide-35" role="group" aria-roledescription="slide" aria-label="Slide 35 of 43" class="slide on-dark slide--viz wide" data-stop="6">
   <p class="kick">288 GB HBM · illustrative budget</p>
   <h2>Weights are rent. <em>KV is capacity</em></h2>
   <div class="fig">
@@ -1138,7 +1175,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 29 ..................................................................... -->
-<section data-slide="35" id="slide-35" role="group" aria-roledescription="slide" aria-label="Slide 35 of 42" class="slide on-dark slide--duo" data-stop="6">
+<section data-slide="36" id="slide-36" role="group" aria-roledescription="slide" aria-label="Slide 36 of 43" class="slide on-dark slide--duo" data-stop="6">
   <h2>Activate less. Read less</h2>
   <div class="duo">
     <div class="pane">
@@ -1169,7 +1206,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 30 ..................................................................... -->
-<section data-slide="36" id="slide-36" role="group" aria-roledescription="slide" aria-label="Slide 36 of 42" class="slide on-deep slide--section">
+<section data-slide="37" id="slide-37" role="group" aria-roledescription="slide" aria-label="Slide 37 of 43" class="slide on-deep slide--section">
   <p class="num">07–08</p>
   <h2>The journey<br>home</h2>
   <p class="stops">stop 07–08 · stream → loop</p>
@@ -1178,7 +1215,7 @@ body.notes-open #toolbar{bottom:38vh}
 
 
 <!-- 32 ..................................................................... -->
-<section data-slide="37" id="slide-37" role="group" aria-roledescription="slide" aria-label="Slide 37 of 42" class="slide on-dark slide--viz" data-stop="7">
+<section data-slide="38" id="slide-38" role="group" aria-roledescription="slide" aria-label="Slide 38 of 43" class="slide on-dark slide--viz" data-stop="7">
   <p class="kick">Streaming UTF-8</p>
   <h2>One character. <em>Three tokens</em></h2>
   <div class="fig">
@@ -1218,7 +1255,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 33 ..................................................................... -->
-<section data-slide="38" id="slide-38" role="group" aria-roledescription="slide" aria-label="Slide 38 of 42" class="slide on-dark slide--viz wide" data-stop="8">
+<section data-slide="39" id="slide-39" role="group" aria-roledescription="slide" aria-label="Slide 39 of 43" class="slide on-dark slide--viz wide" data-stop="8">
   <h2>Tool call. Append. Repeat</h2>
   <div class="fig">
   <svg viewBox="0 0 1780 400" role="img" aria-label="Across successive agent turns the context grows, so each turn costs more than the last.">
@@ -1247,7 +1284,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- CB ..................................................................... -->
-<section data-slide="39" id="slide-39" role="group" aria-roledescription="slide" aria-label="Slide 39 of 42" class="slide on-dark slide--viz" data-stop="8">
+<section data-slide="40" id="slide-40" role="group" aria-roledescription="slide" aria-label="Slide 40 of 43" class="slide on-dark slide--viz" data-stop="8">
   <h2>The answer comes home</h2>
   <div class="fig">
     <div class="term">
@@ -1269,7 +1306,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 34 ..................................................................... -->
-<section data-slide="40" id="slide-40" role="group" aria-roledescription="slide" aria-label="Slide 40 of 42" class="slide on-dark slide--cta">
+<section data-slide="41" id="slide-41" role="group" aria-roledescription="slide" aria-label="Slide 41 of 43" class="slide on-dark slide--cta">
   <h2>Count.<br>Route.<br><em>Reuse</em></h2>
   <p class="closing-line">Count your context. Route to warm caches. Batch the work.</p>
   <div class="me">
@@ -1290,7 +1327,7 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- 35 ..................................................................... -->
-<section data-slide="41" id="slide-41" role="group" aria-roledescription="slide" aria-label="Slide 41 of 42" class="slide on-dark slide--bio">
+<section data-slide="42" id="slide-42" role="group" aria-roledescription="slide" aria-label="Slide 42 of 43" class="slide on-dark slide--bio">
   <p class="kick">Let’s keep talking</p>
   <div class="bio-copy">
     <h2>Alessandro<span>Vozza</span></h2>
@@ -1318,10 +1355,11 @@ body.notes-open #toolbar{bottom:38vh}
 </section>
 
 <!-- Sources ................................................................ -->
-<section data-slide="42" id="slide-42" role="group" aria-roledescription="slide" aria-label="Slide 42 of 42" class="slide on-dark slide--srcs">
+<section data-slide="43" id="slide-43" role="group" aria-roledescription="slide" aria-label="Slide 43 of 43" class="slide on-dark slide--srcs">
   <h2>Sources & assumptions</h2>
   <div class="srcs">
     <p><b>Tokenizer</b>Llama 3 · measured examples<br><a href="tokenizer-check.py">Reproduce the counts ↗</a></p>
+    <p><b>Written-text scale</b>Estimates + Meta pretraining count<br><a href="https://googleblog.blogspot.com/2010/08/you-can-count-number-of-books-in-world.html" target="_blank" rel="noopener">Book count ↗</a> · <a href="https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md" target="_blank" rel="noopener">Model card ↗</a></p>
     <p><b>agentgateway</b>Rust · Gateway API · AAIF<br><a href="https://agentgateway.dev/docs/kubernetes/latest/documentation/about/architecture/" target="_blank" rel="noopener">Architecture ↗</a> · <a href="https://aaif.io/projects/agentgateway" target="_blank" rel="noopener">AAIF ↗</a></p>
     <p><b>Inference routing</b>Gateway API Inference Extension<br><a href="https://gateway-api-inference-extension.sigs.k8s.io/" target="_blank" rel="noopener">Kubernetes SIG project ↗</a></p>
     <p><b>vLLM</b>PagedAttention and prefix caching<br><a href="https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/" target="_blank" rel="noopener">Automatic prefix caching ↗</a></p>
@@ -1338,7 +1376,7 @@ body.notes-open #toolbar{bottom:38vh}
 <nav id="toolbar" aria-label="Presentation controls">
   <span id="clock">T · Start timer</span>
   <button id="prev" type="button" aria-label="Previous slide">←</button>
-  <span id="pager" aria-live="polite"><span id="cur">1</span> / <span id="tot">42</span></span>
+  <span id="pager" aria-live="polite"><span id="cur">1</span> / <span id="tot">43</span></span>
   <button id="next" type="button" aria-label="Next slide">→</button>
   <button id="notes-toggle" type="button" aria-controls="notes" aria-pressed="false">Notes <small>N</small></button>
   <button id="fullscreen" type="button" aria-label="Toggle fullscreen">Fullscreen</button>
