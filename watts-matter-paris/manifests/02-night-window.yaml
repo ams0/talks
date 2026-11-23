@@ -1,0 +1,79 @@
+# The night window: two CronJobs patch the batch envelope to 30 kW at 22:00
+# and back to 15 kW at 07:00. On a solar-heavy grid (France), schedule the
+# widen around midday instead, or drive it from a price signal.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: power-window
+  namespace: kueue-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: power-window
+rules:
+- apiGroups: ["kueue.x-k8s.io"]
+  resources: ["clusterqueues"]
+  resourceNames: ["batch-power-capped"]
+  verbs: ["get", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: power-window
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: power-window
+subjects:
+- kind: ServiceAccount
+  name: power-window
+  namespace: kueue-system
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: power-window-widen
+  namespace: kueue-system
+spec:
+  schedule: "0 22 * * *"
+  timeZone: Europe/Paris
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: power-window
+          restartPolicy: OnFailure
+          containers:
+          - name: patch
+            image: registry.k8s.io/kubectl:v1.37.0
+            command:
+            - kubectl
+            - patch
+            - clusterqueue/batch-power-capped
+            - --type=json
+            - -p=[{"op":"replace","path":"/spec/resourceGroups/0/flavors/0/resources/1/nominalQuota","value":"30000"}]
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: power-window-narrow
+  namespace: kueue-system
+spec:
+  schedule: "0 7 * * *"
+  timeZone: Europe/Paris
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: power-window
+          restartPolicy: OnFailure
+          containers:
+          - name: patch
+            image: registry.k8s.io/kubectl:v1.37.0
+            command:
+            - kubectl
+            - patch
+            - clusterqueue/batch-power-capped
+            - --type=json
+            - -p=[{"op":"replace","path":"/spec/resourceGroups/0/flavors/0/resources/1/nominalQuota","value":"15000"}]

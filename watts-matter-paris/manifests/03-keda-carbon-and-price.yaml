@@ -1,0 +1,42 @@
+# Carbon is just a signal, and so is price. Both assume something exports the
+# grid series into Prometheus: grid_co2_g_kwh (e.g. from the Electricity Maps
+# API) and grid_price_eur_mwh (day-ahead spot price, e.g. ENTSO-E). Pick one
+# trigger per workload. Schema-validated against the KEDA v2.21.1 CRDs.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: backfill-carbon-aware
+  namespace: ml-batch
+spec:
+  scaleTargetRef:
+    name: embedding-backfill
+  minReplicaCount: 0
+  maxReplicaCount: 20
+  cooldownPeriod: 600
+  triggers:
+  - type: prometheus
+    metadata:
+      serverAddress: http://prometheus-operated.monitoring.svc:9090
+      # Cleaner grid -> bigger number -> more replicas.
+      query: 400 - avg_over_time(grid_co2_g_kwh[30m])
+      threshold: "100"
+---
+# On France's ~20 gCO2/kWh grid the carbon series barely moves; price does.
+# Cheaper (or negative) price -> bigger number -> more replicas.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: backfill-price-aware
+  namespace: ml-batch
+spec:
+  scaleTargetRef:
+    name: embedding-backfill-fr
+  minReplicaCount: 0
+  maxReplicaCount: 20
+  cooldownPeriod: 600
+  triggers:
+  - type: prometheus
+    metadata:
+      serverAddress: http://prometheus-operated.monitoring.svc:9090
+      query: 150 - avg_over_time(grid_price_eur_mwh[30m])
+      threshold: "50"
