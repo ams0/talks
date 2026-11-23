@@ -1,0 +1,62 @@
+# Power as quota: the ClusterQueue from the "30 lines of YAML" slide, plus the
+# objects it needs to admit anything. Nodes must advertise the extended
+# resource power.acme.io/watts (patch node status, or a device plugin) and
+# jobs request it alongside nvidia.com/gpu. Applied and admitted on Kueue v0.20.7 (kind, Nov 2026).
+apiVersion: kueue.x-k8s.io/v1beta2
+kind: ResourceFlavor
+metadata:
+  name: gpu-nodes
+spec:
+  nodeLabels:
+    nvidia.com/gpu.present: "true"
+---
+apiVersion: kueue.x-k8s.io/v1beta2
+kind: ClusterQueue
+metadata:
+  name: batch-power-capped
+spec:
+  namespaceSelector: {}
+  resourceGroups:
+  - coveredResources:
+    - nvidia.com/gpu
+    - power.acme.io/watts
+    flavors:
+    - name: gpu-nodes
+      resources:
+      - name: nvidia.com/gpu
+        nominalQuota: 16
+      - name: power.acme.io/watts
+        nominalQuota: 15000  # daytime envelope; 02-night-window.yaml raises it
+---
+apiVersion: kueue.x-k8s.io/v1beta2
+kind: LocalQueue
+metadata:
+  name: batch
+  namespace: ml-batch
+spec:
+  clusterQueue: batch-power-capped
+---
+# A job that asks for watts the way it asks for GPUs.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: finetune-example
+  namespace: ml-batch
+  labels:
+    kueue.x-k8s.io/queue-name: batch
+spec:
+  suspend: true
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: train
+        image: busybox:1.37
+        command: ["sh", "-c", "sleep 60"]
+        resources:
+          requests:
+            nvidia.com/gpu: 1
+            power.acme.io/watts: "1000"
+          limits:
+            nvidia.com/gpu: 1
+            power.acme.io/watts: "1000"
